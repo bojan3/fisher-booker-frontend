@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPageComponent implements OnInit {
 
+  entities = [['Cottages', '../../assets/images/cottage.png', 'cottages'], ['Adventures', '../../assets/images/adventure.png', 'adventures'],
+    ['Ships', '../../assets/images/ship.png', 'ships']];
+
   constructor() { }
 
   ngOnInit(): void {

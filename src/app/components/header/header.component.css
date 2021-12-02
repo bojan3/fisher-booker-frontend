@@ -10,10 +10,17 @@
 
 img{
     width: 75px;
+    margin: 2px;
 }
 
 .buttons{
     margin-right: 15px;
 }
 
+p{
+    font-size: 30px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    letter-spacing: 20px;
+    margin: 0px;
+}
 
