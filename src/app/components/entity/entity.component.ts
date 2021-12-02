@@ -13,6 +13,9 @@ export class EntityComponent implements OnInit {
   @Input()
   path: string = '';
 
+  @Input()
+  route: string = '';
+
   constructor() { }
 
   ngOnInit(): void {
