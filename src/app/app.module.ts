@@ -17,6 +17,7 @@ import { CottageComponent } from './components/cottage/cottage.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AdventureComponent } from './components/adventure/adventure.component';
 import { LogInComponent } from './components/log-in/log-in.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -43,6 +44,8 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule, // MORA DA SE DODA
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { FormControl } from '@angular/forms';
+import {takeUntil} from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 interface DisplayMessage {
   msgType: string;
@@ -19,9 +22,11 @@ export class LogInComponent implements OnInit {
   title = 'Login';
   notification!: DisplayMessage | undefined;
   submitted = false;
-  
+  form!: FormGroup;
+  returnUrl!: string;
+  private ngUnsubscribe: Subject<void> = new Subject<void>();
 
-  constructor(private userService: UserService,
+  constructor(/*private userService: UserService,*/
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
@@ -30,6 +35,17 @@ export class LogInComponent implements OnInit {
   }
 
   ngOnInit(): void {
+      this.route.params
+      .pipe(takeUntil(this.ngUnsubscribe))
+      /*.subscribe((params: DisplayMessage) => {
+        this.notification = params;
+      });*/
+    // get return url from route parameters or default to '/'
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.form = this.formBuilder.group({
+      username: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(64)])],
+      password: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])]
+    });
   }
 
   onSubmit() {
@@ -41,8 +57,9 @@ export class LogInComponent implements OnInit {
 
     this.authService.login(this.form.value)
       .subscribe(data => {
-          this.userService.getMyInfo().subscribe();
-          this.router.navigate([this.returnUrl]);
+        console.log(data);
+          /*this.userService.getMyInfo().subscribe();
+          this.router.navigate([this.returnUrl]);*/
         },
         error => {
           this.submitted = false;
