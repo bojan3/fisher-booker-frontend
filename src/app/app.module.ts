@@ -34,7 +34,8 @@ const appRoutes: Routes = [
     AdminPageComponent,
     CottagesComponent,
     CottageComponent,
-    AdventureComponent
+    AdventureComponent,
+    AdventuresComponent
   ],
   imports: [
     BrowserModule,
