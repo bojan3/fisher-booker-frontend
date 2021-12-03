@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Address } from 'src/app/entity/Address';
+import { Cottage } from 'src/app/entity/Cottage';
+import { CottageService } from 'src/app/services/cottage.service';
 
 @Component({
   selector: 'app-cottages',
@@ -8,12 +10,15 @@ import { Address } from 'src/app/entity/Address';
 })
 export class CottagesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private cottageService : CottageService) { }
+
+  cottages: Cottage[] = [];
 
   ngOnInit(): void {
     let address = new Address(1, '', '', '', '');
-    console.log(address.toStsring());
     
+    //this.cottages = this.cottageService.getAllCottages
+    this.cottageService.getAllCottages().subscribe((cottages) => (this.cottages = cottages));
   }
 
 }

@@ -13,6 +13,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { CottagesComponent } from './components/cottages/cottages.component';
 import { ShipsComponent } from './components/ships/ships.component';
 import { AdventuresComponent } from './components/adventures/adventures.component';
+import { CottageComponent } from './components/cottage/cottage.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AdventureComponent } from './components/adventure/adventure.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -28,12 +31,15 @@ const appRoutes: Routes = [
     HeaderComponent,
     SignUpComponent,
     EntityComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    CottagesComponent,
+    CottageComponent,
+    AdventureComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    //HttpClientModule, // MORA DA SE DODA
+    HttpClientModule, // MORA DA SE DODA
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule
   ],

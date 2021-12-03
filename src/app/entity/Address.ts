@@ -13,7 +13,4 @@ export class Address{
         this.number = number;
     }
 
-    toStsring(): string{
-        return '';
-    }
 }

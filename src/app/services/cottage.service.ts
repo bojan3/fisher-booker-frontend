@@ -11,7 +11,7 @@ export class CottageService {
   constructor(private http: HttpClient) { }
 
   getAllCottages(): Observable<Cottage[]>{
-    return this.http.get<Cottage[]>('http://localhost:8080/channels');
+    return this.http.get<Cottage[]>('http://localhost:8081/api/cottage/all');
   }
 
 }
