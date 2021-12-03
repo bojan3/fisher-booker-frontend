@@ -12,4 +12,8 @@ export class Address{
         this.street = street;
         this.number = number;
     }
+
+    toStsring(): string{
+        return '';
+    }
 }
