@@ -15,6 +15,7 @@ import { ShipsComponent } from './components/ships/ships.component';
 import { AdventuresComponent } from './components/adventures/adventures.component';
 import { CottageComponent } from './components/cottage/cottage.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AdventureComponent } from './components/adventure/adventure.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -32,7 +33,8 @@ const appRoutes: Routes = [
     EntityComponent,
     AdminPageComponent,
     CottagesComponent,
-    CottageComponent
+    CottageComponent,
+    AdventureComponent
   ],
   imports: [
     BrowserModule,
