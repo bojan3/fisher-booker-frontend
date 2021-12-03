@@ -16,12 +16,15 @@ import { AdventuresComponent } from './components/adventures/adventures.componen
 import { CottageComponent } from './components/cottage/cottage.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AdventureComponent } from './components/adventure/adventure.component';
+import { LogInComponent } from './components/log-in/log-in.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
   { path: 'cottages', component: CottagesComponent },
   { path: 'ships', component: ShipsComponent },
   { path: 'adventures', component: AdventuresComponent },
+  { path: 'logIn', component: LogInComponent },
+  { path: 'signUp', component: SignUpComponent },
 ];
 
 @NgModule({
@@ -34,7 +37,8 @@ const appRoutes: Routes = [
     AdminPageComponent,
     CottagesComponent,
     CottageComponent,
-    AdventureComponent
+    AdventureComponent,
+    LogInComponent
   ],
   imports: [
     BrowserModule,
