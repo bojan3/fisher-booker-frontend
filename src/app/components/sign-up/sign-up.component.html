@@ -1,28 +1,111 @@
 <p>sign-up works!</p>
 
 
-  <!-- <p *ngIf="notification" [class]="notification.msgType">{{notification.msgBody}}</p>
-  <form (ngSubmit)="onSubmit()" *ngIf="!submitted" [formGroup]="form">
+<p *ngIf="notification" [class]="notification.msgType">{{notification.msgBody}}</p>
 
-          <label>Username: </label>
-          <input formControlName="username" matInput required>
+<form (ngSubmit)="onSubmit()" *ngIf="!submitted" [formGroup]="form">
 
-          <label>Password: </label>
-          <input formControlName="password" matInput required type="password">
-
-          <label>First Name: </label>
-          <input formControlName="firstname" matInput>
-
-          <label>Last Name: </label>
-          <input formControlName="lastname" matInput>
-
-          <label>Email: </label>
-          <input formControlName="email" matInput>
-
-      <button [disabled]="!form.valid" color="primary" mat-raised-button type="submit">Sign up</button>
-      <br>
-      <button color="primary" mat-raised-button routerLink="/" >Go Back</button>
-  </form>
+  <table>
+    <tr>
+      <td>
+        <label>Username: </label>
+      </td>
+      <td>
+        <input formControlName="username" required>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>Password: </label>
+      </td>
+      <td>
+        <input formControlName="password" required type="password">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>First Name: </label>
+      </td>
+      <td>
+        <input formControlName="firstname">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>Last Name: </label>
+      </td>
+      <td>
+        <input formControlName="lastname">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>Email: </label>
+      </td>
+      <td>
+        <input formControlName="email">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>Phone number: </label>
+      </td>
+      <td>
+        <input>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" id='address'>Address</td>
+    </tr>
+    <div formGroupName="address">
+      <tr>
+        <td>
+          <label>Country: </label>
+        </td>
+        <td>
+          <input formControlName="country">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>City: </label>
+        </td>
+        <td>
+          <input formControlName="city">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>Street: </label>
+        </td>
+        <td>
+          <input formControlName="street">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>Number: </label>
+        </td>
+        <td>
+          <input formControlName="number">
+        </td>
+      </tr>
+    </div>
+    <tr><td>Role: </td></tr>
+  </table>
+  <input type="radio" id="client" name="role" value="CLIENT" formControlName="role">
+  <label for="client">Client</label><br>
+  <input type="radio" id="cottage-owner" name="role" value="COTTAGE_OWNER" formControlName="role">
+  <label for="cottage-owner">Cottage owner</label><br>
+  <input type="radio" id="ship-owner" name="role" value="SHIP_OWNER" formControlName="role">
+  <label for="ship-owner">Ship owner</label><br>
+  <input type="radio" id="fishing-instructor" name="role" value="FISHING_INSTRUCTOR" formControlName="role">
+  <label for="fishing-instructor">Fishing instructor</label><br>
+  
+  <button [disabled]="!form.valid" color="primary" type="submit">Sign up</button>
   <br>
-  <br>
-  <hr> -->
+  <button color="primary" routerLink="/" >Go Back</button>
+</form>
+<br>
+<br>
+<hr>

@@ -40,16 +40,16 @@ export class AuthService {
       }));
   }
 
-  /*signup(user: any) {
+  signup(user: any) {
     const signupHeaders = new HttpHeaders({
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     });
-    return this.apiService.post(this.config.signup_url, JSON.stringify(user), signupHeaders)
+    return this.apiService.post("http://localhost:8081/auth/signup", JSON.stringify(user), signupHeaders)
       .pipe(map(() => {
         console.log('Sign up success');
       }));
-  }*/
+  }
 
   logout() {
     this.accountService.currentUser = null;
