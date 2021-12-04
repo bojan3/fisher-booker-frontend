@@ -24,6 +24,7 @@ import { CottageService } from './services/cottage.service';
 import { ApiService } from './services/api.service';
 import { AuthService } from './services/auth.service';
 import { ShipComponent } from './components/ship/ship.component';
+import { CottageOwnerPageComponent } from './components/cottage-owner-page/cottage-owner-page.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -32,6 +33,7 @@ const appRoutes: Routes = [
   { path: 'adventures', component: AdventuresComponent },
   { path: 'logIn', component: LogInComponent },
   { path: 'signUp', component: SignUpComponent },
+  { path: 'cottage_owner_profile', component: CottageOwnerPageComponent}
 ];
 
 @NgModule({
@@ -48,7 +50,8 @@ const appRoutes: Routes = [
     ShipsComponent,
     ShipComponent,
     AdventuresComponent,
-    LogInComponent
+    LogInComponent,
+    CottageOwnerPageComponent
   ],
   imports: [
     BrowserModule,

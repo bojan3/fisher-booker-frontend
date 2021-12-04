@@ -55,21 +55,28 @@ export class LogInComponent implements OnInit {
   }
 
   onSubmit() {
-    /**
-     * Innocent until proven guilty
-     */
     this.notification = undefined;
     this.submitted = true;
     
     this.authService.login(this.form.value)
       .subscribe(data => {
-          this.accountService.getMyInfo().subscribe();
-          this.router.navigate([this.returnUrl]);
+          this.accountService.getMyInfo().subscribe(() => {
+            //this.router.navigate([this.returnUrl]);
+            this.profileNavigation();
+          });
         },
         error => {
           this.submitted = false;
           this.notification = {msgType: 'error', msgBody: 'Incorrect username or password.'};
         });
+  }
+
+  profileNavigation(){
+    console.log(this.accountService.currentUser.roles[0].name);
+    switch(this.accountService.currentUser.roles[0].name){
+      case 'ROLE_COTTAGE_OWNER': this.router.navigate(['/cottage_owner_profile']); break;
+      default: this.router.navigate(['/']);
+    }
   }
 
 }
