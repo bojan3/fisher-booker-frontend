@@ -2,6 +2,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
+import { AccountService } from './account.service';
 import { ApiService } from './api.service';
 
 @Injectable({
@@ -11,7 +12,7 @@ export class AuthService {
 
   constructor(
     private apiService: ApiService,
-    //private userService: UserService,
+    private accountService: AccountService,
     //private config: ConfigService,
     private router: Router
     ) { }
@@ -48,13 +49,13 @@ export class AuthService {
       .pipe(map(() => {
         console.log('Sign up success');
       }));
-  }
+  }*/
 
   logout() {
-    this.userService.currentUser = null;
+    this.accountService.currentUser = null;
     this.access_token = null;
-    this.router.navigate(['/login']);
-  }*/
+    this.router.navigate(['/logIn']);
+  }
 
   tokenIsPresent() {
     return this.access_token != undefined && this.access_token != null;

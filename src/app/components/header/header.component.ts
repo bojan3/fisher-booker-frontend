@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from 'src/app/services/account.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,7 @@ import { AccountService } from 'src/app/services/account.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService, private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -20,6 +21,10 @@ export class HeaderComponent implements OnInit {
   userName() {
     const user = this.accountService.currentUser;
     return user.firstName + ' ' + user.lastName;
+  }
+
+  logout(){
+    this.authService.logout();
   }
 
 }

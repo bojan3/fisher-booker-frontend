@@ -6,7 +6,7 @@
         <button [routerLink] = "['logIn']">Log in</button>
     </div>
     <div *ngIf=isUserLogged() class="buttons">
-        <button [routerLink] = "['signUp']">Profile</button>
-        <button [routerLink] = "['logIn']">Log out</button>
+        <button>Profile</button>
+        <button (click)="logout()">Log out</button>
     </div>
 </div>
