@@ -14,8 +14,15 @@ import { CottagesComponent } from './components/cottages/cottages.component';
 import { ShipsComponent } from './components/ships/ships.component';
 import { AdventuresComponent } from './components/adventures/adventures.component';
 import { CottageComponent } from './components/cottage/cottage.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AdventureComponent } from './components/adventure/adventure.component';
+import { LogInComponent } from './components/log-in/log-in.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TokenInterceptor } from './interceptor/TokenInterceptor';
+import { AccountService } from './services/account.service';
+import { CottageService } from './services/cottage.service';
+import { ApiService } from './services/api.service';
+import { AuthService } from './services/auth.service';
 import { ShipComponent } from './components/ship/ship.component';
 
 const appRoutes: Routes = [
@@ -23,6 +30,8 @@ const appRoutes: Routes = [
   { path: 'cottages', component: CottagesComponent },
   { path: 'ships', component: ShipsComponent },
   { path: 'adventures', component: AdventuresComponent },
+  { path: 'logIn', component: LogInComponent },
+  { path: 'signUp', component: SignUpComponent },
 ];
 
 @NgModule({
@@ -38,16 +47,29 @@ const appRoutes: Routes = [
     AdventureComponent,
     ShipsComponent,
     ShipComponent,
-    AdventuresComponent
+    AdventuresComponent,
+    LogInComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule, // MORA DA SE DODA
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    AccountService,
+    AuthService,
+    ApiService,
+    CottageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

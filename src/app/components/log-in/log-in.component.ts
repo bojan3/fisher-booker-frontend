@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { AccountService } from 'src/app/services/account.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { FormControl } from '@angular/forms';
+import {takeUntil} from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { AccountService } from 'src/app/services/account.service';
 
 interface DisplayMessage {
   msgType: string;
@@ -12,17 +13,17 @@ interface DisplayMessage {
 }
 
 @Component({
-  selector: 'app-sign-up',
-  templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.css']
+  selector: 'app-log-in',
+  templateUrl: './log-in.component.html',
+  styleUrls: ['./log-in.component.css']
 })
-export class SignUpComponent implements OnInit {
 
-  title = 'Sign up';
-  form!: FormGroup;
+export class LogInComponent implements OnInit {
+
+  title = 'Login';
+  notification!: DisplayMessage | undefined;
   submitted = false;
-  notification: DisplayMessage | undefined;
-
+  form!: FormGroup;
   returnUrl!: string;
   private ngUnsubscribe: Subject<void> = new Subject<void>();
 
@@ -30,7 +31,9 @@ export class SignUpComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder) { 
+    
+  }
 
   ngOnInit(): void {
       this.route.params
@@ -42,18 +45,7 @@ export class SignUpComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     this.form = this.formBuilder.group({
       username: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(64)])],
-      password: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])],
-      firstname: [''],
-      lastname: [''],
-      email: [''],
-      phoneNumber: [''],
-      address: this.formBuilder.group({
-        country: [''],
-        city: [''],
-        street: [''],
-        number: ['']
-      }),
-      role: ['']
+      password: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])]
     });
   }
 
@@ -68,20 +60,16 @@ export class SignUpComponent implements OnInit {
      */
     this.notification = undefined;
     this.submitted = true;
-
-    this.authService.signup(this.form.value)
+    
+    this.authService.login(this.form.value)
       .subscribe(data => {
-        console.log(data);
-        this.authService.login(this.form.value).subscribe(() => {
           this.accountService.getMyInfo().subscribe();
-        });
-        this.router.navigate([this.returnUrl]);
-      },
+          this.router.navigate([this.returnUrl]);
+        },
         error => {
           this.submitted = false;
-          console.log('Sign up error');
-          this.notification = { msgType: 'error', msgBody: error['error'].message };
+          this.notification = {msgType: 'error', msgBody: 'Incorrect username or password.'};
         });
-
   }
+
 }

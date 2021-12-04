@@ -1,8 +1,12 @@
 <div class="header">
     <img src="../../../assets/images/anchor.png"> 
     <p>Fisher booker</p>
-    <div class="buttons">
-        <button>Sign in</button>
-        <button>Log in</button>
+    <div *ngIf=!isUserLogged() class="buttons">
+        <button [routerLink] = "['signUp']">Sign in</button>
+        <button [routerLink] = "['logIn']">Log in</button>
+    </div>
+    <div *ngIf=isUserLogged() class="buttons">
+        <button>Profile</button>
+        <button (click)="logout()">Log out</button>
     </div>
 </div>

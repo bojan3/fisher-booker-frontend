@@ -15,9 +15,6 @@ export class CottagesComponent implements OnInit {
   cottages: Cottage[] = [];
 
   ngOnInit(): void {
-    let address = new Address(1, '', '', '', '');
-    
-    //this.cottages = this.cottageService.getAllCottages
     this.cottageService.getAllCottages().subscribe((cottages) => (this.cottages = cottages));
   }
 
