@@ -75,6 +75,10 @@ export class LogInComponent implements OnInit {
     console.log(this.accountService.currentUser.roles[0].name);
     switch(this.accountService.currentUser.roles[0].name){
       case 'ROLE_COTTAGE_OWNER': this.router.navigate(['/cottage_owner_profile']); break;
+      case 'ROLE_SHIP_OWNER': this.router.navigate(['/ship_owner_profile']); break;
+      case 'ROLE_CLIENT': this.router.navigate(['/client_profile']); break;
+      case 'ROLE_INSTRUCTOR': this.router.navigate(['/instructor_profile']); break;
+      case 'ROLE_ADMIN': this.router.navigate(['/admin_profile']); break;
       default: this.router.navigate(['/']);
     }
   }
