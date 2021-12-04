@@ -37,7 +37,8 @@ const appRoutes: Routes = [
     CottageComponent,
     AdventureComponent,
     ShipsComponent,
-    ShipComponent
+    ShipComponent,
+    AdventuresComponent
   ],
   imports: [
     BrowserModule,
