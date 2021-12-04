@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Ship } from 'src/app/entity/Ship';
+import { ShipService } from 'src/app/services/ship.service';
 
 @Component({
   selector: 'app-ships',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShipsComponent implements OnInit {
 
-  constructor() { }
+  ships: Ship[] = [];
+
+  constructor(private shipService: ShipService) { }
 
   ngOnInit(): void {
+    this.shipService.getAllShips().subscribe((ships) => (this.ships = ships))
   }
 
 }
