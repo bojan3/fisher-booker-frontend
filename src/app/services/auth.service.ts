@@ -28,11 +28,39 @@ export class AuthService {
       'username': user.username,
       'password': user.password
     };
+    console.log(body);
+    
     return this.apiService.post("http://localhost:8081/auth/login", JSON.stringify(body), loginHeaders)
       .pipe(map((res) => {
         console.log('Login success');
-        this.access_token = res.accessToken;
-        localStorage.setItem("jwt", res.accessToken)
+        this.access_token = res.body.accessToken;
+        console.log(this.access_token);
+        localStorage.setItem("jwt", res.body.accessToken);
       }));
+  }
+
+  /*signup(user: any) {
+    const signupHeaders = new HttpHeaders({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    });
+    return this.apiService.post(this.config.signup_url, JSON.stringify(user), signupHeaders)
+      .pipe(map(() => {
+        console.log('Sign up success');
+      }));
+  }
+
+  logout() {
+    this.userService.currentUser = null;
+    this.access_token = null;
+    this.router.navigate(['/login']);
+  }*/
+
+  tokenIsPresent() {
+    return this.access_token != undefined && this.access_token != null;
+  }
+
+  getToken() {
+    return this.access_token;
   }
 }

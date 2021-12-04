@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { FormControl } from '@angular/forms';
 import {takeUntil} from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { AccountService } from 'src/app/services/account.service';
 
 interface DisplayMessage {
   msgType: string;
@@ -26,7 +27,7 @@ export class LogInComponent implements OnInit {
   returnUrl!: string;
   private ngUnsubscribe: Subject<void> = new Subject<void>();
 
-  constructor(/*private userService: UserService,*/
+  constructor(private accountService: AccountService,
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
@@ -48,18 +49,22 @@ export class LogInComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+  }
+
   onSubmit() {
     /**
      * Innocent until proven guilty
      */
     this.notification = undefined;
     this.submitted = true;
-
+    
     this.authService.login(this.form.value)
       .subscribe(data => {
-        console.log(data);
-          /*this.userService.getMyInfo().subscribe();
-          this.router.navigate([this.returnUrl]);*/
+          this.accountService.getMyInfo().subscribe();
+          this.router.navigate([this.returnUrl]);
         },
         error => {
           this.submitted = false;

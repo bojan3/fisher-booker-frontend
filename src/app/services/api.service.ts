@@ -57,9 +57,17 @@ export class ApiService {
       headers: customHeaders || this.headers,
     });
 
-    return this.http.request(req).pipe(filter(response => response instanceof HttpResponse))
-      /*.pipe(map((response: HttpResponse<any>) => response.body))*/
-      .pipe(catchError(error => this.checkError(error)));
+    return this.http.request(req).pipe(filter(response => response instanceof HttpResponse));
+      /*.pipe(map((response: HttpResponse<any>) => response.body))
+      /*.pipe(catchError(error => this.checkError(error)))*/;
+
+    /*return this.http.request(req).pipe(filter(response => { 
+      console.log(response instanceof HttpResponse);
+      
+      return response instanceof HttpResponse;
+    }))
+      .pipe(map((response: HttpResponse<any>) => response.body))
+      .pipe(catchError(error => this.checkError(error)));*/
   }
 
   private checkError(error: any): any {
