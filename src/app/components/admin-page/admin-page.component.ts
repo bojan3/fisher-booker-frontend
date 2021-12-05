@@ -7,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminPageComponent implements OnInit {
 
-  entities = [['Cottage owners', '../../assets/images/cottage_owner.png'], ['Fishing instructors', '../../assets/images/fishing_instructor.png'],
-   ['Ship owners', '../../assets/images/ship_owner.png'], ['Clients', '../../assets/images/client.png'],
-    ['Cottages', '../../assets/images/cottage.png'], ['Adventures', '../../assets/images/adventure.png'],
-     ['Ships', '../../assets/images/ship.png']];
+  entities = [['Cottage owners', '../../assets/images/cottage_owner.png','cottage_owners'], ['Fishing instructors', '../../assets/images/fishing_instructor.png','instructors'],
+   ['Ship owners', '../../assets/images/ship_owner.png','ship_owners'], ['Clients', '../../assets/images/client.png','clients'],
+    ['Cottages', '../../assets/images/cottage.png','cottages'], ['Adventures', '../../assets/images/adventure.png','adventures'],
+     ['Ships', '../../assets/images/ship.png','ships']];
 
   constructor() { }
 

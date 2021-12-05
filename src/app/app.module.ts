@@ -17,16 +17,32 @@ import { CottageComponent } from './components/cottage/cottage.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AdventureComponent } from './components/adventure/adventure.component';
 import { ShipComponent } from './components/ship/ship.component';
+import { FishingInstructorComponent } from './components/fishing-instructor/fishing-instructor.component';
+import { FishingInstructorsComponent } from './components/fishing-instructors/fishing-instructors.component';
+import { CottageOwnerComponent } from './components/cottage-owner/cottage-owner.component';
+import { CottageOwnersComponent } from './components/cottage-owners/cottage-owners.component';
+import { ShipOwnerComponent } from './components/ship-owner/ship-owner.component';
+import { ShipOwnersComponent } from './components/ship-owners/ship-owners.component';
+import { ClientComponent } from './components/client/client.component';
+import { ClientsComponent } from './components/clients/clients.component';
+
+
+
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
   { path: 'cottages', component: CottagesComponent },
   { path: 'ships', component: ShipsComponent },
   { path: 'adventures', component: AdventuresComponent },
+  { path: 'instructors', component: FishingInstructorsComponent },
+  { path: 'cottage_owners', component: CottageOwnersComponent },
+  { path: 'ship_owners', component: ShipOwnersComponent },
+  { path: 'clients', component: ClientsComponent }
 ];
 
 @NgModule({
   declarations: [
+    HeaderComponent,
     AppComponent,
     MainPageComponent,
     HeaderComponent,
@@ -38,7 +54,15 @@ const appRoutes: Routes = [
     AdventureComponent,
     ShipsComponent,
     ShipComponent,
-    AdventuresComponent
+    AdventuresComponent,
+    FishingInstructorComponent,
+    FishingInstructorsComponent,
+    CottageOwnerComponent,
+    CottageOwnersComponent,
+    ShipOwnerComponent,
+    ShipOwnersComponent,
+    ClientComponent,
+    ClientsComponent
   ],
   imports: [
     BrowserModule,
