@@ -24,3 +24,33 @@ p{
     margin: 0px;
 }
 
+
+  .wrapper{
+  /* width: 100px; */
+  }
+  .wrapper ul{
+  list-style: none;
+  }
+  .wrapper ul li {
+  background: black;
+  width: 80px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  float: right;
+  margin-right: 20px;
+  color: #fff;
+  font-size: 15px;
+  position: relative;
+  font-weight: bold;
+  }
+  .wrapper ul li:hover{
+  background: grey;
+  }
+
+  .wrapper ul ul{
+  display: none;
+  }
+  .wrapper ul li:hover > ul{
+  display: block;
+  }
