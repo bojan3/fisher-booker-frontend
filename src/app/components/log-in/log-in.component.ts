@@ -72,7 +72,7 @@ export class LogInComponent implements OnInit {
   }
 
   profileNavigation(){
-    console.log(this.accountService.currentUser.role);
+    console.log(this.accountService.currentUser);
     switch(this.accountService.currentUser.role){
       case 'ROLE_COTTAGE_OWNER': this.router.navigate(['/cottage_owner_profile']); break;
       case 'ROLE_SHIP_OWNER': this.router.navigate(['/ship_owner_profile']); break;

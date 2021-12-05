@@ -27,22 +27,22 @@ export class HeaderComponent implements OnInit {
   }
 
   isUserClient(){
-    return (!!this.accountService.currentUser) && this.accountService.currentUser.role.name == 'ROLE_CLIENT';
+    return (!!this.accountService.currentUser) && this.accountService.currentUser.role == 'ROLE_CLIENT';
   }
 
   isUserCottageOwner(){
-    return (!!this.accountService.currentUser) && this.accountService.currentUser.role.name == 'ROLE_COTTAGE_OWNER';
+    return (!!this.accountService.currentUser) && this.accountService.currentUser.role == 'ROLE_COTTAGE_OWNER';
   }
 
   isUserAdmin(){
-    return (!!this.accountService.currentUser) && this.accountService.currentUser.role.name == 'ROLE_ADMIN';
+    return (!!this.accountService.currentUser) && this.accountService.currentUser.role == 'ROLE_ADMIN';
   }
   isUserShipOwner(){
-    return (!!this.accountService.currentUser) && this.accountService.currentUser.role.name == 'ROLE_SHIP_OWNER';
+    return (!!this.accountService.currentUser) && this.accountService.currentUser.role == 'ROLE_SHIP_OWNER';
   }
 
   isUserFishingInstructor(){
-    return (!!this.accountService.currentUser) && this.accountService.currentUser.role.name == 'ROLE_INSTRUCTOR';
+    return (!!this.accountService.currentUser) && this.accountService.currentUser.role == 'ROLE_INSTRUCTOR';
   }
   logout(){
     this.authService.logout();
@@ -50,7 +50,9 @@ export class HeaderComponent implements OnInit {
 
   openProfile(){
     // this.accountService.getMyInfo().subscribe((account) => (this.account = account))
-    switch(this.accountService.currentUser.role.name){
+    console.log(this.accountService.currentUser.role);
+    
+    switch(this.accountService.currentUser.role){
       case 'ROLE_COTTAGE_OWNER': this.router.navigate(['/cottage_owner_profile']); break;
       case 'ROLE_SHIP_OWNER': this.router.navigate(['/ship_owner_profile']); break;
       case 'ROLE_CLIENT': this.router.navigate(['/client_profile']); break;
