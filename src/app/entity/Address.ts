@@ -13,4 +13,8 @@ export class Address{
         this.number = number;
     }
 
+    public toStrings(){
+        return 'asd';
+    }
+
 }

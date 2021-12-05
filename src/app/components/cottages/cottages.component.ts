@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Address } from 'src/app/entity/Address';
-import { Cottage } from 'src/app/entity/Cottage';
+import { CottageDTO } from 'src/app/entity/CottageDTO';
 import { CottageService } from 'src/app/services/cottage.service';
 
 @Component({
@@ -12,7 +12,7 @@ export class CottagesComponent implements OnInit {
 
   constructor(private cottageService : CottageService) { }
 
-  cottages: Cottage[] = [];
+  cottages: CottageDTO[] = [];
 
   ngOnInit(): void {
     this.cottageService.getAllCottages().subscribe((cottages) => (this.cottages = cottages));
