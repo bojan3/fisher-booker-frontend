@@ -1,8 +1,20 @@
-<section class="cottage-info">
-    <div class="name">
-        <h2>{{cottage?.name}}</h2>
-        <button>Change</button>
-    </div>
+<form (ngSubmit)="onSubmit()" *ngIf='formVisible' [formGroup]="form">
+    <input formControlName="name" required>
+    <button color="primary" (click)='cancelChanges()'>Cancel</button>
+    <button color="primary" type="submit">Submit</button>
+</form>
     
+<section class="cottage-info" *ngIf='!formVisible'>
+
+    <h2>{{cottage?.name}}</h2>
     <p>{{cottage?.address?.country}}, {{cottage?.address?.city}}, {{cottage?.address?.street}}, {{cottage?.address?.number}}</p>
-</section>
+    <p>Opis: {{cottage?.description}}</p>
+    <p>{{getNumberOfRoomsAndBeds()}}</p>
+    <p>Kućni red: {{rulesToString()}}</p>
+    <p>Cena noćenja: {{cottage?.pricePerDay}} evra</p>
+    <button (click)='showForm()'>Edit</button>
+</section> 
+
+    <div class="cottage-images">
+        <app-images-of-entities [images] = cottage?.cottagePictures></app-images-of-entities>
+    </div>

@@ -30,6 +30,7 @@ import { ClientPageComponent } from './components/client-page/client-page.compon
 import { InstructorPageComponent } from './components/instructor-page/instructor-page.component';
 import { AccountInfoComponent } from './components/account-info/account-info.component';
 import { CottagePageComponent } from './components/cottage-page/cottage-page.component';
+import { ImagesOfEntitiesComponent } from './components/images-of-entities/images-of-entities.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -66,7 +67,8 @@ const appRoutes: Routes = [
     InstructorPageComponent,
     ShipOwnerPageComponent,
     AccountInfoComponent,
-    CottagePageComponent
+    CottagePageComponent,
+    ImagesOfEntitiesComponent
   ],
   imports: [
     BrowserModule,

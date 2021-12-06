@@ -25,13 +25,15 @@ p{
 }
 
 
-  .wrapper{
+.wrapper{
   /* width: 100px; */
   }
-  .wrapper ul{
+
+.wrapper ul{
   list-style: none;
-  }
-  .wrapper ul li {
+}
+
+.wrapper ul li {
   background: black;
   width: 80px;
   height: 50px;
@@ -43,14 +45,17 @@ p{
   font-size: 15px;
   position: relative;
   font-weight: bold;
-  }
-  .wrapper ul li:hover{
-  background: grey;
-  }
+}
 
-  .wrapper ul ul{
+.wrapper ul li:hover{
+  background: grey;
+}
+
+.wrapper ul ul{
   display: none;
-  }
-  .wrapper ul li:hover > ul{
+}
+
+.wrapper ul li:hover > ul{
   display: block;
-  }
+  cursor: pointer;
+}

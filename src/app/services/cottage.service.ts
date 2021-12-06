@@ -20,4 +20,8 @@ export class CottageService {
     return this.apiService.get('http://localhost:8081/api/cottage/page/'+id);
   }
 
+  getAllCottagesByOwner(): Observable<CottageDTO[]>{
+    return this.http.get<CottageDTO[]>('http://localhost:8081/api/cottageOwner/allCottagesByOwner');
+  } 
+
 }

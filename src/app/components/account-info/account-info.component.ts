@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Account } from 'src/app/entity/Account';
 import { AccountService } from 'src/app/services/account.service';
 
@@ -10,8 +11,9 @@ import { AccountService } from 'src/app/services/account.service';
 export class AccountInfoComponent implements OnInit {
 
   account!: Account;
+  form!: FormGroup;
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService, private formBuilder: FormBuilder) { }
 
 
   ngOnInit(): void {
