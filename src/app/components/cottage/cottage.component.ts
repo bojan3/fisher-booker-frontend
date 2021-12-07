@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Cottage } from 'src/app/entity/Cottage';
+import { CottageDTO } from 'src/app/entity/CottageDTO';
 
 @Component({
   selector: 'app-cottage',
@@ -12,7 +12,7 @@ export class CottageComponent implements OnInit {
   constructor() { }
 
   @Input()
-  cottage !: Cottage;
+  cottage !: CottageDTO;
 
   ngOnInit(): void {
   }

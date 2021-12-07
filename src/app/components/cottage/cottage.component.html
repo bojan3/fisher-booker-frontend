@@ -2,13 +2,9 @@
   
   <h3>{{cottage.name}}</h3>
   <p>description: {{cottage.description}}</p> 
-    <p>price:
-  {{cottage.price_per_day}}</p>
-  <p>Adress:{{cottage.address.country}}, {{cottage.address.city}}, {{cottage.address.street}}, {{cottage.address.number}} </p>
-<p align="right">
-<button>details</button>
-<button>delete</button>
-</p>
-
-
+  <p>price:{{cottage.price_per_day}}</p>
+  <p>Adress: {{cottage.address.country}}, {{cottage.address.city}}, {{cottage.address.street}}, {{cottage.address.number}} </p>
+  <p align="right">
+    <button [routerLink]="['', 'cottage', cottage.id]">details</button>
+  </p>
 </section>

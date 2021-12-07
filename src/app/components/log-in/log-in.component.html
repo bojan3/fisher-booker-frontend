@@ -1,0 +1,17 @@
+<h2>{{title}}</h2>
+
+<p *ngIf="notification" id='error' [class]="notification.msgType">{{notification.msgBody}}</p>
+
+<form #loginForm="ngForm" (ngSubmit)="onSubmit()" *ngIf="!submitted" [formGroup]="form">
+        <input formControlName="username" placeholder="user/admin" required>
+
+        <input formControlName="password" placeholder="123" required type="password">
+        <button [disabled]="!loginForm.form.valid" color="primary"
+                type="submit">Login</button>
+        <br>
+        <button color="primary" routerLink="/" >Go Back</button>
+    </form>
+<br>
+<br>
+<hr>
+
