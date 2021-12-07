@@ -8,7 +8,7 @@ export class ShipOwner{
 
     constructor(id: number, account: Account, ships: Ship[]){
         this.id = id;
-        this.account = account;
+        this.account= account;
         this.ships=ships;
     }
 

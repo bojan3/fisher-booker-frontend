@@ -12,6 +12,7 @@ export class ShipOwnerService {
   constructor(private http: HttpClient) { }
 
   getAllShipOwners(): Observable<ShipOwner[]>{
+    console.log("//////////");
     return this.http.get<ShipOwner[]>('http://localhost:8081/api/shipOwner/all');
   }
 }

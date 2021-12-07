@@ -14,12 +14,13 @@ export class ShipsComponent implements OnInit {
   constructor(public shipService: ShipService) { }
 
   ngOnInit(): void {
+    console.log('shipComponentInit')
     this.shipService.getAllShips().subscribe((ships) => (this.ships = ships))
   }
 
  ngOnButtonClick():void{
 
-  this.shipService.deleteShip(1)
+//  this.shipService.deleteShip(1)
  }
 
 

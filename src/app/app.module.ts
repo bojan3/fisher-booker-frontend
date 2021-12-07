@@ -41,15 +41,21 @@ import { ClientPageComponent } from './components/client-page/client-page.compon
 import { InstructorPageComponent } from './components/instructor-page/instructor-page.component';
 import { AccountInfoComponent } from './components/account-info/account-info.component';
 import { CottagePageComponent } from './components/cottage-page/cottage-page.component';
+import { ShipService } from './services/ship.service';
+import { ShipOwnerService } from './services/ship-owner.service';
+import { ClientService } from './services/client.service';
+import { FishingInstructorService } from './services/fishing-instructor.service';
+import { CottageOwner } from './entity/CottageOwner';
+import { CottageOwnerService } from './services/cottage-owner.service';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
   { path: 'cottages', component: CottagesComponent },
   { path: 'ships', component: ShipsComponent },
   { path: 'adventures', component: AdventuresComponent },
-  { path: 'instructors', component: FishingInstructorsComponent },
-  { path: 'cottage_owners', component: CottageOwnersComponent },
-  { path: 'ship_owners', component: ShipOwnersComponent },
+//  { path: 'instructors', component: FishingInstructorsComponent },
+//  { path: 'cottage_owners', component: CottageOwnersComponent },
+ // { path: 'ship_owners', component: ShipOwnersComponent },
   { path: 'clients', component: ClientsComponent },
   { path: 'logIn', component: LogInComponent },
   { path: 'signUp', component: SignUpComponent },
@@ -58,7 +64,14 @@ const appRoutes: Routes = [
   { path: 'admin_profile', component: AdminPageComponent},
   { path: 'client_profile', component: ClientPageComponent},
   { path: 'instructor_profile', component: InstructorPageComponent},
-  { path: 'cottage/:id', component: CottagePageComponent }
+  { path: 'cottage/:id', component: CottagePageComponent },
+  { path: 'admin_profile/cottages', component: CottagesComponent},
+  { path: 'admin_profile/cottage_owners', component: CottageOwnersComponent},
+  { path: 'admin_profile/ships', component: ShipsComponent},
+  { path: 'admin_profile/ship_owners', component: ShipOwnersComponent},
+  { path: 'admin_profile/adventures', component: AdventuresComponent},
+  { path: 'admin_profile/instructors', component: FishingInstructorsComponent},
+  { path: 'admin_profile/clients', component: ClientsComponent},
 ];
 
 @NgModule({
@@ -110,7 +123,14 @@ const appRoutes: Routes = [
     AccountService,
     AuthService,
     ApiService,
-    CottageService
+    CottageService,
+    ShipService,
+    ShipOwnerService,
+    ClientService,
+    FishingInstructorService,
+    CottageOwnerService
+
+
   ],
   bootstrap: [AppComponent]
 })
