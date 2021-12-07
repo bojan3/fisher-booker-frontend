@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, NgModule, OnInit } from '@angular/core';
 import { Ship } from 'src/app/entity/Ship';
+import { ShipService } from 'src/app/services/ship.service';
 
 @Component({
   selector: 'app-ship',
@@ -8,12 +9,26 @@ import { Ship } from 'src/app/entity/Ship';
 })
 export class ShipComponent implements OnInit {
 
-  constructor() { }
+
+
+
+  
 
   @Input()
   ship !: Ship;
 
+  constructor(public shipService: ShipService) { }
+
   ngOnInit(): void {
+    
   }
+
+ ngOnButtonClick(id:number):void{
+
+  this.shipService.deleteShip(id)
+  window.location.reload()
+ }
+
+  
 
 }

@@ -11,10 +11,17 @@ export class ShipsComponent implements OnInit {
 
   ships: Ship[] = [];
 
-  constructor(private shipService: ShipService) { }
+  constructor(public shipService: ShipService) { }
 
   ngOnInit(): void {
     this.shipService.getAllShips().subscribe((ships) => (this.ships = ships))
   }
+
+ ngOnButtonClick():void{
+
+  this.shipService.deleteShip(1)
+ }
+
+
 
 }

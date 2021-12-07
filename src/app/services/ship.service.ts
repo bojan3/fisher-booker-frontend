@@ -13,4 +13,12 @@ export class ShipService {
   getAllShips(): Observable<Ship[]>{
     return this.http.get<Ship[]>('http://localhost:8081/api/ship/all')
   }
+
+
+ deleteShip(id:number): Observable<Ship[]>{
+    return this.http.delete<Ship[]>('http://localhost:8081/api/ship/delete{id}')   
+ }
+
+
+
 }
