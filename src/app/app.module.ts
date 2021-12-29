@@ -31,6 +31,7 @@ import { InstructorPageComponent } from './components/instructor-page/instructor
 import { AccountInfoComponent } from './components/account-info/account-info.component';
 import { CottagePageComponent } from './components/cottage-page/cottage-page.component';
 import { ImagesOfEntitiesComponent } from './components/images-of-entities/images-of-entities.component';
+import { AddCottageComponent } from './components/add-cottage/add-cottage.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -44,7 +45,8 @@ const appRoutes: Routes = [
   { path: 'admin_profile', component: AdminPageComponent},
   { path: 'client_profile', component: ClientPageComponent},
   { path: 'instructor_profile', component: InstructorPageComponent},
-  { path: 'cottage/:id', component: CottagePageComponent }
+  { path: 'cottage/:id', component: CottagePageComponent },
+  { path: 'add_cottage', component: AddCottageComponent }
 ];
 
 @NgModule({
@@ -68,7 +70,8 @@ const appRoutes: Routes = [
     ShipOwnerPageComponent,
     AccountInfoComponent,
     CottagePageComponent,
-    ImagesOfEntitiesComponent
+    ImagesOfEntitiesComponent,
+    AddCottageComponent
   ],
   imports: [
     BrowserModule,

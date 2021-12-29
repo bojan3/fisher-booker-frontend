@@ -1,4 +1,5 @@
-<!--<form (ngSubmit)="onSubmit()" *ngIf='formVisible' [formGroup]="form">
+<p>add-cottage works!</p>
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
     <table>
         <tr>
           <td>
@@ -61,21 +62,42 @@
           <input formControlName="pricePerDay" required>
         </td>
       </tr>
+      <div formArrayName="rooms"> 
+        <tr>
+          <td>
+            <label>Room label: </label>
+          </td>
+          <td>
+            <input formControlName="label" required>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label>Number of beds: </label>
+          </td>
+          <td>
+            <input formControlName="numOfBeds" required>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label>Room label: </label>
+          </td>
+          <td>
+            <input formControlName="label" required>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label>Number of beds: </label>
+          </td>
+          <td>
+            <input formControlName="numOfBeds" required>
+          </td>
+        </tr>
+      </div>
+      
       </table>
     <button color="primary" (click)='cancelChanges()'>Cancel</button>
     <button color="primary" type="submit">Submit</button>
-</form>-->
-    
-<section class="cottage-info" *ngIf='!formVisible'>
-    <h2>{{cottage?.name}}</h2>
-    <p>{{cottage?.address?.country}}, {{cottage?.address?.city}}, {{cottage?.address?.street}}, {{cottage?.address?.number}}</p>
-    <p>Opis: {{cottage?.description}}</p>
-    <p>{{getNumberOfRoomsAndBeds()}}</p>
-    <p>Kućni red: {{rulesToString()}}</p>
-    <p>Cena noćenja: {{cottage?.pricePerDay}} evra</p>
-    <button [routerLink] = "['', 'add_cottage']" [queryParams]='{id: cottage.id}'>Edit</button>
-</section> 
-
-<div class="cottage-images">
-    <app-images-of-entities [images] = cottage?.cottagePictures></app-images-of-entities>
-</div>
+</form>

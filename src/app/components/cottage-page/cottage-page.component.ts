@@ -31,7 +31,15 @@ export class CottagePageComponent implements OnInit {
 
   buildForm(){
     this.form = this.formBuilder.group({
-      name: [this.cottage.name, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(30)])]
+      name: [this.cottage.name, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(30)])],
+      address: this.formBuilder.group({
+        country: [this.cottage.address.country],
+        city: [this.cottage.address.city],
+        street: [this.cottage.address.street],
+        number: [this.cottage.address.number]
+      }),
+      description: [this.cottage.description, Validators.compose([Validators.minLength(3), Validators.maxLength(300)])],
+      pricePerDay: [this.cottage.pricePerDay]
     })
   }
 

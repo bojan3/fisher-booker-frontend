@@ -18,8 +18,8 @@ export class ImagesOfEntitiesComponent implements OnInit {
 
   fullSize(event: any){
     let id = event.target.id;
-    console.log(id);
     
+    console.log(id, event.target);
     document.querySelector('#'+id)?.parentElement?.classList.toggle('full-size');
   }
 
