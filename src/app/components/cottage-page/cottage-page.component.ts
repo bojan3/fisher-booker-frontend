@@ -85,6 +85,10 @@ export class CottagePageComponent implements OnInit {
     return '';
   }
 
+  formatDate(date: Date){
+    return date;
+  }
+
   removeLastCommaAndSpace(string: string){
     return string.slice(0, string.length-2);
   }

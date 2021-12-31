@@ -32,9 +32,6 @@ import { ShipOwnerComponent } from './components/ship-owner/ship-owner.component
 import { ShipOwnersComponent } from './components/ship-owners/ship-owners.component';
 import { ClientComponent } from './components/client/client.component';
 import { ClientsComponent } from './components/clients/clients.component';
-
-
-
 import { CottageOwnerPageComponent } from './components/cottage-owner-page/cottage-owner-page.component';
 import { ShipOwnerPageComponent } from './components/ship-owner-page/ship-owner-page.component';
 import { ClientPageComponent } from './components/client-page/client-page.component';
@@ -67,7 +64,7 @@ const appRoutes: Routes = [
   { path: 'client_profile', component: ClientPageComponent},
   { path: 'instructor_profile', component: InstructorPageComponent},
   { path: 'cottage/:id', component: CottagePageComponent },
-  { path: 'add_cottage', component: AddCottageComponent }
+  { path: 'add_cottage', component: AddCottageComponent },
   { path: 'admin_profile/cottages', component: CottagesComponent},
   { path: 'admin_profile/cottage_owners', component: CottageOwnersComponent},
   { path: 'admin_profile/ships', component: ShipsComponent},

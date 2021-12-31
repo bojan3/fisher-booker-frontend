@@ -76,6 +76,23 @@
     <button [routerLink] = "['', 'add_cottage']" [queryParams]='{id: cottage.id}'>Edit</button>
 </section> 
 
+<section class="super-deals">
+  <div class=super-deal *ngFor="let superDeal of cottage?.cottageSuperDeal">
+    <p>Оd: {{formatDate(superDeal.startDate)}}</p>
+    <p>Do: {{formatDate(superDeal.endDate)}}</p>
+    <p>Cena: {{superDeal.discountedPrice}} evra</p>
+    <p>Broj osoba: {{superDeal.capacity}}</p>
+    <button>Rezerviši</button>
+    <button>Edit</button>
+  </div>
+</section>
+
+<section>
+  <div class="option" *ngFor="let option of cottage?.cottageOptions"> 
+    {{option.name}} {{option.description}} {{option.price}}
+  </div>
+</section>
+
 <div class="cottage-images">
     <app-images-of-entities [images] = cottage?.cottagePictures></app-images-of-entities>
 </div>
