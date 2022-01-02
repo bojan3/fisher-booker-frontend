@@ -62,42 +62,33 @@
           <input formControlName="pricePerDay" required>
         </td>
       </tr>
-      <div formArrayName="rooms"> 
-        <tr>
-          <td>
-            <label>Room label: </label>
-          </td>
-          <td>
-            <input formControlName="label" required>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <label>Number of beds: </label>
-          </td>
-          <td>
-            <input formControlName="numOfBeds" required>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <label>Room label: </label>
-          </td>
-          <td>
-            <input formControlName="label" required>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <label>Number of beds: </label>
-          </td>
-          <td>
-            <input formControlName="numOfBeds" required>
-          </td>
-        </tr>
+      <div formArrayName="rooms" *ngFor="let room of cottage.rooms; let i = index;">
+        <div [formGroupName]='i'>
+          <tr>
+            <td>
+              <label>Room label: </label>
+            </td>
+            <td>
+              <input formControlName="label" required>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>Number of beds: </label>
+            </td>
+            <td>
+              <input formControlName="numOfBeds" required>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button (click)='removeRoom(i)'>Remove room</button>
+            </td>
+          </tr>
+        </div>  
       </div>
-      
+      <button type="button" (click)="addRoom()">Add room</button>
       </table>
     <button color="primary" (click)='cancelChanges()'>Cancel</button>
-    <button color="primary" type="submit">Submit</button>
+    <button color="primary" type="submit" (onSubmit)="onSubmit()">Submit</button>
 </form>

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Cottage } from 'src/app/entity/Cottage';
+import { Room } from 'src/app/entity/Room';
 import { CottageService } from 'src/app/services/cottage.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class AddCottageComponent implements OnInit {
 
   @Input()
   cottage!: Cottage;
-  form!: FormGroup;
+  form: FormGroup = this.formBuilder.group({});
   rooms!: FormArray;
 
   constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private cottageService: CottageService) { }
@@ -26,7 +27,6 @@ export class AddCottageComponent implements OnInit {
         if(params.id){
           this.cottageService.getById(params.id).subscribe((cottage) => {
             this.cottage = cottage;
-
             this.form = this.formBuilder.group({
               name: [this.cottage.name, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(30)])],
               address: this.formBuilder.group({
@@ -37,7 +37,7 @@ export class AddCottageComponent implements OnInit {
               }),
               description: [this.cottage.description, Validators.compose([Validators.minLength(3), Validators.maxLength(300)])],
               pricePerDay: [this.cottage.pricePerDay],
-              rooms: this.formBuilder.array([ this.createRooms() ])
+              rooms: this.formBuilder.array( this.createRooms() )
             })
 
           });
@@ -48,6 +48,7 @@ export class AddCottageComponent implements OnInit {
   }
 
   onSubmit(){
+    console.log(this.form.value);
 
   }
 
@@ -55,16 +56,35 @@ export class AddCottageComponent implements OnInit {
     
   }
 
+  addRoom(): void {
+    this.rooms = this.form.get('rooms') as FormArray;
+    this.rooms.push(this.createRoom('', 0));
+    this.cottage.rooms.push(new Room('', 0));
+  }
+
+  removeRoom(i: number): void{
+    this.rooms = this.form.get('rooms') as FormArray;
+    this.rooms.removeAt(i);
+    this.cottage.rooms = this.cottage.rooms.filter((room, index) => index != i)
+    console.log(this.cottage.rooms);
+    
+  }
+
   createRooms(){
     let rooms = this.cottage.rooms;
     let formatted: FormGroup[] = [];
     rooms.forEach((room) => {
-      formatted.push(this.formBuilder.group({
-        label: [room.label],
-        numOfBeds: [room.numOfBeds]
-      }));
+      formatted.push(this.createRoom(room.label, room.numOfBeds));
     })
+    console.log(formatted);
     return formatted;
+  }
+
+  createRoom(defaultLabel: string, defaultBeds: number): FormGroup {
+    return this.formBuilder.group({
+      label: [defaultLabel],
+      numOfBeds: [defaultBeds],
+    });
   }
 
 }
