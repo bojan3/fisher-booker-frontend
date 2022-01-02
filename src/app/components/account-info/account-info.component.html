@@ -1,8 +1,7 @@
-<table>
+<table *ngIf="!editMode">
   <tr>
     <th>Name:</th>
     <th>{{account?.name}}</th>
-    <th><input></th>
   </tr>
   <tr>
     <th>Last name:</th>
@@ -35,6 +34,91 @@
     <th>{{account?.address?.number}}</th>
   </tr>
   <tr>
-    <button>Change data</button>
+    <button (click)='showForm()'>Edit profile</button>
   </tr>
 </table>
+
+<form *ngIf="editMode" [formGroup]="form"> 
+  <table>
+    <tr>
+      <td>
+        <label>Username: </label>
+      </td>
+      <td>
+        <input formControlName="username" required>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>First Name: </label>
+      </td>
+      <td>
+        <input formControlName="firstname">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>Last Name: </label>
+      </td>
+      <td>
+        <input formControlName="lastname">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>Email: </label>
+      </td>
+      <td>
+        <input formControlName="email">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>Phone number: </label>
+      </td>
+      <td>
+        <input>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" id='address'>Address</td>
+    </tr>
+    <div formGroupName="address">
+      <tr>
+        <td>
+          <label>Country: </label>
+        </td>
+        <td>
+          <input formControlName="country">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>City: </label>
+        </td>
+        <td>
+          <input formControlName="city">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>Street: </label>
+        </td>
+        <td>
+          <input formControlName="street">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>Number: </label>
+        </td>
+        <td>
+          <input formControlName="number">
+        </td>
+      </tr>
+    </div>
+  </table>
+  <button [disabled]="!form.valid" color="primary" type="submit">Save</button>
+  <br>
+  <button color="primary" (click)='hideForm()'>Cancel</button>
+</form>
