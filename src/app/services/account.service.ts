@@ -1,3 +1,4 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { ApiService } from './api.service';
@@ -28,5 +29,14 @@ export class AccountService {
   /*getAll() {
     return this.apiService.get(this.config.users_url);
   }*/
+
+  updateAccount(account: any){
+    console.log("updating account...");
+    const headers = new HttpHeaders({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    });
+    return this.apiService.post("http://localhost:8081/api/account/update", JSON.stringify(account), headers);
+  }
 
 }

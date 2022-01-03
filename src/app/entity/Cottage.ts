@@ -18,9 +18,10 @@ export class Cottage{
     cottageSuperDeal: CottageSuperDeal[];
     availabilityPeriod: AvailabilityPeriod;
     cottageOption: CottageOption[];
+    averageMark: number;
 
     constructor(id: number, name: string, description: string, address: Address, price_per_day: number,
-        pictures: CottagePicture[], room: Room[], rule: Rule[], cottageSuperDeal: CottageSuperDeal[],
+        pictures: CottagePicture[], averageMark: number, room: Room[], rule: Rule[], cottageSuperDeal: CottageSuperDeal[],
         availabilityPeriod: AvailabilityPeriod, cottageOption: CottageOption[]){
         this.id = id;
         this.name = name;
@@ -33,5 +34,6 @@ export class Cottage{
         this.cottageSuperDeal = cottageSuperDeal;
         this.availabilityPeriod = availabilityPeriod;
         this.cottageOption = cottageOption;
+        this.averageMark = averageMark;
     }
 }
