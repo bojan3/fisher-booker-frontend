@@ -16,6 +16,7 @@ export class AccountInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.accountService.getMyInfo().subscribe((account) => (this.account = account));
+    console.log(this.account);
   }
 
 }

@@ -29,12 +29,16 @@ import { ShipOwnerPageComponent } from './components/ship-owner-page/ship-owner-
 import { ClientPageComponent } from './components/client-page/client-page.component';
 import { InstructorPageComponent } from './components/instructor-page/instructor-page.component';
 import { AccountInfoComponent } from './components/account-info/account-info.component';
+import { AccountInfoEditComponent } from './components/account-info-edit/account-info-edit.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
   { path: 'cottages', component: CottagesComponent },
+  { path: 'client_profile/cottages', component: CottagesComponent },
   { path: 'ships', component: ShipsComponent },
+  { path: 'client_profile/ships', component: ShipsComponent },
   { path: 'adventures', component: AdventuresComponent },
+  { path: 'client_profile/adventures', component: AdventuresComponent },
   { path: 'logIn', component: LogInComponent },
   { path: 'signUp', component: SignUpComponent },
   { path: 'cottage_owner_profile', component: CottageOwnerPageComponent},
@@ -42,6 +46,9 @@ const appRoutes: Routes = [
   { path: 'admin_profile', component: AdminPageComponent},
   { path: 'client_profile', component: ClientPageComponent},
   { path: 'instructor_profile', component: InstructorPageComponent},
+  { path: 'account-info', component: AccountInfoComponent},
+  { path: 'account-info-edit', component: AccountInfoEditComponent}
+
 ];
 
 @NgModule({
@@ -63,16 +70,18 @@ const appRoutes: Routes = [
     ClientPageComponent,
     InstructorPageComponent,
     ShipOwnerPageComponent,
-    AccountInfoComponent
+    AccountInfoComponent,
+    AccountInfoEditComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule, // MORA DA SE DODA
+    HttpClientModule,
     RouterModule.forRoot(appRoutes),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule
   ],
   providers: [
     {

@@ -10,8 +10,17 @@ export class CottageService {
 
   constructor(private http: HttpClient) { }
 
-  getAllCottages(): Observable<Cottage[]>{
-    return this.http.get<Cottage[]>('http://localhost:8081/api/cottage/all');
+  // getAllCottages(): Observable<Cottage[]>{
+  //   return this.http.get<Cottage[]>('http://localhost:8081/api/cottage/all');
+  // }
+  getAllCottagesByName(): Observable<Cottage[]>{
+    return this.http.get<Cottage[]>('http://localhost:8081/api/cottage/all/name');
+  }
+  getAllCottagesByPrice(): Observable<Cottage[]>{
+    return this.http.get<Cottage[]>('http://localhost:8081/api/cottage/all/price');
   }
 
+  getAllCottagesByRating(): Observable<Cottage[]>{
+    return this.http.get<Cottage[]>('http://localhost:8081/api/cottage/all/rate');
+  }
 }

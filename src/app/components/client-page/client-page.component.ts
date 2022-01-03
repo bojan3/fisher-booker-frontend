@@ -9,6 +9,10 @@ export class ClientPageComponent implements OnInit {
 
   constructor() { }
 
+  entities = [['Cottages', '../../assets/images/cottage.png', 'cottages'], ['Adventures', '../../assets/images/adventure.png', 'adventures'],
+  ['Ships', '../../assets/images/ship.png', 'ships']];
+
+
   ngOnInit(): void {
   }
 

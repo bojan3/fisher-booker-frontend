@@ -13,4 +13,20 @@ export class ShipService {
   getAllShips(): Observable<Ship[]>{
     return this.http.get<Ship[]>('http://localhost:8081/api/ship/all')
   }
+
+  getAllShipsByName(): Observable<Ship[]>{
+    return this.http.get<Ship[]>('http://localhost:8081/api/ship/all/name')
+  }
+
+    getAllShipsByPrice(): Observable<Ship[]>{
+    return this.http.get<Ship[]>('http://localhost:8081/api/ship/all/price')
+  }
+
+    getAllShipsByRating(): Observable<Ship[]>{
+    return this.http.get<Ship[]>('http://localhost:8081/api/ship/all/rating')
+  }
+
+  getAllShipsByCapacity(): Observable<Ship[]>{
+    return this.http.get<Ship[]>('http://localhost:8081/api/ship/all/capacity')
+  }
 }
