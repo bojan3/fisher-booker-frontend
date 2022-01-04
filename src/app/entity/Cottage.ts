@@ -11,27 +11,29 @@ export class Cottage{
     name: string;
     description: string;
     address: Address;
-    cottagePictures: Image[];
+    cottagePictures: string[];
     pricePerDay: number;
     rooms: Room[];
     rules: Rule[];
     cottageSuperDeal: CottageSuperDeal[];
     availabilityPeriod: AvailabilityPeriod;
-    cottageOptions: CottageOption[];
+    cottageOption: CottageOption[];
+    averageMark: number;
 
     constructor(id: number, name: string, description: string, address: Address, price_per_day: number,
-        cottagePictures: Image[], room: Room[], rule: Rule[], cottageSuperDeal: CottageSuperDeal[],
+        pictures: string[], averageMark: number, room: Room[], rule: Rule[], cottageSuperDeal: CottageSuperDeal[],
         availabilityPeriod: AvailabilityPeriod, cottageOption: CottageOption[]){
         this.id = id;
         this.name = name;
         this.description = description;
         this.address = address;
         this.pricePerDay = price_per_day;
-        this.cottagePictures = cottagePictures;
+        this.cottagePictures = pictures;
         this.rooms = room;
         this.rules = rule;
         this.cottageSuperDeal = cottageSuperDeal;
         this.availabilityPeriod = availabilityPeriod;
-        this.cottageOptions = cottageOption;
+        this.cottageOption = cottageOption;
+        this.averageMark = averageMark;
     }
 }

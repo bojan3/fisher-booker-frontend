@@ -46,16 +46,20 @@ import { ClientService } from './services/client.service';
 import { FishingInstructorService } from './services/fishing-instructor.service';
 import { CottageOwner } from './entity/CottageOwner';
 import { CottageOwnerService } from './services/cottage-owner.service';
+import { AccountInfoEditComponent } from './components/account-info-edit/account-info-edit.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
   { path: 'cottages', component: CottagesComponent },
+  { path: 'client_profile/cottages', component: CottagesComponent },
   { path: 'ships', component: ShipsComponent },
+  { path: 'client_profile/ships', component: ShipsComponent },
   { path: 'adventures', component: AdventuresComponent },
 //  { path: 'instructors', component: FishingInstructorsComponent },
 //  { path: 'cottage_owners', component: CottageOwnersComponent },
  // { path: 'ship_owners', component: ShipOwnersComponent },
   { path: 'clients', component: ClientsComponent },
+  { path: 'client_profile/adventures', component: AdventuresComponent },
   { path: 'logIn', component: LogInComponent },
   { path: 'signUp', component: SignUpComponent },
   { path: 'cottage_owner_profile', component: CottageOwnerPageComponent},
@@ -72,6 +76,9 @@ const appRoutes: Routes = [
   { path: 'admin_profile/adventures', component: AdventuresComponent},
   { path: 'admin_profile/instructors', component: FishingInstructorsComponent},
   { path: 'admin_profile/clients', component: ClientsComponent},
+  { path: 'account-info', component: AccountInfoComponent},
+  { path: 'account-info-edit', component: AccountInfoEditComponent}
+
 ];
 
 @NgModule({
@@ -105,16 +112,18 @@ const appRoutes: Routes = [
     AccountInfoComponent,
     CottagePageComponent,
     ImagesOfEntitiesComponent,
-    AddCottageComponent
+    AddCottageComponent,
+    AccountInfoEditComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule, // MORA DA SE DODA
+    HttpClientModule,
     RouterModule.forRoot(appRoutes),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule
   ],
   providers: [
     {

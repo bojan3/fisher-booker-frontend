@@ -23,6 +23,17 @@ export class CottagesComponent implements OnInit {
     } else{
       this.cottageService.getAllCottages().subscribe((cottages) => (this.cottages = cottages));
     }
+    //this.cottageService.getAllCottagesByName().subscribe((cottages) => (this.cottages = cottages));
   }
 
+  sortByName(){
+    this.cottageService.getAllCottagesByName().subscribe((cottages) => (this.cottages = cottages));
+  }
+
+  sortByPrice(){
+    this.cottageService.getAllCottagesByPrice().subscribe((cottages) => (this.cottages = cottages));
+  }
+  sortByRating(){
+    this.cottageService.getAllCottagesByRating().subscribe((cottages) => (this.cottages = cottages));
+  }
 }

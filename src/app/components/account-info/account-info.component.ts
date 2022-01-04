@@ -41,6 +41,7 @@ export class AccountInfoComponent implements OnInit {
 
   hideForm(){
     this.editMode = false;
+    console.log(this.account);
   }
 
   /*onSubmit() {
