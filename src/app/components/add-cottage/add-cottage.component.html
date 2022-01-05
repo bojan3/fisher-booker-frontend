@@ -64,7 +64,8 @@
       </tr>
       </table>
     
-      <app-edit-rooms [rooms]='cottage.rooms' (roomsChanged)='roomsChanged($event)'></app-edit-rooms>
+      <app-edit-rooms [rooms]='cottage.rooms'></app-edit-rooms>
+      <app-edit-rules [rules]='cottage.rules'></app-edit-rules>
 
     <button color="primary" (click)='cancelChanges()'>Cancel</button>
     <button color="primary" type="submit" (onSubmit)="onSubmit()">Submit</button>
