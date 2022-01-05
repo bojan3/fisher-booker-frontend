@@ -66,6 +66,7 @@
     
       <app-edit-rooms [rooms]='cottage.rooms'></app-edit-rooms>
       <app-edit-rules [rules]='cottage.rules'></app-edit-rules>
+      <app-edit-cottage-options [options]='cottage.cottageOptions'></app-edit-cottage-options>
 
     <button color="primary" (click)='cancelChanges()'>Cancel</button>
     <button color="primary" type="submit" (onSubmit)="onSubmit()">Submit</button>

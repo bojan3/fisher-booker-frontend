@@ -49,6 +49,7 @@ import { CottageOwnerService } from './services/cottage-owner.service';
 import { AccountInfoEditComponent } from './components/account-info-edit/account-info-edit.component';
 import { EditRoomsComponent } from './components/edit-rooms/edit-rooms.component';
 import { EditRulesComponent } from './components/edit-rules/edit-rules.component';
+import { EditCottageOptionsComponent } from './components/edit-cottage-options/edit-cottage-options.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -117,7 +118,8 @@ const appRoutes: Routes = [
     AddCottageComponent,
     AccountInfoEditComponent,
     EditRoomsComponent,
-    EditRulesComponent
+    EditRulesComponent,
+    EditCottageOptionsComponent
   ],
   imports: [
     BrowserModule,
