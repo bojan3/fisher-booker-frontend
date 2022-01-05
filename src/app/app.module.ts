@@ -47,6 +47,7 @@ import { FishingInstructorService } from './services/fishing-instructor.service'
 import { CottageOwner } from './entity/CottageOwner';
 import { CottageOwnerService } from './services/cottage-owner.service';
 import { AccountInfoEditComponent } from './components/account-info-edit/account-info-edit.component';
+import { EditRoomsComponent } from './components/edit-rooms/edit-rooms.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -113,7 +114,8 @@ const appRoutes: Routes = [
     CottagePageComponent,
     ImagesOfEntitiesComponent,
     AddCottageComponent,
-    AccountInfoEditComponent
+    AccountInfoEditComponent,
+    EditRoomsComponent
   ],
   imports: [
     BrowserModule,

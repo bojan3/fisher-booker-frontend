@@ -1,0 +1,31 @@
+<p>edit-rooms works!</p>
+<form (ngSubmit)="onSubmit()" [formGroup]='form'>
+    <div formArrayName="rooms" *ngFor="let room of rooms; let i = index;">
+        <table>
+            <div [formGroupName]='i'>
+                <tr>
+                  <td>
+                    <label>Room label: </label>
+                  </td>
+                  <td>
+                    <input formControlName="label" required>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label>Number of beds: </label>
+                  </td>
+                  <td>
+                    <input formControlName="numOfBeds" required>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <button (click)='removeRoom(i)'>Remove room</button>
+                  </td>
+                </tr>
+              </div>  
+        </table>
+    </div>
+    <button type="button" (click)="addRoom()">Add room</button>
+</form>

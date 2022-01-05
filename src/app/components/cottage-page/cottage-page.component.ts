@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {ActivatedRoute, RouteConfigLoadEnd} from '@angular/router';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Cottage } from 'src/app/entity/Cottage';
 import { CottageService } from 'src/app/services/cottage.service';
 
