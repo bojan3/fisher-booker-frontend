@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Rule } from 'src/app/entity/Rule';
 
 @Component({
@@ -34,7 +34,7 @@ export class EditRulesComponent implements OnInit {
   createRule(defaultId: number, defaultDescription: string): FormGroup {
     return this.formBuilder.group({
       id: [defaultId],
-      description: [defaultDescription],
+      description: [defaultDescription, Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(350)])],
     });
   }
 

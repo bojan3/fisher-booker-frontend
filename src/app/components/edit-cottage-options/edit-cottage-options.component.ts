@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CottageOption } from 'src/app/entity/CottageOption';
 
 @Component({
@@ -34,8 +34,8 @@ export class EditCottageOptionsComponent implements OnInit {
   createOption(defaultId: number, defaultName: string, defaultDescription: string, defaultPrice: number): FormGroup {
     return this.formBuilder.group({
       id: [defaultId],
-      name: [defaultName],
-      description: [defaultDescription],
+      name: [defaultName, Validators.compose([Validators.required, Validators.maxLength(20)])],
+      description: [defaultDescription, Validators.compose([Validators.required, Validators.maxLength(350)])],
       price: [defaultPrice]
     });
   }

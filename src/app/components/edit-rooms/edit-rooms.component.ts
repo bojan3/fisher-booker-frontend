@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Room } from 'src/app/entity/Room';
 
 @Component({
@@ -35,7 +35,7 @@ export class EditRoomsComponent implements OnInit {
 
   createRoom(defaultLabel: string, defaultBeds: number): FormGroup {
     return this.formBuilder.group({
-      label: [defaultLabel],
+      label: [defaultLabel, Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(10)])],
       numOfBeds: [defaultBeds],
     });
   }

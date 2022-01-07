@@ -50,6 +50,7 @@ import { AccountInfoEditComponent } from './components/account-info-edit/account
 import { EditRoomsComponent } from './components/edit-rooms/edit-rooms.component';
 import { EditRulesComponent } from './components/edit-rules/edit-rules.component';
 import { EditCottageOptionsComponent } from './components/edit-cottage-options/edit-cottage-options.component';
+import { EditCottageSuperDealComponent } from './components/edit-cottage-super-deal/edit-cottage-super-deal.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -119,7 +120,8 @@ const appRoutes: Routes = [
     AccountInfoEditComponent,
     EditRoomsComponent,
     EditRulesComponent,
-    EditCottageOptionsComponent
+    EditCottageOptionsComponent,
+    EditCottageSuperDealComponent
   ],
   imports: [
     BrowserModule,
