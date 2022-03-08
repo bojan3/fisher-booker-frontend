@@ -36,4 +36,8 @@ export class CottageService {
   getAllCottagesByRating(): Observable<Cottage[]>{
     return this.http.get<Cottage[]>('http://localhost:8081/api/cottage/all/rate');
   }
+
+  saveCottage(cottage: Cottage): Observable<boolean>{
+    return this.http.post<boolean>('http://localhost:8081/api/cottage/save', cottage);
+  }
 }

@@ -1,78 +1,11 @@
-<!--<form (ngSubmit)="onSubmit()" *ngIf='formVisible' [formGroup]="form">
-    <table>
-        <tr>
-          <td>
-            <label>Name: </label>
-          </td>
-          <td>
-            <input formControlName="name" required>
-          </td>
-        </tr>
-        <tr>
-            <td colspan="2" id='address'>Address</td>
-        </tr>
-    <div formGroupName="address">
-        <tr>
-          <td>
-            <label>Country: </label>
-          </td>
-          <td>
-            <input formControlName="country">
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <label>City: </label>
-          </td>
-          <td>
-            <input formControlName="city">
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <label>Street: </label>
-          </td>
-          <td>
-            <input formControlName="street">
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <label>Number: </label>
-          </td>
-          <td>
-            <input formControlName="number">
-          </td>
-        </tr>
-      </div>
-      <tr>
-        <td>
-          <label>Description: </label>
-        </td>
-        <td>
-          <input formControlName="description">
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <label>Rent: </label>
-        </td>
-        <td>
-          <input formControlName="pricePerDay" required>
-        </td>
-      </tr>
-      </table>
-    <button color="primary" (click)='cancelChanges()'>Cancel</button>
-    <button color="primary" type="submit">Submit</button>
-</form>-->
-    
-<section class="cottage-info" *ngIf='!formVisible'>
+  <section class="cottage-info" *ngIf='!formVisible'>
     <h2>{{cottage?.name}}</h2>
     <p>{{cottage?.address?.country}}, {{cottage?.address?.city}}, {{cottage?.address?.street}}, {{cottage?.address?.number}}</p>
     <p>Opis: {{cottage?.description}}</p>
     <p>{{getNumberOfRoomsAndBeds()}}</p>
     <p>Kućni red: {{rulesToString()}}</p>
     <p>Cena noćenja: {{cottage?.pricePerDay}} evra</p>
+    <p>Availabilty period: {{cottage?.availabilityPeriod?.startDate}} - {{cottage?.availabilityPeriod?.endDate}}</p>
     <button [routerLink] = "['', 'add_cottage']" [queryParams]='{id: cottage.id}'>Edit</button>
 </section> 
 

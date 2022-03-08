@@ -1,4 +1,4 @@
-<form (ngSubmit)="onSubmit()" [formGroup]='form'>
+<form [formGroup]='form'>
     <div formArrayName="rooms" *ngFor="let room of rooms; let i = index;">
         <table>
             <div [formGroupName]='i'>

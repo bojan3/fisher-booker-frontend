@@ -11,8 +11,6 @@ export class EditRoomsComponent implements OnInit {
 
   @Input()
   rooms!: Room[];
-  @Output()
-  roomsChanged = new EventEmitter<Room[]>();
 
   form!: FormGroup;
   roomsForm!: FormArray;
@@ -50,10 +48,6 @@ export class EditRoomsComponent implements OnInit {
     this.roomsForm = this.form.get('rooms') as FormArray;
     this.roomsForm.removeAt(i);
     this.rooms = this.rooms.filter((room, index) => index != i)
-  }
-
-  onSubmit(){
-    this.roomsChanged.emit(this.rooms);
   }
 
 }

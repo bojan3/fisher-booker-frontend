@@ -7,16 +7,16 @@ import { Room } from "./Room";
 import { Rule } from "./Rule";
 
 export class Cottage{
-    id: number;
-    name: string;
-    description: string;
-    address: Address;
+    id: number = 0;
+    name: string = '';
+    description: string = '';
+    address: Address = new Address(0, '', '', '', '');
     cottagePictures: Image[];
-    pricePerDay: number;
+    pricePerDay: number = 0;
     rooms: Room[];
     rules: Rule[];
     cottageSuperDeal: CottageSuperDeal[];
-    availabilityPeriod: AvailabilityPeriod;
+    availabilityPeriod: AvailabilityPeriod = new AvailabilityPeriod(0, new Date(), new Date());
     cottageOptions: CottageOption[];
     averageMark: number;
 

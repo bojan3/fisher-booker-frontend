@@ -4,7 +4,10 @@ import { ActivatedRoute } from '@angular/router';
 import { Cottage } from 'src/app/entity/Cottage';
 import { Room } from 'src/app/entity/Room';
 import { CottageService } from 'src/app/services/cottage.service';
+import { EditCottageOptionsComponent } from '../edit-cottage-options/edit-cottage-options.component';
+import { EditCottageSuperDealComponent } from '../edit-cottage-super-deal/edit-cottage-super-deal.component';
 import { EditRoomsComponent } from '../edit-rooms/edit-rooms.component';
+import { EditRulesComponent } from '../edit-rules/edit-rules.component';
 
 @Component({
   selector: 'app-add-cottage',
@@ -19,7 +22,13 @@ export class AddCottageComponent implements OnInit {
   form!: FormGroup;
 
   @ViewChild(EditRoomsComponent)
-  editRoomsComponents!: EditRoomsComponent;
+  editRoomsComponent!: EditRoomsComponent;
+  @ViewChild(EditRulesComponent)
+  editRulesComponent!: EditRoomsComponent;
+  @ViewChild(EditCottageOptionsComponent)
+  editCottageOptionsComponent!: EditCottageOptionsComponent;
+  @ViewChild(EditCottageSuperDealComponent)
+  editCottageSuperDealComponent!: EditCottageSuperDealComponent;
 
   constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private cottageService: CottageService) { }
 
@@ -40,17 +49,23 @@ export class AddCottageComponent implements OnInit {
               }),
               description: [this.cottage.description, Validators.compose([Validators.minLength(3), Validators.maxLength(300)])],
               pricePerDay: [this.cottage.pricePerDay],
+              availabiltyPeriod: this.formBuilder.group({
+                startDate: [this.cottage.availabilityPeriod.startDate],
+                endDate: [this.cottage.availabilityPeriod.endDate]
+              })
             })
-
           });
         }
       });
-
-
   }
 
   onSubmit(){
-    console.log(this.editRoomsComponents.form.value);
+    this.cottage.rooms = this.editRoomsComponent.form.value;
+    this.cottage.rules = this.editRulesComponent.form.value;
+    this.cottage.cottageOptions = this.editCottageOptionsComponent.form.value;
+    this.cottage.cottageSuperDeal = this.editCottageSuperDealComponent.form.value;
+    this.cottageService.saveCottage(this.cottage);
+    console.log(this.cottage);
   }
 
   cancelChanges(){

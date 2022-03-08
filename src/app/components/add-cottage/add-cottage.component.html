@@ -62,6 +62,25 @@
           <input formControlName="pricePerDay" required>
         </td>
       </tr>
+      
+        <div formGroupName='availabiltyPeriod'>
+          <tr>
+            <td>
+              <label>Availabilty Period: </label>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input formControlName='startDate' type='date' required> 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input formControlName='endDate' type='date'> 
+            </td>
+          </tr>
+        </div>
+      
       </table>
     
       <app-edit-rooms [rooms]='cottage.rooms'></app-edit-rooms>
