@@ -1,0 +1,26 @@
+img{
+    width: 300px;
+}
+
+.image{
+    margin: 10px;
+    display: inline-block;
+}
+
+.full-size{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+}
+
+.full-size > img{
+    height: 70%;
+    width: auto;
+    margin: auto;
+}

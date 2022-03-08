@@ -1,4 +1,4 @@
-export class CottagePicture{
+export class Image{
     id: number;
     path: string;
     constructor(id: number, path: string) {

@@ -32,15 +32,14 @@ import { ShipOwnerComponent } from './components/ship-owner/ship-owner.component
 import { ShipOwnersComponent } from './components/ship-owners/ship-owners.component';
 import { ClientComponent } from './components/client/client.component';
 import { ClientsComponent } from './components/clients/clients.component';
-
-
-
 import { CottageOwnerPageComponent } from './components/cottage-owner-page/cottage-owner-page.component';
 import { ShipOwnerPageComponent } from './components/ship-owner-page/ship-owner-page.component';
 import { ClientPageComponent } from './components/client-page/client-page.component';
 import { InstructorPageComponent } from './components/instructor-page/instructor-page.component';
 import { AccountInfoComponent } from './components/account-info/account-info.component';
 import { CottagePageComponent } from './components/cottage-page/cottage-page.component';
+import { ImagesOfEntitiesComponent } from './components/images-of-entities/images-of-entities.component';
+import { AddCottageComponent } from './components/add-cottage/add-cottage.component';
 import { ShipService } from './services/ship.service';
 import { ShipOwnerService } from './services/ship-owner.service';
 import { ClientService } from './services/client.service';
@@ -48,6 +47,10 @@ import { FishingInstructorService } from './services/fishing-instructor.service'
 import { CottageOwner } from './entity/CottageOwner';
 import { CottageOwnerService } from './services/cottage-owner.service';
 import { AccountInfoEditComponent } from './components/account-info-edit/account-info-edit.component';
+import { EditRoomsComponent } from './components/edit-rooms/edit-rooms.component';
+import { EditRulesComponent } from './components/edit-rules/edit-rules.component';
+import { EditCottageOptionsComponent } from './components/edit-cottage-options/edit-cottage-options.component';
+import { EditCottageSuperDealComponent } from './components/edit-cottage-super-deal/edit-cottage-super-deal.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -69,6 +72,7 @@ const appRoutes: Routes = [
   { path: 'client_profile', component: ClientPageComponent},
   { path: 'instructor_profile', component: InstructorPageComponent},
   { path: 'cottage/:id', component: CottagePageComponent },
+  { path: 'add_cottage', component: AddCottageComponent },
   { path: 'admin_profile/cottages', component: CottagesComponent},
   { path: 'admin_profile/cottage_owners', component: CottageOwnersComponent},
   { path: 'admin_profile/ships', component: ShipsComponent},
@@ -111,7 +115,13 @@ const appRoutes: Routes = [
     ShipOwnerPageComponent,
     AccountInfoComponent,
     CottagePageComponent,
-    AccountInfoEditComponent
+    ImagesOfEntitiesComponent,
+    AddCottageComponent,
+    AccountInfoEditComponent,
+    EditRoomsComponent,
+    EditRulesComponent,
+    EditCottageOptionsComponent,
+    EditCottageSuperDealComponent
   ],
   imports: [
     BrowserModule,

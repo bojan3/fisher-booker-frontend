@@ -29,7 +29,15 @@ export class CottageService {
     return this.http.get<Cottage[]>('http://localhost:8081/api/cottage/all/price');
   }
 
+  getAllCottagesByOwner(): Observable<CottageDTO[]>{
+    return this.http.get<CottageDTO[]>('http://localhost:8081/api/cottageOwner/allCottagesByOwner');
+  } 
+
   getAllCottagesByRating(): Observable<Cottage[]>{
     return this.http.get<Cottage[]>('http://localhost:8081/api/cottage/all/rate');
+  }
+
+  saveCottage(cottage: Cottage): Observable<boolean>{
+    return this.http.post<boolean>('http://localhost:8081/api/cottage/save', cottage);
   }
 }
