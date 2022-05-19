@@ -30,7 +30,7 @@ export class AuthService {
       'password': user.password
     };
     console.log(body);
-    
+
     return this.apiService.post("http://localhost:8081/auth/login", JSON.stringify(body), loginHeaders)
       .pipe(map((res) => {
         console.log('Login success');
@@ -45,6 +45,9 @@ export class AuthService {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     });
+
+    console.log('User pre sranja: ',JSON.stringify(user));
+
     return this.apiService.post("http://localhost:8081/auth/signup", JSON.stringify(user), signupHeaders)
       .pipe(map(() => {
         console.log('Sign up success');

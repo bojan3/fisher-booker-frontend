@@ -69,6 +69,8 @@ export class SignUpComponent implements OnInit {
     this.notification = undefined;
     this.submitted = true;
 
+    console.log(this.form.value);
+
     this.authService.signup(this.form.value)
       .subscribe(data => {
         console.log(data);
