@@ -8,8 +8,13 @@
   <label  for="username">Username: </label>
   <input id="username" formControlName="username" required>
 
+  <p *ngIf=arePasswordsMatching() style="color:red;">Passwords do not match!</p>
+
   <label for="password">Password: </label>
   <input id="password" formControlName="password" required type="password">
+
+  <label for="password_retype">Retype password: </label>
+  <input id="password_retype" formControlName="password_retype" required type="password">
 
   <label for="firstname">First Name: </label>
   <input id="firstname" formControlName="firstname">
@@ -58,7 +63,7 @@
   <input type="radio" id="cottage-owner" name="role" value="COTTAGE_OWNER" formControlName="role">
   <label for="ship-owner">Ship owner</label>
   <input type="radio" id="ship-owner" name="role" value="SHIP_OWNER" formControlName="role">
-  <label for="fishing-instructor">Fishing instructor</label> 
+  <label for="fishing-instructor">Fishing instructor</label>
   <input type="radio" id="fishing-instructor" name="role" value="FISHING_INSTRUCTOR" formControlName="role">
 
 

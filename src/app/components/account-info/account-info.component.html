@@ -34,11 +34,11 @@
     <th>{{account?.address?.number}}</th>
   </tr>
   <tr>
-    <button (click)='showForm()'>Edit profile</button>
+    <!-- <button (click)='showForm()'>Edit profile</button> -->
   </tr>
 </table>
 
-<form *ngIf="editMode" [formGroup]="form"> 
+<form *ngIf="editMode" [formGroup]="form">
   <table>
     <tr>
       <td>

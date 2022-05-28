@@ -17,7 +17,8 @@
       <ul>
         <li>menu
           <ul>
-            <li (click)="openProfile()">Profile</li>
+            <li (click)="openProfile()">Main page</li>
+            <li [routerLink]="['account-info']">Profile</li>
             <li [routerLink]="['account-info-edit']">Edit Profile</li>
             <li (click)="logout()">Log out</li>
           </ul>

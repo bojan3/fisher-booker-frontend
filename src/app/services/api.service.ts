@@ -31,7 +31,7 @@ export class ApiService {
       headers: this.headers,
       params: new HttpParams()
     };
-
+ 
     if (args) {
       options['params'] = this.serialize(args);
     }
@@ -61,9 +61,9 @@ export class ApiService {
       /*.pipe(map((response: HttpResponse<any>) => response.body))
       /*.pipe(catchError(error => this.checkError(error)))*/;
 
-    /*return this.http.request(req).pipe(filter(response => { 
+    /*return this.http.request(req).pipe(filter(response => {
       console.log(response instanceof HttpResponse);
-      
+
       return response instanceof HttpResponse;
     }))
       .pipe(map((response: HttpResponse<any>) => response.body))
