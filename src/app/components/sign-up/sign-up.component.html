@@ -8,13 +8,12 @@
   <label  for="username">Username: </label>
   <input id="username" formControlName="username" required>
 
-  <p *ngIf=arePasswordsMatching() style="color:red;">Passwords do not match!</p>
-
   <label for="password">Password: </label>
   <input id="password" formControlName="password" required type="password">
 
   <label for="password_retype">Retype password: </label>
   <input id="password_retype" formControlName="password_retype" required type="password">
+  <p *ngIf=arePasswordsMatching() style="color:red;">Passwords do not match!</p>
 
   <label for="firstname">First Name: </label>
   <input id="firstname" formControlName="firstname">
@@ -57,16 +56,51 @@
 
 
 
-  <label for="client">Client</label>
+  <table>
+    <tr>
+      <td>
+        <label for="client">Client</label>
+      </td>
+      <td>
+        <input type="radio" id="client" name="role" value="CLIENT" formControlName="role">
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <label for="cottage-owner">Cottage owner</label>
+      </td>
+      <td>
+        <input type="radio" id="cottage-owner" name="role" value="COTTAGE_OWNER" formControlName="role">
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <label for="ship-owner">Ship owner</label>
+      </td>
+      <td>
+        <input type="radio" id="ship-owner" name="role" value="SHIP_OWNER" formControlName="role">
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <label for="fishing-instructor">Fishing instructor</label>
+      </td>
+      <td>
+        <input type="radio" id="fishing-instructor" name="role" value="FISHING_INSTRUCTOR" formControlName="role">
+      </td>
+    </tr>
+  </table>
+  <!-- <label for="client">Client</label>
   <input type="radio" id="client" name="role" value="CLIENT" formControlName="role">
   <label for="cottage-owner">Cottage owner</label>
   <input type="radio" id="cottage-owner" name="role" value="COTTAGE_OWNER" formControlName="role">
   <label for="ship-owner">Ship owner</label>
   <input type="radio" id="ship-owner" name="role" value="SHIP_OWNER" formControlName="role">
   <label for="fishing-instructor">Fishing instructor</label>
-  <input type="radio" id="fishing-instructor" name="role" value="FISHING_INSTRUCTOR" formControlName="role">
-
-
+  <input type="radio" id="fishing-instructor" name="role" value="FISHING_INSTRUCTOR" formControlName="role"> -->
 
 </div>
   <button [disabled]="!form.valid" color="primary" type="submit">Sign up</button>
