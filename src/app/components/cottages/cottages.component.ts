@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Address } from 'src/app/entity/Address';
-import { CottageDTO } from 'src/app/entity/CottageDTO';
+import { CottageDTO } from 'src/app/entity/DTO/CottageDTO';
 import { CottageService } from 'src/app/services/cottage.service';
 
 @Component({
@@ -13,9 +13,9 @@ export class CottagesComponent implements OnInit {
   @Input()
   forCottageOwner: boolean = false;
 
-  constructor(private cottageService : CottageService) { }
-
   cottages: CottageDTO[] = [];
+
+  constructor(private cottageService : CottageService) { }
 
   ngOnInit(): void {
     if(this.forCottageOwner){

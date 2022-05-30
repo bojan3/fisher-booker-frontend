@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CottageDTO } from 'src/app/entity/CottageDTO';
+import { CottageDTO } from 'src/app/entity/DTO/CottageDTO';
 
 @Component({
   selector: 'app-cottage',
