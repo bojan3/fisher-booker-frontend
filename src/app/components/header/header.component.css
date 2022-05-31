@@ -59,3 +59,7 @@ p{
   display: block;
   cursor: pointer;
 }
+
+.hover-cursor:hover{
+  cursor: pointer;
+}
