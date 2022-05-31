@@ -7,28 +7,22 @@ import { ShipService } from 'src/app/services/ship.service';
   templateUrl: './ship.component.html',
   styleUrls: ['./ship.component.css']
 })
-export class ShipComponent implements OnInit {
-
-
-
-
-  
-
+export class ShipComponent {
   @Input()
   ship !: Ship;
 
+  errorDisplay: boolean = false;
+
   constructor(public shipService: ShipService) { }
-
-  ngOnInit(): void {
-    
-  }
-
- ngOnButtonClick(id:number):void{
-
-  this.shipService.deleteShip(id)
-  window.location.reload()
- }
-
   
+  delete(id: number): void {
+    this.shipService.deleteShip(id).subscribe(
+      (ships) => {
+        window.location.reload();
+      },
+      (error) => {
+        this.errorDisplay = true;
+      })
+  }
 
 }

@@ -7,7 +7,8 @@
   <p>Capacity: {{ship.capacity}}</p>
   <p align="right">
     <button>details</button>
-    <button id=ship.id (click)="ngOnButtonClick(ship.id)">delete</button>
+    <button id=ship.id (click)="delete(ship.id)">delete</button>
   </p>
+  <p *ngIf="errorDisplay" class="error">Ne može da se briše brod koji je rezervisan</p>
 </section>
 
