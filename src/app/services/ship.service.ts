@@ -18,7 +18,6 @@ export class ShipService {
 
 
   deleteShip(id: number): Observable<ShipDTO[]> {
-    console.log('http://localhost:8081/api/ship/delete/' + id);
     return this.apiService.delete('http://localhost:8081/api/ship/delete/owner/' + id);
   }
 
@@ -38,9 +37,8 @@ export class ShipService {
     return this.http.get<Ship[]>('http://localhost:8081/api/ship/all/capacity')
   }
 
-  getAllShipsByOwner(): Observable<ShipDTO[]>{
-    //return this.apiService.get('http://localhost:8081/api/cottageOwner/allCottagesByOwner');
+  getAllShipsByOwner(): Observable<ShipDTO[]> {
     return this.http.get<ShipDTO[]>('http://localhost:8081/api/shipOwner/allShipsByOwner');
-    
-  } 
+  }
+  
 }

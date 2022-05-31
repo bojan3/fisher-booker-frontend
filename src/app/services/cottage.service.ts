@@ -40,4 +40,8 @@ export class CottageService {
   saveCottage(cottage: Cottage): Observable<boolean>{
     return this.http.post<boolean>('http://localhost:8081/api/cottage/save', cottage);
   }
+
+  deleteCottage(id: number): Observable<CottageDTO>{
+    return this.apiService.delete('http://localhost:8081/api/cottage/delete/owner/' + id);
+  }
 }
