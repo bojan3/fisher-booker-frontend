@@ -13,6 +13,7 @@ export class CottagesComponent implements OnInit {
   @Input()
   forCottageOwner: boolean = false;
 
+
   cottages: CottageDTO[] = [];
 
   constructor(private cottageService : CottageService) { }
@@ -20,7 +21,8 @@ export class CottagesComponent implements OnInit {
   ngOnInit(): void {
     if(this.forCottageOwner){
       this.cottageService.getAllCottagesByOwner().subscribe((cottages) => (this.cottages = cottages));
-    } else{
+    }
+    else{
       this.cottageService.getAllCottages().subscribe((cottages) => (this.cottages = cottages));
     }
     //this.cottageService.getAllCottagesByName().subscribe((cottages) => (this.cottages = cottages));

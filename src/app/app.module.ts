@@ -52,6 +52,7 @@ import { EditRulesComponent } from './components/edit-rules/edit-rules.component
 import { EditCottageOptionsComponent } from './components/edit-cottage-options/edit-cottage-options.component';
 import { EditCottageSuperDealComponent } from './components/edit-cottage-super-deal/edit-cottage-super-deal.component';
 import { VerifyAccountComponent } from './components/verify-account/verify-account.component';
+import { InstructorAdventuresComponent } from './components/instructor-adventures/instructor-adventures.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -84,7 +85,8 @@ const appRoutes: Routes = [
   { path: 'admin_profile/clients', component: ClientsComponent},
   { path: 'account-info', component: AccountInfoComponent},
   { path: 'account-info-edit', component: AccountInfoEditComponent},
-  { path: 'register/verify/:token', component: VerifyAccountComponent}
+  { path: 'register/verify/:token', component: VerifyAccountComponent},
+  { path: 'instructor-adventures/:instructorId', component: InstructorAdventuresComponent},
 ];
 
 @NgModule({
@@ -124,7 +126,8 @@ const appRoutes: Routes = [
     EditRulesComponent,
     EditCottageOptionsComponent,
     EditCottageSuperDealComponent,
-    VerifyAccountComponent
+    VerifyAccountComponent,
+    InstructorAdventuresComponent
   ],
   imports: [
     BrowserModule,

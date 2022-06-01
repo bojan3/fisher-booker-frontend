@@ -16,11 +16,14 @@ export class FishingInstructorsComponent implements OnInit {
 
   ngOnInit(): void {
     this.FishingInstructorService.getAllFishingInstructors().subscribe((fishinginstructors) => {
-      
       this.fishinginstructors = fishinginstructors
-    console.log(this.fishinginstructors);
     });
 
+  }
+
+  sortByName(){
+    this.FishingInstructorService.getAllFishingInstructorsOrderByName().subscribe((fishinginstructors) => {
+      this.fishinginstructors = fishinginstructors});
   }
 
 }
