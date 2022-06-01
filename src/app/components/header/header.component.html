@@ -1,10 +1,8 @@
 <div class="header">
     <a (click)="openUsersPage()">
-    <img class="hover-cursor" src="../../../assets/images/anchor.png">
+    <img src="../../../assets/images/anchor.png">
   </a>
-  <a (click)="openUsersPage()">
-    <p class="hover-cursor">Fisher booker</p>
-  </a>
+    <p>Fisher booker</p>
     <div *ngIf=!isUserLogged() class="buttons">
         <button [routerLink] = "['signUp']">Sign in</button>
         <button [routerLink] = "['logIn']">Log in</button>

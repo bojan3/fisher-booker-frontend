@@ -1,14 +1,14 @@
 <section class='ships'>
+
   <h3>{{ship.name}}</h3>
   <p>description: {{ship.description}}</p>
-  <p>price: {{ship.rentPrice}}</p>
+    <p>price: {{ship.rentPrice}}</p>
   <!-- <p>Adress:{{adresa}}, {{cottage.address.city}}, {{cottage.address.street}}, {{cottage.address.number}} </p> -->
   <p>Rate: {{ship.averageMark}}/5</p>
   <p>Capacity: {{ship.capacity}}</p>
   <p align="right">
-    <button>details</button>
-    <button id=ship.id (click)="delete(ship.id)">delete</button>
-  </p>
-  <p *ngIf="errorDisplay" class="error">Ne može da se briše brod koji je rezervisan</p>
-</section>
+<button>details</button>
+
+<button id=ship.id (click)="ngOnButtonClick(ship.id)" >delete</button>
+</p>
 

@@ -10,7 +10,6 @@ export class ShipOwnerPageComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    
   }
 
 }

@@ -20,7 +20,7 @@ export class VerifyAccountComponent implements OnInit {
       this.route.params.subscribe
       this.route.params.subscribe((param) => {
       this.token = param.token;
-      console.log("id instruktora :" +this.token);
+      console.log("token :" +this.token);
       });
       this.authService.verify_email(this.token)
 

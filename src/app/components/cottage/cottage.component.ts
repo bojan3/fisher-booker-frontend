@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CottageDTO } from 'src/app/entity/DTO/CottageDTO';
-import { CottageService } from 'src/app/services/cottage.service';
+import { CottageDTO } from 'src/app/entity/CottageDTO';
 
 @Component({
   selector: 'app-cottage',
@@ -8,22 +7,14 @@ import { CottageService } from 'src/app/services/cottage.service';
   styleUrls: ['./cottage.component.css']
 })
 
-export class CottageComponent {
+export class CottageComponent implements OnInit {
+
+  constructor() { }
 
   @Input()
   cottage !: CottageDTO;
-  errorDisplay: boolean = false;
 
-  constructor(public cottageService: CottageService) { }
-
-  delete(id: number): void {
-    this.cottageService.deleteCottage(id).subscribe(
-      (cottages) => {
-        window.location.reload();
-      },
-      (error) => {
-        this.errorDisplay = true;
-      })
+  ngOnInit(): void {
   }
 
 }

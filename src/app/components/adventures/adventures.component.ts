@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Adventure } from 'src/app/entity/Adventure';
+import { Component, OnInit, Input } from '@angular/core';
+import { AdventureDTO } from 'src/app/entity/AdventureDTO';
 import { AdventureService } from 'src/app/services/adventure.service';
 
 
@@ -11,62 +10,22 @@ import { AdventureService } from 'src/app/services/adventure.service';
 })
 export class AdventuresComponent implements OnInit {
 
-  instructorId !: number;
-
-  // client and main page show adventures by fishing instructor
   @Input()
-  forClientInsructorAdventures = false;
+  forInstructor: boolean = false;
 
-  constructor(private adventureService : AdventureService, private route: ActivatedRoute) { }
+  constructor(private adventureService : AdventureService) { }
 
-  adventures: Adventure[] = [];
+  adventures: AdventureDTO[] = [];
 
 
    ngOnInit(): void {
-    this.route.params.subscribe((param) => {
-      this.instructorId = param.instructorId;
-      console.log("token :" +this.instructorId);
-      });
-
-    if(this.forClientInsructorAdventures){
-      this.adventureService.getAllAdventuresByInstructor(this.instructorId).subscribe((adventures) => (this.adventures = adventures));
-    }
-    else{
+if (this.forInstructor){
+  this.adventureService.getAllAdventuresByOwner()
+  .subscribe((adventures) => (this.adventures = adventures));
+}
+else{
     this.adventureService.getAllAdventures().subscribe((adventures) => (this.adventures = adventures));
-    }
+   }
   }
-
-  sortByPrice(){
-    if(this.forClientInsructorAdventures){
-      // this.adventureService.getAllAdventuresByInstructorOrderByPrice(this.instructorId).subscribe((adventures) => (this.adventures = adventures));
-    } else{
-    // Ako treba nekome sortiranje svih ili nekih koji nisu pokupljeni po instruktoru
-    }
-  }
-
-  sortByName(){
-    if(this.forClientInsructorAdventures){
-      this.adventureService.getAllAdventuresByInstructorOrderByName(this.instructorId).subscribe((adventures: Adventure[]) => (this.adventures = adventures));
-    } else{
-    // Ako treba nekome sortiranje svih ili nekih koji nisu pokupljeni po instruktoru
-    }
-  }
-
-  sortByCapacity(){
-    if(this.forClientInsructorAdventures){
-      //this.adventureService.getAllAdventuresByInstructorOrderByCapacity(this.instructorId).subscribe((adventures) => (this.adventures = adventures));
-    } else{
-    // Ako treba nekome sortiranje svih ili nekih koji nisu pokupljeni po instruktoru
-    }
-  }
-
-  sortByRating(){
-    if(this.forClientInsructorAdventures){
-      //this.adventureService.getAllAdventuresByInstructorOrderByCRating(this.instructorId).subscribe((adventures) => (this.adventures = adventures));
-    } else{
-    // Ako treba nekome sortiranje svih ili nekih koji nisu pokupljeni po instruktoru
-    }
-  }
-
 
 }

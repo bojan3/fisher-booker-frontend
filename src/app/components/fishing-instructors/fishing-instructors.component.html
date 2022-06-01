@@ -1,12 +1,6 @@
-<h3 >Sort by:</h3>
 <section class='fishing-instructor'>
-  <div class="sort" style="display:flex; flex-direction: row; justify-content: center; align-items: left">
-    <input type="radio" id="name" name="sortType" value="NAME" (click)="sortByName()">
-    <label for="name">name</label><br>
-  </div>
-
-  <app-fishing-instructor  *ngFor="let fishinginstructor of fishinginstructors"
+    <app-fishing-instructor  *ngFor="let fishinginstructor of fishinginstructors"
     [fishinginstructor]="fishinginstructor">
      </app-fishing-instructor>
-
+ 
  </section>

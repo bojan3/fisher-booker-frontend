@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { CottageDTO } from '../entity/DTO/CottageDTO';
+import { CottageDTO } from '../entity/CottageDTO';
 import { ApiService } from './api.service';
 import { Cottage } from '../entity/Cottage';
 
@@ -39,9 +39,5 @@ export class CottageService {
 
   saveCottage(cottage: Cottage): Observable<boolean>{
     return this.http.post<boolean>('http://localhost:8081/api/cottage/save', cottage);
-  }
-
-  deleteCottage(id: number): Observable<CottageDTO>{
-    return this.apiService.delete('http://localhost:8081/api/cottage/delete/owner/' + id);
   }
 }

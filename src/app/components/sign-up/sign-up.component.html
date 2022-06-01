@@ -15,11 +15,11 @@
   <input id="password_retype" formControlName="password_retype" required type="password">
   <p *ngIf=arePasswordsMatching() style="color:red;">Passwords do not match!</p>
 
-  <label for="name">First Name: </label>
-  <input id="name" formControlName="name">
+  <label for="firstname">First Name: </label>
+  <input id="firstname" formControlName="firstname">
 
-  <label for="lastName">Last Name: </label>
-  <input id="lastName" formControlName="lastName">
+  <label for="lastname">Last Name: </label>
+  <input id="lastname" formControlName="lastname">
 
   <label for="email" >Email: </label>
   <input id="email" formControlName="email">
@@ -93,6 +93,14 @@
       </td>
     </tr>
   </table>
+  <!-- <label for="client">Client</label>
+  <input type="radio" id="client" name="role" value="CLIENT" formControlName="role">
+  <label for="cottage-owner">Cottage owner</label>
+  <input type="radio" id="cottage-owner" name="role" value="COTTAGE_OWNER" formControlName="role">
+  <label for="ship-owner">Ship owner</label>
+  <input type="radio" id="ship-owner" name="role" value="SHIP_OWNER" formControlName="role">
+  <label for="fishing-instructor">Fishing instructor</label>
+  <input type="radio" id="fishing-instructor" name="role" value="FISHING_INSTRUCTOR" formControlName="role"> -->
 
 </div>
   <button [disabled]="!form.valid" color="primary" type="submit">Sign up</button>

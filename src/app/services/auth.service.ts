@@ -12,15 +12,15 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AuthService {
 
-  private tokenName: string = "jwt";
-
   constructor(
     private apiService: ApiService,
     private accountService: AccountService,
     //private config: ConfigService,
     private router: Router,
     private http: HttpClient
-  ) { }
+    ) { }
+
+    private access_token = null;
 
   login(user: any) {
     const loginHeaders = new HttpHeaders({
@@ -37,7 +37,9 @@ export class AuthService {
     return this.apiService.post("http://localhost:8081/auth/login", JSON.stringify(body), loginHeaders)
       .pipe(map((res) => {
         console.log('Login success');
-        localStorage.setItem(this.tokenName, res.body.accessToken);
+        this.access_token = res.body.accessToken;
+        console.log(this.access_token);
+        localStorage.setItem("jwt", res.body.accessToken);
       }));
   }
 
@@ -47,7 +49,7 @@ export class AuthService {
       'Content-Type': 'application/json'
     });
 
-    console.log('User pre slanja: ', JSON.stringify(user));
+    console.log('User pre slanja: ',JSON.stringify(user));
 
     return this.apiService.post("http://localhost:8081/auth/signup", JSON.stringify(user), signupHeaders)
       .pipe(map(() => {
@@ -65,21 +67,27 @@ export class AuthService {
       'Content-Type': 'application/json'
     });
 
+    console.log("token => " + secureToken);
+
+    console.log(JSON.stringify(secureToken));
+
     return this.http.post<boolean>('http://localhost:8081/api/verify/email', secureToken);
+    // return this.http.get<boolean>('http://localhost:8081/api/verify/email/token');
+    // return this.apiService.post("http://localhost:8081/api/verify/email", JSON.stringify(secureToken), headers);
+    // return this.apiService.post("http://localhost:8081/api/registration/verify/"+token, headers);
   }
 
   logout() {
     this.accountService.currentUser = null;
-    localStorage.removeItem(this.tokenName);
+    this.access_token = null;
     this.router.navigate(['/logIn']);
   }
 
   tokenIsPresent() {
-    var token = localStorage.getItem(this.tokenName);
-    return token != undefined && token != null;
+    return this.access_token != undefined && this.access_token != null;
   }
 
   getToken() {
-    return localStorage.getItem(this.tokenName)
+    return this.access_token;
   }
 }
