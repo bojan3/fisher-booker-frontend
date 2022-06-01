@@ -12,8 +12,7 @@ export class FishingInstructorComponent implements OnInit {
   fishinginstructor !: FishingInstructor;
 
   constructor() { }
-  
+
   ngOnInit(): void {
   }
-
 }
