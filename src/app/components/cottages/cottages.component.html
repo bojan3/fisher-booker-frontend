@@ -1,5 +1,5 @@
-<h3 >Sort by:</h3>
-<div class="sort" style="display:flex; flex-direction: row; justify-content: center; align-items: left">
+<h3 *ngIf="notClientSubscriptions()">Sort by:</h3>
+<div class="sort" *ngIf="notClientSubscriptions()" style="display:flex; flex-direction: row; justify-content: center; align-items: left">
   <input type="radio" id="name" name="sortType" value="NAME" (click)="sortByName()">
   <label for="name">name</label><br>
   <input type="radio" id="price" name="sortType" value="PRICE" (click)="sortByPrice()">
@@ -8,9 +8,8 @@
   <label for="rating">rating</label>
 </div>
 <section class='cottages'>
-   <app-cottage  *ngFor="let cottage of cottages"
+   <app-cottage [forClientSubscriptions] = "forClientSubscriptions" *ngFor="let cottage of cottages"
    [cottage]="cottage">
-
     </app-cottage>
 
 </section>

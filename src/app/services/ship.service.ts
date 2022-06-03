@@ -16,7 +16,6 @@ export class ShipService {
     return this.apiService.get('http://localhost:8081/api/ship/all');
   }
 
-
   deleteShip(id: number): Observable<ShipDTO[]> {
     return this.apiService.delete('http://localhost:8081/api/ship/delete/owner/' + id);
   }

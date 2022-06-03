@@ -7,6 +7,7 @@
     {{cottage.address.number}} </p>
   <p>Rating: {{cottage.averageMark}}/5</p>
   <p align="right">
+    <button *ngIf="showSubscribeButton()" (click)="subscribeToCottage()">subscribe</button>
     <button [routerLink]="['', 'cottage', cottage.id]">details</button>
     <button id=cottage.id (click)="delete(cottage.id)">delete</button>
   </p>
