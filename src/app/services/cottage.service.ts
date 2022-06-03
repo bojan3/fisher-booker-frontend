@@ -18,9 +18,6 @@ export class CottageService {
 
   getById(id: string): Observable<Cottage>{
     return this.apiService.get('http://localhost:8081/api/cottage/page/'+id);
-  // getAllCottages(): Observable<Cottage[]>{
-  //   return this.http.get<Cottage[]>('http://localhost:8081/api/cottage/all');
-  // }
   }
   getAllCottagesByName(): Observable<Cottage[]>{
     return this.http.get<Cottage[]>('http://localhost:8081/api/cottage/all/name');
@@ -31,7 +28,7 @@ export class CottageService {
 
   getAllCottagesByOwner(): Observable<CottageDTO[]>{
     return this.http.get<CottageDTO[]>('http://localhost:8081/api/cottageOwner/allCottagesByOwner');
-  } 
+  }
 
   getAllCottagesByRating(): Observable<Cottage[]>{
     return this.http.get<Cottage[]>('http://localhost:8081/api/cottage/all/rate');
