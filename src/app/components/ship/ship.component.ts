@@ -1,4 +1,5 @@
 import { Component, Input, NgModule, OnInit } from '@angular/core';
+import { ShipDTO } from 'src/app/entity/DTO/ShipDTO';
 import { Ship } from 'src/app/entity/Ship';
 import { AccountService } from 'src/app/services/account.service';
 import { ClientService } from 'src/app/services/client.service';
@@ -11,7 +12,7 @@ import { ShipService } from 'src/app/services/ship.service';
 })
 export class ShipComponent implements OnInit {
   @Input()
-  ship !: Ship;
+  ship !: ShipDTO;
 
   errorDisplay: boolean = false;
   forClient: boolean = false;

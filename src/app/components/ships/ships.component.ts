@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ShipDTO } from 'src/app/entity/DTO/ShipDTO';
 import { Ship } from 'src/app/entity/Ship';
 import { AccountService } from 'src/app/services/account.service';
 import { ClientService } from 'src/app/services/client.service';
@@ -16,8 +17,8 @@ export class ShipsComponent implements OnInit {
 
   @Input()
   forClientSubscriptions: boolean = false;
-
-  ships: Ship[] = [];
+  
+  ships: ShipDTO[] = [];
 
   constructor(private shipService: ShipService,
               private clientService: ClientService,

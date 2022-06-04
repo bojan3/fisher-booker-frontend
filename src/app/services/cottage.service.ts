@@ -19,9 +19,11 @@ export class CottageService {
   getById(id: string): Observable<Cottage>{
     return this.apiService.get('http://localhost:8081/api/cottage/page/'+id);
   }
+
   getAllCottagesByName(): Observable<Cottage[]>{
     return this.http.get<Cottage[]>('http://localhost:8081/api/cottage/all/name');
   }
+  
   getAllCottagesByPrice(): Observable<Cottage[]>{
     return this.http.get<Cottage[]>('http://localhost:8081/api/cottage/all/price');
   }

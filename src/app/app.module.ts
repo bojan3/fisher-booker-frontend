@@ -49,10 +49,14 @@ import { CottageOwnerService } from './services/cottage-owner.service';
 import { AccountInfoEditComponent } from './components/account-info-edit/account-info-edit.component';
 import { EditRoomsComponent } from './components/edit-rooms/edit-rooms.component';
 import { EditRulesComponent } from './components/edit-rules/edit-rules.component';
-import { EditCottageOptionsComponent } from './components/edit-cottage-options/edit-cottage-options.component';
-import { EditCottageSuperDealComponent } from './components/edit-cottage-super-deal/edit-cottage-super-deal.component';
 import { VerifyAccountComponent } from './components/verify-account/verify-account.component';
 import { InstructorAdventuresComponent } from './components/instructor-adventures/instructor-adventures.component';
+import { AddShipComponent } from './components/add-ship/add-ship.component';
+import { ShipPageComponent } from './components/ship-page/ship-page.component';
+import { EditOptionsComponent } from './components/edit-options/edit-options.component';
+import { EditSuperDealComponent } from './components/edit-super-deal/edit-super-deal.component';
+import { EditNavigationEquipmentComponent } from './components/edit-navigation-equipment/edit-navigation-equipment.component';
+import { EditFishingEquipmentComponent } from './components/edit-fishing-equipment/edit-fishing-equipment.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -75,7 +79,9 @@ const appRoutes: Routes = [
   { path: 'client_profile', component: ClientPageComponent},
   { path: 'instructor_profile', component: InstructorPageComponent},
   { path: 'cottage/:id', component: CottagePageComponent },
+  { path: 'ship/:id', component: ShipPageComponent },
   { path: 'add_cottage', component: AddCottageComponent },
+  { path: 'add_ship', component: AddShipComponent },
   { path: 'admin_profile/cottages', component: CottagesComponent},
   { path: 'admin_profile/cottage_owners', component: CottageOwnersComponent},
   { path: 'admin_profile/ships', component: ShipsComponent},
@@ -124,10 +130,14 @@ const appRoutes: Routes = [
     AccountInfoEditComponent,
     EditRoomsComponent,
     EditRulesComponent,
-    EditCottageOptionsComponent,
-    EditCottageSuperDealComponent,
     VerifyAccountComponent,
-    InstructorAdventuresComponent
+    InstructorAdventuresComponent,
+    AddShipComponent,
+    ShipPageComponent,
+    EditOptionsComponent,
+    EditSuperDealComponent,
+    EditNavigationEquipmentComponent,
+    EditFishingEquipmentComponent
   ],
   imports: [
     BrowserModule,
@@ -154,8 +164,6 @@ const appRoutes: Routes = [
     ClientService,
     FishingInstructorService,
     CottageOwnerService
-
-
   ],
   bootstrap: [AppComponent]
 })
