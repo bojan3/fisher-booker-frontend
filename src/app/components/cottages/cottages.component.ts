@@ -26,6 +26,8 @@ export class CottagesComponent implements OnInit {
   ngOnInit(): void {
     if (this.forCottageOwner) {
       this.cottageService.getAllCottagesByOwner().subscribe((cottages) => (this.cottages = cottages));
+    } if(this.forClientSubscriptions){
+      this.clientService.getCottageSubscriptions(this.accountService.currentUser.id).subscribe((cottages) => (this.cottages = cottages));
     }
     else {
       this.cottageService.getAllCottages().subscribe((cottages) => (this.cottages = cottages));
