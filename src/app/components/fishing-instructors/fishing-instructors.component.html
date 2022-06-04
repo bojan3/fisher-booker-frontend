@@ -5,7 +5,7 @@
     <label for="name">name</label><br>
   </div>
 
-  <app-fishing-instructor  *ngFor="let fishinginstructor of fishinginstructors"
+  <app-fishing-instructor [forClientSubscriptions]="forClientSubscriptions"  *ngFor="let fishinginstructor of fishinginstructors"
     [fishinginstructor]="fishinginstructor">
      </app-fishing-instructor>
 

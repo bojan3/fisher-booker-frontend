@@ -10,6 +10,7 @@
     <button *ngIf="showSubscribeButton()" (click)="subscribeToCottage()">subscribe</button>
     <button [routerLink]="['', 'cottage', cottage.id]">details</button>
     <button id=cottage.id (click)="delete(cottage.id)">delete</button>
+    <button (click)="unsubscribeCottage()" *ngIf="forClientSubscriptions">Unsubscribe</button>
   </p>
   <p *ngIf="errorDisplay" class="error">Ne može da se briše vikendica koji je rezervisana</p>
 </section>

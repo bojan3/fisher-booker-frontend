@@ -51,6 +51,21 @@ export class ClientService {
       return this.apiService.get('http://localhost:8081/api/client/subscriptions/ship/' + accountId);
     }
 
+    unsubscribeCottage(cottageId: number, accountId: number){
+      return this.apiService.put('http://localhost:8081/api/client/unsubscribe/cottage/' + cottageId, JSON.stringify(accountId));
+    }
+
+    unsubscribeInstructor(instructorId: number, accountId: number){
+      return this.apiService.put('http://localhost:8081/api/client/unsubscribe/instructor/' + instructorId, JSON.stringify(accountId));
+    }
+
+    unsubscribeShip(shipId: number, accountId: number){
+      return this.apiService.put('http://localhost:8081/api/client/unsubscribe/ship/' + shipId, JSON.stringify(accountId));
+    }
+
+    getCottageReservations(accountId: number): Observable<[]>{
+      return this.apiService.get('http://localhost:8081/api/client/subscriptions/ship/' + accountId);
+    }
 }
 
 
