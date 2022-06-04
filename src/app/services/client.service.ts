@@ -6,6 +6,7 @@ import { ApiService } from './api.service';
 import { CottageDTO } from '../entity/DTO/CottageDTO';
 import { FishingInstructor } from '../entity/FishingInstructor';
 import { Ship } from '../entity/Ship';
+import { ShipDTO } from '../entity/DTO/ShipDTO';
 
 
 @Injectable({
@@ -47,7 +48,7 @@ export class ClientService {
       return this.apiService.get('http://localhost:8081/api/client/subscriptions/instructor/' + accountId);
     }
 
-    getShipSubscriptions(accountId: number): Observable<Ship[]>{
+    getShipSubscriptions(accountId: number): Observable<ShipDTO[]>{
       return this.apiService.get('http://localhost:8081/api/client/subscriptions/ship/' + accountId);
     }
 

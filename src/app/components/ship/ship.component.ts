@@ -48,4 +48,8 @@ export class ShipComponent implements OnInit {
   subscribeToShip(){
     this.clientService.subscribeToShip(this.ship.id, this.currentUser.id).subscribe();
   }
+
+  showDeleteButton(){
+    
+  }
 }
