@@ -13,29 +13,28 @@ export class CottagesComponent implements OnInit {
   @Input()
   forCottageOwner: boolean = false;
 
-
   cottages: CottageDTO[] = [];
 
-  constructor(private cottageService : CottageService) { }
+  constructor(private cottageService: CottageService) { }
 
   ngOnInit(): void {
-    if(this.forCottageOwner){
+    if (this.forCottageOwner) {
       this.cottageService.getAllCottagesByOwner().subscribe((cottages) => (this.cottages = cottages));
     }
-    else{
+    else {
       this.cottageService.getAllCottages().subscribe((cottages) => (this.cottages = cottages));
     }
     //this.cottageService.getAllCottagesByName().subscribe((cottages) => (this.cottages = cottages));
   }
 
-  sortByName(){
+  sortByName() {
     this.cottageService.getAllCottagesByName().subscribe((cottages) => (this.cottages = cottages));
   }
 
-  sortByPrice(){
+  sortByPrice() {
     this.cottageService.getAllCottagesByPrice().subscribe((cottages) => (this.cottages = cottages));
   }
-  sortByRating(){
+  sortByRating() {
     this.cottageService.getAllCottagesByRating().subscribe((cottages) => (this.cottages = cottages));
   }
 }

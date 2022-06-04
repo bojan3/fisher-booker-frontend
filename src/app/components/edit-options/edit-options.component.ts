@@ -1,16 +1,16 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CottageOption } from 'src/app/entity/CottageOption';
+import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { Option } from '../../entity/Option'
 
 @Component({
-  selector: 'app-edit-cottage-options',
-  templateUrl: './edit-cottage-options.component.html',
-  styleUrls: ['./edit-cottage-options.component.css']
+  selector: 'app-edit-options',
+  templateUrl: './edit-options.component.html',
+  styleUrls: ['./edit-options.component.css']
 })
-export class EditCottageOptionsComponent implements OnInit {
+export class EditOptionsComponent implements OnInit {
 
   @Input()
-  options!: CottageOption[];
+  options!: Option[];
 
   form!: FormGroup;
   optionsForm!: FormArray;
@@ -43,7 +43,7 @@ export class EditCottageOptionsComponent implements OnInit {
   addOption(): void {
     this.optionsForm = this.form.get('options') as FormArray;
     this.optionsForm.push(this.createOption(0, '', '', 0));
-    this.options.push(new CottageOption(0, '', '', 0));
+    this.options.push(new Option(0, '', '', 0));
   }
 
   removeOption(i: number): void{
