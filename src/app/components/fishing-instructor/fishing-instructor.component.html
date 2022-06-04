@@ -10,7 +10,8 @@
 
      <p align="right">
   <button [routerLink]="['', 'instructor-adventures', fishinginstructor.id]">adventures</button>
-  <button *ngIf="forClient" (click)="subscribeToInstructor()">Subscribe</button>
+  <button *ngIf="showSubscribe()" (click)="subscribeToInstructor()">Subscribe</button>
+  <button (click)="unsubscribeInstructor()" *ngIf="forClientSubscriptions">Unsubscribe</button>
 </p>
 
 

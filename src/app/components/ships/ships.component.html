@@ -10,7 +10,7 @@
   <label for="capacity">capacity</label>
 </div>
 <section class='ships'>
-  <app-ship  *ngFor="let ship of ships"
+  <app-ship [forClientSubscriptions]="forClientSubscriptions"  *ngFor="let ship of ships"
   [ship]="ship">
 
    </app-ship>
