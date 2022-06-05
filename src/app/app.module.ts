@@ -59,6 +59,7 @@ import { EditNavigationEquipmentComponent } from './components/edit-navigation-e
 import { EditFishingEquipmentComponent } from './components/edit-fishing-equipment/edit-fishing-equipment.component';
 import { AngularYandexMapsModule, YaConfig } from 'angular8-yandex-maps';
 import { MapsComponent } from './components/maps/maps.component';
+import { EditImageComponent } from './components/edit-image/edit-image.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -147,7 +148,8 @@ const mapConfig: YaConfig = {
     EditSuperDealComponent,
     EditNavigationEquipmentComponent,
     EditFishingEquipmentComponent,
-    MapsComponent
+    MapsComponent,
+    EditImageComponent
   ],
   imports: [
     [AngularYandexMapsModule.forRoot(mapConfig)],

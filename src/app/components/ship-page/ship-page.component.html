@@ -34,4 +34,12 @@
             {{option.name}} --- {{option.description}} --- {{option.price}}
         </div>
     </section>
+
+    <section class="info-block">
+        <h2>Slike</h2>
+        <div class="image" *ngFor="let image of ship?.shipPictures">
+            <img src="image.url"/>
+        </div>
+    </section>
+
 </section>

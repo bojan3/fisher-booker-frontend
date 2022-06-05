@@ -17,54 +17,54 @@ export class AdventuresComponent implements OnInit {
   @Input()
   forClientInsructorAdventures = false;
 
-  constructor(private adventureService : AdventureService, private route: ActivatedRoute) { }
+  constructor(private adventureService: AdventureService, private route: ActivatedRoute) { }
 
   adventures: Adventure[] = [];
 
 
-   ngOnInit(): void {
+  ngOnInit(): void {
     this.route.params.subscribe((param) => {
       this.instructorId = param.instructorId;
-      console.log("token :" +this.instructorId);
-      });
+      console.log("token :" + this.instructorId);
+    });
 
-    if(this.forClientInsructorAdventures){
+    if (this.forClientInsructorAdventures) {
       this.adventureService.getAllAdventuresByInstructor(this.instructorId).subscribe((adventures) => (this.adventures = adventures));
     }
-    else{
-    this.adventureService.getAllAdventures().subscribe((adventures) => (this.adventures = adventures));
+    else {
+      this.adventureService.getAllAdventures().subscribe((adventures) => (this.adventures = adventures));
     }
   }
 
-  sortByPrice(){
-    if(this.forClientInsructorAdventures){
+  sortByPrice() {
+    if (this.forClientInsructorAdventures) {
       // this.adventureService.getAllAdventuresByInstructorOrderByPrice(this.instructorId).subscribe((adventures) => (this.adventures = adventures));
-    } else{
-    // Ako treba nekome sortiranje svih ili nekih koji nisu pokupljeni po instruktoru
+    } else {
+      // Ako treba nekome sortiranje svih ili nekih koji nisu pokupljeni po instruktoru
     }
   }
 
-  sortByName(){
-    if(this.forClientInsructorAdventures){
+  sortByName() {
+    if (this.forClientInsructorAdventures) {
       this.adventureService.getAllAdventuresByInstructorOrderByName(this.instructorId).subscribe((adventures: Adventure[]) => (this.adventures = adventures));
-    } else{
-    // Ako treba nekome sortiranje svih ili nekih koji nisu pokupljeni po instruktoru
+    } else {
+      // Ako treba nekome sortiranje svih ili nekih koji nisu pokupljeni po instruktoru
     }
   }
 
-  sortByCapacity(){
-    if(this.forClientInsructorAdventures){
+  sortByCapacity() {
+    if (this.forClientInsructorAdventures) {
       //this.adventureService.getAllAdventuresByInstructorOrderByCapacity(this.instructorId).subscribe((adventures) => (this.adventures = adventures));
-    } else{
-    // Ako treba nekome sortiranje svih ili nekih koji nisu pokupljeni po instruktoru
+    } else {
+      // Ako treba nekome sortiranje svih ili nekih koji nisu pokupljeni po instruktoru
     }
   }
 
-  sortByRating(){
-    if(this.forClientInsructorAdventures){
+  sortByRating() {
+    if (this.forClientInsructorAdventures) {
       //this.adventureService.getAllAdventuresByInstructorOrderByCRating(this.instructorId).subscribe((adventures) => (this.adventures = adventures));
-    } else{
-    // Ako treba nekome sortiranje svih ili nekih koji nisu pokupljeni po instruktoru
+    } else {
+      // Ako treba nekome sortiranje svih ili nekih koji nisu pokupljeni po instruktoru
     }
   }
 

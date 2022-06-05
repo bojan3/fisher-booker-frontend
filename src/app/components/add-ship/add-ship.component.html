@@ -77,6 +77,11 @@
     <h2>Dodatne usluge</h2>
     <app-edit-options [options]='ship.shipOptions'></app-edit-options>
   </div>
+
+  <!-- <div class="info-block">
+    <h2>Slike</h2>
+    <app-edit-image [images]="ship.shipPictures"></app-edit-image>
+  </div> -->
   
   <button color="primary" (click)='cancelChanges()'>Cancel</button>
   <button color="primary" type="submit" (onSubmit)="onSubmit()" [disabled]="!form.valid">Submit</button>
