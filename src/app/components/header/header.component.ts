@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
   // account!: Account;
 
   ngOnInit(): void {
+    this.accountService.getMyInfo().subscribe();
   }
 
   isUserLogged() {
@@ -26,25 +27,25 @@ export class HeaderComponent implements OnInit {
     return user.firstName + ' ' + user.lastName;
   }
 
-  isUserClient(){
+  isUserClient() {
     return (!!this.accountService.currentUser) && this.accountService.currentUser.role == 'ROLE_CLIENT';
   }
 
-  isUserCottageOwner(){
+  isUserCottageOwner() {
     return (!!this.accountService.currentUser) && this.accountService.currentUser.role == 'ROLE_COTTAGE_OWNER';
   }
 
-  isUserAdmin(){
+  isUserAdmin() {
     return (!!this.accountService.currentUser) && this.accountService.currentUser.role == 'ROLE_ADMIN';
   }
-  isUserShipOwner(){
+  isUserShipOwner() {
     return (!!this.accountService.currentUser) && this.accountService.currentUser.role == 'ROLE_SHIP_OWNER';
   }
 
-  isUserFishingInstructor(){
+  isUserFishingInstructor() {
     return (!!this.accountService.currentUser) && this.accountService.currentUser.role == 'ROLE_INSTRUCTOR';
   }
-  logout(){
+  logout() {
     this.authService.logout();
   }
 
@@ -63,6 +64,22 @@ export class HeaderComponent implements OnInit {
       case 'ROLE_INSTRUCTOR': this.router.navigate(['/instructor_profile']); break;
       case 'ROLE_ADMIN': this.router.navigate(['/admin_profile']); break;
       default: this.router.navigate(['/']);
+    }
+  }
+
+  openUsersPage() {
+    if (!!this.accountService.currentUser) {
+      switch (this.accountService.currentUser.role) {
+        case 'ROLE_COTTAGE_OWNER': this.router.navigate(['/']); break;
+        case 'ROLE_SHIP_OWNER': this.router.navigate(['/']); break;
+        case 'ROLE_CLIENT': this.router.navigate(['/client_profile']); break;
+        case 'ROLE_INSTRUCTOR': this.router.navigate(['/']); break;
+        case 'ROLE_ADMIN': this.router.navigate(['/']); break;
+        default: this.router.navigate(['/']);
+      }
+    }
+    else {
+      this.router.navigate(['/']);
     }
   }
 }

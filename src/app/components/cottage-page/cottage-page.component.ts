@@ -15,8 +15,10 @@ export class CottagePageComponent implements OnInit {
   id: string = '';
   cottage!: Cottage;
 
-  constructor(route: ActivatedRoute, cottageService: CottageService) { 
-    route.params.subscribe((param) => {
+  constructor(private route: ActivatedRoute, private cottageService: CottageService) { }
+
+  ngOnInit(): void {
+    this.route.params.subscribe((param) => {
       this.id = param.id;
       cottageService.getById(this.id).subscribe((cottage) => {
         this.cottage = cottage;
@@ -26,8 +28,41 @@ export class CottagePageComponent implements OnInit {
     
   }
 
-  ngOnInit(): void {
-    
+  getNumberOfRoomsAndBeds() {
+    if (this.cottage) {
+      let rooms = this.cottage.rooms;
+      let output = `Broj soba: ${rooms.length} (`;
+      rooms.forEach((room) => {
+        if (room.numOfBeds === 1) {
+          output += room.numOfBeds + ' krevet, ';
+        } else {
+          output += room.numOfBeds + ' kreveta, ';
+        }
+      })
+      return this.removeLastCommaAndSpace(output) + ')';
+    }
+    return '';
+  }
+
+  rulesToString() {
+    if (this.cottage) {
+      let rules = this.cottage.rules;
+      let output = '';
+      rules.forEach(rule => {
+        output += rule.description + ', ';
+      });
+
+      return this.removeLastCommaAndSpace(output);
+    }
+    return '';
+  }
+
+  formatDate(date: Date) {
+    return date;
+  }
+
+  removeLastCommaAndSpace(string: string) {
+    return string.slice(0, string.length - 2);
   }
 
 }

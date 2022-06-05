@@ -1,5 +1,11 @@
+<h3 *ngIf="notClientSubscriptions()">Sort by:</h3>
 <section class='fishing-instructor'>
-    <app-fishing-instructor  *ngFor="let fishinginstructor of fishinginstructors"
+  <div *ngIf="notClientSubscriptions()" class="sort" style="display:flex; flex-direction: row; justify-content: center; align-items: left">
+    <input type="radio" id="name" name="sortType" value="NAME" (click)="sortByName()">
+    <label for="name">name</label><br>
+  </div>
+
+  <app-fishing-instructor [forClientSubscriptions]="forClientSubscriptions"  *ngFor="let fishinginstructor of fishinginstructors"
     [fishinginstructor]="fishinginstructor">
      </app-fishing-instructor>
  

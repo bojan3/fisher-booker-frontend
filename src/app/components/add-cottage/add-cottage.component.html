@@ -1,93 +1,53 @@
 <p>add-cottage works!</p>
-<form (ngSubmit)="onSubmit()" [formGroup]="form">
-    <table>
-        <tr>
-          <td>
-            <label>Name: </label>
-          </td>
-          <td>
-            <input formControlName="name" required>
-          </td>
-        </tr>
-        <tr>
-            <td colspan="2" id='address'>Address</td>
-        </tr>
-    <div formGroupName="address">
-        <tr>
-          <td>
-            <label>Country: </label>
-          </td>
-          <td>
-            <input formControlName="country">
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <label>City: </label>
-          </td>
-          <td>
-            <input formControlName="city">
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <label>Street: </label>
-          </td>
-          <td>
-            <input formControlName="street">
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <label>Number: </label>
-          </td>
-          <td>
-            <input formControlName="number">
-          </td>
-        </tr>
-      </div>
-      <tr>
-        <td>
-          <label>Description: </label>
-        </td>
-        <td>
-          <input formControlName="description">
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <label>Rent: </label>
-        </td>
-        <td>
-          <input formControlName="pricePerDay" required>
-        </td>
-      </tr>
-      
-        <div formGroupName='availabiltyPeriod'>
-          <tr>
-            <td>
-              <label>Availabilty Period: </label>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <input formControlName='startDate' type='date' required> 
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <input formControlName='endDate' type='date'> 
-            </td>
-          </tr>
-        </div>
-      
-      </table>
-    
-      <app-edit-rooms [rooms]='cottage.rooms'></app-edit-rooms>
-      <app-edit-rules [rules]='cottage.rules'></app-edit-rules>
-      <app-edit-cottage-options [options]='cottage.cottageOptions'></app-edit-cottage-options>
-      <app-edit-cottage-super-deal [superDeals]='cottage.cottageSuperDeal'></app-edit-cottage-super-deal>
+<form *ngIf='showForm' (ngSubmit)="onSubmit()" class='add-cottage-form' [formGroup]="form">
 
-    <button color="primary" (click)='cancelChanges()'>Cancel</button>
-    <button color="primary" type="submit" (onSubmit)="onSubmit()">Submit</button>
+  <label>Name: </label>
+  <input formControlName="name" required>
+
+  <div class="info-block" formGroupName="address">
+    <p id='title'>Address: </p>
+    <label>Country: </label>
+    <input formControlName="country">
+    <label>City: </label>
+    <input formControlName="city">
+    <label>Street: </label>
+    <input formControlName="street">
+    <label>Number: </label>
+    <input formControlName="number">
+  </div>
+
+  <label>Description: </label>
+  <input formControlName="description">
+
+  <label>Rent: </label>
+  <input formControlName="pricePerDay" required>
+
+  <div class='info-block' formGroupName='availabilityPeriod'>
+    <label>Availabilty Period: </label>
+    <input formControlName='startDate' type='date' required>
+    <input formControlName='endDate' type='date'>
+  </div>
+
+  <div class="info-block">
+    <h2>Rooms</h2>
+    <app-edit-rooms [rooms]='cottage.rooms'></app-edit-rooms>
+  </div>
+
+  <div class="info-block">
+    <h2>Kućni red</h2>
+    <app-edit-rules [rules]='cottage.rules'></app-edit-rules>
+  </div>
+
+  <div class="info-block">
+    <h2>Opcije</h2>
+    <app-edit-options [options]='cottage.cottageOptions'></app-edit-options>
+  </div>
+
+  <div class="info-block">
+    <h2>Brze rezervacije</h2>
+    <app-edit-super-deal [superDeals]='cottage.cottageSuperDeals'></app-edit-super-deal>
+  </div>
+  
+  <button color="primary" (click)='cancelChanges()'>Cancel</button>
+  <button color="primary" type="submit" (onSubmit)="onSubmit()">Submit</button>
 </form>

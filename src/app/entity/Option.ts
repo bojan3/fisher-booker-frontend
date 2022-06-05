@@ -1,4 +1,4 @@
-export class CottageOption{
+export class Option {
     id: number;
     name: string;
     description: string;
