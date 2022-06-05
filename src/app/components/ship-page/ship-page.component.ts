@@ -20,7 +20,7 @@ export class ShipPageComponent implements OnInit {
       this.id = param.id;
       this.shipService.getById(this.id).subscribe((ship) => {
         console.log(ship);
-        
+
         this.ship = ship;
       });
     })
@@ -71,6 +71,16 @@ export class ShipPageComponent implements OnInit {
 
   formatDate(date: Date) {
     return date;
+  }
+
+  readImages() {
+    var reader = new FileReader();
+    this.ship.shipPictures.forEach((image) => {
+      reader.readAsDataURL(image.file);
+      reader.onload = (event) => {
+        image.url = event.target?.result;
+      }
+    })
   }
 
 }

@@ -71,6 +71,11 @@ import { ShipReservationComponent } from './components/ship-reservation/ship-res
 import { ShipReservationsComponent } from './components/ship-reservations/ship-reservations.component';
 import { AdventureReservationsComponent } from './components/adventure-reservations/adventure-reservations.component';
 import { AdventureReservationComponent } from './components/adventure-reservation/adventure-reservation.component';
+import { AngularYandexMapsModule, YaConfig } from 'angular8-yandex-maps';
+import { MapsComponent } from './components/maps/maps.component';
+import { EditImageComponent } from './components/edit-image/edit-image.component';
+import { ImagesOfEntitiesComponent } from './components/images-of-entities/images-of-entities.component';
+import { AddCottageComponent } from './components/add-cottage/add-cottage.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -111,6 +116,13 @@ const appRoutes: Routes = [
 
 ];
 
+const mapConfig: YaConfig = {
+  //apikey: 'a7b572e8-718a-4325-9c8b-676375397e9e',
+  apikey: 'asd',
+  lang: 'en_US',
+};
+
+
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -145,7 +157,7 @@ const appRoutes: Routes = [
     RequestsComponent,
     AccountRequestComponent,
     AccountRequestsComponent,
-    NewAdminComponent
+    NewAdminComponent,
     
     ImagesOfEntitiesComponent,
     AddCottageComponent,
@@ -165,9 +177,12 @@ const appRoutes: Routes = [
     ShipReservationComponent,
     ShipReservationsComponent,
     AdventureReservationsComponent,
-    AdventureReservationComponent
+    AdventureReservationComponent,
+    MapsComponent,
+    EditImageComponent
   ],
   imports: [
+    [AngularYandexMapsModule.forRoot(mapConfig)],
     BrowserModule,
     AppRoutingModule,
     FormsModule,

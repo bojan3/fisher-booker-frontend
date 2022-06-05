@@ -3,6 +3,7 @@
     <h2>{{cottage?.name}}</h2>
     <p>{{cottage?.address?.country}}, {{cottage?.address?.city}}, {{cottage?.address?.street}},
       {{cottage?.address?.number}}</p>
+    <app-maps *ngIf="cottageIsPresent" [address]="cottage.address"></app-maps>
     <p>Opis: {{cottage?.description}}</p>
     <p>{{getNumberOfRoomsAndBeds()}}</p>
     <p>Kućni red: {{rulesToString()}}</p>

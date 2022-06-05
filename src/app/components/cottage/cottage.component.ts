@@ -10,7 +10,7 @@ import { CottageService } from 'src/app/services/cottage.service';
   styleUrls: ['./cottage.component.css']
 })
 
-export class CottageComponent implements OnInit{
+export class CottageComponent implements OnInit {
 
   @Input()
   cottage !: CottageDTO;
@@ -22,19 +22,19 @@ export class CottageComponent implements OnInit{
   currentUser: any;
 
   constructor(private cottageService: CottageService,
-              private accountService: AccountService,
-              private clientService: ClientService) {}
+    private accountService: AccountService,
+    private clientService: ClientService) { }
 
   ngOnInit(): void {
     this.accountService.getMyInfo().subscribe((user) => {
-    this.currentUser = user;
-    this.forClient = this.isUserClient(user.role);
+      this.currentUser = user;
+      this.forClient = this.isUserClient(user.role);
     }
     );
   }
 
   isUserClient(role: string): boolean {
-    if(role == "ROLE_CLIENT")
+    if (role == "ROLE_CLIENT")
       return true;
     else
       return false;
@@ -50,12 +50,12 @@ export class CottageComponent implements OnInit{
        })
   }
 
-  subscribeToCottage(){
+  subscribeToCottage() {
     this.clientService.subscribeToCottage(this.cottage.id, this.currentUser.id).subscribe();
   }
 
   showSubscribeButton(): boolean {
-    if (this.forClient && !this.forClientSubscriptions){
+    if (this.forClient && !this.forClientSubscriptions) {
       return true;
     }
     else return false;

@@ -14,6 +14,7 @@ export class CottagePageComponent implements OnInit {
 
   id: string = '';
   cottage!: Cottage;
+  cottageIsPresent = false;
 
   constructor(private route: ActivatedRoute, private cottageService: CottageService) { }
 
@@ -23,6 +24,7 @@ export class CottagePageComponent implements OnInit {
       cottageService.getById(this.id).subscribe((cottage) => {
         this.cottage = cottage;
         console.log(cottage);
+        this.cottageIsPresent = true;
       });
     })
     
