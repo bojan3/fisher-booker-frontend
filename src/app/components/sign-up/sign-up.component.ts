@@ -43,6 +43,7 @@ export class SignUpComponent implements OnInit {
     this.form = this.formBuilder.group({
       username: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(64)])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])],
+      password_retype: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])],
       firstname: [''],
       lastname: [''],
       email: [''],
@@ -62,6 +63,10 @@ export class SignUpComponent implements OnInit {
     this.ngUnsubscribe.complete();
   }
 
+  arePasswordsMatching(){
+    return (this.form.value.password != this.form.value.password_retype);
+  }
+
   onSubmit() {
     /**
      * Innocent until proven guilty
@@ -72,9 +77,6 @@ export class SignUpComponent implements OnInit {
     this.authService.signup(this.form.value)
       .subscribe(data => {
         console.log(data);
-        this.authService.login(this.form.value).subscribe(() => {
-          this.accountService.getMyInfo().subscribe();
-        });
         this.router.navigate([this.returnUrl]);
       },
         error => {

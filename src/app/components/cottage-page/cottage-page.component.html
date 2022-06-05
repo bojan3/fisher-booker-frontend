@@ -1,8 +1,31 @@
-<section class="cottage-info">
-    <div class="name">
-        <h2>{{cottage?.name}}</h2>
-        <button>Change</button>
-    </div>
-    
+  <section class="cottage-info" *ngIf='!formVisible'>
+    <h2>{{cottage?.name}}</h2>
     <p>{{cottage?.address?.country}}, {{cottage?.address?.city}}, {{cottage?.address?.street}}, {{cottage?.address?.number}}</p>
+    <p>Opis: {{cottage?.description}}</p>
+    <p>{{getNumberOfRoomsAndBeds()}}</p>
+    <p>Kućni red: {{rulesToString()}}</p>
+    <p>Cena noćenja: {{cottage?.pricePerDay}} evra</p>
+    <p>Availabilty period: {{cottage?.availabilityPeriod?.startDate}} - {{cottage?.availabilityPeriod?.endDate}}</p>
+    <button [routerLink] = "['', 'add_cottage']" [queryParams]='{id: cottage.id}'>Edit</button>
+</section> 
+
+<section class="super-deals">
+  <div class=super-deal *ngFor="let superDeal of cottage?.cottageSuperDeal">
+    <p>Оd: {{formatDate(superDeal.startDate)}}</p>
+    <p>Do: {{formatDate(superDeal.endDate)}}</p>
+    <p>Cena: {{superDeal.discountedPrice}} evra</p>
+    <p>Broj osoba: {{superDeal.capacity}}</p>
+    <button>Rezerviši</button>
+    <button>Edit</button>
+  </div>
 </section>
+
+<section>
+  <div class="option" *ngFor="let option of cottage?.cottageOptions"> 
+    {{option.name}} --- {{option.description}} --- {{option.price}}
+  </div>
+</section>
+
+<div class="cottage-images">
+    <app-images-of-entities [images] = cottage?.cottagePictures></app-images-of-entities>
+</div>
