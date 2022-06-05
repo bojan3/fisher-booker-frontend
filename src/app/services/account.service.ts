@@ -39,4 +39,8 @@ export class AccountService {
     return this.apiService.post("http://localhost:8081/api/account/update", JSON.stringify(account), headers);
   }
 
+  sendDeleteAccountRequest(text: string) {
+    return this.apiService.post("http://localhost:8081/api/account/deleteAccountRequest", JSON.stringify(text));
+  }
+
 }
