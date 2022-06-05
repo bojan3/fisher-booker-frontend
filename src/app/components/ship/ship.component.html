@@ -4,15 +4,9 @@
   <p>description: {{ship.description}}</p>
     <p>price: {{ship.rentPrice}}</p>
   <!-- <p>Adress:{{adresa}}, {{cottage.address.city}}, {{cottage.address.street}}, {{cottage.address.number}} </p> -->
-  <p>Rate: {{ship.averageMark}}/5</p>
-  <p>Capacity: {{ship.capacity}}</p>
-  <p align="right">
-    <!-- <button *ngIf="forClient" (click)="subscribeToShip()">Subscribe</button> -->
-    <button [routerLink]="['', 'ship', ship.id]">details</button>
-    <button *ngIf="showDeleteButton()" id=ship.id (click)="delete(ship.id)">delete</button>
-    <button *ngIf="showSubscribe()" (click)="subscribeToShip()">Subscribe</button>
-    <button (click)="unsubscribeShip()" *ngIf="forClientSubscriptions">Unsubscribe</button>
-  </p>
-  <p *ngIf="errorDisplay" class="error">Ne može da se briše brod koji je rezervisan</p>
-</section>
+<p align="right">
+<button>details</button>
+
+<button id=ship.id (click)="ngOnButtonClick(ship.id)" >delete</button>
+</p>
 
