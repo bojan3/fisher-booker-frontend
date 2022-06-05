@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders, HttpRequest, HttpResponse, HttpParams} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {catchError, filter, map} from 'rxjs/operators';
+import { HttpClient, HttpHeaders, HttpRequest, HttpResponse, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { catchError, filter, map } from 'rxjs/operators';
 
 
 export enum RequestMethod {
@@ -31,7 +31,7 @@ export class ApiService {
       headers: this.headers,
       params: new HttpParams()
     };
- 
+
     if (args) {
       options['params'] = this.serialize(args);
     }

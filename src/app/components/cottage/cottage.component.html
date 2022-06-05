@@ -6,9 +6,11 @@
   {{cottage.pricePerDay}}</p>
   <p>Adress: {{cottage.address.country}}, {{cottage.address.city}}, {{cottage.address.street}}, {{cottage.address.number}} </p>
   <p>Rating: {{cottage.averageMark}}/5</p>
-<p align="right">
-  <button [routerLink]="['', 'cottage', cottage.id]">details</button>
-</p>
-
-
+  <p align="right">
+    <button *ngIf="showSubscribeButton()" (click)="subscribeToCottage()">subscribe</button>
+    <button [routerLink]="['', 'cottage', cottage.id]">details</button>
+    <button id=cottage.id (click)="delete(cottage.id)">delete</button>
+    <button (click)="unsubscribeCottage()" *ngIf="forClientSubscriptions">Unsubscribe</button>
+  </p>
+  <p *ngIf="errorDisplay" class="error">Ne može da se briše vikendica koji je rezervisana</p>
 </section>

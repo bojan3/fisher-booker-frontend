@@ -9,8 +9,10 @@
     <p>{{fishinginstructor.biography}}</p>
 
      <p align="right">
-  <button>details</button>
-  </p>
+  <button [routerLink]="['', 'instructor-adventures', fishinginstructor.id]">adventures</button>
+  <button *ngIf="showSubscribe()" (click)="subscribeToInstructor()">Subscribe</button>
+  <button (click)="unsubscribeInstructor()" *ngIf="forClientSubscriptions">Unsubscribe</button>
+</p>
 
 
   </section>

@@ -1,12 +1,12 @@
 import { Address } from "./Address";
 import { AvailabilityPeriod } from "./AvailabilityPeriod";
-import { CottageOption } from "./CottageOption";
 import { Image } from "./Image";
-import { CottageSuperDeal } from "./CottageSuperDeal";
+import { SuperDeal } from "./SuperDeal";
 import { Room } from "./Room";
 import { Rule } from "./Rule";
+import { Option } from "./Option"
 
-export class Cottage{
+export class Cottage {
     id: number = 0;
     name: string = '';
     description: string = '';
@@ -15,14 +15,14 @@ export class Cottage{
     pricePerDay: number = 0;
     rooms: Room[];
     rules: Rule[];
-    cottageSuperDeal: CottageSuperDeal[];
+    cottageSuperDeals: SuperDeal[];
     availabilityPeriod: AvailabilityPeriod = new AvailabilityPeriod(0, new Date(), new Date());
-    cottageOptions: CottageOption[];
+    cottageOptions: Option[];
     averageMark: number;
 
     constructor(id: number, name: string, description: string, address: Address, price_per_day: number,
-        pictures: Image[], averageMark: number, room: Room[], rule: Rule[], cottageSuperDeal: CottageSuperDeal[],
-        availabilityPeriod: AvailabilityPeriod, cottageOptions: CottageOption[]){
+        pictures: Image[], averageMark: number, room: Room[], rule: Rule[], cottageSuperDeal: SuperDeal[],
+        availabilityPeriod: AvailabilityPeriod, cottageOptions: Option[]) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -31,7 +31,7 @@ export class Cottage{
         this.cottagePictures = pictures;
         this.rooms = room;
         this.rules = rule;
-        this.cottageSuperDeal = cottageSuperDeal;
+        this.cottageSuperDeals = cottageSuperDeal;
         this.availabilityPeriod = availabilityPeriod;
         this.cottageOptions = cottageOptions;
         this.averageMark = averageMark;

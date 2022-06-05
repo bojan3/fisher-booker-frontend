@@ -1,0 +1,22 @@
+<form [formGroup]='form'>
+    <div formArrayName="navs" *ngFor="let nav of navs; let i = index;">
+        <table>
+            <div [formGroupName]='i'>
+                <tr>
+                  <td>
+                    <label>Oprema: </label>
+                  </td>
+                  <td>
+                    <input formControlName="name" required>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <button (click)='removeNav(i)'>Obriši opremu</button>
+                  </td>
+                </tr>
+              </div>  
+        </table>
+    </div>
+    <button type="button" (click)="addNav()">Dodaj opremu</button>
+</form>

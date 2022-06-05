@@ -30,7 +30,7 @@ export class AccountService {
     return this.apiService.get(this.config.users_url);
   }*/
 
-  updateAccount(account: any){
+  updateAccount(account: any) {
     console.log("updating account...");
     const headers = new HttpHeaders({
       'Accept': 'application/json',

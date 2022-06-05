@@ -11,12 +11,10 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  account!: Account;
-
   constructor(private accountService: AccountService, private authService: AuthService, private router: Router) { }
 
-
   ngOnInit(): void {
+    this.accountService.getMyInfo().subscribe();
   }
 
   isUserLogged() {
@@ -28,30 +26,30 @@ export class HeaderComponent implements OnInit {
     return user.firstName + ' ' + user.lastName;
   }
 
-  isUserClient(){
+  isUserClient() {
     return (!!this.accountService.currentUser) && this.accountService.currentUser.role == 'ROLE_CLIENT';
   }
 
-  isUserCottageOwner(){
+  isUserCottageOwner() {
     return (!!this.accountService.currentUser) && this.accountService.currentUser.role == 'ROLE_COTTAGE_OWNER';
   }
 
-  isUserAdmin(){
+  isUserAdmin() {
     return (!!this.accountService.currentUser) && this.accountService.currentUser.role == 'ROLE_ADMIN';
   }
-  isUserShipOwner(){
+  isUserShipOwner() {
     return (!!this.accountService.currentUser) && this.accountService.currentUser.role == 'ROLE_SHIP_OWNER';
   }
 
-  isUserFishingInstructor(){
+  isUserFishingInstructor() {
     return (!!this.accountService.currentUser) && this.accountService.currentUser.role == 'ROLE_INSTRUCTOR';
   }
-  logout(){
+  logout() {
     this.authService.logout();
   }
 
-  openProfile(){
-    switch(this.accountService.currentUser.role){
+  openProfile() {
+    switch (this.accountService.currentUser.role) {
       case 'ROLE_COTTAGE_OWNER': this.router.navigate(['/cottage_owner_profile']); break;
       case 'ROLE_SHIP_OWNER': this.router.navigate(['/ship_owner_profile']); break;
       case 'ROLE_CLIENT': this.router.navigate(['/client_profile']); break;
@@ -61,10 +59,9 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  openUsersPage(){
-    if(!!this.accountService.currentUser)
-    {
-      switch(this.accountService.currentUser.role){
+  openUsersPage() {
+    if (!!this.accountService.currentUser) {
+      switch (this.accountService.currentUser.role) {
         case 'ROLE_COTTAGE_OWNER': this.router.navigate(['/']); break;
         case 'ROLE_SHIP_OWNER': this.router.navigate(['/']); break;
         case 'ROLE_CLIENT': this.router.navigate(['/client_profile']); break;
@@ -73,9 +70,8 @@ export class HeaderComponent implements OnInit {
         default: this.router.navigate(['/']);
       }
     }
-      else
-      {
-        this.router.navigate(['/']);
-      }
+    else {
+      this.router.navigate(['/']);
     }
+  }
 }
