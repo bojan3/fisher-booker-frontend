@@ -33,11 +33,11 @@ export class SignUpComponent implements OnInit {
     private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-      this.route.params
+    this.route.params
       .pipe(takeUntil(this.ngUnsubscribe))
-      /*.subscribe((params: DisplayMessage) => {
-        this.notification = params;
-      });*/
+    /*.subscribe((params: DisplayMessage) => {
+      this.notification = params;
+    });*/
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     this.form = this.formBuilder.group({
@@ -83,5 +83,9 @@ export class SignUpComponent implements OnInit {
           this.notification = { msgType: 'error', msgBody: error['error'].message };
         });
 
+  }
+
+  arePasswordsMatching() {
+    return (this.form.value.password != this.form.value.password_retype);
   }
 }

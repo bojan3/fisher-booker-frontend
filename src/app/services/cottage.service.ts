@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { CottageDTO } from '../entity/CottageDTO';
+import { CottageDTO } from '../entity/DTO/CottageDTO';
 import { ApiService } from './api.service';
 import { Cottage } from '../entity/Cottage';
 

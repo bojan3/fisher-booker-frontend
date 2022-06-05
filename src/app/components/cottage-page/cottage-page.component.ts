@@ -21,7 +21,7 @@ export class CottagePageComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((param) => {
       this.id = param.id;
-      cottageService.getById(this.id).subscribe((cottage) => {
+      this.cottageService.getById(this.id).subscribe((cottage) => {
         this.cottage = cottage;
         console.log(cottage);
         this.cottageIsPresent = true;

@@ -1,6 +1,5 @@
 import { Address } from "./Address";
 import { AvailabilityPeriod } from "./AvailabilityPeriod";
-import { CottageOption } from "./CottageOption";
 import { CottagePicture } from "./CottagePicture";
 import { CottageSuperDeal } from "./CottageSuperDeal";
 import { Image } from "./Image";
@@ -36,6 +35,7 @@ export class Cottage {
         this.rules = rule;
         this.cottageSuperDeals = cottageSuperDeal;
         this.availabilityPeriod = availabilityPeriod;
-        this.cottageOption = cottageOption;
+        this.cottageOptions = cottageOptions;
+        this.averageMark = averageMark;
     }
 }

@@ -14,6 +14,7 @@ export class CottageComponent implements OnInit {
 
   @Input()
   cottage !: CottageDTO;
+  errorDisplay: boolean = false;
 
   @Input()
   forClientSubscriptions: boolean = false;

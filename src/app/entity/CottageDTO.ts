@@ -1,4 +1,4 @@
-import { Address } from "./Address";
+/*import { Address } from "./Address";
 
 export class CottageDTO{
     id: number;
@@ -14,4 +14,4 @@ export class CottageDTO{
         this.address = address;
         this.price_per_day = price_per_day;
     }
-}
+}*/

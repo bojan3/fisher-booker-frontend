@@ -10,11 +10,11 @@ import { ApiService } from './api.service';
 })
 export class ShipService {
 
-  constructor(private http: HttpClient, private apiService:ApiService) { }
+  constructor(private http: HttpClient, private apiService: ApiService) { }
 
-  save(ship: Ship): Observable<boolean>{
+  save(ship: Ship): Observable<boolean> {
     console.log(ship);
-    
+
     return this.apiService.post('http://localhost:8081/api/ship/save', ship);
   }
 
@@ -26,9 +26,9 @@ export class ShipService {
     return this.apiService.get('http://localhost:8081/api/ship/all');
   }
 
- deleteShip(id:number): Observable<Ship[]>{
-    return this.http.delete<Ship[]>('http://localhost:8081/api/ship/delete{id}')   
- }
+  deleteShip(id: number): Observable<Ship[]> {
+    return this.http.delete<Ship[]>('http://localhost:8081/api/ship/delete{id}')
+  }
 
   getAllShipsByName(): Observable<ShipDTO[]> {
     return this.http.get<ShipDTO[]>('http://localhost:8081/api/ship/all/name')
@@ -44,5 +44,9 @@ export class ShipService {
 
   getAllShipsByCapacity(): Observable<ShipDTO[]> {
     return this.http.get<ShipDTO[]>('http://localhost:8081/api/ship/all/capacity')
+  }
+
+  getAllShipsByOwner(): Observable<ShipDTO[]> {
+    return this.http.get<ShipDTO[]>('http://localhost:8081/api/shipOwner/allShipsByOwner');
   }
 }

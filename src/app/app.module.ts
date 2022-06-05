@@ -104,7 +104,7 @@ const appRoutes: Routes = [
   { path: 'admin_profile/adventures', component: AdventuresComponent},
   { path: 'admin_profile/instructors', component: FishingInstructorsComponent},
   { path: 'admin_profile/clients', component: ClientsComponent},
-  { path: 'admin_profile/requests', component: RequestsComponent}
+  { path: 'admin_profile/requests', component: RequestsComponent},
 
   { path: 'account-info', component: AccountInfoComponent},
   { path: 'account-info-edit', component: AccountInfoEditComponent},
