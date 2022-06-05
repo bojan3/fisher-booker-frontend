@@ -1,0 +1,8 @@
+<h1>Prikaz svih neverifikovanih zahteva!</h1>
+
+<section class='requests'>
+    <app-request  *ngFor="let request of requests"
+    [request]="request">
+  
+     </app-request>
+  </section>

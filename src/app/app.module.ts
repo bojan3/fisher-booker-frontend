@@ -32,8 +32,8 @@ import { ShipOwnerComponent } from './components/ship-owner/ship-owner.component
 import { ShipOwnersComponent } from './components/ship-owners/ship-owners.component';
 import { ClientComponent } from './components/client/client.component';
 import { ClientsComponent } from './components/clients/clients.component';
-
-
+import { RequestComponent } from './components/request/request.component';
+import { RequestsComponent } from './components/requests/requests.component';
 
 import { CottageOwnerPageComponent } from './components/cottage-owner-page/cottage-owner-page.component';
 import { ShipOwnerPageComponent } from './components/ship-owner-page/ship-owner-page.component';
@@ -41,12 +41,19 @@ import { ClientPageComponent } from './components/client-page/client-page.compon
 import { InstructorPageComponent } from './components/instructor-page/instructor-page.component';
 import { AccountInfoComponent } from './components/account-info/account-info.component';
 import { CottagePageComponent } from './components/cottage-page/cottage-page.component';
+
+
 import { ShipService } from './services/ship.service';
 import { ShipOwnerService } from './services/ship-owner.service';
 import { ClientService } from './services/client.service';
 import { FishingInstructorService } from './services/fishing-instructor.service';
 import { CottageOwner } from './entity/CottageOwner';
 import { CottageOwnerService } from './services/cottage-owner.service';
+
+import { AccountRequestComponent } from './components/account-request/account-request.component';
+import { AccountRequestsComponent } from './components/account-requests/account-requests.component';
+import { NewAdminComponent } from './components/new-admin/new-admin.component';
+
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -72,6 +79,9 @@ const appRoutes: Routes = [
   { path: 'admin_profile/adventures', component: AdventuresComponent},
   { path: 'admin_profile/instructors', component: FishingInstructorsComponent},
   { path: 'admin_profile/clients', component: ClientsComponent},
+  { path: 'admin_profile/requests', component: RequestsComponent}
+
+
 ];
 
 @NgModule({
@@ -103,7 +113,13 @@ const appRoutes: Routes = [
     InstructorPageComponent,
     ShipOwnerPageComponent,
     AccountInfoComponent,
-    CottagePageComponent
+    CottagePageComponent,
+    RequestComponent,
+    RequestsComponent,
+    AccountRequestComponent,
+    AccountRequestsComponent,
+    NewAdminComponent
+    
   ],
   imports: [
     BrowserModule,

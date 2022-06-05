@@ -48,6 +48,10 @@ export class HeaderComponent implements OnInit {
     this.authService.logout();
   }
 
+  newAdmin(account : Account){
+    this.accountService.newAdmin(account);
+  }
+
   openProfile(){
     // this.accountService.getMyInfo().subscribe((account) => (this.account = account))
     console.log(this.accountService.currentUser.role);

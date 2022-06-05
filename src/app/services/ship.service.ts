@@ -11,7 +11,7 @@ export class ShipService {
   constructor(private http: HttpClient) { }
 
   getAllShips(): Observable<Ship[]>{
-    return this.http.get<Ship[]>('http://localhost:8081/api/ship/all')
+    return this.http.get<Ship[]>('http://localhost:8081/api/ship/all/name')
   }
 
 

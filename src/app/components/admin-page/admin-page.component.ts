@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { NewAdminComponent } from '../new-admin/new-admin.component';
 
 @Component({
   selector: 'app-admin-page',
@@ -11,6 +13,8 @@ export class AdminPageComponent implements OnInit {
    ['Ship owners', '../../assets/images/ship_owner.png','ship_owners'], ['Clients', '../../assets/images/client.png','clients'],
     ['Cottages', '../../assets/images/cottage.png','cottages'], ['Adventures', '../../assets/images/adventure.png','adventures'],
      ['Ships', '../../assets/images/ship.png','ships'],['Account requests','../../assets/images/request.png','requests']];
+     
+    // form1!: FormGroup;
 
   constructor() { }
 

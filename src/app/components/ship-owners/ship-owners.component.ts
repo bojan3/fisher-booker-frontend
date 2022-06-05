@@ -10,9 +10,6 @@ import { ShipOwnerService } from 'src/app/services/ship-owner.service';
 })
 export class ShipOwnersComponent implements OnInit {
 
-
- 
-
   constructor(private ShipOwnerService : ShipOwnerService) { }
   shipowners: ShipOwner[]=[];
 

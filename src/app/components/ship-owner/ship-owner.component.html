@@ -1,5 +1,6 @@
 <section class='brodovlasnici'>
   
+   <p>{{shipowner.id}}</p>
     <h3>{{shipowner.account.username}}</h3>
     <p>{{shipowner.account.name}}</p>
     <p>{{shipowner.account.lastName}}</p>
@@ -7,7 +8,7 @@
       
     <p align="right">
   <button>details</button>
-  <button>delete</button>
+  <button (click) = "delete(shipowner.id)">delete</button>
   </p>
   
   

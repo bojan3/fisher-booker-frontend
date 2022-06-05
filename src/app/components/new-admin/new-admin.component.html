@@ -1,7 +1,6 @@
-<p>sign-up works!</p>
 
-
-<p *ngIf="notification" [class]="notification.msgType">{{notification.msgBody}}</p>
+<p>dodaj novog admina</p>>
+<!--p *ngIf="notification" [class]="notification.msgType">{{notification.msgBody}}</p>-->
 
 <form (ngSubmit)="onSubmit()" *ngIf="!submitted" [formGroup]="form">
 
@@ -27,7 +26,7 @@
         <label>First Name: </label>
       </td>
       <td>
-        <input formControlName="firstname">
+        <input formControlName="name">
       </td>
     </tr>
     <tr>
@@ -91,27 +90,9 @@
         </td>
       </tr>
     </div>
-    <tr><td>Role: </td></tr>
+    
   </table>
-  <input type="radio" id="client" name="role" value="CLIENT" formControlName="role">
-  <label for="client">Client</label><br>
-  <input type="radio" id="cottage-owner" name="role" value="COTTAGE_OWNER" formControlName="role">
-  <label for="cottage-owner">Cottage owner</label><br>
-  <input type="radio" id="ship-owner" name="role" value="SHIP_OWNER" formControlName="role">
-  <label for="ship-owner">Ship owner</label><br>
-  <input type="radio" id="fishing-instructor" name="role" value="FISHING_INSTRUCTOR" formControlName="role">
-  <label for="fishing-instructor">Fishing instructor</label><br>
   
-  <form >
-  <label  for="explanation">Explanation</label><br>
-  <input type="text" id="explanation"><br>
-  </form>
-
-
-  <button [disabled]="!form.valid" color="primary" type="submit">Sign up</button>
-  <br>
-  <button color="primary" routerLink="/" >Go Back</button>
-</form>
 <br>
-<br>
-<hr>
+<button [disabled]="!form.valid" color="primary" type="submit">Register</button>
+

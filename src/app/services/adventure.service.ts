@@ -13,5 +13,6 @@ export class AdventureService {
   getAllAdventures(): Observable<Adventure[]>{
     return this.http.get<Adventure[]>('http://localhost:8081/api/adventure/all');
   }
+  
 
 }

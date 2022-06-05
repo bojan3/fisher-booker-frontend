@@ -13,7 +13,7 @@ export class CottageService {
   constructor(private http: HttpClient, private apiService: ApiService) { }
 
   getAllCottages(): Observable<CottageDTO[]>{
-    return this.http.get<CottageDTO[]>('http://localhost:8081/api/cottage/all');
+    return this.http.get<CottageDTO[]>('http://localhost:8081/api/cottage/all/name');
   } 
 
   getById(id: string): Observable<Cottage>{

@@ -9,11 +9,6 @@ import { ShipService } from 'src/app/services/ship.service';
 })
 export class ShipComponent implements OnInit {
 
-
-
-
-  
-
   @Input()
   ship !: Ship;
 
@@ -28,7 +23,4 @@ export class ShipComponent implements OnInit {
   this.shipService.deleteShip(id)
   window.location.reload()
  }
-
-  
-
 }
