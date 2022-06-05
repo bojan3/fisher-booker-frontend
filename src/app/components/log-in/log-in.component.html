@@ -2,17 +2,13 @@
 
 <p *ngIf="notification" id='error' [class]="notification.msgType">{{notification.msgBody}}</p>
 
-<form class="log-in-form" #loginForm="ngForm" (ngSubmit)="onSubmit()" *ngIf="!submitted" [formGroup]="form">
+<form #loginForm="ngForm" (ngSubmit)="onSubmit()" *ngIf="!submitted" [formGroup]="form">
+        <input formControlName="username" placeholder="user/admin" required>
 
-        <label for="username">Username:</label>
-        <input id="username" formControlName="username" placeholder="username" required>
-
-        <label for="password">Password:</label>
-        <input id="password" formControlName="password" placeholder="password" required type="password">
-
-        <button id="#log-in-button" [disabled]="!loginForm.form.valid" color="primary"
+        <input formControlName="password" placeholder="123" required type="password">
+        <button [disabled]="!loginForm.form.valid" color="primary"
                 type="submit">Login</button>
-
+        <br>
         <button color="primary" routerLink="/" >Go Back</button>
     </form>
 <br>

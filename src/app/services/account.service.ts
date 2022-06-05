@@ -1,4 +1,3 @@
-import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Account } from '../entity/Account';
@@ -60,14 +59,6 @@ export class AccountService {
   newAdmin(account : Account):Observable<boolean>{
     console.log(account);
     return this.apiService.post(this.newAdminPath,account);
-  }
-  updateAccount(account: any){
-    console.log("updating account...");
-    const headers = new HttpHeaders({
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    });
-    return this.apiService.post("http://localhost:8081/api/account/update", JSON.stringify(account), headers);
   }
 
 }

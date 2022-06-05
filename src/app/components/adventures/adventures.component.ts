@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { AdventureDTO } from 'src/app/entity/AdventureDTO';
+import { Component, OnInit } from '@angular/core';
+import { Adventure } from 'src/app/entity/Adventure';
 import { AdventureService } from 'src/app/services/adventure.service';
 
 
@@ -10,22 +10,16 @@ import { AdventureService } from 'src/app/services/adventure.service';
 })
 export class AdventuresComponent implements OnInit {
 
-  @Input()
-  forInstructor: boolean = false;
 
   constructor(private adventureService : AdventureService) { }
 
-  adventures: AdventureDTO[] = [];
+  adventures: Adventure[] = [];
 
 
    ngOnInit(): void {
-if (this.forInstructor){
-  this.adventureService.getAllAdventuresByOwner()
-  .subscribe((adventures) => (this.adventures = adventures));
-}
-else{
+
     this.adventureService.getAllAdventures().subscribe((adventures) => (this.adventures = adventures));
-   }
+
   }
 
 }

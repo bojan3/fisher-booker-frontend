@@ -1,5 +1,5 @@
 <div class="header">
-    <a (click)="openUsersPage()">
+    <a routerLink="">
     <img src="../../../assets/images/anchor.png">
   </a>
     <p>Fisher booker</p>
@@ -17,9 +17,7 @@
       <ul>
         <li>menu
           <ul>
-            <li (click)="openProfile()">Main page</li>
-            <li [routerLink]="['account-info']">Profile</li>
-            <li [routerLink]="['account-info-edit']">Edit Profile</li>
+            <li (click)="openProfile()">Profile</li>
             <li (click)="logout()">Log out</li>
           </ul>
           </li>
@@ -32,7 +30,6 @@
         <li>menu
           <ul>
             <li (click)="openProfile()">Profile</li>
-            <li [routerLink]="['account-info-edit']">Edit Profile</li>
             <li (click)="logout()">Log out</li>
           </ul>
           </li>
@@ -44,8 +41,6 @@
         <li>menu
           <ul>
             <li (click)="openProfile()">Profile</li>
-            <li [routerLink]="['add_cottage']">Add cottage</li>
-            <li [routerLink]="['account-info-edit']">Edit Profile</li>
             <li (click)="logout()">Log out</li>
           </ul>
           </li>
@@ -58,7 +53,6 @@
         <li>menu
           <ul>
             <li (click)="openProfile()">Profile</li>
-            <li [routerLink]="['account-info-edit']">Edit Profile</li>
             <li (click)="logout()">Log out</li>
            <!-- <li (click)="newAdmin()">New Admin</li> -->
             <html>
@@ -76,7 +70,6 @@
         <li>menu
           <ul>
             <li (click)="openProfile()">Profile</li>
-            <li [routerLink]="['account-info-edit']">Edit Profile</li>
             <li (click)="logout()">Log out</li>
           </ul>
           </li>
@@ -85,3 +78,17 @@
 </div>
 
 
+                  
+ 
+
+
+
+<!-- <div class="dropmenu">
+  <button class="buttonDropdown">menu</button>
+  <div class="menuList">
+    <button class="listItem">Profile</button>
+    <button class="listItem">Cottages</button>
+    <button class="listItem">Ships</button>
+  </div>
+  <script></script>
+</div> -->

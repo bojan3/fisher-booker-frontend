@@ -1,39 +1,37 @@
 import { Address } from "./Address";
 import { AvailabilityPeriod } from "./AvailabilityPeriod";
 import { CottageOption } from "./CottageOption";
-import { Image } from "./Image";
+import { CottagePicture } from "./CottagePicture";
 import { CottageSuperDeal } from "./CottageSuperDeal";
 import { Room } from "./Room";
 import { Rule } from "./Rule";
 
 export class Cottage{
-    id: number = 0;
-    name: string = '';
-    description: string = '';
-    address: Address = new Address(0, '', '', '', '');
-    cottagePictures: Image[];
-    pricePerDay: number = 0;
-    rooms: Room[];
-    rules: Rule[];
+    id: number;
+    name: string;
+    description: string;
+    address: Address;
+    pictures: CottagePicture[];
+    pricePerDay: number;
+    room: Room[];
+    rule: Rule[];
     cottageSuperDeal: CottageSuperDeal[];
-    availabilityPeriod: AvailabilityPeriod = new AvailabilityPeriod(0, new Date(), new Date());
-    cottageOptions: CottageOption[];
-    averageMark: number;
+    availabilityPeriod: AvailabilityPeriod;
+    cottageOption: CottageOption[];
 
     constructor(id: number, name: string, description: string, address: Address, price_per_day: number,
-        pictures: Image[], averageMark: number, room: Room[], rule: Rule[], cottageSuperDeal: CottageSuperDeal[],
-        availabilityPeriod: AvailabilityPeriod, cottageOptions: CottageOption[]){
+        pictures: CottagePicture[], room: Room[], rule: Rule[], cottageSuperDeal: CottageSuperDeal[],
+        availabilityPeriod: AvailabilityPeriod, cottageOption: CottageOption[]){
         this.id = id;
         this.name = name;
         this.description = description;
         this.address = address;
         this.pricePerDay = price_per_day;
-        this.cottagePictures = pictures;
-        this.rooms = room;
-        this.rules = rule;
+        this.pictures = pictures;
+        this.room = room;
+        this.rule = rule;
         this.cottageSuperDeal = cottageSuperDeal;
         this.availabilityPeriod = availabilityPeriod;
-        this.cottageOptions = cottageOptions;
-        this.averageMark = averageMark;
+        this.cottageOption = cottageOption;
     }
 }

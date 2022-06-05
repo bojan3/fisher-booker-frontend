@@ -3,14 +3,16 @@ export class CottageSuperDeal{
     startDate: Date;
     discountedPrice: number;
     endDate: Date;
+    duration: number;
     capacity: number;
 
     constructor(id: number, startDate: Date, discountedPrice: number,
-        endDate: Date, capacity: number){
+        endDate: Date, duration: number, capacity: number){
             this.id = id;
             this.startDate = startDate;
             this.discountedPrice = discountedPrice;
             this.endDate = endDate;
+            this.duration = duration;
             this.capacity = capacity;
         }
 }

@@ -13,7 +13,7 @@ export class ClientService {
 
   getAllClients(): Observable<Client[]>{
 
-    return this.http.get<Client[]>('http://localhost:8080/api/client/all');
+    return this.http.get<Client[]>('http://localhost:8081/api/client/all');
     
   }
 }

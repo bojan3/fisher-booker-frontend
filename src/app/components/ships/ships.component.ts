@@ -14,22 +14,8 @@ export class ShipsComponent implements OnInit {
   constructor(public shipService: ShipService) { }
 
   ngOnInit(): void {
-    this.shipService.getAllShipsByName().subscribe((ships) => (this.ships = ships))
-  }
-
-  sortByName(){
-    this.shipService.getAllShipsByName().subscribe((ships) => (this.ships = ships));
-  }
-
-  sortByPrice(){
-    this.shipService.getAllShipsByPrice().subscribe((ships) => (this.ships = ships));
-  }
-  sortByRating(){
-    this.shipService.getAllShipsByRating().subscribe((ships) => (this.ships = ships));
-  }
-
-  sortByCapacity(){
-    this.shipService.getAllShipsByCapacity().subscribe((ships) => (this.ships = ships));
+    console.log('shipComponentInit')
+    this.shipService.getAllShips().subscribe((ships) => (this.ships = ships))
   }
 
  ngOnButtonClick():void{
