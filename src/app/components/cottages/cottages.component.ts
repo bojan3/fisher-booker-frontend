@@ -1,4 +1,6 @@
+import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Address } from 'src/app/entity/Address';
 import { CottageDTO } from 'src/app/entity/DTO/CottageDTO';
 import { AccountService } from 'src/app/services/account.service';
@@ -16,7 +18,7 @@ export class CottagesComponent implements OnInit {
   forCottageOwner: boolean = false;
   @Input()
   forClientSubscriptions: boolean = false;
-
+  dateInput!: Date;
   cottages: CottageDTO[] = [];
 
   constructor(private cottageService: CottageService,
@@ -24,6 +26,7 @@ export class CottagesComponent implements OnInit {
               private accountService: AccountService) { }
 
   ngOnInit(): void {
+    // this.buildForm();
     if (this.forCottageOwner) {
       this.cottageService.getAllCottagesByOwner().subscribe((cottages) => (this.cottages = cottages));
     } if(this.forClientSubscriptions){
@@ -33,6 +36,7 @@ export class CottagesComponent implements OnInit {
       this.cottageService.getAllCottages().subscribe((cottages) => (this.cottages = cottages));
     }
     //this.cottageService.getAllCottagesByName().subscribe((cottages) => (this.cottages = cottages));
+
   }
 
   sortByName() {
@@ -49,4 +53,14 @@ export class CottagesComponent implements OnInit {
   notClientSubscriptions(): boolean {
     return !this.forClientSubscriptions;
   }
+
+  onSearch(){
+    console.log(this.dateInput);
+    this.cottageService.getByDate(this.dateInput).subscribe((cottages) => (this.cottages = cottages));
+  }
+  // buildForm() {
+  //   this.form = this.formBuilder.group({
+  //   date: [this.dateInput]
+  //   })
+  // }
 }

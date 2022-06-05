@@ -23,7 +23,7 @@ export class CottageService {
   getAllCottagesByName(): Observable<Cottage[]>{
     return this.http.get<Cottage[]>('http://localhost:8081/api/cottage/all/name');
   }
-  
+
   getAllCottagesByPrice(): Observable<Cottage[]>{
     return this.http.get<Cottage[]>('http://localhost:8081/api/cottage/all/price');
   }
@@ -42,5 +42,10 @@ export class CottageService {
 
   deleteCottage(id: number): Observable<CottageDTO>{
     return this.apiService.delete('http://localhost:8081/api/cottage/delete/owner/' + id);
+  }
+
+  getByDate(date: Date): Observable<CottageDTO[]>{
+    console.log(date);
+    return this.apiService.post('http://localhost:8081/api/cottage/all/date', JSON.stringify(date));
   }
 }

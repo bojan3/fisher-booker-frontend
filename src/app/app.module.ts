@@ -57,6 +57,12 @@ import { EditOptionsComponent } from './components/edit-options/edit-options.com
 import { EditSuperDealComponent } from './components/edit-super-deal/edit-super-deal.component';
 import { EditNavigationEquipmentComponent } from './components/edit-navigation-equipment/edit-navigation-equipment.component';
 import { EditFishingEquipmentComponent } from './components/edit-fishing-equipment/edit-fishing-equipment.component';
+import { CottageReservationsComponent } from './components/cottage-reservations/cottage-reservations.component';
+import { CottageReservationComponent } from './components/cottage-reservation/cottage-reservation.component';
+import { ShipReservationComponent } from './components/ship-reservation/ship-reservation.component';
+import { ShipReservationsComponent } from './components/ship-reservations/ship-reservations.component';
+import { AdventureReservationsComponent } from './components/adventure-reservations/adventure-reservations.component';
+import { AdventureReservationComponent } from './components/adventure-reservation/adventure-reservation.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -93,6 +99,10 @@ const appRoutes: Routes = [
   { path: 'account-info-edit', component: AccountInfoEditComponent},
   { path: 'register/verify/:token', component: VerifyAccountComponent},
   { path: 'instructor-adventures/:instructorId', component: InstructorAdventuresComponent},
+  { path: 'client_profile/cottage-reservations', component: CottageReservationsComponent},
+  { path: 'client_profile/adventure-reservations', component: AdventureReservationsComponent},
+  { path: 'client_profile/ship-reservations', component: ShipReservationsComponent}
+
 ];
 
 @NgModule({
@@ -137,7 +147,13 @@ const appRoutes: Routes = [
     EditOptionsComponent,
     EditSuperDealComponent,
     EditNavigationEquipmentComponent,
-    EditFishingEquipmentComponent
+    EditFishingEquipmentComponent,
+    CottageReservationsComponent,
+    CottageReservationComponent,
+    ShipReservationComponent,
+    ShipReservationsComponent,
+    AdventureReservationsComponent,
+    AdventureReservationComponent
   ],
   imports: [
     BrowserModule,
