@@ -1,0 +1,3 @@
+<div class="image" (click)='fullSize($event)' *ngFor='let image of images'>
+    <img src={{image.path}} id={{image.path.slice(20,image.path.length-4)}}>
+</div>

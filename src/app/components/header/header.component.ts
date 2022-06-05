@@ -11,8 +11,10 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
+  account!: Account;
+
   constructor(private accountService: AccountService, private authService: AuthService, private router: Router) { }
-  // account!: Account;
+
 
   ngOnInit(): void {
   }
@@ -53,9 +55,6 @@ export class HeaderComponent implements OnInit {
   }
 
   openProfile(){
-    // this.accountService.getMyInfo().subscribe((account) => (this.account = account))
-    console.log(this.accountService.currentUser.role);
-    
     switch(this.accountService.currentUser.role){
       case 'ROLE_COTTAGE_OWNER': this.router.navigate(['/cottage_owner_profile']); break;
       case 'ROLE_SHIP_OWNER': this.router.navigate(['/ship_owner_profile']); break;
@@ -65,4 +64,22 @@ export class HeaderComponent implements OnInit {
       default: this.router.navigate(['/']);
     }
   }
+
+  openUsersPage(){
+    if(!!this.accountService.currentUser)
+    {
+      switch(this.accountService.currentUser.role){
+        case 'ROLE_COTTAGE_OWNER': this.router.navigate(['/']); break;
+        case 'ROLE_SHIP_OWNER': this.router.navigate(['/']); break;
+        case 'ROLE_CLIENT': this.router.navigate(['/client_profile']); break;
+        case 'ROLE_INSTRUCTOR': this.router.navigate(['/']); break;
+        case 'ROLE_ADMIN': this.router.navigate(['/']); break;
+        default: this.router.navigate(['/']);
+      }
+    }
+      else
+      {
+        this.router.navigate(['/']);
+      }
+    }
 }

@@ -1,12 +1,13 @@
 <section class='instruktori'>
   
     <p>{{fishinginstructor.id}}</p>>
+
     <h3>{{fishinginstructor.account.name+  "  "   +fishinginstructor.account.username}}</h3>
     <p> Adress: {{fishinginstructor.account.address.country}}
                 {{fishinginstructor.account.address.city}}
                 {{fishinginstructor.account.address.street}}
                 {{fishinginstructor.account.address.number}}
-    </p> 
+    </p>
     <p>{{fishinginstructor.biography}}</p>
 
 
@@ -14,6 +15,7 @@
   <button (click) = "viewDetails(fishinginstructor.id)">details</button>
   <button (click) = "delete(fishinginstructor.id)">delete</button>
   </p>
-  
-  
+
+
   </section>
+  

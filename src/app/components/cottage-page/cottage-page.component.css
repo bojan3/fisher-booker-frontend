@@ -1,0 +1,14 @@
+.name{
+    display: flex;
+}
+
+.super-deal{
+    display: inline-block;
+    border: black solid 2px;
+    margin: 10px;
+    padding: 5px;
+}
+
+/*.super-deals{
+    display: flex;
+}*/

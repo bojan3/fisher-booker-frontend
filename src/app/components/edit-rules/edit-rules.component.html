@@ -1,0 +1,23 @@
+<p>edit-rules works!</p>
+<form [formGroup]='form'>
+    <div formArrayName="rules" *ngFor="let rule of rules; let i = index;">
+        <table>
+            <div [formGroupName]='i'>
+                <tr>
+                  <td>
+                    <label>Rule: </label>
+                  </td>
+                  <td>
+                    <input formControlName="description" required>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <button (click)='removeRule(i)'>Remove rule</button>
+                  </td>
+                </tr>
+              </div>  
+        </table>
+    </div>
+    <button type="button" (click)="addRule()">Add rule</button>
+</form>

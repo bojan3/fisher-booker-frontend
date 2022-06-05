@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Address } from 'src/app/entity/Address';
 import { CottageDTO } from 'src/app/entity/CottageDTO';
 import { CottageService } from 'src/app/services/cottage.service';
@@ -10,12 +10,30 @@ import { CottageService } from 'src/app/services/cottage.service';
 })
 export class CottagesComponent implements OnInit {
 
+  @Input()
+  forCottageOwner: boolean = false;
+
   constructor(private cottageService : CottageService) { }
 
   cottages: CottageDTO[] = [];
 
   ngOnInit(): void {
-    this.cottageService.getAllCottages().subscribe((cottages) => (this.cottages = cottages));
+    if(this.forCottageOwner){
+      this.cottageService.getAllCottagesByOwner().subscribe((cottages) => (this.cottages = cottages));
+    } else{
+      this.cottageService.getAllCottages().subscribe((cottages) => (this.cottages = cottages));
+    }
+    //this.cottageService.getAllCottagesByName().subscribe((cottages) => (this.cottages = cottages));
   }
 
+  sortByName(){
+    this.cottageService.getAllCottagesByName().subscribe((cottages) => (this.cottages = cottages));
+  }
+
+  sortByPrice(){
+    this.cottageService.getAllCottagesByPrice().subscribe((cottages) => (this.cottages = cottages));
+  }
+  sortByRating(){
+    this.cottageService.getAllCottagesByRating().subscribe((cottages) => (this.cottages = cottages));
+  }
 }
