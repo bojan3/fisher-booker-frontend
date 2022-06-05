@@ -10,7 +10,7 @@ import { Room } from 'src/app/entity/Room';
 export class EditRoomsComponent implements OnInit {
 
   @Input()
-  rooms!: Room[];
+  rooms: Room[] = [];
 
   form!: FormGroup;
   roomsForm!: FormArray;

@@ -57,6 +57,8 @@ import { EditOptionsComponent } from './components/edit-options/edit-options.com
 import { EditSuperDealComponent } from './components/edit-super-deal/edit-super-deal.component';
 import { EditNavigationEquipmentComponent } from './components/edit-navigation-equipment/edit-navigation-equipment.component';
 import { EditFishingEquipmentComponent } from './components/edit-fishing-equipment/edit-fishing-equipment.component';
+import { AngularYandexMapsModule, YaConfig } from 'angular8-yandex-maps';
+import { MapsComponent } from './components/maps/maps.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -94,6 +96,13 @@ const appRoutes: Routes = [
   { path: 'register/verify/:token', component: VerifyAccountComponent},
   { path: 'instructor-adventures/:instructorId', component: InstructorAdventuresComponent},
 ];
+
+const mapConfig: YaConfig = {
+  //apikey: 'a7b572e8-718a-4325-9c8b-676375397e9e',
+  apikey: 'asd',
+  lang: 'en_US',
+};
+
 
 @NgModule({
   declarations: [
@@ -137,9 +146,11 @@ const appRoutes: Routes = [
     EditOptionsComponent,
     EditSuperDealComponent,
     EditNavigationEquipmentComponent,
-    EditFishingEquipmentComponent
+    EditFishingEquipmentComponent,
+    MapsComponent
   ],
   imports: [
+    [AngularYandexMapsModule.forRoot(mapConfig)],
     BrowserModule,
     AppRoutingModule,
     FormsModule,
