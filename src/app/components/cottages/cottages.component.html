@@ -1,3 +1,14 @@
+<div class="search" *ngIf="notClientSubscriptions()">
+  <label>Datum: </label>
+  <input [(ngModel)]="dateInput" type="date">
+  <button color="primary" (click)="onSearch()">Search</button>
+</div>
+
+<!-- <form *ngIf='notClientSubscriptions()' (ngSubmit)="onSearch()" class='add-ship-form' [formGroup]="form">
+  <input formControlName='dateInput' type='date'>
+  <button color="primary" type="submit" (onSubmit)="onSearch()" [disabled]="!form.valid">Submit</button>
+</form> -->
+
 <h3 *ngIf="notClientSubscriptions()">Sort by:</h3>
 <div class="sort" *ngIf="notClientSubscriptions()" style="display:flex; flex-direction: row; justify-content: center; align-items: left">
   <input type="radio" id="name" name="sortType" value="NAME" (click)="sortByName()">

@@ -13,6 +13,9 @@ export class FishingInstructorComponent implements OnInit {
   @Input()
   fishinginstructor !: FishingInstructor;
 
+  @Input()
+  forClientSubscriptions: boolean = false;
+
   forClient = false;
   currentUser: any;
 
@@ -33,7 +36,18 @@ export class FishingInstructorComponent implements OnInit {
       return false;
   }
 
+  showSubscribe(): boolean {
+    if (this.forClient && !this.forClientSubscriptions)
+      return true;
+    else
+      return false;
+  }
+
   subscribeToInstructor(){
     this.clientService.subscribeToInstructor(this.fishinginstructor.id, this.currentUser.id).subscribe();
+  }
+
+  unsubscribeInstructor(){
+    this.clientService.unsubscribeInstructor(this.fishinginstructor.id, this.accountService.currentUser.id).subscribe();
   }
 }

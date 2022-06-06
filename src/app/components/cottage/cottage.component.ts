@@ -61,4 +61,8 @@ export class CottageComponent implements OnInit {
     }
     else return false;
   }
+
+  unsubscribeCottage(){
+    this.clientService.unsubscribeCottage(this.cottage.id, this.currentUser.id).subscribe();
+  }
 }

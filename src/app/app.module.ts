@@ -60,6 +60,13 @@ import { EditFishingEquipmentComponent } from './components/edit-fishing-equipme
 import { AngularYandexMapsModule, YaConfig } from 'angular8-yandex-maps';
 import { MapsComponent } from './components/maps/maps.component';
 import { EditImageComponent } from './components/edit-image/edit-image.component';
+import { CottageReservationsComponent } from './components/cottage-reservations/cottage-reservations.component';
+import { CottageReservationComponent } from './components/cottage-reservation/cottage-reservation.component';
+import { ShipReservationComponent } from './components/ship-reservation/ship-reservation.component';
+import { ShipReservationsComponent } from './components/ship-reservations/ship-reservations.component';
+import { AdventureReservationsComponent } from './components/adventure-reservations/adventure-reservations.component';
+import { AdventureReservationComponent } from './components/adventure-reservation/adventure-reservation.component';
+import { CottageComplaintComponent } from './components/cottage-complaint/cottage-complaint.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -96,6 +103,12 @@ const appRoutes: Routes = [
   { path: 'account-info-edit', component: AccountInfoEditComponent},
   { path: 'register/verify/:token', component: VerifyAccountComponent},
   { path: 'instructor-adventures/:instructorId', component: InstructorAdventuresComponent},
+  { path: 'client_profile/cottage-reservations', component: CottageReservationsComponent},
+  { path: 'client_profile/adventure-reservations', component: AdventureReservationsComponent},
+  { path: 'client_profile/ship-reservations', component: ShipReservationsComponent},
+  { path: 'client_profile/cottage-complaint/:cottageId', component: CottageComplaintComponent},
+  { path: 'cottage-complaint/:cottageId', component: CottageComplaintComponent}
+
 ];
 
 const mapConfig: YaConfig = {
@@ -149,7 +162,13 @@ const mapConfig: YaConfig = {
     EditNavigationEquipmentComponent,
     EditFishingEquipmentComponent,
     MapsComponent,
-    EditImageComponent
+    EditImageComponent,
+    CottageReservationComponent,
+    ShipReservationComponent,
+    ShipReservationsComponent,
+    AdventureReservationsComponent,
+    AdventureReservationComponent,
+    CottageComplaintComponent
   ],
   imports: [
     [AngularYandexMapsModule.forRoot(mapConfig)],
