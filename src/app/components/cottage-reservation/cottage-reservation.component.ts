@@ -12,6 +12,9 @@ import { ClientService } from 'src/app/services/client.service';
 export class CottageReservationComponent implements OnInit {
 
   @Input()
+  forStarted!: boolean;
+
+  @Input()
   cottageReservation!: CottageReservationDTO;
   constructor(
     private clientService: ClientService,

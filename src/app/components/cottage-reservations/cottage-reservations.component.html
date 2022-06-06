@@ -6,7 +6,7 @@
 </div>
 
 <section>
-  <app-cottage-reservation
+  <app-cottage-reservation [forStarted]="forStarted"
   *ngFor="let cottageReservation of cottageReservations"
   [cottageReservation]="cottageReservation">
   </app-cottage-reservation>

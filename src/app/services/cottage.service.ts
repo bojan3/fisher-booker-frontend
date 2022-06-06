@@ -46,6 +46,6 @@ export class CottageService {
 
   getByDate(date: Date): Observable<CottageDTO[]>{
     console.log(date);
-    return this.apiService.post('http://localhost:8081/api/cottage/all/date', JSON.stringify(date));
+    return this.apiService.get('http://localhost:8081/api/cottage/all/date/' + date);
   }
 }

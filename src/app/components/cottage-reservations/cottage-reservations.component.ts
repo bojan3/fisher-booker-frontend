@@ -12,6 +12,8 @@ export class CottageReservationsComponent implements OnInit {
 
   cottageReservations: CottageReservationDTO[] = [];
 
+  forStarted: boolean = false;
+
   constructor(
     private accountService: AccountService,
     private clientService: ClientService
@@ -24,12 +26,14 @@ export class CottageReservationsComponent implements OnInit {
 
 
   getNotFinished(){
+    this.forStarted = false;
     this.accountService.getMyInfo().subscribe();
     this.clientService.getCottageReservations(this.accountService.currentUser.id).subscribe((cottageReservations) => (this.cottageReservations = cottageReservations));
   }
 
 
   getFinished(){
+    this.forStarted = true;
     this.accountService.getMyInfo().subscribe();
     this.clientService.getFinishedCottageReservations(this.accountService.currentUser.id).subscribe((cottageReservations) => (this.cottageReservations = cottageReservations));
   }

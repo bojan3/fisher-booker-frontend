@@ -98,6 +98,10 @@ export class ClientService {
     deleteAdventureReservation(accountId: number, adventureReservationId: number){
       return this.apiService.delete('http://localhost:8081/api/client/reservation/adventure/delete/' + accountId, JSON.stringify(adventureReservationId));
     }
+
+    createCottageComplaint(cottageId: number, accountId: number, text: string){
+      return this.apiService.put('http://localhost:8081/api/client/cottagecomplaint/' + cottageId + '/' + accountId, JSON.stringify(text));
+    }
 }
 
 

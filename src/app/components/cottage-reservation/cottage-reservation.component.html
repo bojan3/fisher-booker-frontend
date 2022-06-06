@@ -7,5 +7,6 @@
     {{cottageReservation.price}}</p>
   <p align="right">
     <button (click)="cancelReservation()" *ngIf="canCancel()">cancel reservation</button>
+    <button [routerLink]="['', 'cottage-complaint', cottageReservation.cottageDTO.id]" *ngIf="forStarted">write complaint</button>
   </p>
 </section>

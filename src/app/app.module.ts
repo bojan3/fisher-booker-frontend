@@ -63,6 +63,7 @@ import { ShipReservationComponent } from './components/ship-reservation/ship-res
 import { ShipReservationsComponent } from './components/ship-reservations/ship-reservations.component';
 import { AdventureReservationsComponent } from './components/adventure-reservations/adventure-reservations.component';
 import { AdventureReservationComponent } from './components/adventure-reservation/adventure-reservation.component';
+import { CottageComplaintComponent } from './components/cottage-complaint/cottage-complaint.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -101,7 +102,9 @@ const appRoutes: Routes = [
   { path: 'instructor-adventures/:instructorId', component: InstructorAdventuresComponent},
   { path: 'client_profile/cottage-reservations', component: CottageReservationsComponent},
   { path: 'client_profile/adventure-reservations', component: AdventureReservationsComponent},
-  { path: 'client_profile/ship-reservations', component: ShipReservationsComponent}
+  { path: 'client_profile/ship-reservations', component: ShipReservationsComponent},
+  { path: 'client_profile/cottage-complaint/:cottageId', component: CottageComplaintComponent},
+  { path: 'cottage-complaint/:cottageId', component: CottageComplaintComponent}
 
 ];
 
@@ -153,7 +156,8 @@ const appRoutes: Routes = [
     ShipReservationComponent,
     ShipReservationsComponent,
     AdventureReservationsComponent,
-    AdventureReservationComponent
+    AdventureReservationComponent,
+    CottageComplaintComponent
   ],
   imports: [
     BrowserModule,
