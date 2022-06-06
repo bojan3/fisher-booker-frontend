@@ -164,6 +164,7 @@ const mapConfig: YaConfig = {
     MapsComponent,
     EditImageComponent,
     CottageReservationComponent,
+    CottageReservationsComponent,
     ShipReservationComponent,
     ShipReservationsComponent,
     AdventureReservationsComponent,
