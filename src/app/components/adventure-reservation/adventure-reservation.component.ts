@@ -30,7 +30,6 @@ export class AdventureReservationComponent implements OnInit {
   }
 
   cancelReservation(){
-    console.log("ajde burice nemoj da me drkas tako");
     this.accountService.getMyInfo().subscribe();
     this.clientService.deleteAdventureReservation(this.accountService.currentUser.id, this.adventureReservation.id).subscribe();
   }
