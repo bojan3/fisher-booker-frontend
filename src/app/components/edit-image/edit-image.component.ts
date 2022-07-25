@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Image } from '../../entity/Image';
 
 @Component({
@@ -11,10 +11,10 @@ export class EditImageComponent implements OnInit {
 
   @Input()
   images!: Image[];
-  form!: FormGroup;
-  imagesForm!: FormArray;
+  form!: UntypedFormGroup;
+  imagesForm!: UntypedFormArray;
   
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: UntypedFormBuilder) { }
 
   ngOnInit(): void {
     /*this.form = this.formBuilder.group({

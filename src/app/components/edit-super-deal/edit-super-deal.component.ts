@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormArray, UntypedFormBuilder, Validators } from '@angular/forms';
 import { SuperDeal } from 'src/app/entity/SuperDeal';
 
 @Component({
@@ -12,10 +12,10 @@ export class EditSuperDealComponent implements OnInit {
   @Input()
   superDeals!: SuperDeal[];
 
-  form!: FormGroup;
-  superDealsForm!: FormArray;
+  form!: UntypedFormGroup;
+  superDealsForm!: UntypedFormArray;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: UntypedFormBuilder) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -24,14 +24,14 @@ export class EditSuperDealComponent implements OnInit {
   }
 
   createSuperDeals(){
-    let formatted: FormGroup[] = [];
+    let formatted: UntypedFormGroup[] = [];
     this.superDeals.forEach((superDeal) => {
       formatted.push(this.createSuperDeal(superDeal.id, superDeal.startDate, superDeal.endDate, superDeal.discountedPrice, superDeal.capacity));
     })
     return formatted;
   }
 
-  createSuperDeal(defaultId: number, defaultStartDate: Date, defaultEndDate: Date, defaultPrice: number, defaultCapacity: number): FormGroup {
+  createSuperDeal(defaultId: number, defaultStartDate: Date, defaultEndDate: Date, defaultPrice: number, defaultCapacity: number): UntypedFormGroup {
     return this.formBuilder.group({
       id: [defaultId],
       startDate: [defaultStartDate, Validators.compose([Validators.required])],
@@ -42,13 +42,13 @@ export class EditSuperDealComponent implements OnInit {
   }
 
   addSuperDeal(): void {
-    this.superDealsForm = this.form.get('superDeals') as FormArray;
+    this.superDealsForm = this.form.get('superDeals') as UntypedFormArray;
     this.superDealsForm.push(this.createSuperDeal(0, new Date(), new Date(), 0, 0));
     this.superDeals.push(new SuperDeal(0, new Date(), 0, new Date(), 0));
   }
 
   removeSuperDeal(i: number): void{
-    this.superDealsForm = this.form.get('superDeals') as FormArray;
+    this.superDealsForm = this.form.get('superDeals') as UntypedFormArray;
     this.superDealsForm.removeAt(i);
     this.superDeals = this.superDeals.filter((superDeal, index) => index != i)
   }

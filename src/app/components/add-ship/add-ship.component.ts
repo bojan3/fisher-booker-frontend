@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Ship } from 'src/app/entity/Ship';
 import { AccountService } from 'src/app/services/account.service';
@@ -25,7 +25,7 @@ export class AddShipComponent implements OnInit {
   @Input()
   ship!: Ship;
   showForm: boolean = false;
-  form!: FormGroup;
+  form!: UntypedFormGroup;
 
   @ViewChild(EditRulesComponent)
   editRulesComponent!: EditRulesComponent;
@@ -39,7 +39,7 @@ export class AddShipComponent implements OnInit {
   editFishingEquipmentComponent!: EditFishingEquipmentComponent;
 
   constructor(private route: ActivatedRoute,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private shipService: ShipService,
     private accountService: AccountService,
     private authService: AuthService) { }

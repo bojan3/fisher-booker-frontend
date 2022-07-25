@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Account } from 'src/app/entity/Account';
 import { AccountService } from 'src/app/services/account.service';
 
@@ -11,11 +11,11 @@ import { AccountService } from 'src/app/services/account.service';
 export class AccountInfoComponent implements OnInit {
 
   account!: Account;
-  form!: FormGroup;
+  form!: UntypedFormGroup;
   editMode: boolean = false;
 
   constructor(private accountService: AccountService,
-     private formBuilder: FormBuilder) { }
+     private formBuilder: UntypedFormBuilder) { }
 
   ngOnInit(): void {
     this.accountService.getMyInfo().subscribe((account) => (this.account = account));
