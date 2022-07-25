@@ -1,26 +1,26 @@
 <section class="ship-all-info">
     <section class="ship-info info-block">
-        <h2>{{ship?.name}}</h2>
-        <p>{{ship?.address?.country}}, {{ship?.address?.city}}, {{ship?.address?.street}}, {{ship?.address?.number}}</p>
-        <p>Opis: {{ship?.description}}</p>
-        <p>Tip: {{ship?.type}}</p>
-        <p>Dužina: {{ship?.length}}</p>
-        <p>Broj motora: {{ship?.engineNumber}}</p>
-        <p>Snaga motora: {{ship?.enginePower}}</p>
-        <p>Maksimalna brzina: {{ship?.maxSpeed}}</p>
+        <h2>{{ship.name}}</h2>
+        <p>{{ship.address.country}}, {{ship.address.city}}, {{ship.address.street}}, {{ship.address.number}}</p>
+        <p>Opis: {{ship.description}}</p>
+        <p>Tip: {{ship.type}}</p>
+        <p>Dužina: {{ship.length}}</p>
+        <p>Broj motora: {{ship.engineNumber}}</p>
+        <p>Snaga motora: {{ship.enginePower}}</p>
+        <p>Maksimalna brzina: {{ship.maxSpeed}}</p>
         <p>Navigaciona oprema: {{navigationToString()}}</p>
-        <p>Kapacitet: {{ship?.capacity}}</p>
-        <p>Cena: {{ship?.rentPrice}} evra</p>
+        <p>Kapacitet: {{ship.capacity}}</p>
+        <p>Cena: {{ship.rentPrice}} evra</p>
         <p>Pravila ponašanja: {{rulesToString()}}</p>
         <p>Pecaroška oprema: {{fishingToString()}}</p>
-        <p>Uslovi otkaza: Vlasnik zadržava {{ship?.cancelRate}}% početne cene</p>
-        <p>Period dostupnosti: {{ship?.availabilityPeriod?.startDate}} - {{ship?.availabilityPeriod?.endDate}}</p>
-        <button [routerLink]="['', 'add_ship']" [queryParams]='{id: ship?.id}'>Edit</button>
+        <p>Uslovi otkaza: Vlasnik zadržava {{ship.cancelRate}}% početne cene</p>
+        <p>Period dostupnosti: {{ship.availabilityPeriod.startDate}} - {{ship.availabilityPeriod.endDate}}</p>
+        <button [routerLink]="['', 'add_ship']" [queryParams]='{id: ship.id}'>Edit</button>
     </section>
 
     <section class="super-deals info-block">
         <h2>Brze rezervacije</h2>
-        <div class=super-deal *ngFor="let superDeal of ship?.shipSuperDeals">
+        <div class=super-deal *ngFor="let superDeal of ship.shipSuperDeals">
             <p>Оd: {{formatDate(superDeal.startDate)}}</p>
             <p>Do: {{formatDate(superDeal.endDate)}}</p>
             <p>Cena: {{superDeal.discountedPrice}} evra</p>
@@ -30,14 +30,14 @@
 
     <section class="info-block">
         <h2>Dodatne usluge</h2>
-        <div class="option" *ngFor="let option of ship?.shipOptions">
+        <div class="option" *ngFor="let option of ship.shipOptions">
             {{option.name}} --- {{option.description}} --- {{option.price}}
         </div>
     </section>
 
     <section class="info-block">
         <h2>Slike</h2>
-        <div class="image" *ngFor="let image of ship?.shipPictures">
+        <div class="image" *ngFor="let image of ship.shipPictures">
             <img src="image.url"/>
         </div>
     </section>

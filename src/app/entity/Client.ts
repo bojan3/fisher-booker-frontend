@@ -1,4 +1,3 @@
-import { ThrowStmt } from "@angular/compiler";
 import { Account } from "./Account";
 import { Cottage } from "./Cottage";
 import { FishingInstructor } from "./FishingInstructor";
