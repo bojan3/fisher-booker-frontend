@@ -1,4 +1,4 @@
-<section class="cottage-all-info">
+<section class="cottage-all-info" *ngIf="cottageIsPresent">
   <section class="cottage-info info-block">
     <h2>{{cottage.name}}</h2>
     <p>{{cottage.address.country}}, {{cottage.address.city}}, {{cottage.address.street}},
@@ -8,7 +8,7 @@
     <p>{{getNumberOfRoomsAndBeds()}}</p>
     <p>Kućni red: {{rulesToString()}}</p>
     <p>Cena noćenja: {{cottage.pricePerDay}} evra</p>
-    <p>Period dostupnosti: {{cottage.availabilityPeriod.startDate}} - {{cottage.availabilityPeriod.endDate}}</p>
+    <!-- <p>Period dostupnosti: {{cottage.availabilityPeriod.startDate}} - {{cottage.availabilityPeriod.endDate}}</p> -->
     <button [routerLink]="['', 'add_cottage']" [queryParams]='{id: cottage.id}'>Edit</button>
   </section>
   

@@ -4,7 +4,7 @@
         <div [formGroupName]='i'>
           <tr>
             <td>
-              <label>Name: </label>
+              <label>Naziv: </label>
             </td>
             <td>
               <input formControlName="name" required>
@@ -12,7 +12,7 @@
           </tr>
           <tr>
             <td>
-              <label>Description: </label>
+              <label>Opis: </label>
             </td>
             <td>
               <input formControlName="description" required>
@@ -20,7 +20,7 @@
           </tr>
           <tr>
             <td>
-              <label>Price: </label>
+              <label>Cena: </label>
             </td>
             <td>
               <input formControlName="price" required>
@@ -28,11 +28,11 @@
           </tr>
           <tr>
             <td>
-              <button (click)='removeOption(i)'>Remove option</button>
+              <button (click)='removeOption(i)'>Ukloni opciju</button>
             </td>
           </tr>
         </div>
       </table>
     </div>
-    <button type="button" (click)="addOption()">Add option</button>
+    <button type="button" (click)="addOption()">Dodaj opciju</button>
   </form>

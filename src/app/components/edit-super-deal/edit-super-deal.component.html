@@ -4,7 +4,7 @@
         <div [formGroupName]='i'>
           <tr>
             <td>
-              <label>Start date: </label>
+              <label>Od: </label>
             </td>
             <td>
               <input formControlName="startDate" type='date' required>
@@ -12,7 +12,7 @@
           </tr>
           <tr>
             <td>
-              <label>End date: </label>
+              <label>Do: </label>
             </td>
             <td>
               <input formControlName="endDate" type='date' required>
@@ -20,7 +20,7 @@
           </tr>
           <tr>
             <td>
-              <label>Price: </label>
+              <label>Cena: </label>
             </td>
             <td>
               <input formControlName="discountedPrice" required>
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td>
-              <label>Capacity: </label>
+              <label>Kapacitet: </label>
             </td>
             <td>
               <input formControlName="capacity" required>
@@ -37,11 +37,11 @@
   
           <tr>
             <td>
-              <button (click)='removeSuperDeal(i)'>Remove super deal</button>
+              <button (click)='removeSuperDeal(i)'>Ukloni brzu rezervaciju</button>
             </td>
           </tr>
         </div>
       </table>
     </div>
-    <button type="button" (click)="addSuperDeal()">Add super deal</button>
+    <button type="button" (click)="addSuperDeal()">Dodaj brzu rezervaciju</button>
   </form>

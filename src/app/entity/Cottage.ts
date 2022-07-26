@@ -16,13 +16,13 @@ export class Cottage {
     rooms: Room[];
     rules: Rule[];
     cottageSuperDeals: SuperDeal[];
-    availabilityPeriod: AvailabilityPeriod;
+    availabilityPeriods: AvailabilityPeriod[];
     cottageOptions: Option[];
     averageMark: number;
 
     constructor(id: number = 0, name: string = '', description: string = '', address: Address = new Address(0, '', '', '', ''), price_per_day: number = 0,
-        pictures: Image[] = [], averageMark: number = 0, room: Room[] = [], rule: Rule[] = [], cottageSuperDeal: SuperDeal[] = [],
-        availabilityPeriod: AvailabilityPeriod = new AvailabilityPeriod(0, new Date(), new Date()), cottageOptions: Option[] = []) {
+        pictures: Image[] = [], averageMark: number = 0, room: Room[] = [], rule: Rule[] = [], cottageSuperDeals: SuperDeal[] = [],
+        availabilityPeriods: AvailabilityPeriod[], cottageOptions: Option[] = []) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -31,8 +31,8 @@ export class Cottage {
         this.cottagePictures = pictures;
         this.rooms = room;
         this.rules = rule;
-        this.cottageSuperDeals = cottageSuperDeal;
-        this.availabilityPeriod = availabilityPeriod;
+        this.cottageSuperDeals = cottageSuperDeals;
+        this.availabilityPeriods = availabilityPeriods;
         this.cottageOptions = cottageOptions;
         this.averageMark = averageMark;
     }

@@ -67,6 +67,7 @@ import { ShipReservationsComponent } from './components/ship-reservations/ship-r
 import { AdventureReservationsComponent } from './components/adventure-reservations/adventure-reservations.component';
 import { AdventureReservationComponent } from './components/adventure-reservation/adventure-reservation.component';
 import { CottageComplaintComponent } from './components/cottage-complaint/cottage-complaint.component';
+import { EditAvailabilityPeriodsComponent } from './components/edit-availability-periods/edit-availability-periods.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -169,7 +170,8 @@ const mapConfig: YaConfig = {
     ShipReservationsComponent,
     AdventureReservationsComponent,
     AdventureReservationComponent,
-    CottageComplaintComponent
+    CottageComplaintComponent,
+    EditAvailabilityPeriodsComponent
   ],
   imports: [
     [AngularYandexMapsModule.forRoot(mapConfig)],

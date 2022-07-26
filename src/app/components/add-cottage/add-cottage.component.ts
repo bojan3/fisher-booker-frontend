@@ -1,15 +1,14 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, FormArray, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Cottage } from 'src/app/entity/Cottage';
-import { Room } from 'src/app/entity/Room';
+import { AddCottageDTO } from 'src/app/entity/DTO/AddCottageDTO';
 import { AccountService } from 'src/app/services/account.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { CottageService } from 'src/app/services/cottage.service';
+import { EditAvailabilityPeriodsComponent } from '../edit-availability-periods/edit-availability-periods.component';
 import { EditOptionsComponent } from '../edit-options/edit-options.component';
 import { EditRoomsComponent } from '../edit-rooms/edit-rooms.component';
 import { EditRulesComponent } from '../edit-rules/edit-rules.component';
-import { EditSuperDealComponent } from '../edit-super-deal/edit-super-deal.component';
 
 @Component({
   selector: 'app-add-cottage',
@@ -20,7 +19,7 @@ import { EditSuperDealComponent } from '../edit-super-deal/edit-super-deal.compo
 export class AddCottageComponent implements OnInit {
 
   @Input()
-  cottage: Cottage = new Cottage();
+  cottage: AddCottageDTO = new AddCottageDTO();
   showForm: boolean = false;
   form!: UntypedFormGroup;
 
@@ -30,8 +29,8 @@ export class AddCottageComponent implements OnInit {
   editRulesComponent!: EditRoomsComponent;
   @ViewChild(EditOptionsComponent)
   editOptionsComponent!: EditOptionsComponent;
-  @ViewChild(EditSuperDealComponent)
-  editSuperDealComponent!: EditSuperDealComponent;
+  @ViewChild(EditAvailabilityPeriodsComponent)
+  editAvailabilityPeriodsComponent!: EditAvailabilityPeriodsComponent;
 
   constructor(private route: ActivatedRoute,
     private formBuilder: UntypedFormBuilder,
@@ -74,11 +73,10 @@ export class AddCottageComponent implements OnInit {
     this.cottage.address = this.form.get('address')?.value;
     this.cottage.description = this.form.get('description')?.value;
     this.cottage.pricePerDay = this.form.get('pricePerDay')?.value;
-    this.cottage.availabilityPeriod = this.form.get('availabilityPeriod')?.value;
     this.cottage.rooms = this.editRoomsComponent.form.value.rooms;
     this.cottage.rules = this.editRulesComponent.form.value.rules;
     this.cottage.cottageOptions = this.editOptionsComponent.form.value.options;
-    this.cottage.cottageSuperDeals = this.editSuperDealComponent.form.value.superDeals;
+    //this.cottage.availabilityPeriods = this.
   }
 
   buildForm() {
@@ -92,12 +90,6 @@ export class AddCottageComponent implements OnInit {
       }),
       description: [this.cottage.description, Validators.compose([Validators.minLength(3), Validators.maxLength(300)])],
       pricePerDay: [this.cottage.pricePerDay],
-      availabilityPeriod: this.formBuilder.group({
-        /*startDate: [this.cottage.availabilityPeriod.startDate],
-        endDate: [this.cottage.availabilityPeriod.endDate]*/
-        startDate: ['asd'],
-        endDate: ['sad']
-      })
     })
   }
 

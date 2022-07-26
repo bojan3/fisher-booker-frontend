@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CottageDTO } from '../entity/DTO/CottageDTO';
 import { ApiService } from './api.service';
 import { Cottage } from '../entity/Cottage';
+import { AddCottageDTO } from '../entity/DTO/AddCottageDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +37,7 @@ export class CottageService {
     return this.http.get<Cottage[]>('http://localhost:8081/api/cottage/all/rate');
   }
 
-  saveCottage(cottage: Cottage): Observable<boolean>{
+  saveCottage(cottage: AddCottageDTO): Observable<boolean>{
     return this.http.post<boolean>('http://localhost:8081/api/cottage/save', cottage);
   }
 

@@ -13,12 +13,16 @@ export class AccountInfoComponent implements OnInit {
   account!: Account;
   form!: UntypedFormGroup;
   editMode: boolean = false;
+  showTable: boolean =  false;
 
   constructor(private accountService: AccountService,
      private formBuilder: UntypedFormBuilder) { }
 
   ngOnInit(): void {
-    this.accountService.getMyInfo().subscribe((account) => (this.account = account));
+    this.accountService.getMyInfo().subscribe((account) => {
+      this.account = account;
+      this.showTable = true;
+    });
     this.form = this.formBuilder.group({
       username: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(64)])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])],

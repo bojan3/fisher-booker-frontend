@@ -1,4 +1,4 @@
-export class AvailabilityPeriod{
+export class AvailabilityPeriod {
     id: number;
     startDate: Date;
     endDate: Date;
