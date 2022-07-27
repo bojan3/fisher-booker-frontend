@@ -6,7 +6,10 @@ import {
   HttpEvent
 } from '@angular/common/http';
 import { AuthService } from '../services/auth.service';
+
 import { Observable, } from 'rxjs';
+
+//import { _throw } from 'rxjs/observable/throw';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {

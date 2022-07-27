@@ -1,8 +1,9 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Account } from '../entity/Account';
 import { ApiService } from './api.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 
@@ -58,9 +59,9 @@ export class AccountService {
 
   newAdmin(account : Account):Observable<boolean>{
     console.log(account);
-    return this.apiService.post(this.newAdminPath,account);}
-    
-  updateAccount(account: any) {
+    return this.apiService.post(this.newAdminPath,account);
+  }
+  updateAccount(account: any){
     console.log("updating account...");
     const headers = new HttpHeaders({
       'Accept': 'application/json',

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormControl } from '@angular/forms';
-import { takeUntil } from 'rxjs/operators';
+import {takeUntil} from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { AccountService } from 'src/app/services/account.service';
 
@@ -36,11 +36,11 @@ export class LogInComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.params
+      this.route.params
       .pipe(takeUntil(this.ngUnsubscribe))
-    /*.subscribe((params: DisplayMessage) => {
-      this.notification = params;
-    });*/
+      /*.subscribe((params: DisplayMessage) => {
+        this.notification = params;
+      });*/
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     this.form = this.formBuilder.group({
@@ -60,21 +60,20 @@ export class LogInComponent implements OnInit {
 
     this.authService.login(this.form.value)
       .subscribe(data => {
-        this.accountService.getMyInfo().subscribe((user) => {
-          //this.router.navigate([this.returnUrl]);
-          localStorage.setItem('role', user.role);
-          this.profileNavigation();
-        });
-      },
+          this.accountService.getMyInfo().subscribe(() => {
+            //this.router.navigate([this.returnUrl]);
+            this.profileNavigation();
+          });
+        },
         error => {
           this.submitted = false;
-          this.notification = { msgType: 'error', msgBody: 'Incorrect username or password.' };
+          this.notification = {msgType: 'error', msgBody: 'Incorrect username or password.'};
         });
   }
 
-  profileNavigation() {
+  profileNavigation(){
     console.log(this.accountService.currentUser);
-    switch (this.accountService.currentUser.role) {
+    switch(this.accountService.currentUser.role){
       case 'ROLE_COTTAGE_OWNER': this.router.navigate(['/cottage_owner_profile']); break;
       case 'ROLE_SHIP_OWNER': this.router.navigate(['/ship_owner_profile']); break;
       case 'ROLE_CLIENT': this.router.navigate(['/client_profile']); break;

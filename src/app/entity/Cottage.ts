@@ -1,18 +1,16 @@
 import { Address } from "./Address";
 import { AvailabilityPeriod } from "./AvailabilityPeriod";
-import { CottagePicture } from "./CottagePicture";
 import { CottageSuperDeal } from "./CottageSuperDeal";
+import { CottageOption } from "./CottageOption";
 import { Image } from "./Image";
-import { SuperDeal } from "./SuperDeal";
 import { Room } from "./Room";
 import { Rule } from "./Rule";
-import { Option } from "./Option"
 
-export class Cottage {
-    id: number;
-    name: string;
-    description: string;
-    address: Address;
+export class Cottage{
+    id: number = 0;
+    name: string = '';
+    description: string = '';
+    address: Address = new Address(0, '', '', '', '');
     cottagePictures: Image[];
     pricePerDay: number;
     rooms: Room[];
@@ -33,7 +31,7 @@ export class Cottage {
         this.cottagePictures = pictures;
         this.rooms = room;
         this.rules = rule;
-        this.cottageSuperDeals = cottageSuperDeal;
+        this.cottageSuperDeal = cottageSuperDeal;
         this.availabilityPeriod = availabilityPeriod;
         this.cottageOptions = cottageOptions;
         this.averageMark = averageMark;

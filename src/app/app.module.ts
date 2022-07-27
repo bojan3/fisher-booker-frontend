@@ -41,14 +41,19 @@ import { ClientPageComponent } from './components/client-page/client-page.compon
 import { InstructorPageComponent } from './components/instructor-page/instructor-page.component';
 import { AccountInfoComponent } from './components/account-info/account-info.component';
 import { CottagePageComponent } from './components/cottage-page/cottage-page.component';
-
-
+import { ImagesOfEntitiesComponent } from './components/images-of-entities/images-of-entities.component';
+import { AddCottageComponent } from './components/add-cottage/add-cottage.component';
 import { ShipService } from './services/ship.service';
 import { ShipOwnerService } from './services/ship-owner.service';
 import { ClientService } from './services/client.service';
 import { FishingInstructorService } from './services/fishing-instructor.service';
-import { CottageOwner } from './entity/CottageOwner';
 import { CottageOwnerService } from './services/cottage-owner.service';
+import { AccountInfoEditComponent } from './components/account-info-edit/account-info-edit.component';
+import { EditRoomsComponent } from './components/edit-rooms/edit-rooms.component';
+import { EditRulesComponent } from './components/edit-rules/edit-rules.component';
+import { EditCottageOptionsComponent } from './components/edit-cottage-options/edit-cottage-options.component';
+import { EditCottageSuperDealComponent } from './components/edit-cottage-super-deal/edit-cottage-super-deal.component';
+import { VerifyAccountComponent } from './components/verify-account/verify-account.component';
 
 import { AccountRequestComponent } from './components/account-request/account-request.component';
 import { AccountRequestsComponent } from './components/account-requests/account-requests.component';
@@ -80,12 +85,16 @@ import { AddCottageComponent } from './components/add-cottage/add-cottage.compon
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
   { path: 'cottages', component: CottagesComponent },
+  { path: 'client_profile/cottages', component: CottagesComponent },
   { path: 'ships', component: ShipsComponent },
+  { path: 'client_profile/ships', component: ShipsComponent },
   { path: 'adventures', component: AdventuresComponent },
-//  { path: 'instructors', component: FishingInstructorsComponent },
+  { path: 'fishing-instructors', component: FishingInstructorsComponent },
+  { path: 'client_profile/fishing-instructors', component: FishingInstructorsComponent },
 //  { path: 'cottage_owners', component: CottageOwnersComponent },
  // { path: 'ship_owners', component: ShipOwnersComponent },
   { path: 'clients', component: ClientsComponent },
+  { path: 'client_profile/adventures', component: AdventuresComponent },
   { path: 'logIn', component: LogInComponent },
   { path: 'signUp', component: SignUpComponent },
   { path: 'cottage_owner_profile', component: CottageOwnerPageComponent},
@@ -94,9 +103,7 @@ const appRoutes: Routes = [
   { path: 'client_profile', component: ClientPageComponent},
   { path: 'instructor_profile', component: InstructorPageComponent},
   { path: 'cottage/:id', component: CottagePageComponent },
-  { path: 'ship/:id', component: ShipPageComponent },
   { path: 'add_cottage', component: AddCottageComponent },
-  { path: 'add_ship', component: AddShipComponent },
   { path: 'admin_profile/cottages', component: CottagesComponent},
   { path: 'admin_profile/cottage_owners', component: CottageOwnersComponent},
   { path: 'admin_profile/ships', component: ShipsComponent},
@@ -106,14 +113,10 @@ const appRoutes: Routes = [
   { path: 'admin_profile/clients', component: ClientsComponent},
   { path: 'admin_profile/requests', component: RequestsComponent},
 
+
   { path: 'account-info', component: AccountInfoComponent},
   { path: 'account-info-edit', component: AccountInfoEditComponent},
-  { path: 'register/verify/:token', component: VerifyAccountComponent},
-  { path: 'instructor-adventures/:instructorId', component: InstructorAdventuresComponent},
-  { path: 'client_profile/cottage-reservations', component: CottageReservationsComponent},
-  { path: 'client_profile/adventure-reservations', component: AdventureReservationsComponent},
-  { path: 'client_profile/ship-reservations', component: ShipReservationsComponent}
-
+  { path: 'register/verify/:token', component: VerifyAccountComponent}
 ];
 
 const mapConfig: YaConfig = {
@@ -164,6 +167,8 @@ const mapConfig: YaConfig = {
     AccountInfoEditComponent,
     EditRoomsComponent,
     EditRulesComponent,
+    EditCottageOptionsComponent,
+    EditCottageSuperDealComponent,
     VerifyAccountComponent,
     InstructorAdventuresComponent,
     AddShipComponent,
@@ -187,9 +192,10 @@ const mapConfig: YaConfig = {
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule, // MORA DA SE DODA
+    HttpClientModule,
     RouterModule.forRoot(appRoutes),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule
   ],
   providers: [
     {
@@ -206,6 +212,8 @@ const mapConfig: YaConfig = {
     ClientService,
     FishingInstructorService,
     CottageOwnerService
+
+
   ],
   bootstrap: [AppComponent]
 })

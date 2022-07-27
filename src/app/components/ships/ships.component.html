@@ -1,6 +1,6 @@
-<h3 *ngIf="notClientSubscriptions()">Sort by:</h3>
-<div class="sort" *ngIf="notClientSubscriptions()" style="display:flex; flex-direction: row; justify-content: center; align-items: left">
-  <input type="radio" id="name" name="sortType" value="NAME" (click)="sortByName()">
+<h3>Sort by:</h3>
+<div class="sort" style="display:flex; flex-direction: row; justify-content: center; align-items: left">
+  <input type="radio" id="name" name="sortType" value="NAME" (click)="sortByName()" checked>
   <label for="name">name</label><br>
   <input type="radio" id="price" name="sortType" value="PRICE" (click)="sortByPrice()">
   <label for="price">price</label><br>
@@ -10,7 +10,7 @@
   <label for="capacity">capacity</label>
 </div>
 <section class='ships'>
-  <app-ship [forClientSubscriptions]="forClientSubscriptions"  *ngFor="let ship of ships"
+  <app-ship  *ngFor="let ship of ships"
   [ship]="ship">
 
    </app-ship>
