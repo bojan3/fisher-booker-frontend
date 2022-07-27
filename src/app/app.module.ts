@@ -41,19 +41,13 @@ import { ClientPageComponent } from './components/client-page/client-page.compon
 import { InstructorPageComponent } from './components/instructor-page/instructor-page.component';
 import { AccountInfoComponent } from './components/account-info/account-info.component';
 import { CottagePageComponent } from './components/cottage-page/cottage-page.component';
-import { ImagesOfEntitiesComponent } from './components/images-of-entities/images-of-entities.component';
-import { AddCottageComponent } from './components/add-cottage/add-cottage.component';
 import { ShipService } from './services/ship.service';
 import { ShipOwnerService } from './services/ship-owner.service';
 import { ClientService } from './services/client.service';
 import { FishingInstructorService } from './services/fishing-instructor.service';
 import { CottageOwnerService } from './services/cottage-owner.service';
-import { AccountInfoEditComponent } from './components/account-info-edit/account-info-edit.component';
-import { EditRoomsComponent } from './components/edit-rooms/edit-rooms.component';
-import { EditRulesComponent } from './components/edit-rules/edit-rules.component';
 import { EditCottageOptionsComponent } from './components/edit-cottage-options/edit-cottage-options.component';
 import { EditCottageSuperDealComponent } from './components/edit-cottage-super-deal/edit-cottage-super-deal.component';
-import { VerifyAccountComponent } from './components/verify-account/verify-account.component';
 
 import { AccountRequestComponent } from './components/account-request/account-request.component';
 import { AccountRequestsComponent } from './components/account-requests/account-requests.component';
@@ -81,6 +75,7 @@ import { MapsComponent } from './components/maps/maps.component';
 import { EditImageComponent } from './components/edit-image/edit-image.component';
 import { ImagesOfEntitiesComponent } from './components/images-of-entities/images-of-entities.component';
 import { AddCottageComponent } from './components/add-cottage/add-cottage.component';
+import { CottageComplaintComponent } from './components/cottage-complaint/cottage-complaint.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -116,7 +111,15 @@ const appRoutes: Routes = [
 
   { path: 'account-info', component: AccountInfoComponent},
   { path: 'account-info-edit', component: AccountInfoEditComponent},
-  { path: 'register/verify/:token', component: VerifyAccountComponent}
+  { path: 'register/verify/:token', component: VerifyAccountComponent},
+  { path: 'register/verify/:token', component: VerifyAccountComponent},
+  { path: 'instructor-adventures/:instructorId', component: InstructorAdventuresComponent},
+  { path: 'client_profile/cottage-reservations', component: CottageReservationsComponent},
+  { path: 'client_profile/adventure-reservations', component: AdventureReservationsComponent},
+  { path: 'client_profile/ship-reservations', component: ShipReservationsComponent},
+  { path: 'client_profile/cottage-complaint/:cottageId', component: CottageComplaintComponent},
+  { path: 'cottage-complaint/:cottageId', component: CottageComplaintComponent}
+
 ];
 
 const mapConfig: YaConfig = {
@@ -178,13 +181,17 @@ const mapConfig: YaConfig = {
     EditNavigationEquipmentComponent,
     EditFishingEquipmentComponent,
     CottageReservationsComponent,
+    MapsComponent,
+    EditImageComponent,
     CottageReservationComponent,
+    CottageReservationsComponent,
     ShipReservationComponent,
     ShipReservationsComponent,
     AdventureReservationsComponent,
     AdventureReservationComponent,
     MapsComponent,
-    EditImageComponent
+    EditImageComponent,
+    CottageComplaintComponent
   ],
   imports: [
     [AngularYandexMapsModule.forRoot(mapConfig)],
