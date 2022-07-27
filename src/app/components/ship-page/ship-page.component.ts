@@ -12,6 +12,7 @@ export class ShipPageComponent implements OnInit {
 
   id: string = '';
   ship!: Ship;
+  shipIsPresent: boolean = false;
 
   constructor(private route: ActivatedRoute, private shipService: ShipService) { }
 
@@ -19,9 +20,8 @@ export class ShipPageComponent implements OnInit {
     this.route.params.subscribe((param) => {
       this.id = param.id;
       this.shipService.getById(this.id).subscribe((ship) => {
-        console.log(ship);
-
         this.ship = ship;
+        this.shipIsPresent = true;
       });
     })
   }

@@ -64,4 +64,5 @@ export class CottagePageComponent implements OnInit {
     return string.slice(0, string.length - 2);
   }
 
+
 }

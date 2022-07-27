@@ -1,4 +1,3 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { CottageReservationDTO } from 'src/app/entity/DTO/CottageReservationDTO';
 import { AccountService } from 'src/app/services/account.service';
