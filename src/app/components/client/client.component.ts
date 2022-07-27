@@ -1,4 +1,4 @@
-import { Component,Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Client } from 'src/app/entity/Client';
 
 @Component({
@@ -9,7 +9,7 @@ import { Client } from 'src/app/entity/Client';
 export class ClientComponent implements OnInit {
 
   @Input()
-  client!:Client
+  client!: Client
 
   constructor() { }
 

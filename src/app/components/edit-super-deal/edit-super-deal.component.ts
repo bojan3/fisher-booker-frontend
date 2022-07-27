@@ -1,16 +1,16 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CottageSuperDeal } from 'src/app/entity/CottageSuperDeal';
+import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { SuperDeal } from 'src/app/entity/SuperDeal';
 
 @Component({
-  selector: 'app-edit-cottage-super-deal',
-  templateUrl: './edit-cottage-super-deal.component.html',
-  styleUrls: ['./edit-cottage-super-deal.component.css']
+  selector: 'app-edit-super-deal',
+  templateUrl: './edit-super-deal.component.html',
+  styleUrls: ['./edit-super-deal.component.css']
 })
-export class EditCottageSuperDealComponent implements OnInit {
+export class EditSuperDealComponent implements OnInit {
 
   @Input()
-  superDeals!: CottageSuperDeal[];
+  superDeals!: SuperDeal[];
 
   form!: FormGroup;
   superDealsForm!: FormArray;
@@ -44,7 +44,7 @@ export class EditCottageSuperDealComponent implements OnInit {
   addSuperDeal(): void {
     this.superDealsForm = this.form.get('superDeals') as FormArray;
     this.superDealsForm.push(this.createSuperDeal(0, new Date(), new Date(), 0, 0));
-    this.superDeals.push(new CottageSuperDeal(0, new Date(), 0, new Date(), 0));
+    this.superDeals.push(new SuperDeal(0, new Date(), 0, new Date(), 0));
   }
 
   removeSuperDeal(i: number): void{

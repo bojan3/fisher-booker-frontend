@@ -1,13 +1,14 @@
 <div class="sort" style="display:flex; flex-direction: row; justify-content: center; align-items: left">
-  <input type="radio" id="name" name="sortType" value="not started" checked="true" (click)="getNotFinished()">
-  <label for="name">not started</label><br>
-  <input type="radio" id="price" name="sortType" value="started" (click)="getFinished()">
-  <label for="price">started</label><br>
-</div>
-
-<section>
-  <app-cottage-reservation [forStarted]="forStarted"
-  *ngFor="let cottageReservation of cottageReservations"
-  [cottageReservation]="cottageReservation">
-  </app-cottage-reservation>
-</section>
+    <input type="radio" id="name" name="sortType" value="not started" checked="true" (click)="getNotFinished()">
+    <label for="name">not started</label><br>
+    <input type="radio" id="price" name="sortType" value="started" (click)="getFinished()">
+    <label for="price">started</label><br>
+  </div>
+  
+  <section>
+    <app-cottage-reservation [forStarted]="forStarted"
+    *ngFor="let cottageReservation of cottageReservations"
+    [cottageReservation]="cottageReservation">
+    </app-cottage-reservation>
+  </section>
+  

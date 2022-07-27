@@ -6,6 +6,9 @@ import { ApiService } from './api.service';
 import { CottageDTO } from '../entity/DTO/CottageDTO';
 import { ShipDTO } from '../entity/DTO/ShipDTO';
 import { FishingInstructor } from '../entity/FishingInstructor';
+import { AdventureReservationDTO } from '../entity/DTO/AdventureReservationDTO';
+import { CottageReservationDTO } from '../entity/DTO/CottageReservationDTO';
+import { ShipReservationDTO } from '../entity/DTO/ShipReservationDTO';
 
 
 @Injectable({

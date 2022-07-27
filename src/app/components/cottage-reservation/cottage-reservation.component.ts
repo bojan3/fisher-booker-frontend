@@ -1,4 +1,3 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { CottageReservationDTO } from 'src/app/entity/DTO/CottageReservationDTO';
 import { AccountService } from 'src/app/services/account.service';
@@ -36,4 +35,5 @@ export class CottageReservationComponent implements OnInit {
     this.accountService.getMyInfo().subscribe();
     this.clientService.deleteCottageReservation(this.accountService.currentUser.id, this.cottageReservation.id).subscribe();
   }
+
 }

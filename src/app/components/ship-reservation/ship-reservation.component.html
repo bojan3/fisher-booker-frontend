@@ -1,0 +1,12 @@
+<section class='reservations'>
+    <h3>{{shipReservation.shipDTO.name}}</h3>
+    <p>description: {{shipReservation.shipDTO.description}}</p>
+    <p>period: {{shipReservation.startDate}} {{shipReservation.endDate}}</p>
+    <p>capacity: {{shipReservation.capacity}}</p>
+    <p>price:
+      {{shipReservation.price}}</p>
+    <p align="right">
+      <button (click)="cancelReservation()" *ngIf="canCancel()">cancel reservation</button>
+    </p>
+  </section>
+  

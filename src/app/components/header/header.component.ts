@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.accountService.getMyInfo().subscribe();
   }
 
   isUserLogged() {

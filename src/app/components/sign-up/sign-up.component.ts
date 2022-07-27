@@ -63,10 +63,6 @@ export class SignUpComponent implements OnInit {
     this.ngUnsubscribe.complete();
   }
 
-  arePasswordsMatching(){
-    return (this.form.value.password != this.form.value.password_retype);
-  }
-
   onSubmit() {
     /**
      * Innocent until proven guilty

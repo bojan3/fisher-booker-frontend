@@ -12,11 +12,11 @@ export class AdventureService {
 
   constructor(private http: HttpClient, private apiService : ApiService) { }
 
-  getAllAdventuresByInstructor(instructorId : number): Observable<Adventure[]>{
+  getAllAdventuresByInstructor(instructorId : number): Observable<AdventureDTO[]>{
     return this.apiService.get('http://localhost:8081/api/adventure/all/instructor/' + instructorId);
   }
 
-  getAllAdventuresByInstructorOrderByName(instructorId : number): Observable<Adventure[]>{
+  getAllAdventuresByInstructorOrderByName(instructorId : number): Observable<AdventureDTO[]>{
     return this.apiService.get('http://localhost:8081/api/adventure/all/instructor/' + instructorId + '/orderByName');
   }
   //constructor(private http: HttpClient, private apiService: ApiService) { }
@@ -25,28 +25,28 @@ export class AdventureService {
     return this.http.get<AdventureDTO[]>('http://localhost:8081/api/adventure/all');
   }
 
-  getById(id: string): Observable<Adventure>{
+  getById(id: string): Observable<AdventureDTO>{
     return this.apiService.get('http://localhost:8081/api/cottage/page/'+id);
   // getAllCottages(): Observable<Cottage[]>{
   //   return this.http.get<Cottage[]>('http://localhost:8081/api/cottage/all');
   // }
   }
-  getAllAdventuresByName(): Observable<Adventure[]>{
-    return this.http.get<Adventure[]>('http://localhost:8081/api/cottage/all/name');
+  getAllAdventuresByName(): Observable<AdventureDTO[]>{
+    return this.http.get<AdventureDTO[]>('http://localhost:8081/api/cottage/all/name');
   }
-  getAllAdventuresByPrice(): Observable<Adventure[]>{
-    return this.http.get<Adventure[]>('http://localhost:8081/api/cottage/all/price');
+  getAllAdventuresByPrice(): Observable<AdventureDTO[]>{
+    return this.http.get<AdventureDTO[]>('http://localhost:8081/api/cottage/all/price');
   }
 
   getAllAdventuresByOwner(): Observable<AdventureDTO[]>{
     return this.http.get<AdventureDTO[]>('http://localhost:8081/api/instructor/allAdventuresByOwner');
   } 
 
-  getAllAdventuresByRating(): Observable<Adventure[]>{
-    return this.http.get<Adventure[]>('http://localhost:8081/api/cottage/all/rate');
+  getAllAdventuresByRating(): Observable<AdventureDTO[]>{
+    return this.http.get<AdventureDTO[]>('http://localhost:8081/api/cottage/all/rate');
   }
 
-  saveAdventure(adventure: Adventure): Observable<boolean>{
+  saveAdventure(adventure: AdventureDTO): Observable<boolean>{
     return this.http.post<boolean>('http://localhost:8081/api/cottage/save', adventure);
   }
   

@@ -1,10 +1,20 @@
-import {Address} from "./Address";
+import { Address } from "./Address";
+import { AvailabilityPeriod } from "./AvailabilityPeriod";
+import { FishingEquipment } from "./FishingEquipment";
+import { NavigationEquipment } from "./NavigationEquipment";
 import { Rule } from "./Rule";
+import { Option } from "./Option";
+import { SuperDeal } from "./SuperDeal";
+import { Image } from "./Image";
+import { ShipType } from "./ShipType";
+import { R3Identifiers } from "@angular/compiler";
 
-export class Ship{
+export class Ship {
   id: number;
   name: string;
+  type: ShipType;
   length: number;
+  address: Address
   description: string;
   averageMark: number;
   rentPrice: number;
@@ -28,7 +38,9 @@ export class Ship{
     availabilityPeriod: AvailabilityPeriod, shipPictures: Image[], shipOptions: Option[]) {
     this.id = id;
     this.name = name;
+    this.type = type;
     this.length = length;
+    this.address = address;
     this.description = description;
     this.averageMark = averageMark;
     this.rentPrice = rentPrice;
@@ -45,5 +57,5 @@ export class Ship{
     this.shipPictures = shipPictures;
     this.shipOptions = shipOptions;
   }
-
+  
 }

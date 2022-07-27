@@ -48,7 +48,7 @@ export class AdventuresComponent implements OnInit {
 
   sortByName() {
     if (this.forClientInsructorAdventures) {
-      this.adventureService.getAllAdventuresByInstructorOrderByName(this.instructorId).subscribe((adventures: Adventure[]) => (this.adventures = adventures));
+      this.adventureService.getAllAdventuresByInstructorOrderByName(this.instructorId).subscribe((adventures) => (this.adventures = adventures));
     } else {
       // Ako treba nekome sortiranje svih ili nekih koji nisu pokupljeni po instruktoru
     }

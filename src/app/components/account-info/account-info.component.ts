@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Account } from 'src/app/entity/Account';
 import { AccountService } from 'src/app/services/account.service';
 
@@ -11,14 +11,18 @@ import { AccountService } from 'src/app/services/account.service';
 export class AccountInfoComponent implements OnInit {
 
   account!: Account;
-  form!: FormGroup;
+  form!: UntypedFormGroup;
   editMode: boolean = false;
+  showTable: boolean =  false;
 
   constructor(private accountService: AccountService,
-     private formBuilder: FormBuilder) { }
+     private formBuilder: UntypedFormBuilder) { }
 
   ngOnInit(): void {
-    this.accountService.getMyInfo().subscribe((account) => (this.account = account));
+    this.accountService.getMyInfo().subscribe((account) => {
+      this.account = account;
+      this.showTable = true;
+    });
     this.form = this.formBuilder.group({
       username: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(64)])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])],
@@ -47,7 +51,6 @@ export class AccountInfoComponent implements OnInit {
   /*onSubmit() {
     this.notification = undefined;
     this.submitted = true;
-
     this.authService.signup(this.form.value)
       .subscribe(data => {
         console.log(data);
@@ -61,7 +64,6 @@ export class AccountInfoComponent implements OnInit {
           console.log('Sign up error');
           this.notification = { msgType: 'error', msgBody: error['error'].message };
         });
-
   }*/
-
+  
 }

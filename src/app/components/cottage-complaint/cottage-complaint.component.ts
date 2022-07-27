@@ -27,13 +27,13 @@ export class CottageComplaintComponent implements OnInit {
 
     this.route.params.subscribe((param) => {
       this.cottageId = param.cottageId;
-      console.log("cottageId :" +this.cottageId);
-      });
+      console.log("cottageId :" + this.cottageId);
+    });
 
-  this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-  this.form = this.formBuilder.group({
-    text: ['', Validators.compose([Validators.required, Validators.minLength(20), Validators.maxLength(300)])]
-  });
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.form = this.formBuilder.group({
+      text: ['', Validators.compose([Validators.required, Validators.minLength(20), Validators.maxLength(300)])]
+    });
   }
 
   onSubmit() {

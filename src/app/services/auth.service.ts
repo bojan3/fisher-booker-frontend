@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AccountService } from './account.service';
 import { ApiService } from './api.service';
-import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +15,7 @@ export class AuthService {
     private apiService: ApiService,
     private accountService: AccountService,
     private http: HttpClient,
-    //private config: ConfigService,
-    private router: Router,
-    private http: HttpClient
+    private router: Router
     ) { }
 
   private access_token = null;

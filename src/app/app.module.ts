@@ -46,8 +46,6 @@ import { ShipOwnerService } from './services/ship-owner.service';
 import { ClientService } from './services/client.service';
 import { FishingInstructorService } from './services/fishing-instructor.service';
 import { CottageOwnerService } from './services/cottage-owner.service';
-import { EditCottageOptionsComponent } from './components/edit-cottage-options/edit-cottage-options.component';
-import { EditCottageSuperDealComponent } from './components/edit-cottage-super-deal/edit-cottage-super-deal.component';
 
 import { AccountRequestComponent } from './components/account-request/account-request.component';
 import { AccountRequestsComponent } from './components/account-requests/account-requests.component';
@@ -170,8 +168,6 @@ const mapConfig: YaConfig = {
     AccountInfoEditComponent,
     EditRoomsComponent,
     EditRulesComponent,
-    EditCottageOptionsComponent,
-    EditCottageSuperDealComponent,
     VerifyAccountComponent,
     InstructorAdventuresComponent,
     AddShipComponent,

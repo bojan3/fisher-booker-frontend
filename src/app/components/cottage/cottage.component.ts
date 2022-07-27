@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CottageDTO } from 'src/app/entity/CottageDTO';
+import { CottageDTO } from 'src/app/entity/DTO/CottageDTO';
 import { AccountService } from 'src/app/services/account.service';
 import { ClientService } from 'src/app/services/client.service';
 import { CottageService } from 'src/app/services/cottage.service';

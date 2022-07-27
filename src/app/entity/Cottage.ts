@@ -1,12 +1,12 @@
 import { Address } from "./Address";
 import { AvailabilityPeriod } from "./AvailabilityPeriod";
-import { CottageSuperDeal } from "./CottageSuperDeal";
-import { CottageOption } from "./CottageOption";
 import { Image } from "./Image";
 import { Room } from "./Room";
 import { Rule } from "./Rule";
+import { SuperDeal } from "./SuperDeal";
+import { Option } from "./Option";
 
-export class Cottage{
+export class Cottage {
     id: number = 0;
     name: string = '';
     description: string = '';
@@ -31,7 +31,7 @@ export class Cottage{
         this.cottagePictures = pictures;
         this.rooms = room;
         this.rules = rule;
-        this.cottageSuperDeal = cottageSuperDeal;
+        this.cottageSuperDeals = cottageSuperDeal;
         this.availabilityPeriod = availabilityPeriod;
         this.cottageOptions = cottageOptions;
         this.averageMark = averageMark;

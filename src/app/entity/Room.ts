@@ -1,4 +1,4 @@
-export class Room{
+export class Room {
     label: string;
     numOfBeds: number;
 

@@ -1,6 +1,17 @@
-<h3 >Sort by:</h3>
-<div class="sort" style="display:flex; flex-direction: row; justify-content: center; align-items: left">
-  <input type="radio" id="name" name="sortType" value="NAME" (click)="sortByName()" checked>
+<div class="search" *ngIf="notClientSubscriptions()">
+  <label>Datum: </label>
+  <input [(ngModel)]="dateInput" type="date">
+  <button color="primary" (click)="onSearch()">Search</button>
+</div>
+
+<!-- <form *ngIf='notClientSubscriptions()' (ngSubmit)="onSearch()" class='add-ship-form' [formGroup]="form">
+  <input formControlName='dateInput' type='date'>
+  <button color="primary" type="submit" (onSubmit)="onSearch()" [disabled]="!form.valid">Submit</button>
+</form> -->
+
+<h3 *ngIf="notClientSubscriptions()">Sort by:</h3>
+<div class="sort" *ngIf="notClientSubscriptions()" style="display:flex; flex-direction: row; justify-content: center; align-items: left">
+  <input type="radio" id="name" name="sortType" value="NAME" (click)="sortByName()">
   <label for="name">name</label><br>
   <input type="radio" id="price" name="sortType" value="PRICE" (click)="sortByPrice()">
   <label for="price">price</label><br>
@@ -8,9 +19,8 @@
   <label for="rating">rating</label>
 </div>
 <section class='cottages'>
-   <app-cottage  *ngFor="let cottage of cottages"
+   <app-cottage [forClientSubscriptions] = "forClientSubscriptions" *ngFor="let cottage of cottages"
    [cottage]="cottage">
-
     </app-cottage>
 
 </section>

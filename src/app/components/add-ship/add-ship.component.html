@@ -1,88 +1,89 @@
+<p>add-ship works!</p>
 <form *ngIf='showForm' (ngSubmit)="onSubmit()" class='add-ship-form' [formGroup]="form">
 
-  <label>Ime: </label>
-  <input formControlName="name" required>
-
-  <div class="info-block" formGroupName="address">
-    <p id='title'>Adresa: </p>
-    <label>Country: </label>
-    <input formControlName="country">
-    <label>City: </label>
-    <input formControlName="city">
-    <label>Street: </label>
-    <input formControlName="street">
-    <label>Number: </label>
-    <input formControlName="number">
-  </div>
-
-  <label>Opis: </label>
-  <input formControlName="description">
-
-  <label>Tip: </label>
-  <select formControlName="type" name="type" id="type">
-    <option value="camac">Čamac</option>
-    <option value="jahta">Jahta</option>
-    <option value="korveta">Korveta</option>
-    <option value="ledolomac">Ledolomac</option>
-  </select>
-
-  <label>Dužina: </label>
-  <input formControlName="length" required>
-
-  <label>Broj motora: </label>
-  <input formControlName="engineNumber" required>
-
-  <label>Snaga motora: </label>
-  <input formControlName="enginePower" required>
-
-  <label>Maksimalna brzina: </label>
-  <input formControlName="maxSpeed" required>
-
-  <div class="info-block">
-    <h2>Navigaciona oprema</h2>
-    <app-edit-navigation-equipment [navs]='ship.navigationEquipments'></app-edit-navigation-equipment>
-  </div>
-
-  <label>Kapacitet: </label>
-  <input formControlName="capacity" required>
-
-  <label>Cena: </label>
-  <input formControlName="rentPrice" required>
-
-  <div class="info-block">
-    <h2>Pravila ponašanja</h2>
-    <app-edit-rules [rules]='ship.rules'></app-edit-rules>
-  </div>
-
-  <div class="info-block">
-    <h2>Pecaroška oprema</h2>
-    <app-edit-fishing-equipment [fishs]='ship.fishingEquipments'></app-edit-fishing-equipment>
-  </div>
-
-  <label>Uslov otkaza: </label>
-  <input formControlName="cancelRate" required>
-
-  <div class='info-block' formGroupName='availabilityPeriod'>
-    <label>Availabilty Period: </label>
-    <input formControlName='startDate' type='date'>
-    <input formControlName='endDate' type='date'>
-  </div>
-
-  <div class="info-block">
-    <h2>Brze rezervacije</h2>
-    <app-edit-super-deal [superDeals]='ship.shipSuperDeals'></app-edit-super-deal>
-  </div> 
-
-  <div class="info-block">
-    <h2>Dodatne usluge</h2>
-    <app-edit-options [options]='ship.shipOptions'></app-edit-options>
-  </div>
-
-  <!-- <div class="info-block">
-    <h2>Slike</h2>
-    <app-edit-image [images]="ship.shipPictures"></app-edit-image>
-  </div> -->
+    <label>Ime: </label>
+    <input formControlName="name" required>
   
-  <button color="primary" (click)='cancelChanges()'>Cancel</button>
-  <button color="primary" type="submit" (onSubmit)="onSubmit()" [disabled]="!form.valid">Submit</button>
-</form>
+    <div class="info-block" formGroupName="address">
+      <p id='title'>Adresa: </p>
+      <label>Country: </label>
+      <input formControlName="country">
+      <label>City: </label>
+      <input formControlName="city">
+      <label>Street: </label>
+      <input formControlName="street">
+      <label>Number: </label>
+      <input formControlName="number">
+    </div>
+  
+    <label>Opis: </label>
+    <input formControlName="description">
+  
+    <label>Tip: </label>
+    <select formControlName="type" name="type" id="type">
+      <option value="camac">Čamac</option>
+      <option value="jahta">Jahta</option>
+      <option value="korveta">Korveta</option>
+      <option value="ledolomac">Ledolomac</option>
+    </select>
+  
+    <label>Dužina: </label>
+    <input formControlName="length" required>
+  
+    <label>Broj motora: </label>
+    <input formControlName="engineNumber" required>
+  
+    <label>Snaga motora: </label>
+    <input formControlName="enginePower" required>
+  
+    <label>Maksimalna brzina: </label>
+    <input formControlName="maxSpeed" required>
+  
+    <div class="info-block">
+      <h2>Navigaciona oprema</h2>
+      <app-edit-navigation-equipment [navs]='ship.navigationEquipments'></app-edit-navigation-equipment>
+    </div>
+  
+    <label>Kapacitet: </label>
+    <input formControlName="capacity" required>
+  
+    <label>Cena: </label>
+    <input formControlName="rentPrice" required>
+  
+    <div class="info-block">
+      <h2>Pravila ponašanja</h2>
+      <app-edit-rules [rules]='ship.rules'></app-edit-rules>
+    </div>
+  
+    <div class="info-block">
+      <h2>Pecaroška oprema</h2>
+      <app-edit-fishing-equipment [fishs]='ship.fishingEquipments'></app-edit-fishing-equipment>
+    </div>
+  
+    <label>Uslov otkaza: </label>
+    <input formControlName="cancelRate" required>
+  
+    <div class='info-block' formGroupName='availabilityPeriod'>
+      <label>Availabilty Period: </label>
+      <input formControlName='startDate' type='date'>
+      <input formControlName='endDate' type='date'>
+    </div>
+  
+    <div class="info-block">
+      <h2>Brze rezervacije</h2>
+      <app-edit-super-deal [superDeals]='ship.shipSuperDeals'></app-edit-super-deal>
+    </div> 
+  
+    <div class="info-block">
+      <h2>Dodatne usluge</h2>
+      <app-edit-options [options]='ship.shipOptions'></app-edit-options>
+    </div>
+  
+    <!-- <div class="info-block">
+      <h2>Slike</h2>
+      <app-edit-image [images]="ship.shipPictures"></app-edit-image>
+    </div> -->
+    
+    <button color="primary" (click)='cancelChanges()'>Cancel</button>
+    <button color="primary" type="submit" (onSubmit)="onSubmit()" [disabled]="!form.valid">Submit</button>
+  </form>

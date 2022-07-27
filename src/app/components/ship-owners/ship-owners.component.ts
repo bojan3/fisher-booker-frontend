@@ -10,16 +10,17 @@ import { ShipOwnerService } from 'src/app/services/ship-owner.service';
 })
 export class ShipOwnersComponent implements OnInit {
 
-  constructor(private ShipOwnerService : ShipOwnerService) { }
-  shipowners: ShipOwner[]=[];
+  constructor(private ShipOwnerService: ShipOwnerService) { }
+  shipowners: ShipOwner[] = [];
 
   ngOnInit(): void {
     this.ShipOwnerService.getAllShipOwners().subscribe((shipowners) => {
-      
+
       this.shipowners = shipowners
-    console.log(this.shipowners);
+      console.log(this.shipowners);
     });
 
-  }}
+  }
+}
 
 

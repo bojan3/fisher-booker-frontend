@@ -11,20 +11,20 @@ export class ShipOwnerComponent implements OnInit {
 
 
   @Input()
-  shipowner!:ShipOwner
+  shipowner!: ShipOwner
 
-  constructor(private ship_owner_service : ShipOwnerService) { }
+  constructor(private ship_owner_service: ShipOwnerService) { }
 
   ngOnInit(): void {
   }
 
 
-  viewDetails(id:any):void{
+  viewDetails(id: any): void {
     this.ship_owner_service.details(id).subscribe();
     window.location.reload()
-   }
-  
-  delete(id:number):void{
+  }
+
+  delete(id: number): void {
     this.ship_owner_service.delete(id).subscribe();
     window.location.reload()
   }
