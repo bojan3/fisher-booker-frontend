@@ -40,9 +40,9 @@ export class AddCottageComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if (this.accountService.currentUser.role != 'ROLE_COTTAGE_OWNER') {
-      this.authService.logout();
-    }
+    // if (this.accountService.currentUser.role != 'ROLE_COTTAGE_OWNER') {
+    //   this.authService.logout();
+    // }
 
     this.route.queryParams
       .subscribe(params => {
@@ -76,7 +76,7 @@ export class AddCottageComponent implements OnInit {
     this.cottage.rooms = this.editRoomsComponent.form.value.rooms;
     this.cottage.rules = this.editRulesComponent.form.value.rules;
     this.cottage.cottageOptions = this.editOptionsComponent.form.value.options;
-    //this.cottage.availabilityPeriods = this.
+    this.cottage.availabilityPeriods = this.editAvailabilityPeriodsComponent.form.value.periods;
   }
 
   buildForm() {

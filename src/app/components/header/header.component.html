@@ -1,84 +1,80 @@
 <div class="header">
-    <a (click)="openUsersPage()">
+  <a (click)="openUsersPage()">
     <img class="hover-cursor" src="../../../assets/images/anchor.png">
   </a>
   <a (click)="openUsersPage()">
     <p class="hover-cursor">Fisher booker</p>
   </a>
-    <div *ngIf=!isUserLogged() class="buttons">
-        <button [routerLink] = "['signUp']">Sign in</button>
-        <button [routerLink] = "['logIn']">Log in</button>
-    </div>
-    <!-- <div *ngIf=isUserLogged() class="buttons">
-        <button>Profile</button>
-        <button (click)="logout()">Log out</button>
-    </div> -->
+  <div *ngIf=!isUserLogged() class="buttons">
+    <button [routerLink]="['signUp']">Sign in</button>
+    <button [routerLink]="['logIn']">Log in</button>
+  </div>
 
-    <!-- CLIENT DROPMENU -->
-    <div *ngIf=isUserClient() class="wrapper">
-      <ul>
-        <li>menu
-          <ul>
-            <li (click)="openProfile()">Main page</li>
-            <li [routerLink]="['account-info']">Profile</li>
-            <li [routerLink]="['account-info-edit']">Edit Profile</li>
-            <li (click)="logout()">Log out</li>
-          </ul>
-          </li>
-      </ul>
-    </div>
+  <!-- CLIENT DROPMENU -->
+  <div *ngIf=isUserClient() class="wrapper">
+    <ul>
+      <li>menu
+        <ul>
+          <li (click)="openProfile()">Main page</li>
+          <li [routerLink]="['account-info']">Profile</li>
+          <li [routerLink]="['account-info-edit']">Edit Profile</li>
+          <li (click)="logout()">Log out</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
 
-    <!-- SHIP OWNWER DROPMENU -->
-    <div *ngIf=isUserShipOwner() class="wrapper">
-      <ul>
-        <li>menu
-          <ul>
-            <li (click)="openProfile()">Profile</li>
-            <li [routerLink]="['account-info-edit']">Edit Profile</li>
-            <li (click)="logout()">Log out</li>
-          </ul>
-          </li>
-      </ul>
-    </div>
-    <!-- COTTAGE OWNER DROPMENU -->
-    <div *ngIf=isUserCottageOwner() class="wrapper">
-      <ul>
-        <li>menu
-          <ul>
-            <li (click)="openProfile()">Profile</li>
-            <li [routerLink]="['add_cottage']">Add cottage</li>
-            <li [routerLink]="['account-info-edit']">Edit Profile</li>
-            <li (click)="logout()">Log out</li>
-          </ul>
-          </li>
-      </ul>
-    </div>
+  <!-- SHIP OWNWER DROPMENU -->
+  <div *ngIf=isUserShipOwner() class="wrapper">
+    <ul>
+      <li>menu
+        <ul>
+          <li (click)="openProfile()">Profile</li>
+          <li [routerLink]="['add_ship']">Add ship</li>
+          <li [routerLink]="['account-info-edit']">Edit Profile</li>
+          <li (click)="logout()">Log out</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
 
-    <!-- ADMIN DROPMENU -->
-    <div *ngIf=isUserAdmin() class="wrapper">
-      <ul>
-        <li>menu
-          <ul>
-            <li (click)="openProfile()">Profile</li>
-            <li [routerLink]="['account-info-edit']">Edit Profile</li>
-            <li (click)="logout()">Log out</li>
-          </ul>
-          </li>
-      </ul>
-    </div>
+  <!-- COTTAGE OWNER DROPMENU -->
+  <div *ngIf=isUserCottageOwner() class="wrapper">
+    <ul>
+      <li>menu
+        <ul>
+          <li (click)="openProfile()">Profile</li>
+          <li [routerLink]="['add_cottage']">Add cottage</li>
+          <li [routerLink]="['account-info-edit']">Edit Profile</li>
+          <li (click)="logout()">Log out</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
 
-    <!-- FISHING INSTUCTOR DROPMENU -->
-    <div *ngIf=isUserFishingInstructor() class="wrapper">
-      <ul>
-        <li>menu
-          <ul>
-            <li (click)="openProfile()">Profile</li>
-            <li [routerLink]="['account-info-edit']">Edit Profile</li>
-            <li (click)="logout()">Log out</li>
-          </ul>
-          </li>
-      </ul>
-    </div>
+  <!-- ADMIN DROPMENU -->
+  <div *ngIf=isUserAdmin() class="wrapper">
+    <ul>
+      <li>menu
+        <ul>
+          <li (click)="openProfile()">Profile</li>
+          <li [routerLink]="['account-info-edit']">Edit Profile</li>
+          <li (click)="logout()">Log out</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <!-- FISHING INSTUCTOR DROPMENU -->
+  <div *ngIf=isUserFishingInstructor() class="wrapper">
+    <ul>
+      <li>menu
+        <ul>
+          <li (click)="openProfile()">Profile</li>
+          <li [routerLink]="['account-info-edit']">Edit Profile</li>
+          <li (click)="logout()">Log out</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
 </div>
-
-

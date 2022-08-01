@@ -62,27 +62,16 @@
   <label>Uslov otkaza: </label>
   <input formControlName="cancelRate" required>
 
-  <div class='info-block' formGroupName='availabilityPeriod'>
-    <label>Availabilty Period: </label>
-    <input formControlName='startDate' type='date'>
-    <input formControlName='endDate' type='date'>
+  <div class='info-block'>
+    <h2>Periodi dostupnosti: </h2>
+    <app-edit-availability-periods [periods]="ship.availabilityPeriods"></app-edit-availability-periods>
   </div>
-
-  <div class="info-block">
-    <h2>Brze rezervacije</h2>
-    <app-edit-super-deal [superDeals]='ship.shipSuperDeals'></app-edit-super-deal>
-  </div> 
 
   <div class="info-block">
     <h2>Dodatne usluge</h2>
     <app-edit-options [options]='ship.shipOptions'></app-edit-options>
   </div>
-
-  <!-- <div class="info-block">
-    <h2>Slike</h2>
-    <app-edit-image [images]="ship.shipPictures"></app-edit-image>
-  </div> -->
   
-  <button color="primary" (click)='cancelChanges()'>Cancel</button>
-  <button color="primary" type="submit" (onSubmit)="onSubmit()" [disabled]="!form.valid">Submit</button>
+  <button color="primary" (click)='cancelChanges()'>Otkaži</button>
+  <button color="primary" type="submit" (onSubmit)="onSubmit()" [disabled]="!form.valid">Sačuvaj</button>
 </form>

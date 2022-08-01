@@ -1,41 +1,40 @@
-.header{
-    border: 2px solid black;
-    margin: 0px;
-    width: 100%;
-    text-align: center;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.header {
+  border: 2px solid black;
+  margin: 0px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-img{
-    width: 75px;
-    margin: 2px;
+img {
+  width: 75px;
+  margin: 2px;
 }
 
-.buttons{
-    margin-right: 15px;
+.buttons {
+  margin-right: 15px;
 }
 
-p{
-    font-size: 30px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    letter-spacing: 20px;
-    margin: 0px;
+p {
+  font-size: 30px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  letter-spacing: 20px;
+  margin: 0px;
 }
 
-
-.wrapper{
+.wrapper {
   /* width: 100px; */
-  }
+}
 
-.wrapper ul{
+.wrapper ul {
   list-style: none;
 }
 
 .wrapper ul li {
   background: black;
-  width: 80px;
+  width: 100px;
   height: 50px;
   line-height: 50px;
   text-align: center;
@@ -47,19 +46,19 @@ p{
   font-weight: bold;
 }
 
-.wrapper ul li:hover{
+.wrapper ul li:hover {
   background: grey;
 }
 
-.wrapper ul ul{
+.wrapper ul ul {
   display: none;
 }
 
-.wrapper ul li:hover > ul{
+.wrapper ul li:hover>ul {
   display: block;
   cursor: pointer;
 }
 
-.hover-cursor:hover{
+.hover-cursor:hover {
   cursor: pointer;
 }

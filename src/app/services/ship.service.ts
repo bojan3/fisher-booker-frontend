@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AddShipDTO } from '../entity/DTO/AddShipDTO';
 import { ShipDTO } from '../entity/DTO/ShipDTO';
 import { Ship } from '../entity/Ship';
 import { ApiService } from './api.service';
@@ -12,9 +13,8 @@ export class ShipService {
 
   constructor(private http: HttpClient, private apiService: ApiService) { }
 
-  save(ship: Ship): Observable<boolean>{
+  save(ship: AddShipDTO): Observable<boolean>{
     console.log(ship);
-    
     return this.apiService.post('http://localhost:8081/api/ship/save', ship);
   }
 
