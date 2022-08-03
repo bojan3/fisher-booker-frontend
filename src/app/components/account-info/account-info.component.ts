@@ -1,7 +1,10 @@
+ 
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Account } from 'src/app/entity/Account';
 import { AccountService } from 'src/app/services/account.service';
+import { StatusName} from 'src/app/entity/StatusName';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-account-info',
@@ -11,18 +14,57 @@ import { AccountService } from 'src/app/services/account.service';
 export class AccountInfoComponent implements OnInit {
 
   account!: Account;
-  form!: UntypedFormGroup;
+  form!: FormGroup;
   editMode: boolean = false;
   showTable: boolean =  false;
+  isREGULAR: boolean = false;
+  isBRONZE: boolean = false;
+  isSILVER: boolean = false;
+  isGOLD: boolean = false;
+  isDIAMOND: boolean = false;
 
   constructor(private accountService: AccountService,
-     private formBuilder: UntypedFormBuilder) { }
+     private formBuilder: FormBuilder) {
+      this.accountService.getMyInfo().subscribe((account) =>{
+        this.account = account;
+      //  console.log(account.status);
+    
+        if (this.account.status.name.toString()=="DIAMOND")
+          this.isDIAMOND=true;
+        if (this.account.status.name.toString()=="GOLD")
+          this.isGOLD=true;
+        if (this.account.status.name.toString()=="SILVER")
+          this.isSILVER=true;
+        if (this.account.status.name.toString()=="BRONZE")
+          this.isBRONZE=true;
+        if (this.account.status.name.toString()=="REGULAR")
+          this.isREGULAR=true;
+    
+      });
+
+      }
 
   ngOnInit(): void {
-    this.accountService.getMyInfo().subscribe((account) => {
-      this.account = account;
-      this.showTable = true;
-    });
+   
+      
+     // (async () => { 
+        this.accountService.getMyInfo().subscribe((account) => {
+          this.account = account;
+          this.showTable = true;
+          console.log(account.status);
+          if (this.account.status.name==StatusName.DIAMOND)
+            this.isDIAMOND=true;
+            console.log(this.isDIAMOND);
+
+        });
+
+    console.log(this.isREGULAR);
+    console.log(this.isBRONZE);
+    console.log(this.isSILVER);
+    console.log(this.isGOLD);
+    console.log(this.isDIAMOND);
+
+   
     this.form = this.formBuilder.group({
       username: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(64)])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])],
@@ -41,6 +83,24 @@ export class AccountInfoComponent implements OnInit {
 
   showForm(){
     this.editMode = true;
+//    if (this.account.status.name==StatusName.REGULAR)
+//        this.isREGULAR=true;
+//  if (this.account.status.name===StatusName.BRONZE)
+//    this.isBRONZE=true;
+//  if (this.account.status.name===StatusName.SILVER)
+//   this.isSILVER=true;
+//  if (this.account.status.name===StatusName.GOLD)
+//   this.isGOLD=true;
+//  if (this.account.status.name==StatusName.DIAMOND)
+//   this.isDIAMOND=true;
+//
+//   console.log(this.isREGULAR)
+//    console.log(this.isBRONZE)
+//    console.log(this.isSILVER)
+//    console.log(this.isGOLD)
+//    console.log(this.isDIAMOND)
+
+
   }
 
   hideForm(){

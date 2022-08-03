@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -50,7 +50,6 @@ import { CottageOwnerService } from './services/cottage-owner.service';
 import { AccountRequestComponent } from './components/account-request/account-request.component';
 import { AccountRequestsComponent } from './components/account-requests/account-requests.component';
 import { NewAdminComponent } from './components/new-admin/new-admin.component';
-
 import { AccountInfoEditComponent } from './components/account-info-edit/account-info-edit.component';
 import { EditRoomsComponent } from './components/edit-rooms/edit-rooms.component';
 import { EditRulesComponent } from './components/edit-rules/edit-rules.component';
@@ -74,6 +73,8 @@ import { EditImageComponent } from './components/edit-image/edit-image.component
 import { ImagesOfEntitiesComponent } from './components/images-of-entities/images-of-entities.component';
 import { AddCottageComponent } from './components/add-cottage/add-cottage.component';
 import { CottageComplaintComponent } from './components/cottage-complaint/cottage-complaint.component';
+import { DeleteaccountComponent } from './components/deleteaccount/deleteaccount.component';
+import { DeleteaccountsComponent } from './components/deleteaccounts/deleteaccounts.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -105,7 +106,7 @@ const appRoutes: Routes = [
   { path: 'admin_profile/instructors', component: FishingInstructorsComponent},
   { path: 'admin_profile/clients', component: ClientsComponent},
   { path: 'admin_profile/requests', component: RequestsComponent},
-
+  { path: 'admin_profile/deleteaccounts', component: DeleteaccountsComponent},
 
   { path: 'account-info', component: AccountInfoComponent},
   { path: 'account-info-edit', component: AccountInfoEditComponent},
@@ -187,7 +188,9 @@ const mapConfig: YaConfig = {
     AdventureReservationComponent,
     MapsComponent,
     EditImageComponent,
-    CottageComplaintComponent
+    CottageComplaintComponent,
+    DeleteaccountComponent,
+    DeleteaccountsComponent
   ],
   imports: [
     [AngularYandexMapsModule.forRoot(mapConfig)],

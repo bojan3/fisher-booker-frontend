@@ -1,11 +1,11 @@
 <section class='requests'>
 
-  <h3>{{request.username}}</h3> 
+  <h3>{{request.username}}</h3>
    
    <p> id naloga: {{request.id}}</p>>
    <p>ime: {{request.name}}</p>
    <p>prezime: {{request.lastName}}</p>
-   <p>korisincko ime: {{request.username}</p>
+   <p>korisincko ime: {{request.username}}</p>
    <p>lozinka: {{request.password}}</p>
    <p>email: {{request.email}}</p>
    <p>zatrazena uloga: {{request.role}} </p>>
@@ -17,7 +17,4 @@
   <p align="right">
 <button  (click) = "verify(request.id)">potvrdi</button>
 <button  (click) = "delete(request.id)">obrisi</button>
-
-
-<!--<button id=ship.id (click)="ngOnButtonClick(ship.id)" >delete</button> -->
 </p>
