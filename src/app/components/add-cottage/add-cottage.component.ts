@@ -6,6 +6,7 @@ import { AccountService } from 'src/app/services/account.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { CottageService } from 'src/app/services/cottage.service';
 import { EditAvailabilityPeriodsComponent } from '../edit-availability-periods/edit-availability-periods.component';
+import { EditImageComponent } from '../edit-image/edit-image.component';
 import { EditOptionsComponent } from '../edit-options/edit-options.component';
 import { EditRoomsComponent } from '../edit-rooms/edit-rooms.component';
 import { EditRulesComponent } from '../edit-rules/edit-rules.component';
@@ -31,6 +32,8 @@ export class AddCottageComponent implements OnInit {
   editOptionsComponent!: EditOptionsComponent;
   @ViewChild(EditAvailabilityPeriodsComponent)
   editAvailabilityPeriodsComponent!: EditAvailabilityPeriodsComponent;
+  @ViewChild(EditImageComponent)
+  editImageComponent!: EditImageComponent;
 
   constructor(private route: ActivatedRoute,
     private formBuilder: UntypedFormBuilder,
@@ -50,7 +53,7 @@ export class AddCottageComponent implements OnInit {
           this.cottageService.getById(params.id).subscribe((cottage) => {
             console.log(cottage);
             this.buildForm();
-            this.cottage = cottage;
+            //this.cottage = cottage;
             this.showForm = true;
           });
         } else {
@@ -61,11 +64,14 @@ export class AddCottageComponent implements OnInit {
   }
 
   onSubmit() {
-    this.formCottage()
-    this.cottageService.saveCottage(this.cottage).subscribe((res) => {
+    // this.formCottage()
+    // this.cottageService.saveCottage(this.editImageComponent.image, this.cottage).subscribe((res) => {
+    //   console.log(res);
+    // })
+    console.log(this.cottage);
+    this.cottageService.uploadImage(this.cottage, this.editImageComponent.image).subscribe((res) => {
       console.log(res);
     })
-    console.log(this.cottage);
   }
 
   formCottage() {
@@ -77,6 +83,7 @@ export class AddCottageComponent implements OnInit {
     this.cottage.rules = this.editRulesComponent.form.value.rules;
     this.cottage.cottageOptions = this.editOptionsComponent.form.value.options;
     this.cottage.availabilityPeriods = this.editAvailabilityPeriodsComponent.form.value.periods;
+    this.cottage.imageName = this.editImageComponent.image.name;
   }
 
   buildForm() {

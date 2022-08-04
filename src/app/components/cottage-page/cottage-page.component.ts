@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Cottage } from 'src/app/entity/Cottage';
 import { CottageService } from 'src/app/services/cottage.service';
+import { EditSuperDealComponent } from '../edit-super-deal/edit-super-deal.component';
 
 @Component({
   selector: 'app-cottage-page',
@@ -13,8 +15,9 @@ export class CottagePageComponent implements OnInit {
   id: string = '';
   cottage!: Cottage;
   cottageIsPresent = false;
+  ownership: boolean = false;
 
-  constructor(private route: ActivatedRoute, private cottageService: CottageService) { }
+  constructor(private route: ActivatedRoute, private cottageService: CottageService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((param) => {
@@ -24,6 +27,9 @@ export class CottagePageComponent implements OnInit {
         console.log(cottage);
         this.cottageIsPresent = true;
       });
+      this.cottageService.checkCottageOwnersip(this.id).subscribe((res) => {
+        this.ownership = res;
+      })
     })
   }
 
@@ -62,6 +68,10 @@ export class CottagePageComponent implements OnInit {
 
   removeLastCommaAndSpace(string: string) {
     return string.slice(0, string.length - 2);
+  }
+
+  openAddSupeDealDialog() {
+    this.dialog.open(EditSuperDealComponent, {data: {realEstateId: this.cottage.id}})
   }
 
 }

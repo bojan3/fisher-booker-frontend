@@ -1,6 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { UntypedFormGroup, UntypedFormArray, UntypedFormBuilder, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AddSuperDealDTO } from 'src/app/entity/DTO/AddSupeDealDTO';
 import { SuperDeal } from 'src/app/entity/SuperDeal';
+import { CottageService } from 'src/app/services/cottage.service';
+
+export interface SomeData {
+  realEstateId: string
+}
 
 @Component({
   selector: 'app-edit-super-deal',
@@ -10,47 +17,35 @@ import { SuperDeal } from 'src/app/entity/SuperDeal';
 export class EditSuperDealComponent implements OnInit {
 
   @Input()
-  superDeals!: SuperDeal[];
+  superDeal: SuperDeal = new SuperDeal();
+  realEstateId: string = '';
 
   form!: UntypedFormGroup;
   superDealsForm!: UntypedFormArray;
 
-  constructor(private formBuilder: UntypedFormBuilder) { }
+  constructor(private formBuilder: UntypedFormBuilder, private cottageService: CottageService,
+    @Inject(MAT_DIALOG_DATA) public data: SomeData) {
+    this.realEstateId = data.realEstateId;
+    console.log(this.realEstateId);
+  }
 
   ngOnInit(): void {
+    this.createSuperDeal();
+  }
+
+  createSuperDeal() {
     this.form = this.formBuilder.group({
-      superDeals: this.formBuilder.array( this.createSuperDeals() )
+      id: [this.superDeal.id],
+      startDate: [this.superDeal.startDate, Validators.compose([Validators.required])],
+      endDate: [this.superDeal.endDate, Validators.compose([Validators.required])],
+      discountedPrice: [this.superDeal.discountedPrice, Validators.compose([Validators.required])],
+      capacity: [this.superDeal.capacity, Validators.compose([Validators.required])]
     });
   }
 
-  createSuperDeals(){
-    let formatted: UntypedFormGroup[] = [];
-    this.superDeals.forEach((superDeal) => {
-      formatted.push(this.createSuperDeal(superDeal.id, superDeal.startDate, superDeal.endDate, superDeal.discountedPrice, superDeal.capacity));
-    })
-    return formatted;
-  }
-
-  createSuperDeal(defaultId: number, defaultStartDate: Date, defaultEndDate: Date, defaultPrice: number, defaultCapacity: number): UntypedFormGroup {
-    return this.formBuilder.group({
-      id: [defaultId],
-      startDate: [defaultStartDate, Validators.compose([Validators.required])],
-      endDate: [defaultEndDate, Validators.compose([Validators.required])],
-      discountedPrice: [defaultPrice, Validators.compose([Validators.required])],
-      capacity: [defaultCapacity, Validators.compose([Validators.required])]
-    });
-  }
-
-  addSuperDeal(): void {
-    this.superDealsForm = this.form.get('superDeals') as UntypedFormArray;
-    this.superDealsForm.push(this.createSuperDeal(0, new Date(), new Date(), 0, 0));
-    this.superDeals.push(new SuperDeal(0, new Date(), 0, new Date(), 0));
-  }
-
-  removeSuperDeal(i: number): void{
-    this.superDealsForm = this.form.get('superDeals') as UntypedFormArray;
-    this.superDealsForm.removeAt(i);
-    this.superDeals = this.superDeals.filter((superDeal, index) => index != i)
+  submit() {
+    var newDeal = new AddSuperDealDTO(this.form.value.id, this.form.value.startDate,
+      this.form.value.discountedPrice, this.form.value.endDate, this.form.value.capacity, this.realEstateId);
   }
 
 }

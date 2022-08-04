@@ -67,6 +67,7 @@ import { AdventureReservationsComponent } from './components/adventure-reservati
 import { AdventureReservationComponent } from './components/adventure-reservation/adventure-reservation.component';
 import { CottageComplaintComponent } from './components/cottage-complaint/cottage-complaint.component';
 import { EditAvailabilityPeriodsComponent } from './components/edit-availability-periods/edit-availability-periods.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -77,37 +78,37 @@ const appRoutes: Routes = [
   { path: 'adventures', component: AdventuresComponent },
   { path: 'fishing-instructors', component: FishingInstructorsComponent },
   { path: 'client_profile/fishing-instructors', component: FishingInstructorsComponent },
-//  { path: 'cottage_owners', component: CottageOwnersComponent },
- // { path: 'ship_owners', component: ShipOwnersComponent },
+  //  { path: 'cottage_owners', component: CottageOwnersComponent },
+  // { path: 'ship_owners', component: ShipOwnersComponent },
   { path: 'clients', component: ClientsComponent },
   { path: 'client_profile/adventures', component: AdventuresComponent },
   { path: 'logIn', component: LogInComponent },
   { path: 'signUp', component: SignUpComponent },
-  { path: 'cottage_owner_profile', component: CottageOwnerPageComponent},
-  { path: 'ship_owner_profile', component: ShipOwnerPageComponent},
-  { path: 'admin_profile', component: AdminPageComponent},
-  { path: 'client_profile', component: ClientPageComponent},
-  { path: 'instructor_profile', component: InstructorPageComponent},
+  { path: 'cottage_owner_profile', component: CottageOwnerPageComponent },
+  { path: 'ship_owner_profile', component: ShipOwnerPageComponent },
+  { path: 'admin_profile', component: AdminPageComponent },
+  { path: 'client_profile', component: ClientPageComponent },
+  { path: 'instructor_profile', component: InstructorPageComponent },
   { path: 'cottage/:id', component: CottagePageComponent },
   { path: 'ship/:id', component: ShipPageComponent },
   { path: 'add_cottage', component: AddCottageComponent },
   { path: 'add_ship', component: AddShipComponent },
-  { path: 'admin_profile/cottages', component: CottagesComponent},
-  { path: 'admin_profile/cottage_owners', component: CottageOwnersComponent},
-  { path: 'admin_profile/ships', component: ShipsComponent},
-  { path: 'admin_profile/ship_owners', component: ShipOwnersComponent},
-  { path: 'admin_profile/adventures', component: AdventuresComponent},
-  { path: 'admin_profile/instructors', component: FishingInstructorsComponent},
-  { path: 'admin_profile/clients', component: ClientsComponent},
-  { path: 'account-info', component: AccountInfoComponent},
-  { path: 'account-info-edit', component: AccountInfoEditComponent},
-  { path: 'register/verify/:token', component: VerifyAccountComponent},
-  { path: 'instructor-adventures/:instructorId', component: InstructorAdventuresComponent},
-  { path: 'client_profile/cottage-reservations', component: CottageReservationsComponent},
-  { path: 'client_profile/adventure-reservations', component: AdventureReservationsComponent},
-  { path: 'client_profile/ship-reservations', component: ShipReservationsComponent},
-  { path: 'client_profile/cottage-complaint/:cottageId', component: CottageComplaintComponent},
-  { path: 'cottage-complaint/:cottageId', component: CottageComplaintComponent}
+  { path: 'admin_profile/cottages', component: CottagesComponent },
+  { path: 'admin_profile/cottage_owners', component: CottageOwnersComponent },
+  { path: 'admin_profile/ships', component: ShipsComponent },
+  { path: 'admin_profile/ship_owners', component: ShipOwnersComponent },
+  { path: 'admin_profile/adventures', component: AdventuresComponent },
+  { path: 'admin_profile/instructors', component: FishingInstructorsComponent },
+  { path: 'admin_profile/clients', component: ClientsComponent },
+  { path: 'account-info', component: AccountInfoComponent },
+  { path: 'account-info-edit', component: AccountInfoEditComponent },
+  { path: 'register/verify/:token', component: VerifyAccountComponent },
+  { path: 'instructor-adventures/:instructorId', component: InstructorAdventuresComponent },
+  { path: 'client_profile/cottage-reservations', component: CottageReservationsComponent },
+  { path: 'client_profile/adventure-reservations', component: AdventureReservationsComponent },
+  { path: 'client_profile/ship-reservations', component: ShipReservationsComponent },
+  { path: 'client_profile/cottage-complaint/:cottageId', component: CottageComplaintComponent },
+  { path: 'cottage-complaint/:cottageId', component: CottageComplaintComponent }
 
 ];
 
@@ -181,7 +182,8 @@ const mapConfig: YaConfig = {
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule
   ],
   providers: [
     {

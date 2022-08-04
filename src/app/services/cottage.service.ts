@@ -5,6 +5,7 @@ import { CottageDTO } from '../entity/DTO/CottageDTO';
 import { ApiService } from './api.service';
 import { Cottage } from '../entity/Cottage';
 import { AddCottageDTO } from '../entity/DTO/AddCottageDTO';
+import { AddSuperDealDTO } from '../entity/DTO/AddSupeDealDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -13,40 +14,62 @@ export class CottageService {
 
   constructor(private http: HttpClient, private apiService: ApiService) { }
 
-  getAllCottages(): Observable<CottageDTO[]>{
+  getAllCottages(): Observable<CottageDTO[]> {
     return this.http.get<CottageDTO[]>('http://localhost:8081/api/cottage/all');
   }
 
-  getById(id: string): Observable<Cottage>{
-    return this.apiService.get('http://localhost:8081/api/cottage/page/'+id);
+  getById(id: string): Observable<Cottage> {
+    return this.apiService.get('http://localhost:8081/api/cottage/page/' + id);
   }
 
-  getAllCottagesByName(): Observable<Cottage[]>{
+  getAllCottagesByName(): Observable<Cottage[]> {
     return this.http.get<Cottage[]>('http://localhost:8081/api/cottage/all/name');
   }
 
-  getAllCottagesByPrice(): Observable<Cottage[]>{
+  getAllCottagesByPrice(): Observable<Cottage[]> {
     return this.http.get<Cottage[]>('http://localhost:8081/api/cottage/all/price');
   }
 
-  getAllCottagesByOwner(): Observable<CottageDTO[]>{
+  getAllCottagesByOwner(): Observable<CottageDTO[]> {
     return this.http.get<CottageDTO[]>('http://localhost:8081/api/cottageOwner/allCottagesByOwner');
   }
 
-  getAllCottagesByRating(): Observable<Cottage[]>{
+  getAllCottagesByRating(): Observable<Cottage[]> {
     return this.http.get<Cottage[]>('http://localhost:8081/api/cottage/all/rate');
   }
 
-  saveCottage(cottage: AddCottageDTO): Observable<boolean>{
-    return this.http.post<boolean>('http://localhost:8081/api/cottage/save', cottage);
+  saveCottage(cottage: AddCottageDTO, image: File): Observable<boolean> {
+    const uploadData = new FormData();
+    console.log(image);
+
+    uploadData.append('image', image, image.name);
+    uploadData.append('cottage', JSON.stringify(cottage));
+    return this.http.post<boolean>('http://localhost:8081/api/cottage/save', uploadData);
   }
 
-  deleteCottage(id: number): Observable<CottageDTO>{
+  deleteCottage(id: number): Observable<CottageDTO> {
     return this.apiService.delete('http://localhost:8081/api/cottage/delete/owner/' + id);
   }
 
-  getByDate(date: Date): Observable<CottageDTO[]>{
+  getByDate(date: Date): Observable<CottageDTO[]> {
     console.log(date);
     return this.apiService.get('http://localhost:8081/api/cottage/all/date/' + date);
+  }
+
+  uploadImage(cottage: AddCottageDTO, image: File): Observable<boolean> {
+    const uploadData = new FormData();
+    console.log(image);
+
+    uploadData.append('image', image, image.name);
+    uploadData.append('cottage', JSON.stringify(cottage));
+    return this.http.post<boolean>('http://localhost:8081/api/cottage/uploadImage', uploadData);
+  }
+
+  checkCottageOwnersip(id: string): Observable<boolean> {
+    return this.http.get<boolean>('http://localhost:8081/api/cottage/ownership/' + id);
+  }
+
+  createSuperDeal(deal: AddSuperDealDTO): Observable<boolean> {
+    return this.http.post<boolean>('http://localhost:8081/api/cottage/addSuperDeal/', deal);
   }
 }
