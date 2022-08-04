@@ -49,8 +49,8 @@
     <!-- <button (click)='showForm()'>Edit profile</button> -->
   </tr>
 </table>
-
-<form *ngIf="editMode" [formGroup]="form">
+<!-- [formGroup]="form" -->
+<form *ngIf="editMode" >
   <table>
     <tr>
       <td>
@@ -130,7 +130,8 @@
       </tr>
     </div>
   </table>
-  <button [disabled]="!form.valid" color="primary" type="submit">Save</button>
+  <!-- [disabled]="!form.valid" -->
+  <button color="primary" type="submit">Save</button>
   <br>
   <button color="primary" (click)='hideForm()'>Cancel</button>
 </form>

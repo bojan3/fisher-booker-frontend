@@ -14,7 +14,7 @@ import { delay } from 'rxjs/operators';
 export class AccountInfoComponent implements OnInit {
 
   account!: Account;
-  form!: FormGroup;
+  // form!: UntypedFormGroup;
   editMode: boolean = false;
   showTable: boolean =  false;
   isREGULAR: boolean = false;
@@ -23,62 +23,27 @@ export class AccountInfoComponent implements OnInit {
   isGOLD: boolean = false;
   isDIAMOND: boolean = false;
 
-  constructor(private accountService: AccountService,
-     private formBuilder: FormBuilder) {
-      this.accountService.getMyInfo().subscribe((account) =>{
-        this.account = account;
-      //  console.log(account.status);
-    
-        if (this.account.status.name.toString()=="DIAMOND")
-          this.isDIAMOND=true;
-        if (this.account.status.name.toString()=="GOLD")
-          this.isGOLD=true;
-        if (this.account.status.name.toString()=="SILVER")
-          this.isSILVER=true;
-        if (this.account.status.name.toString()=="BRONZE")
-          this.isBRONZE=true;
-        if (this.account.status.name.toString()=="REGULAR")
-          this.isREGULAR=true;
-    
-      });
-
-      }
+  constructor(private accountService: AccountService) { }
 
   ngOnInit(): void {
-   
-      
-     // (async () => { 
-        this.accountService.getMyInfo().subscribe((account) => {
-          this.account = account;
-          this.showTable = true;
-          console.log(account.status);
-          if (this.account.status.name==StatusName.DIAMOND)
-            this.isDIAMOND=true;
-            console.log(this.isDIAMOND);
-
-        });
-
-    console.log(this.isREGULAR);
-    console.log(this.isBRONZE);
-    console.log(this.isSILVER);
-    console.log(this.isGOLD);
-    console.log(this.isDIAMOND);
-
-   
-    this.form = this.formBuilder.group({
-      username: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(64)])],
-      password: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])],
-      firstname: [''],
-      lastname: [''],
-      email: [''],
-      phoneNumber: [''],
-      address: this.formBuilder.group({
-        country: [''],
-        city: [''],
-        street: [''],
-        number: ['']
-      }),
+    this.accountService.getMyInfo().subscribe((account) => {
+      this.account = account;
+      this.showTable = true;
     });
+    // this.form = this.formBuilder.group({
+    //   username: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(64)])],
+    //   password: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])],
+    //   firstname: [''],
+    //   lastname: [''],
+    //   email: [''],
+    //   phoneNumber: [''],
+    //   address: this.formBuilder.group({
+    //     country: [''],
+    //     city: [''],
+    //     street: [''],
+    //     number: ['']
+    //   }),
+    // });
   }
 
   showForm(){
