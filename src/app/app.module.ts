@@ -74,6 +74,8 @@ import { EditImageComponent } from './components/edit-image/edit-image.component
 import { ImagesOfEntitiesComponent } from './components/images-of-entities/images-of-entities.component';
 import { AddCottageComponent } from './components/add-cottage/add-cottage.component';
 import { CottageComplaintComponent } from './components/cottage-complaint/cottage-complaint.component';
+import { ShipComplaintComponent } from './components/ship-complaint/ship-complaint.component';
+import { InstructorComplaintComponent } from './components/instructor-complaint/instructor-complaint.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -116,7 +118,11 @@ const appRoutes: Routes = [
   { path: 'client_profile/adventure-reservations', component: AdventureReservationsComponent},
   { path: 'client_profile/ship-reservations', component: ShipReservationsComponent},
   { path: 'client_profile/cottage-complaint/:cottageId', component: CottageComplaintComponent},
-  { path: 'cottage-complaint/:cottageId', component: CottageComplaintComponent}
+  { path: 'cottage-complaint/:cottageId', component: CottageComplaintComponent},
+  { path: 'client_profile/ship-complaint/:shipId', component: ShipComplaintComponent},
+  { path: 'ship-complaint/:shipId', component: ShipComplaintComponent},
+  { path: 'client_profile/insturctor-complaint/:adventureId', component: InstructorComplaintComponent},
+  { path: 'insturctor-complaint/:adventureId', component: InstructorComplaintComponent},
 
 ];
 
@@ -187,7 +193,9 @@ const mapConfig: YaConfig = {
     AdventureReservationComponent,
     MapsComponent,
     EditImageComponent,
-    CottageComplaintComponent
+    CottageComplaintComponent,
+    ShipComplaintComponent,
+    InstructorComplaintComponent
   ],
   imports: [
     [AngularYandexMapsModule.forRoot(mapConfig)],

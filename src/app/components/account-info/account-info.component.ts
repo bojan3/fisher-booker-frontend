@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Account } from 'src/app/entity/Account';
 import { AccountService } from 'src/app/services/account.service';
 
@@ -11,32 +11,31 @@ import { AccountService } from 'src/app/services/account.service';
 export class AccountInfoComponent implements OnInit {
 
   account!: Account;
-  form!: UntypedFormGroup;
+  // form!: UntypedFormGroup;
   editMode: boolean = false;
   showTable: boolean =  false;
 
-  constructor(private accountService: AccountService,
-     private formBuilder: UntypedFormBuilder) { }
+  constructor(private accountService: AccountService) { }
 
   ngOnInit(): void {
     this.accountService.getMyInfo().subscribe((account) => {
       this.account = account;
       this.showTable = true;
     });
-    this.form = this.formBuilder.group({
-      username: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(64)])],
-      password: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])],
-      firstname: [''],
-      lastname: [''],
-      email: [''],
-      phoneNumber: [''],
-      address: this.formBuilder.group({
-        country: [''],
-        city: [''],
-        street: [''],
-        number: ['']
-      }),
-    });
+    // this.form = this.formBuilder.group({
+    //   username: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(64)])],
+    //   password: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])],
+    //   firstname: [''],
+    //   lastname: [''],
+    //   email: [''],
+    //   phoneNumber: [''],
+    //   address: this.formBuilder.group({
+    //     country: [''],
+    //     city: [''],
+    //     street: [''],
+    //     number: ['']
+    //   }),
+    // });
   }
 
   showForm(){

@@ -13,6 +13,9 @@ export class ShipReservationComponent implements OnInit {
   @Input()
   shipReservation!: ShipReservationDTO;
 
+  @Input()
+  forStarted!: boolean;
+
   constructor(
     private accountService: AccountService,
     private clientService: ClientService

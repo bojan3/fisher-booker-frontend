@@ -1,12 +1,12 @@
 <div class="sort" style="display:flex; flex-direction: row; justify-content: center; align-items: left">
     <input type="radio" id="name" name="sortType" value="not started" checked="true" (click)="getNotFinished()">
-    <label for="name">not started</label><br>
+    <label for="name">not finished</label><br>
     <input type="radio" id="price" name="sortType" value="started" (click)="getFinished()">
-    <label for="price">started</label><br>
+    <label for="price">finished</label><br>
   </div>
   
   <section>
-    <app-adventure-reservation
+    <app-adventure-reservation [forStarted]="forStarted"
     *ngFor="let adventureReservation of adventureReservations"
     [adventureReservation]="adventureReservation">
     </app-adventure-reservation>
