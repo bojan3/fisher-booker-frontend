@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormArray, UntypedFormBuilder, Validators } from '@angular/forms';
 import { NavigationEquipment } from 'src/app/entity/NavigationEquipment';
 
 @Component({
@@ -11,10 +11,10 @@ export class EditNavigationEquipmentComponent implements OnInit {
 
   @Input()
   navs!: NavigationEquipment[];
-  form!: FormGroup;
-  navsForm!: FormArray;
+  form!: UntypedFormGroup;
+  navsForm!: UntypedFormArray;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: UntypedFormBuilder) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -23,14 +23,14 @@ export class EditNavigationEquipmentComponent implements OnInit {
   }
 
   createNavs(){
-    let formatted: FormGroup[] = [];
+    let formatted: UntypedFormGroup[] = [];
     this.navs.forEach((nav) => {
       formatted.push(this.createNav(nav.id, nav.name));
     })
     return formatted;
   }
 
-  createNav(defaultId: number, defaultName: string): FormGroup {
+  createNav(defaultId: number, defaultName: string): UntypedFormGroup {
     return this.formBuilder.group({
       id: [defaultId],
       name: [defaultName, Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(50)])],
@@ -38,13 +38,13 @@ export class EditNavigationEquipmentComponent implements OnInit {
   }
 
   addNav(): void {
-    this.navsForm = this.form.get('navs') as FormArray;
+    this.navsForm = this.form.get('navs') as UntypedFormArray;
     this.navsForm.push(this.createNav(0, ''));
     this.navs.push(new NavigationEquipment(0, ''));
   }
 
   removeNav(i: number): void{
-    this.navsForm = this.form.get('navs') as FormArray;
+    this.navsForm = this.form.get('navs') as UntypedFormArray;
     this.navsForm.removeAt(i);
     this.navs = this.navs.filter((nav, index) => index != i)
   }

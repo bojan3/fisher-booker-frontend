@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
-import { Option } from '../../entity/Option';
+import { UntypedFormGroup, UntypedFormArray, UntypedFormBuilder, Validators } from '@angular/forms';
+import { Option } from '../../entity/Option'
 
 @Component({
   selector: 'app-edit-options',
@@ -12,10 +12,10 @@ export class EditOptionsComponent implements OnInit {
   @Input()
   options!: Option[];
 
-  form!: FormGroup;
-  optionsForm!: FormArray;
+  form!: UntypedFormGroup;
+  optionsForm!: UntypedFormArray;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: UntypedFormBuilder) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -24,14 +24,14 @@ export class EditOptionsComponent implements OnInit {
   }
 
   createOptions(){
-    let formatted: FormGroup[] = [];
+    let formatted: UntypedFormGroup[] = [];
     this.options.forEach((option) => {
       formatted.push(this.createOption(option.id, option.name, option.description, option.price));
     })
     return formatted;
   }
 
-  createOption(defaultId: number, defaultName: string, defaultDescription: string, defaultPrice: number): FormGroup {
+  createOption(defaultId: number, defaultName: string, defaultDescription: string, defaultPrice: number): UntypedFormGroup {
     return this.formBuilder.group({
       id: [defaultId],
       name: [defaultName, Validators.compose([Validators.required, Validators.maxLength(20)])],
@@ -41,13 +41,13 @@ export class EditOptionsComponent implements OnInit {
   }
 
   addOption(): void {
-    this.optionsForm = this.form.get('options') as FormArray;
+    this.optionsForm = this.form.get('options') as UntypedFormArray;
     this.optionsForm.push(this.createOption(0, '', '', 0));
     this.options.push(new Option(0, '', '', 0));
   }
 
   removeOption(i: number): void{
-    this.optionsForm = this.form.get('options') as FormArray;
+    this.optionsForm = this.form.get('options') as UntypedFormArray;
     this.optionsForm.removeAt(i);
     this.options = this.options.filter((option, index) => index != i)
   }

@@ -1,30 +1,30 @@
 <form [formGroup]='form'>
-    <div formArrayName="rooms" *ngFor="let room of rooms; let i = index;">
+    <div formArrayName="periods" *ngFor="let period of periods; let i = index;">
         <table>
             <div [formGroupName]='i'>
                 <tr>
                   <td>
-                    <label>Oznaka: </label>
+                    <label>Od: </label>
                   </td>
                   <td>
-                    <input formControlName="label" required>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <label>Broj kreveta: </label>
-                  </td>
-                  <td>
-                    <input formControlName="numOfBeds" required>
+                    <input formControlName="startDate" required type="date">
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <button (click)='removeRoom(i)'>Ukloni sobu</button>
+                    <label>Do: </label>
+                  </td>
+                  <td>
+                    <input formControlName="endDate" type="date">
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <button (click)='removePeriod(i)'>Ukloni period</button>
                   </td>
                 </tr>
               </div>  
         </table>
     </div>
-    <button type="button" (click)="addRoom()">Dodaj sobu</button>
+    <button type="button" (click)="addPeriod()">Dodaj period</button>
 </form>

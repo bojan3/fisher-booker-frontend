@@ -1,8 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Rule } from 'src/app/entity/Rule';
-import { Ship } from 'src/app/entity/Ship';
 import { AccountService } from 'src/app/services/account.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { ShipService } from 'src/app/services/ship.service';
@@ -10,8 +8,11 @@ import { EditFishingEquipmentComponent } from '../edit-fishing-equipment/edit-fi
 import { EditNavigationEquipmentComponent } from '../edit-navigation-equipment/edit-navigation-equipment.component';
 import { EditOptionsComponent } from '../edit-options/edit-options.component';
 import { EditRulesComponent } from '../edit-rules/edit-rules.component';
-import { EditSuperDealComponent } from '../edit-super-deal/edit-super-deal.component';
-import { wholeNumber, decimalNumber } from '../Regex';
+import { wholeNumber } from '../Regex';
+import { decimalNumber } from '../Regex';
+import { Rule } from "../../entity/Rule";
+import { AddShipDTO } from 'src/app/entity/DTO/AddShipDTO';
+import { EditAvailabilityPeriodsComponent } from '../edit-availability-periods/edit-availability-periods.component';
 
 @Component({
   selector: 'app-add-ship',
@@ -21,40 +22,43 @@ import { wholeNumber, decimalNumber } from '../Regex';
 export class AddShipComponent implements OnInit {
 
   @Input()
-  ship!: Ship;
+  ship: AddShipDTO = new AddShipDTO();
   showForm: boolean = false;
-  form!: FormGroup;
+  form!: UntypedFormGroup;
 
   @ViewChild(EditRulesComponent)
   editRulesComponent!: EditRulesComponent;
   @ViewChild(EditOptionsComponent)
   editOptionsComponent!: EditOptionsComponent;
-  @ViewChild(EditSuperDealComponent)
-  editSuperDealComponent!: EditSuperDealComponent;
   @ViewChild(EditNavigationEquipmentComponent)
   editNavigationEquipmentComponent!: EditNavigationEquipmentComponent;
   @ViewChild(EditFishingEquipmentComponent)
   editFishingEquipmentComponent!: EditFishingEquipmentComponent;
+  @ViewChild(EditAvailabilityPeriodsComponent)
+  editAvailabilityPeriodsComponent!: EditAvailabilityPeriodsComponent;
 
   constructor(private route: ActivatedRoute,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private shipService: ShipService,
     private accountService: AccountService,
     private authService: AuthService) { }
 
   ngOnInit(): void {
-    if (this.accountService.currentUser.role != 'ROLE_SHIP_OWNER') {
-      this.authService.logout();
-    }
+    // if (this.accountService.currentUser.role != 'ROLE_SHIP_OWNER') {
+    //   this.authService.logout();
+    // }
 
     this.route.queryParams
       .subscribe(params => {
         if (params.id) {
           this.shipService.getById(params.id).subscribe((ship) => {
-            this.ship = ship;
+            //this.ship = ship;
             this.buildForm()
             this.showForm = true;
           });
+        } else {
+          this.buildForm();
+          this.showForm = true;
         }
       });
   }
@@ -77,10 +81,6 @@ export class AddShipComponent implements OnInit {
       capacity: [this.ship.capacity, Validators.compose([Validators.pattern(wholeNumber)])],
       rentPrice: [this.ship.rentPrice, Validators.compose([Validators.pattern(wholeNumber)])],
       cancelRate: [this.ship.cancelRate, Validators.compose([Validators.pattern(decimalNumber)])],
-      availabilityPeriod: this.formBuilder.group({
-        startDate: [this.ship.availabilityPeriod.startDate],
-        endDate: [this.ship.availabilityPeriod.endDate]
-      })
     })
   }
 
@@ -109,9 +109,9 @@ export class AddShipComponent implements OnInit {
 
     this.ship.rules = this.editRulesComponent.form.value.rules;
     this.ship.shipOptions = this.editOptionsComponent.form.value.options;
-    this.ship.shipSuperDeals = this.editSuperDealComponent.form.value.superDeals;
     this.ship.navigationEquipments = this.editNavigationEquipmentComponent.form.value.navs;
     this.ship.fishingEquipments = this.editFishingEquipmentComponent.form.value.fishs;
+    this.ship.availabilityPeriods = this.editAvailabilityPeriodsComponent.form.value.periods;
   }
 
   convertToRules(fakeRules: any): Rule[]{

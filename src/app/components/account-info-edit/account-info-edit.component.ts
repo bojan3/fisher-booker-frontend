@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Account } from 'src/app/entity/Account';
 import { AccountService } from 'src/app/services/account.service';
@@ -12,12 +12,12 @@ import { AccountService } from 'src/app/services/account.service';
 export class AccountInfoEditComponent implements OnInit {
 
   account !: Account;
-  formDelete!: FormGroup;
+  formDelete!: UntypedFormGroup;
   submitted = false;
   requestSent = false;
 
   constructor(private accountService: AccountService,
-    private router: Router, private formBuilder: FormBuilder,) {}
+    private router: Router, private formBuilder: UntypedFormBuilder,) {}
 
   ngOnInit(): void {
     this.accountService.getMyInfo().subscribe((account: Account) => (this.account = account));

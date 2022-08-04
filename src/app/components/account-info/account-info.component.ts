@@ -1,6 +1,6 @@
  
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Account } from 'src/app/entity/Account';
 import { AccountService } from 'src/app/services/account.service';
 import { StatusName} from 'src/app/entity/StatusName';
@@ -14,7 +14,7 @@ import { delay } from 'rxjs/operators';
 export class AccountInfoComponent implements OnInit {
 
   account!: Account;
-  // form!: UntypedFormGroup;
+  form!: UntypedFormGroup;
   editMode: boolean = false;
   showTable: boolean =  false;
   isREGULAR: boolean = false;
@@ -23,12 +23,44 @@ export class AccountInfoComponent implements OnInit {
   isGOLD: boolean = false;
   isDIAMOND: boolean = false;
 
-  constructor(private accountService: AccountService) { }
+
+  constructor(private accountService: AccountService,
+    private formBuilder: FormBuilder) {
+     this.accountService.getMyInfo().subscribe((account) =>{
+       this.account = account;
+       if (this.account.status.name.toString()=="DIAMOND")
+         this.isDIAMOND=true;
+       if (this.account.status.name.toString()=="GOLD")
+         this.isGOLD=true;
+       if (this.account.status.name.toString()=="SILVER")
+         this.isSILVER=true;
+       if (this.account.status.name.toString()=="BRONZE")
+         this.isBRONZE=true;
+       if (this.account.status.name.toString()=="REGULAR")
+         this.isREGULAR=true;
+
+     });
+
+     }
 
   ngOnInit(): void {
     this.accountService.getMyInfo().subscribe((account) => {
       this.account = account;
       this.showTable = true;
+    });
+    this.form = this.formBuilder.group({
+      username: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(64)])],
+      password: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])],
+      firstname: [''],
+      lastname: [''],
+      email: [''],
+      phoneNumber: [''],
+      address: this.formBuilder.group({
+        country: [''],
+        city: [''],
+        street: [''],
+        number: ['']
+      }),
     });
     // this.form = this.formBuilder.group({
     //   username: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(64)])],

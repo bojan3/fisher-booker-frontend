@@ -5,9 +5,6 @@
             <div [formGroupName]='i'>
                 <tr>
                   <td>
-                    <label>Oprema: </label>
-                  </td>
-                  <td>
                     <input formControlName="file" type='file' required>
                   </td>
                 </tr>
@@ -21,3 +18,4 @@
     </div>
     <button type="button" (click)="addImage()">Dodaj sliku</button>
 </form> -->
+<input type="file" accept="image/png, image/jpeg" (change)="onSelectFile($event)">

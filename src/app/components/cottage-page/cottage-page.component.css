@@ -18,3 +18,8 @@
     border: 3px solid black;
     margin: 20px;
 }
+
+.deal-head {
+    display: flex;
+    justify-content: space-between;
+}

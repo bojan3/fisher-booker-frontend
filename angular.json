@@ -104,5 +104,7 @@
       }
     }
   },
-  "defaultProject": "fisher-booker-frontend"
+  "cli": {
+    "analytics": false
+  }
 }

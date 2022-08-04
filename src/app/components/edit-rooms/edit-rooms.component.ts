@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Room } from 'src/app/entity/Room';
 
 @Component({
@@ -12,10 +12,10 @@ export class EditRoomsComponent implements OnInit {
   @Input()
   rooms: Room[] = [];
 
-  form!: FormGroup;
-  roomsForm!: FormArray;
+  form!: UntypedFormGroup;
+  roomsForm!: UntypedFormArray;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: UntypedFormBuilder) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -24,14 +24,14 @@ export class EditRoomsComponent implements OnInit {
   }
 
   createRooms(){
-    let formatted: FormGroup[] = [];
+    let formatted: UntypedFormGroup[] = [];
     this.rooms.forEach((room) => {
       formatted.push(this.createRoom(room.label, room.numOfBeds));
     })
     return formatted;
   }
 
-  createRoom(defaultLabel: string, defaultBeds: number): FormGroup {
+  createRoom(defaultLabel: string, defaultBeds: number): UntypedFormGroup {
     return this.formBuilder.group({
       label: [defaultLabel, Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(10)])],
       numOfBeds: [defaultBeds],
@@ -39,13 +39,13 @@ export class EditRoomsComponent implements OnInit {
   }
 
   addRoom(): void {
-    this.roomsForm = this.form.get('rooms') as FormArray;
+    this.roomsForm = this.form.get('rooms') as UntypedFormArray;
     this.roomsForm.push(this.createRoom('', 0));
     this.rooms.push(new Room('', 0));
   }
 
   removeRoom(i: number): void{
-    this.roomsForm = this.form.get('rooms') as FormArray;
+    this.roomsForm = this.form.get('rooms') as UntypedFormArray;
     this.roomsForm.removeAt(i);
     this.rooms = this.rooms.filter((room, index) => index != i)
   }
