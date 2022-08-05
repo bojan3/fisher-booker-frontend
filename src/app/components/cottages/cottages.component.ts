@@ -32,8 +32,12 @@ export class CottagesComponent implements OnInit {
     else {
       this.cottageService.getAllCottages().subscribe((cottages) => (this.cottages = cottages));
     }
-    //this.cottageService.getAllCottagesByName().subscribe((cottages) => (this.cottages = cottages));
+    this.cottageService.getAllCottagesByName().subscribe((cottages) => (this.cottages = cottages));
 
+  }
+
+  getSorted(e: any){
+   console.log(e.target.value)
   }
 
   sortByName() {

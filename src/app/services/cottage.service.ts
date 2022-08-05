@@ -12,8 +12,10 @@ export class CottageService {
 
   constructor(private http: HttpClient, private apiService: ApiService) { }
 
-  getAllCottages(): Observable<CottageDTO[]>{
-    return this.http.get<CottageDTO[]>('http://localhost:8081/api/cottage/all');
+  getAllCottages(type?: string, order?: string): Observable<CottageDTO[]>{
+    if(type && order)
+      return this.apiService.get('http://localhost:8081/api/cottage/all/', { type : type, order: order});
+    return this.apiService.get('http://localhost:8081/api/cottage/all');
   }
 
   getById(id: string): Observable<Cottage>{
@@ -23,7 +25,8 @@ export class CottageService {
   // }
   }
   getAllCottagesByName(): Observable<Cottage[]>{
-    return this.http.get<Cottage[]>('http://localhost:8081/api/cottage/all/name');
+    // return this.http.get<Cottage[]>('http://localhost:8081/api/cottage/all/name');
+    return this.apiService.get('http://localhost:8081/api/cottage/all/', { type : "name1", order: "desc1"});
   }
   getAllCottagesByPrice(): Observable<Cottage[]>{
     return this.http.get<Cottage[]>('http://localhost:8081/api/cottage/all/price');
