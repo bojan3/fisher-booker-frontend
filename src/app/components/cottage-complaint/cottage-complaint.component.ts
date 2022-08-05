@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService } from 'src/app/services/account.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -12,7 +12,7 @@ import { ClientService } from 'src/app/services/client.service';
 })
 export class CottageComplaintComponent implements OnInit {
 
-  form!: UntypedFormGroup;
+  form!: FormGroup;
   submitted = false;
   returnUrl!: string;
   cottageId!: number;
@@ -21,7 +21,7 @@ export class CottageComplaintComponent implements OnInit {
     private clientService: ClientService,
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder: UntypedFormBuilder) { }
+    private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
 

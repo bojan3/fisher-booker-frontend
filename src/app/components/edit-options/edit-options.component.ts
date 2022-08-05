@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UntypedFormGroup, UntypedFormArray, UntypedFormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Option } from '../../entity/Option'
 
 @Component({
@@ -12,10 +12,10 @@ export class EditOptionsComponent implements OnInit {
   @Input()
   options!: Option[];
 
-  form!: UntypedFormGroup;
-  optionsForm!: UntypedFormArray;
+  form!: FormGroup;
+  optionsForm!: FormArray;
 
-  constructor(private formBuilder: UntypedFormBuilder) { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -24,14 +24,14 @@ export class EditOptionsComponent implements OnInit {
   }
 
   createOptions(){
-    let formatted: UntypedFormGroup[] = [];
+    let formatted: FormGroup[] = [];
     this.options.forEach((option) => {
       formatted.push(this.createOption(option.id, option.name, option.description, option.price));
     })
     return formatted;
   }
 
-  createOption(defaultId: number, defaultName: string, defaultDescription: string, defaultPrice: number): UntypedFormGroup {
+  createOption(defaultId: number, defaultName: string, defaultDescription: string, defaultPrice: number): FormGroup {
     return this.formBuilder.group({
       id: [defaultId],
       name: [defaultName, Validators.compose([Validators.required, Validators.maxLength(20)])],
@@ -41,13 +41,13 @@ export class EditOptionsComponent implements OnInit {
   }
 
   addOption(): void {
-    this.optionsForm = this.form.get('options') as UntypedFormArray;
+    this.optionsForm = this.form.get('options') as FormArray;
     this.optionsForm.push(this.createOption(0, '', '', 0));
     this.options.push(new Option(0, '', '', 0));
   }
 
   removeOption(i: number): void{
-    this.optionsForm = this.form.get('options') as UntypedFormArray;
+    this.optionsForm = this.form.get('options') as FormArray;
     this.optionsForm.removeAt(i);
     this.options = this.options.filter((option, index) => index != i)
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormControl } from '@angular/forms';
@@ -23,7 +23,7 @@ export class LogInComponent implements OnInit {
   title = 'Login';
   notification!: DisplayMessage | undefined;
   submitted = false;
-  form!: UntypedFormGroup;
+  form!: FormGroup;
   returnUrl!: string;
   private ngUnsubscribe: Subject<void> = new Subject<void>();
 
@@ -31,7 +31,7 @@ export class LogInComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder: UntypedFormBuilder) {
+    private formBuilder: FormBuilder) {
 
   }
 

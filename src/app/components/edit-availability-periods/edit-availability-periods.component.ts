@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UntypedFormGroup, UntypedFormArray, UntypedFormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { AvailabilityPeriod } from 'src/app/entity/AvailabilityPeriod';
 import { Room } from 'src/app/entity/Room';
 
@@ -13,10 +13,10 @@ export class EditAvailabilityPeriodsComponent implements OnInit {
   @Input()
   periods: AvailabilityPeriod[] = [];
 
-  form!: UntypedFormGroup;
-  periodsForm!: UntypedFormArray;
+  form!: FormGroup;
+  periodsForm!: FormArray;
 
-  constructor(private formBuilder: UntypedFormBuilder) { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -25,14 +25,14 @@ export class EditAvailabilityPeriodsComponent implements OnInit {
   }
 
   createPeriods(){
-    let formatted: UntypedFormGroup[] = [];
+    let formatted: FormGroup[] = [];
     this.periods.forEach((period) => {
       formatted.push(this.createPeriod(period.startDate, period.endDate));
     })
     return formatted;
   }
 
-  createPeriod(startDate: Date, endDate: Date): UntypedFormGroup {
+  createPeriod(startDate: Date, endDate: Date): FormGroup {
     return this.formBuilder.group({
       startDate: [startDate, Validators.compose([Validators.required])],
       endDate: [endDate],
@@ -40,13 +40,13 @@ export class EditAvailabilityPeriodsComponent implements OnInit {
   }
 
   addPeriod(): void {
-    this.periodsForm = this.form.get('periods') as UntypedFormArray;
+    this.periodsForm = this.form.get('periods') as FormArray;
     this.periodsForm.push(this.createPeriod(new Date(), new Date()));
     this.periods.push(new AvailabilityPeriod(0, new Date(), new Date()));
   }
 
   removePeriod(i: number): void{
-    this.periodsForm = this.form.get('periods') as UntypedFormArray;
+    this.periodsForm = this.form.get('periods') as FormArray;
     this.periodsForm.removeAt(i);
     this.periods = this.periods.filter((period, index) => index != i)
   }

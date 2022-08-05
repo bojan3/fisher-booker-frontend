@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Rule } from 'src/app/entity/Rule';
 
 @Component({
@@ -12,10 +12,10 @@ export class EditRulesComponent implements OnInit {
   @Input()
   rules!: Rule[];
 
-  form!: UntypedFormGroup;
-  rulesForm!: UntypedFormArray;
+  form!: FormGroup;
+  rulesForm!: FormArray;
 
-  constructor(private formBuilder: UntypedFormBuilder) { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -24,14 +24,14 @@ export class EditRulesComponent implements OnInit {
   }
 
   createRules(){
-    let formatted: UntypedFormGroup[] = [];
+    let formatted:FormGroup[] = [];
     this.rules.forEach((rule) => {
       formatted.push(this.createRule(rule.id, rule.description));
     })
     return formatted;
   }
 
-  createRule(defaultId: number, defaultDescription: string): UntypedFormGroup {
+  createRule(defaultId: number, defaultDescription: string): FormGroup {
     return this.formBuilder.group({
       id: [defaultId],
       description: [defaultDescription, Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(350)])],
@@ -39,13 +39,13 @@ export class EditRulesComponent implements OnInit {
   }
 
   addRule(): void {
-    this.rulesForm = this.form.get('rules') as UntypedFormArray;
+    this.rulesForm = this.form.get('rules') as FormArray;
     this.rulesForm.push(this.createRule(0, ''));
     this.rules.push(new Rule(0, ''));
   }
 
   removeRule(i: number): void{
-    this.rulesForm = this.form.get('rules') as UntypedFormArray;
+    this.rulesForm = this.form.get('rules') as FormArray;
     this.rulesForm.removeAt(i);
     this.rules = this.rules.filter((room, index) => index != i)
   }

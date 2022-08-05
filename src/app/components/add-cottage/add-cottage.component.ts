@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Cottage } from 'src/app/entity/Cottage';
-import { UntypedFormBuilder, UntypedFormGroup, FormArray, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AddCottageDTO } from 'src/app/entity/DTO/AddCottageDTO';
 import { AccountService } from 'src/app/services/account.service';
@@ -23,7 +23,7 @@ export class AddCottageComponent implements OnInit {
   @Input()
   cottage: AddCottageDTO = new AddCottageDTO();
   showForm: boolean = false;
-  form!: UntypedFormGroup;
+  form!: FormGroup;
 
   @ViewChild(EditRoomsComponent)
   editRoomsComponent!: EditRoomsComponent;
@@ -37,7 +37,7 @@ export class AddCottageComponent implements OnInit {
   editImageComponent!: EditImageComponent;
 
   constructor(private route: ActivatedRoute,
-    private formBuilder: UntypedFormBuilder,
+    private formBuilder: FormBuilder,
     private cottageService: CottageService,
     private accountService: AccountService,
     private authService: AuthService) { }

@@ -1,5 +1,5 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { UntypedFormGroup, UntypedFormArray, UntypedFormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AddSuperDealDTO } from 'src/app/entity/DTO/AddSupeDealDTO';
 import { SuperDeal } from 'src/app/entity/SuperDeal';
@@ -20,10 +20,10 @@ export class EditSuperDealComponent implements OnInit {
   superDeal: SuperDeal = new SuperDeal();
   realEstateId: string = '';
 
-  form!: UntypedFormGroup;
-  superDealsForm!: UntypedFormArray;
+  form!: FormGroup;
+  superDealsForm!: FormArray;
 
-  constructor(private formBuilder: UntypedFormBuilder, private cottageService: CottageService,
+  constructor(private formBuilder: FormBuilder, private cottageService: CottageService,
     @Inject(MAT_DIALOG_DATA) public data: SomeData) {
     this.realEstateId = data.realEstateId;
     console.log(this.realEstateId);

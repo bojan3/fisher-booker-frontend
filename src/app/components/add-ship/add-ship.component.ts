@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AccountService } from 'src/app/services/account.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -24,7 +24,7 @@ export class AddShipComponent implements OnInit {
   @Input()
   ship: AddShipDTO = new AddShipDTO();
   showForm: boolean = false;
-  form!: UntypedFormGroup;
+  form!: FormGroup;
 
   @ViewChild(EditRulesComponent)
   editRulesComponent!: EditRulesComponent;
@@ -38,7 +38,7 @@ export class AddShipComponent implements OnInit {
   editAvailabilityPeriodsComponent!: EditAvailabilityPeriodsComponent;
 
   constructor(private route: ActivatedRoute,
-    private formBuilder: UntypedFormBuilder,
+    private formBuilder: FormBuilder,
     private shipService: ShipService,
     private accountService: AccountService,
     private authService: AuthService) { }
