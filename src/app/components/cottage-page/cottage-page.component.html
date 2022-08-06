@@ -11,7 +11,11 @@
     <!-- <p>Period dostupnosti: {{cottage.availabilityPeriod.startDate}} - {{cottage.availabilityPeriod.endDate}}</p> -->
     <button [routerLink]="['', 'add_cottage']" [queryParams]='{id: cottage.id}' *ngIf="ownership">Izmeni</button>
   </section>
-  
+
+  <mat-card class="demo-inline-calendar-card">
+    <mat-calendar [dateClass]="dateClass"></mat-calendar>
+  </mat-card>
+
   <section class="super-deals info-block">
     <div class="deal-head">
       <h2>Brze rezervacije</h2>
@@ -24,20 +28,19 @@
       <p>Cena: {{superDeal.discountedPrice}} evra</p>
       <p>Broj osoba: {{superDeal.capacity}}</p>
       <div class="buttons" *ngIf="ownership">
-        <button>Izmeni</button>
         <button>Izbriši</button>
       </div>
     </div>
 
   </section>
-  
+
   <section class="info-block">
     <h2>Dodatne usluge</h2>
     <div class="option" *ngFor="let option of cottage?.cottageOptions">
       {{option.name}} --- {{option.description}} --- {{option.price}}
     </div>
   </section>
-  
+
   <div class="cottage-images info-block">
     <h2>Slike</h2>
     <app-images-of-entities [images]=cottage.cottagePictures></app-images-of-entities>

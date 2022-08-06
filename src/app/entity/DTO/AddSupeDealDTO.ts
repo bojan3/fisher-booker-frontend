@@ -1,18 +1,18 @@
 export class AddSuperDealDTO {
-    id: number;
     startDate: Date;
     discountedPrice: number;
     endDate: Date;
     capacity: number;
-    realEstateId: string;
+    realEstateId: number;
+    options: number[];
 
-    constructor(id: number = 0, startDate: Date = new Date(), discountedPrice: number = 0,
-        endDate: Date = new Date(), capacity: number = 0, realEstateId: string = '') {
-        this.id = id;
+    constructor(startDate: Date = new Date(), discountedPrice: number = 0,
+        endDate: Date = new Date(), capacity: number = 0, realEstateId: number = 0, options: number[] = []) {
         this.startDate = startDate;
         this.discountedPrice = discountedPrice;
         this.endDate = endDate;
         this.capacity = capacity;
         this.realEstateId = realEstateId;
+        this.options = options; 
     }
 }

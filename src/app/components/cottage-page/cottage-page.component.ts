@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatCalendarCellClassFunction, MatCalendarCellCssClasses } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Cottage } from 'src/app/entity/Cottage';
 import { CottageService } from 'src/app/services/cottage.service';
-import { EditSuperDealComponent } from '../edit-super-deal/edit-super-deal.component';
+import { AddSuperDealComponent } from '../add-super-deal/add-super-deal.component';
 
 @Component({
   selector: 'app-cottage-page',
@@ -16,6 +17,7 @@ export class CottagePageComponent implements OnInit {
   cottage!: Cottage;
   cottageIsPresent = false;
   ownership: boolean = false;
+  selectedDate: any;
 
   constructor(private route: ActivatedRoute, private cottageService: CottageService, public dialog: MatDialog) { }
 
@@ -71,7 +73,40 @@ export class CottagePageComponent implements OnInit {
   }
 
   openAddSupeDealDialog() {
-    this.dialog.open(EditSuperDealComponent, {data: {realEstateId: this.cottage.id}})
+    this.dialog.open(AddSuperDealComponent, {data: {realEstateId: this.cottage.id}})
   }
 
+  // dateClass() {
+
+  //   return (date: Date): MatCalendarCellCssClasses => {
+  //     var date1 = new Date();
+  //     console.log(date.getDay());
+      
+  //     if (date.getDay() === 2) {
+  //       console.log('ovde sam');
+  //       return 'special-date';
+  //     } else {
+  //       return '';
+  //     }
+  //   };
+  // }
+
+
+  dateClass: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
+    // Only highligh dates inside the month view.
+    if (view === 'month') {
+      const date = cellDate.getDate();
+      console.log('alooooooooooooooooooooooooooooooooooo');
+      
+      // Highlight the 1st and 20th day of each month.
+      return date === 1 || date === 20 ? 'special-date' : '';
+    }
+
+    return '';
+  };
+
+  onSelect(event: any){
+    console.log(event);
+    this.selectedDate = event;
+  }
 }

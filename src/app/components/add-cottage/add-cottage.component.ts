@@ -6,11 +6,12 @@ import { AddCottageDTO } from 'src/app/entity/DTO/AddCottageDTO';
 import { AccountService } from 'src/app/services/account.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { CottageService } from 'src/app/services/cottage.service';
-import { EditAvailabilityPeriodsComponent } from '../edit-availability-periods/edit-availability-periods.component';
 import { EditImageComponent } from '../edit-image/edit-image.component';
 import { EditOptionsComponent } from '../edit-options/edit-options.component';
 import { EditRoomsComponent } from '../edit-rooms/edit-rooms.component';
 import { EditRulesComponent } from '../edit-rules/edit-rules.component';
+import { EditAvailabilityPeriodComponent } from '../edit-availability-period/edit-availability-period.component';
+import { AvailabilityPeriod } from 'src/app/entity/AvailabilityPeriod';
 
 @Component({
   selector: 'app-add-cottage',
@@ -31,8 +32,8 @@ export class AddCottageComponent implements OnInit {
   editRulesComponent!: EditRoomsComponent;
   @ViewChild(EditOptionsComponent)
   editOptionsComponent!: EditOptionsComponent;
-  @ViewChild(EditAvailabilityPeriodsComponent)
-  editAvailabilityPeriodsComponent!: EditAvailabilityPeriodsComponent;
+  @ViewChild(EditAvailabilityPeriodComponent)
+  editAvailabilityPeriodComponent!: EditAvailabilityPeriodComponent;
   @ViewChild(EditImageComponent)
   editImageComponent!: EditImageComponent;
 
@@ -65,14 +66,14 @@ export class AddCottageComponent implements OnInit {
   }
 
   onSubmit() {
-    // this.formCottage()
-    // this.cottageService.saveCottage(this.editImageComponent.image, this.cottage).subscribe((res) => {
-    //   console.log(res);
-    // })
-    console.log(this.cottage);
-    this.cottageService.uploadImage(this.cottage, this.editImageComponent.image).subscribe((res) => {
+    this.formCottage()
+    this.cottageService.saveCottage(this.cottage).subscribe((res) => {
       console.log(res);
     })
+    // console.log(this.cottage);
+    // this.cottageService.uploadImage(this.cottage, this.editImageComponent.image).subscribe((res) => {
+    //   console.log(res);
+    // })
   }
 
   formCottage() {
@@ -83,8 +84,9 @@ export class AddCottageComponent implements OnInit {
     this.cottage.rooms = this.editRoomsComponent.form.value.rooms;
     this.cottage.rules = this.editRulesComponent.form.value.rules;
     this.cottage.cottageOptions = this.editOptionsComponent.form.value.options;
-    this.cottage.availabilityPeriods = this.editAvailabilityPeriodsComponent.form.value.periods;
-    this.cottage.imageName = this.editImageComponent.image.name;
+    this.cottage.availabilityPeriod = new AvailabilityPeriod(0, this.editAvailabilityPeriodComponent.dateRange.value.start, this.editAvailabilityPeriodComponent.dateRange.value.end);
+    
+    // this.cottage.imageName = this.editImageComponent.image.name;
   }
 
   buildForm() {

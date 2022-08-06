@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -19,7 +19,7 @@ interface DisplayMessage {
 export class SignUpComponent implements OnInit {
 
   title = 'Sign up';
-  form!: UntypedFormGroup;
+  form!: FormGroup;
   submitted = false;
   notification: DisplayMessage | undefined;
 
@@ -30,7 +30,7 @@ export class SignUpComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder: UntypedFormBuilder) { }
+    private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.route.params
