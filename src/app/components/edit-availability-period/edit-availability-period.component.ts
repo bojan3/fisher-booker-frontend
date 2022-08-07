@@ -22,7 +22,6 @@ export class EditAvailabilityPeriodComponent implements OnInit {
   dateClass: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
     if (view === 'month') {
       const date = cellDate.getDate();
-      console.log('alooooooooooooooooooooooooooooooooooo');
       return date === 1 || date === 20 ? 'special-date' : '';
     }
     return '';

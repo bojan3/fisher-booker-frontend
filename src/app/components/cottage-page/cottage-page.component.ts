@@ -96,8 +96,6 @@ export class CottagePageComponent implements OnInit {
     // Only highligh dates inside the month view.
     if (view === 'month') {
       const date = cellDate.getDate();
-      console.log('alooooooooooooooooooooooooooooooooooo');
-      
       // Highlight the 1st and 20th day of each month.
       return date === 1 || date === 20 ? 'special-date' : '';
     }

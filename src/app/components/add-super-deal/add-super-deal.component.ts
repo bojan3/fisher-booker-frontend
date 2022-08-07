@@ -56,8 +56,7 @@ export class AddSuperDealComponent implements OnInit {
     var newDeal = new AddSuperDealDTO(this.form.value.startDate,
       this.form.value.discountedPrice, this.form.value.endDate, this.form.value.capacity, this.realEstateId, this.form.value.options);
       this.cottageService.createSuperDeal(newDeal).subscribe((res) => {
-        console.log(res);
-        
+        window.location.reload();
       });
   }
 

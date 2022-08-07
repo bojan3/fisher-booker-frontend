@@ -27,6 +27,9 @@
       <p>Do: {{formatDate(superDeal.endDate)}}</p>
       <p>Cena: {{superDeal.discountedPrice}} evra</p>
       <p>Broj osoba: {{superDeal.capacity}}</p>
+      <div *ngFor="let option of superDeal.options">
+        {{option.name}} --- {{option.description}} --- {{option.price}}
+      </div>
       <div class="buttons" *ngIf="ownership">
         <button>Izbriši</button>
       </div>
