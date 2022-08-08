@@ -91,18 +91,6 @@ export class CottagePageComponent implements OnInit {
   //   };
   // }
 
-
-  dateClass: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
-    // Only highligh dates inside the month view.
-    if (view === 'month') {
-      const date = cellDate.getDate();
-      // Highlight the 1st and 20th day of each month.
-      return date === 1 || date === 20 ? 'special-date' : '';
-    }
-
-    return '';
-  };
-
   onSelect(event: any){
     console.log(event);
     this.selectedDate = event;

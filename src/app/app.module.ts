@@ -84,6 +84,7 @@ import { EditAvailabilityPeriodComponent } from './components/edit-availability-
 import { AddSuperDealComponent } from './components/add-super-deal/add-super-deal.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { CalendarComponent } from './components/calendar/calendar.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -224,7 +225,8 @@ const mapConfig: YaConfig = {
     InstructorComplaintComponent,
     CottageComplaintComponent,
     EditAvailabilityPeriodComponent,
-    AddSuperDealComponent
+    AddSuperDealComponent,
+    CalendarComponent
   ],
   imports: [
     [AngularYandexMapsModule.forRoot(mapConfig)],
