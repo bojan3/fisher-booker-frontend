@@ -9,6 +9,7 @@
   <input type="radio" id="capacity" name="sortType" (click)="sortByCapacity()" value="CAPACITY">
   <label for="capacity">capacity</label>
 </div>
+
 <section class='ships'>
   <app-ship  *ngFor="let ship of ships"
   [ship]="ship">

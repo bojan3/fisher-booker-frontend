@@ -45,9 +45,9 @@ export class AddCottageComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // if (this.accountService.currentUser.role != 'ROLE_COTTAGE_OWNER') {
-    //   this.authService.logout();
-    // }
+    if (this.accountService.currentUser.role != 'ROLE_COTTAGE_OWNER') {
+      this.authService.logout();
+    }
 
     this.route.queryParams
       .subscribe(params => {

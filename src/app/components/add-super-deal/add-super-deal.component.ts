@@ -5,9 +5,12 @@ import { SuperDeal } from 'src/app/entity/SuperDeal';
 import { CottageService } from 'src/app/services/cottage.service';
 import { Option } from 'src/app/entity/Option';
 import { AddSuperDealDTO } from 'src/app/entity/DTO/AddSupeDealDTO';
+import { RealEstateType } from 'src/app/entity/RealEstateType';
+import { ShipService } from 'src/app/services/ship.service';
 
 export interface SomeData {
   realEstateId: number
+  type: RealEstateType
 }
 
 @Component({
@@ -20,6 +23,7 @@ export class AddSuperDealComponent implements OnInit {
   @Input()
   superDeal: SuperDeal = new SuperDeal();
   realEstateId!: number;
+  type!: RealEstateType;
   showForm = false;
 
   form!: UntypedFormGroup;
@@ -27,17 +31,31 @@ export class AddSuperDealComponent implements OnInit {
   @Input()
   options: Option[] = [];
 
-  constructor(private formBuilder: UntypedFormBuilder, private cottageService: CottageService,
+  constructor(private formBuilder: UntypedFormBuilder,
+     private cottageService: CottageService,
+     private shipService: ShipService,
     @Inject(MAT_DIALOG_DATA) public data: SomeData) {
     this.realEstateId = data.realEstateId;
-    console.log(this.realEstateId);
+    this.type = data.type;
   }
 
   ngOnInit(): void {
-    this.cottageService.getOptions(this.realEstateId).subscribe((options) => {
-      this.options = options;
-      this.showForm = true;
-    })
+    switch(this.type){
+      case RealEstateType.COTTAGE: {
+        this.cottageService.getOptions(this.realEstateId).subscribe((options) => {
+          this.options = options;
+          this.showForm = true;
+        })
+        break;
+      }
+      case RealEstateType.SHIP: {
+        this.shipService.getOptions(this.realEstateId).subscribe((options) => {
+          this.options = options;
+          this.showForm = true;
+        })
+        break;
+      }
+    }
     this.createSuperDeal();
   }
 
@@ -54,10 +72,25 @@ export class AddSuperDealComponent implements OnInit {
 
   submit() {
     var newDeal = new AddSuperDealDTO(this.form.value.startDate,
-      this.form.value.discountedPrice, this.form.value.endDate, this.form.value.capacity, this.realEstateId, this.form.value.options);
-      this.cottageService.createSuperDeal(newDeal).subscribe((res) => {
-        window.location.reload();
-      });
+      this.form.value.discountedPrice, this.form.value.endDate, this.form.value.capacity, this.realEstateId,
+       this.form.value.options, this.type);
+      
+      switch(this.type){
+        case RealEstateType.COTTAGE: {
+          this.cottageService.createSuperDeal(newDeal).subscribe((res) => {
+            window.location.reload();
+          });
+          break;
+        }
+        case RealEstateType.SHIP: {
+          this.shipService.createSuperDeal(newDeal).subscribe((res) => {
+            window.location.reload();
+          });
+          break;
+        }
+      }
+      
+
   }
 
   onChangeEventFunc(id: number, isChecked: any){

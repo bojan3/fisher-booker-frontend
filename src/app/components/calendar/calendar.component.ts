@@ -22,12 +22,11 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit(): void {
     this.dates = this.getDates();
-    console.log("dates:", this.availabilityPeriod);
   }
 
   getDates() {
     var dates = [];
-    for (let deal of this.superDeals) {
+    for (let deal of this.superDeals) { 
       var startDate = new Date(deal.startDate);
       let endDate = new Date(deal.endDate);
       while (startDate <= endDate) {

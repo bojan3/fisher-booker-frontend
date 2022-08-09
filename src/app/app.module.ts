@@ -107,6 +107,7 @@ const appRoutes: Routes = [
   { path: 'client_profile', component: ClientPageComponent },
   { path: 'instructor_profile', component: InstructorPageComponent },
   { path: 'cottage/:id', component: CottagePageComponent },
+  { path: 'ship/:id', component: ShipPageComponent },
   { path: 'add_cottage', component: AddCottageComponent },
   { path: 'admin_profile/cottages', component: CottagesComponent },
   { path: 'admin_profile/cottage_owners', component: CottageOwnersComponent },

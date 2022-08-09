@@ -18,13 +18,27 @@
         <button [routerLink]="['', 'add_ship']" [queryParams]='{id: ship.id}'>Edit</button>
     </section>
 
+    <app-calendar [superDeals]="ship.shipSuperDeals" [availabilityPeriod]="ship.availabilityPeriod">
+
+    </app-calendar>
+
     <section class="super-deals info-block">
-        <h2>Brze rezervacije</h2>
+        <div class="deal-head">
+            <h2>Brze rezervacije</h2>
+            <button *ngIf="ownership" (click)="openAddSupeDealDialog()">Napravi</button>
+        </div>
+
         <div class=super-deal *ngFor="let superDeal of ship.shipSuperDeals">
             <p>Оd: {{formatDate(superDeal.startDate)}}</p>
             <p>Do: {{formatDate(superDeal.endDate)}}</p>
             <p>Cena: {{superDeal.discountedPrice}} evra</p>
             <p>Broj osoba: {{superDeal.capacity}}</p>
+            <div *ngFor="let option of superDeal.options">
+                {{option.name}} --- {{option.description}} --- {{option.price}}
+            </div>
+            <div class="buttons" *ngIf="ownership">
+                <button>Izbriši</button>
+            </div>
         </div>
     </section>
 
@@ -38,7 +52,7 @@
     <section class="info-block">
         <h2>Slike</h2>
         <div class="image" *ngFor="let image of ship.shipPictures">
-            <img src="image.url"/>
+            <img src="image.url" />
         </div>
     </section>
 

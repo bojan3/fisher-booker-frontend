@@ -70,6 +70,6 @@ export class CottageService {
   }
 
   getOptions(id: number): Observable<Option[]> {
-    return this.http.get<Option[]>('http://localhost:8081/api/cottage/options/1');
+    return this.http.get<Option[]>('http://localhost:8081/api/cottage/options/' + id);
   }
 }

@@ -44,9 +44,10 @@ export class AddShipComponent implements OnInit {
     private authService: AuthService) { }
 
   ngOnInit(): void {
-    // if (this.accountService.currentUser.role != 'ROLE_SHIP_OWNER') {
-    //   this.authService.logout();
-    // }
+
+    if (this.accountService.currentUser.role != 'ROLE_SHIP_OWNER') {
+      this.authService.logout();
+    }
 
     this.route.queryParams
       .subscribe(params => {

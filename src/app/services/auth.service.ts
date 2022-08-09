@@ -80,7 +80,8 @@ export class AuthService {
   logout() {
     this.accountService.currentUser = null;
     // this.access_token = null;
-    localStorage.removeItem(this.tokenName);
+    // localStorage.removeItem(this.tokenName);
+    localStorage.clear();
     this.router.navigate(['/logIn']);
   }
 
