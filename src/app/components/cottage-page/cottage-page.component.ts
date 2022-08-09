@@ -74,7 +74,7 @@ export class CottagePageComponent implements OnInit {
   }
 
   openAddSupeDealDialog() {
-    this.dialog.open(AddSuperDealComponent, {data: {realEstateId: this.cottage.id, type: RealEstateType.SHIP}})
+    this.dialog.open(AddSuperDealComponent, {data: {realEstateId: this.cottage.id, type: RealEstateType.COTTAGE}})
   }
 
   onSelect(event: any){

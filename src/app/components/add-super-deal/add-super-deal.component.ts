@@ -48,7 +48,7 @@ export class AddSuperDealComponent implements OnInit {
         })
         break;
       }
-      case RealEstateType.SHIP: {
+      case RealEstateType.SHIP: {        
         this.shipService.getOptions(this.realEstateId).subscribe((options) => {
           this.options = options;
           this.showForm = true;
