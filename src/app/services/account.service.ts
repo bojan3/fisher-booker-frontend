@@ -30,38 +30,37 @@ export class AccountService {
     //private config: ConfigService
     private http: HttpClient) { }
 
-     
-
-  getMyInfo() {
+  getMyInfo(): Observable<any> {
+    
     return this.apiService.get(this.basePath)
       .pipe(map(user => {
         this.currentUser = user;
         return user;
       }));
   }
-/*
-  getAll() {
-    return this.apiService.get(this.config.users_url);
-  }*/
+  /*
+    getAll() {
+      return this.apiService.get(this.config.users_url);
+    }*/
 
-  getAllUnverified(): Observable<Account[]>{
-
+  getAllUnverified(): Observable<Account[]> {
     return this.apiService.get(this.unverifiedPath);
   }
 
-  verify(id:number): Observable<boolean>{
-     return this.apiService.put(this.verifyPath, id);
+  verify(id: number): Observable<boolean> {
+    return this.apiService.put(this.verifyPath, id);
   }
 
-  delete(id:number): Observable<boolean>{
+  delete(id: number): Observable<boolean> {
     return this.apiService.delete(this.deletePath, id);
   }
 
-  newAdmin(account : Account):Observable<boolean>{
+  newAdmin(account: Account): Observable<boolean> {
     console.log(account);
-    return this.apiService.post(this.newAdminPath,account);
+    return this.apiService.post(this.newAdminPath, account);
   }
-  updateAccount(account: any){
+
+  updateAccount(account: any) {
     console.log("updating account...");
     const headers = new HttpHeaders({
       'Accept': 'application/json',

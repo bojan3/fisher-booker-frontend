@@ -11,21 +11,19 @@ export class AddCottageDTO {
     pricePerDay: number;
     rooms: Room[];
     rules: Rule[];
-    availabilityPeriods: AvailabilityPeriod[];
+    availabilityPeriod: AvailabilityPeriod;
     cottageOptions: Option[];
-    imageName: string;
 
     constructor(name: string = '', description: string = '', address: Address = new Address(0, '', '', '', ''),
         price_per_day: number = 0, room: Room[] = [], rule: Rule[] = [],
-        availabilityPeriods: AvailabilityPeriod[] = [], cottageOptions: Option[] = [], imageName: string = '') {
+        availabilityPeriod: AvailabilityPeriod = new AvailabilityPeriod(), cottageOptions: Option[] = []) {
         this.name = name;
         this.description = description;
         this.address = address;
         this.pricePerDay = price_per_day;
         this.rooms = room;
         this.rules = rule;
-        this.availabilityPeriods = availabilityPeriods;
+        this.availabilityPeriod = availabilityPeriod;
         this.cottageOptions = cottageOptions;
-        this.imageName = imageName;
     }
 }

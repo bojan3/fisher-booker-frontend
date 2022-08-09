@@ -61,7 +61,6 @@ export class LogInComponent implements OnInit {
     this.authService.login(this.form.value)
       .subscribe(data => {
           this.accountService.getMyInfo().subscribe(() => {
-            //this.router.navigate([this.returnUrl]);
             this.profileNavigation();
           });
         },

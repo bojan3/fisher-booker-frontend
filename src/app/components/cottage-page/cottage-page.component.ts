@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { MatCalendarCellClassFunction, MatCalendarCellCssClasses } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Cottage } from 'src/app/entity/Cottage';
+import { RealEstateType } from 'src/app/entity/RealEstateType';
 import { CottageService } from 'src/app/services/cottage.service';
-import { EditSuperDealComponent } from '../edit-super-deal/edit-super-deal.component';
+import { AddSuperDealComponent } from '../add-super-deal/add-super-deal.component';
 
 @Component({
   selector: 'app-cottage-page',
@@ -16,6 +18,7 @@ export class CottagePageComponent implements OnInit {
   cottage!: Cottage;
   cottageIsPresent = false;
   ownership: boolean = false;
+  selectedDate: any;
 
   constructor(private route: ActivatedRoute, private cottageService: CottageService, public dialog: MatDialog) { }
 
@@ -71,7 +74,11 @@ export class CottagePageComponent implements OnInit {
   }
 
   openAddSupeDealDialog() {
-    this.dialog.open(EditSuperDealComponent, {data: {realEstateId: this.cottage.id}})
+    this.dialog.open(AddSuperDealComponent, {data: {realEstateId: this.cottage.id, type: RealEstateType.SHIP}})
   }
 
+  onSelect(event: any){
+    console.log(event);
+    this.selectedDate = event;
+  }
 }

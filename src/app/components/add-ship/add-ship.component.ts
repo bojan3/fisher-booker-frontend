@@ -12,7 +12,7 @@ import { wholeNumber } from '../Regex';
 import { decimalNumber } from '../Regex';
 import { Rule } from "../../entity/Rule";
 import { AddShipDTO } from 'src/app/entity/DTO/AddShipDTO';
-import { EditAvailabilityPeriodsComponent } from '../edit-availability-periods/edit-availability-periods.component';
+import { EditAvailabilityPeriodComponent } from '../edit-availability-period/edit-availability-period.component';
 
 @Component({
   selector: 'app-add-ship',
@@ -34,8 +34,8 @@ export class AddShipComponent implements OnInit {
   editNavigationEquipmentComponent!: EditNavigationEquipmentComponent;
   @ViewChild(EditFishingEquipmentComponent)
   editFishingEquipmentComponent!: EditFishingEquipmentComponent;
-  @ViewChild(EditAvailabilityPeriodsComponent)
-  editAvailabilityPeriodsComponent!: EditAvailabilityPeriodsComponent;
+  @ViewChild(EditAvailabilityPeriodComponent)
+  editAvailabilityPeriodsComponent!: EditAvailabilityPeriodComponent;
 
   constructor(private route: ActivatedRoute,
     private formBuilder: FormBuilder,
@@ -44,9 +44,10 @@ export class AddShipComponent implements OnInit {
     private authService: AuthService) { }
 
   ngOnInit(): void {
-    // if (this.accountService.currentUser.role != 'ROLE_SHIP_OWNER') {
-    //   this.authService.logout();
-    // }
+
+    if (this.accountService.currentUser.role != 'ROLE_SHIP_OWNER') {
+      this.authService.logout();
+    }
 
     this.route.queryParams
       .subscribe(params => {
@@ -111,7 +112,7 @@ export class AddShipComponent implements OnInit {
     this.ship.shipOptions = this.editOptionsComponent.form.value.options;
     this.ship.navigationEquipments = this.editNavigationEquipmentComponent.form.value.navs;
     this.ship.fishingEquipments = this.editFishingEquipmentComponent.form.value.fishs;
-    this.ship.availabilityPeriods = this.editAvailabilityPeriodsComponent.form.value.periods;
+    // this.ship.availabilityPeriods = this.editAvailabilityPeriodsComponent.form.value.periods;
   }
 
   convertToRules(fakeRules: any): Rule[]{

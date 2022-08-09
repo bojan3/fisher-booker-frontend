@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { RealEstateType } from 'src/app/entity/RealEstateType';
 import { Ship } from 'src/app/entity/Ship';
 import { ShipService } from 'src/app/services/ship.service';
+import { AddSuperDealComponent } from '../add-super-deal/add-super-deal.component';
 
 @Component({
   selector: 'app-ship-page',
@@ -13,8 +16,9 @@ export class ShipPageComponent implements OnInit {
   id: string = '';
   ship!: Ship;
   shipIsPresent: boolean = false;
+  ownership: boolean = false;
 
-  constructor(private route: ActivatedRoute, private shipService: ShipService) { }
+  constructor(private route: ActivatedRoute, private shipService: ShipService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.route.params.subscribe((param) => {
@@ -23,6 +27,9 @@ export class ShipPageComponent implements OnInit {
         this.ship = ship;
         this.shipIsPresent = true;
       });
+      this.shipService.checkShipOwnersip(this.id).subscribe((res) => {
+        this.ownership = res;
+      })
     })
   }
 
@@ -33,7 +40,6 @@ export class ShipPageComponent implements OnInit {
       rules.forEach(rule => {
         output += rule.description + ', ';
       });
-
       return this.removeLastCommaAndSpace(output);
     }
     return '';
@@ -81,5 +87,9 @@ export class ShipPageComponent implements OnInit {
         image.url = event.target?.result;
       }
     })
+  }
+
+  openAddSupeDealDialog() {
+    this.dialog.open(AddSuperDealComponent, {data: {realEstateId: this.ship.id, type: RealEstateType.SHIP}})
   }
 }

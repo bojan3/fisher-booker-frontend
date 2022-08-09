@@ -18,7 +18,9 @@ export class AuthService {
     private router: Router
     ) { }
 
-  private access_token = null;
+  // private access_token = null;
+
+  private tokenName: string = "jwt";
 
   login(user: any) {
     const loginHeaders = new HttpHeaders({
@@ -35,8 +37,8 @@ export class AuthService {
     return this.apiService.post("http://localhost:8081/auth/login", JSON.stringify(body), loginHeaders)
       .pipe(map((res) => {
         console.log('Login success');
-        this.access_token = res.body.accessToken;
-        console.log(this.access_token);
+        // this.access_token = res.body.accessToken;
+        // console.log(this.access_token);
         localStorage.setItem("jwt", res.body.accessToken);
       }));
   }
@@ -77,17 +79,23 @@ export class AuthService {
 
   logout() {
     this.accountService.currentUser = null;
-    this.access_token = null;
+    // this.access_token = null;
+    // localStorage.removeItem(this.tokenName);
+    localStorage.clear();
     this.router.navigate(['/logIn']);
   }
 
   tokenIsPresent() {
-    return this.access_token != undefined && this.access_token != null;
+    // return this.access_token != undefined && this.access_token != null;
+    var token = localStorage.getItem(this.tokenName);
+    return token != undefined && token != null;
   }
 
   getToken() {
-    return this.access_token;
+    // return this.access_token;
+    return localStorage.getItem(this.tokenName);
   }
+
   /*verify_email(secureToken: any): Observable<boolean> {
     //console.log("pogadja:  "+"http://localhost:8081/api/registration/verify/%22+token);
 

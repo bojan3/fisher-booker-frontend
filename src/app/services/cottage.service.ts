@@ -6,6 +6,7 @@ import { ApiService } from './api.service';
 import { Cottage } from '../entity/Cottage';
 import { AddCottageDTO } from '../entity/DTO/AddCottageDTO';
 import { AddSuperDealDTO } from '../entity/DTO/AddSupeDealDTO';
+import { Option } from 'src/app/entity/Option';
 
 @Injectable({
   providedIn: 'root'
@@ -40,13 +41,8 @@ export class CottageService {
     return this.http.get<Cottage[]>('http://localhost:8081/api/cottage/all/rate');
   }
 
-  saveCottage(cottage: AddCottageDTO, image: File): Observable<boolean> {
-    const uploadData = new FormData();
-    console.log(image);
-
-    uploadData.append('image', image, image.name);
-    uploadData.append('cottage', JSON.stringify(cottage));
-    return this.http.post<boolean>('http://localhost:8081/api/cottage/save', uploadData);
+  saveCottage(cottage: AddCottageDTO): Observable<boolean> {
+    return this.http.post<boolean>('http://localhost:8081/api/cottage/save', cottage);
   }
 
   deleteCottage(id: number): Observable<CottageDTO> {
@@ -72,6 +68,10 @@ export class CottageService {
   }
 
   createSuperDeal(deal: AddSuperDealDTO): Observable<boolean> {
-    return this.http.post<boolean>('http://localhost:8081/api/cottage/addSuperDeal/', deal);
+    return this.http.post<boolean>('http://localhost:8081/api/cottageSuperDeal/add/', deal);
+  }
+
+  getOptions(id: number): Observable<Option[]> {
+    return this.http.get<Option[]>('http://localhost:8081/api/cottage/options/' + id);
   }
 }
