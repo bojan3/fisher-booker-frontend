@@ -6,6 +6,7 @@ import { Cottage } from 'src/app/entity/Cottage';
 import { RealEstateType } from 'src/app/entity/RealEstateType';
 import { CottageService } from 'src/app/services/cottage.service';
 import { AddSuperDealComponent } from '../add-super-deal/add-super-deal.component';
+import { LineChartComponent } from '../line-chart/line-chart.component';
 
 @Component({
   selector: 'app-cottage-page',
@@ -80,5 +81,9 @@ export class CottagePageComponent implements OnInit {
   onSelect(event: any){
     console.log(event);
     this.selectedDate = event;
+  }
+
+  openChart() {
+    this.dialog.open(LineChartComponent)
   }
 }

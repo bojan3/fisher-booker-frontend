@@ -85,6 +85,9 @@ import { AddSuperDealComponent } from './components/add-super-deal/add-super-dea
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CalendarComponent } from './components/calendar/calendar.component';
+// import { NgApexchartsModule } from 'ng-apexcharts';
+import { LineChartComponent } from './components/line-chart/line-chart.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -195,7 +198,6 @@ const mapConfig: YaConfig = {
     AccountRequestComponent,
     AccountRequestsComponent,
     NewAdminComponent,
-
     ImagesOfEntitiesComponent,
     AddCottageComponent,
     AccountInfoEditComponent,
@@ -227,7 +229,8 @@ const mapConfig: YaConfig = {
     CottageComplaintComponent,
     EditAvailabilityPeriodComponent,
     AddSuperDealComponent,
-    CalendarComponent
+    CalendarComponent,
+    LineChartComponent
   ],
   imports: [
     [AngularYandexMapsModule.forRoot(mapConfig)],
@@ -245,7 +248,8 @@ const mapConfig: YaConfig = {
     MatCardModule,
     MatFormFieldModule,
     MatCheckboxModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    NgApexchartsModule
   ],
   providers: [
     {
