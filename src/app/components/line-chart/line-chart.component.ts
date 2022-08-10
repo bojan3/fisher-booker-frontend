@@ -1,25 +1,33 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import {
-  ChartComponent,
   ApexAxisChartSeries,
   ApexChart,
-  ApexXAxis,
+  ChartComponent,
   ApexDataLabels,
-  ApexTitleSubtitle,
+  ApexPlotOptions,
+  ApexYAxis,
+  ApexLegend,
   ApexStroke,
-  ApexGrid
+  ApexXAxis,
+  ApexFill,
+  ApexTooltip
 } from "ng-apexcharts";
+import { Stats } from 'src/app/entity/Stats';
+import { StatsService } from 'src/app/services/stats.service';
 
-// export type ChartOptions = {
-//   series: ApexAxisChartSeries | undefined;
-//   chart: ApexChart | undefined;
-//   xaxis: ApexXAxis | undefined;
-//   dataLabels: ApexDataLabels | undefined;
-//   grid: ApexGrid | undefined;
-//   stroke: ApexStroke | undefined;
-//   title: ApexTitleSubtitle | undefined;
-// };
+export type ChartOptions = {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  dataLabels: ApexDataLabels;
+  plotOptions: ApexPlotOptions;
+  yaxis: ApexYAxis;
+  xaxis: ApexXAxis;
+  fill: ApexFill;
+  tooltip: ApexTooltip;
+  stroke: ApexStroke;
+  legend: ApexLegend;
+};
 
 @Component({
   selector: 'app-line-chart',
@@ -31,57 +39,98 @@ export class LineChartComponent implements OnInit {
   @ViewChild("chart") chart!: ChartComponent;
   public chartOptions!: Partial<any>;
 
-  constructor() { }
+  selectedYear!: number;
+  showSelect = false;
+  showChart = false;
+  years: number[] = [];
+  stats: Stats[] = [];
+
+  constructor(private statsService: StatsService) { }
 
   ngOnInit(): void {
-    this.buildChart();
+
+    this.statsService.getYears().subscribe((years) => {
+      this.years = years;
+      this.showSelect = true;
+      this.selectedYear = years[0];
+
+      this.statsService.getYearlyStats(this.selectedYear).subscribe((stats) => {
+        this.stats = stats;
+        this.buildChart();
+        this.showChart = true;
+      })
+    })
+
   }
 
   buildChart() {
+
+    var names = [];
+    var income = [];
+    var people = [];
+
+    for(let stat of this.stats){
+      names.push(stat.cottageName);
+      income.push(stat.income);
+      people.push(stat.numOfPeople);
+    }
+
     this.chartOptions = {
       series: [
         {
-          name: "Desktops",
-          data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
-        }
+          name: "Zarada",
+          data: income
+        },
+        {
+          name: "Broj ljudi",
+          data: people
+        },
       ],
       chart: {
-        height: 350,
-        type: "line",
-        zoom: {
-          enabled: false
+        type: "bar",
+        height: 350
+      },
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: "55%",
+          endingShape: "rounded"
         }
       },
       dataLabels: {
         enabled: false
       },
       stroke: {
-        curve: "straight"
-      },
-      title: {
-        text: "Product Trends by Month",
-        align: "left"
-      },
-      grid: {
-        row: {
-          colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
-          opacity: 0.5
-        }
+        show: true,
+        width: 2,
+        colors: ["transparent"]
       },
       xaxis: {
-        categories: [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep"
-        ]
+        categories: names
+      },
+      yaxis: {
+        title: {
+          text: "$ (thousands)"
+        }
+      },
+      fill: {
+        opacity: 1
+      },
+      tooltip: {
+        y: {
+          formatter: function (val: any) {
+            return "$ " + val + " thousands";
+          }
+        }
       }
     };
+  }
+
+  onChange() {
+    this.statsService.getYearlyStats(this.selectedYear).subscribe((stats) => {
+      this.stats = stats;
+      this.buildChart();
+    })
   }
 
 }

@@ -85,9 +85,9 @@ import { AddSuperDealComponent } from './components/add-super-deal/add-super-dea
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CalendarComponent } from './components/calendar/calendar.component';
-// import { NgApexchartsModule } from 'ng-apexcharts';
 import { LineChartComponent } from './components/line-chart/line-chart.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { MatSelectModule } from '@angular/material/select';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -249,7 +249,8 @@ const mapConfig: YaConfig = {
     MatFormFieldModule,
     MatCheckboxModule,
     MatProgressSpinnerModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    MatSelectModule
   ],
   providers: [
     {
