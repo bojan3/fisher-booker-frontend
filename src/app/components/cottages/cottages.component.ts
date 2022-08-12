@@ -23,8 +23,7 @@ export class CottagesComponent implements OnInit {
 
   constructor(private cottageService: CottageService,
               private clientService: ClientService,
-              private accountService: AccountService,
-              private formBuilder: FormBuilder) { }
+              private accountService: AccountService) { }
 
   ngOnInit(): void {
 

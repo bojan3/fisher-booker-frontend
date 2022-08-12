@@ -1,5 +1,5 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SuperDeal } from 'src/app/entity/SuperDeal';
 import { CottageService } from 'src/app/services/cottage.service';
@@ -26,12 +26,12 @@ export class AddSuperDealComponent implements OnInit {
   type!: RealEstateType;
   showForm = false;
 
-  form!: UntypedFormGroup;
+  form!: FormGroup;
 
   @Input()
   options: Option[] = [];
 
-  constructor(private formBuilder: UntypedFormBuilder,
+  constructor(private formBuilder: FormBuilder,
      private cottageService: CottageService,
      private shipService: ShipService,
     @Inject(MAT_DIALOG_DATA) public data: SomeData) {

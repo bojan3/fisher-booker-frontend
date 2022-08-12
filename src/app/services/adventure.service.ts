@@ -21,8 +21,10 @@ export class AdventureService {
   }
   //constructor(private http: HttpClient, private apiService: ApiService) { }
 
-  getAllAdventures(): Observable<AdventureDTO[]>{
-    return this.http.get<AdventureDTO[]>('http://localhost:8081/api/adventure/all');
+  getAllAdventures(type ?: string, order?: string): Observable<AdventureDTO[]>{
+    if(type && order)
+      return this.apiService.get('http://localhost:8081/api/adventure/all/', {type: type, order: order});
+    return this.apiService.get('http://localhost:8081/api/adventure/all');
   }
 
   getById(id: string): Observable<AdventureDTO>{

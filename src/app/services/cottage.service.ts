@@ -17,7 +17,7 @@ export class CottageService {
 
   getAllCottages(type?: string, order?: string): Observable<CottageDTO[]>{
     if(type && order)
-      return this.apiService.get('http://localhost:8081/api/cottage/all/', { type : type, order: order});
+      return this.apiService.get('http://localhost:8081/api/cottage/all/', {type : type, order: order});
     return this.apiService.get('http://localhost:8081/api/cottage/all');
   }
 
