@@ -9,17 +9,19 @@ import { Image } from '../../entity/Image';
 })
 export class EditImageComponent implements OnInit {
 
-  @Input()
-  images!: Image[];
+  //@Input()
+  //images!: Image[];
+  images: any[] = [];
+  image!: File;
   form!: FormGroup;
   imagesForm!: FormArray;
-  
+
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    /*this.form = this.formBuilder.group({
-      images: this.formBuilder.array( this.createImages() )
-    });*/
+    // this.form = this.formBuilder.group({
+    //   images: this.formBuilder.array( this.createImages() )
+    // });
   }
 
   // createImages(){
@@ -49,15 +51,19 @@ export class EditImageComponent implements OnInit {
   //   this.images = this.images.filter((nav, index) => index != i)
   // }
 
-  /*onSelectFile(event: any) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+  onSelectFile(event: any) {
+    //   if (event.target.files && event.target.files[0]) {
+    //     var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+    //     reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        this.url = event.target?.result;
-      }
-    }
-  }*/
+    //     reader.onload = (event) => { // called once readAsDataURL is completed
+    //       this.url = event.target?.result;
+    //     }
+    //   }
+
+    
+    this.image = event.target.files[0];
+
+  }
 }

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditSuperDealComponent } from './edit-super-deal.component';
+import { AddSuperDealComponent } from './add-super-deal.component';
 
-describe('EditSuperDealComponent', () => {
-  let component: EditSuperDealComponent;
-  let fixture: ComponentFixture<EditSuperDealComponent>;
+describe('AddSuperDealComponent', () => {
+  let component: AddSuperDealComponent;
+  let fixture: ComponentFixture<AddSuperDealComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditSuperDealComponent ]
+      declarations: [ AddSuperDealComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EditSuperDealComponent);
+    fixture = TestBed.createComponent(AddSuperDealComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

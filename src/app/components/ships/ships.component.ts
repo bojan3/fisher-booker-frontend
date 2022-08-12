@@ -1,3 +1,4 @@
+import { getLocaleFirstDayOfWeek } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ShipDTO } from 'src/app/entity/DTO/ShipDTO';
 import { Ship } from 'src/app/entity/Ship';
@@ -17,7 +18,7 @@ export class ShipsComponent implements OnInit {
 
   @Input()
   forClientSubscriptions: boolean = false;
-  
+
   ships: ShipDTO[] = [];
 
   constructor(private shipService: ShipService,
@@ -25,40 +26,43 @@ export class ShipsComponent implements OnInit {
     private accountService: AccountService) { }
 
   ngOnInit(): void {
-    if(this.forShipOwner){
-      this.shipService.getAllShipsByOwner().subscribe((ships) => (this.ships = ships));
+    if (this.forShipOwner) {
+      this.shipService.getAllShipsByOwner().subscribe((ships) => {
+        this.ships = ships
+        console.log(this.ships);
+      });
     }
-    if(this.forClientSubscriptions){
+    if (this.forClientSubscriptions) {
       this.clientService.getShipSubscriptions(this.accountService.currentUser.id).subscribe((ships) => (this.ships = ships));
     }
-    else{
+    else {
       this.shipService.getAllShips().subscribe((ships) => (this.ships = ships));
     }
     //this.shipService.getAllShipsByName().subscribe((ships) => (this.ships = ships))
   }
 
-  sortByName(){
+  sortByName() {
     this.shipService.getAllShipsByName().subscribe((ships) => (this.ships = ships));
   }
 
-  sortByPrice(){
+  sortByPrice() {
     this.shipService.getAllShipsByPrice().subscribe((ships) => (this.ships = ships));
   }
-  sortByRating(){
+  sortByRating() {
     this.shipService.getAllShipsByRating().subscribe((ships) => (this.ships = ships));
   }
 
-  sortByCapacity(){
+  sortByCapacity() {
     this.shipService.getAllShipsByCapacity().subscribe((ships) => (this.ships = ships));
   }
 
- ngOnButtonClick():void{
+  ngOnButtonClick(): void {
 
-//  this.shipService.deleteShip(1)
- }
+    //  this.shipService.deleteShip(1)
+  }
 
- notClientSubscriptions(): boolean {
-  return !this.forClientSubscriptions;
-}
+  notClientSubscriptions(): boolean {
+    return !this.forClientSubscriptions;
+  }
 
 }

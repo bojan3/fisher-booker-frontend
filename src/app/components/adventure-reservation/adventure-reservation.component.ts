@@ -13,6 +13,9 @@ export class AdventureReservationComponent implements OnInit {
   @Input()
   adventureReservation!: AdventureReservationDTO;
 
+  @Input()
+  forStarted!: boolean;
+
   constructor(
     private accountService: AccountService,
     private clientService: ClientService
@@ -30,7 +33,6 @@ export class AdventureReservationComponent implements OnInit {
   }
 
   cancelReservation(){
-    console.log("ajde burice nemoj da me drkas tako");
     this.accountService.getMyInfo().subscribe();
     this.clientService.deleteAdventureReservation(this.accountService.currentUser.id, this.adventureReservation.id).subscribe();
   }

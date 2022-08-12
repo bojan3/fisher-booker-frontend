@@ -24,7 +24,7 @@ export class EditRulesComponent implements OnInit {
   }
 
   createRules(){
-    let formatted: FormGroup[] = [];
+    let formatted:FormGroup[] = [];
     this.rules.forEach((rule) => {
       formatted.push(this.createRule(rule.id, rule.description));
     })

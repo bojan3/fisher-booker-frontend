@@ -102,6 +102,14 @@ export class ClientService {
     createCottageComplaint(cottageId: number, accountId: number, text: string){
       return this.apiService.put('http://localhost:8081/api/client/cottagecomplaint/' + cottageId + '/' + accountId, JSON.stringify(text));
     }
+
+    createInstructorComplaint(adventureId: number, accountId: number, text: string){
+      return this.apiService.put('http://localhost:8081/api/client/instructorcomplaint/' + adventureId + '/' + accountId, JSON.stringify(text));
+    }
+
+    createShipComplaint(shipId: number, accountId: number, text: string){
+      return this.apiService.put('http://localhost:8081/api/client/shipcomplaint/' + shipId + '/' + accountId, JSON.stringify(text));
+    }
 }
 
 

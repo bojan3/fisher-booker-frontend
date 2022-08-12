@@ -39,19 +39,15 @@ export class AccountInfoComponent implements OnInit {
           this.isREGULAR=true;
     
       });
+    }
 
-      }
-
+  
   ngOnInit(): void {
-        this.accountService.getMyInfo().subscribe((account) => {
-          this.account = account;
-          this.showTable = true;
-          console.log(account.status);
-          if (this.account.status.name==StatusName.DIAMOND)
-            this.isDIAMOND=true;
-            console.log(this.isDIAMOND);
+    this.accountService.getMyInfo().subscribe((account) => {
+      this.account = account;
+      this.showTable = true;
+    });
 
-        });   
     this.form = this.formBuilder.group({
       username: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(64)])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])],
@@ -66,7 +62,22 @@ export class AccountInfoComponent implements OnInit {
         number: ['']
       }),
     });
-  }
+    // this.form = this.formBuilder.group({
+    //   username: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(64)])],
+    //   password: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])],
+    //   firstname: [''],
+    //   lastname: [''],
+    //   email: [''],
+    //   phoneNumber: [''],
+    //   address: this.formBuilder.group({
+    //     country: [''],
+    //     city: [''],
+    //     street: [''],
+    //     number: ['']
+    //   }),
+    // });
+    }
+
 
   showForm(){
     this.editMode = true;
@@ -78,6 +89,8 @@ export class AccountInfoComponent implements OnInit {
     this.editMode = false;
     console.log(this.account);
   }
+
+
 
   /*onSubmit() {
     this.notification = undefined;

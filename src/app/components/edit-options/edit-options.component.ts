@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
-import { Option } from '../../entity/Option';
+import { Option } from '../../entity/Option'
 
 @Component({
   selector: 'app-edit-options',

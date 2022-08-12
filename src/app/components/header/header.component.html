@@ -81,4 +81,28 @@
   </div>
 </div>
 
+  <!-- ADMIN DROPMENU -->
+  <div *ngIf=isUserAdmin() class="wrapper">
+    <ul>
+      <li>menu
+        <ul>
+          <li (click)="openProfile()">Profile</li>
+          <li [routerLink]="['account-info-edit']">Edit Profile</li>
+          <li (click)="logout()">Log out</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
 
+  <!-- FISHING INSTUCTOR DROPMENU -->
+  <div *ngIf=isUserFishingInstructor() class="wrapper">
+    <ul>
+      <li>menu
+        <ul>
+          <li (click)="openProfile()">Profile</li>
+          <li [routerLink]="['account-info-edit']">Edit Profile</li>
+          <li (click)="logout()">Log out</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
