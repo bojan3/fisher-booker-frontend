@@ -44,7 +44,7 @@ export class SignUpComponent implements OnInit {
       username: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(64)])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])],
       password_retype: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])],
-      firstname: [''],
+      name: [''],
       lastname: [''],
       email: [''],
       phoneNumber: [''],
@@ -67,6 +67,7 @@ export class SignUpComponent implements OnInit {
     /**
      * Innocent until proven guilty
      */
+     console.log("****************");
     this.notification = undefined;
     this.submitted = true;
 

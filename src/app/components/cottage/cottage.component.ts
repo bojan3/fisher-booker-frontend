@@ -20,6 +20,8 @@ export class CottageComponent implements OnInit {
   forClientSubscriptions: boolean = false;
 
   forClient: boolean = false;
+  forAdmin: boolean = false;
+  forOwner: boolean = false;
   currentUser: any;
 
   constructor(private cottageService: CottageService,
@@ -30,8 +32,18 @@ export class CottageComponent implements OnInit {
     this.accountService.getMyInfo().subscribe((user) => {
       this.currentUser = user;
       this.forClient = this.isUserClient(user.role);
+      this.forAdmin = this.isUserAdmin(user.role);
+      this.forOwner = this.isUserOwner(user.role);
     }
     );
+  }
+
+
+  isUserOwner(role: string): boolean {
+    if (role == "ROLE_COTTAGE_OWNER")
+      return true;
+    else
+      return false;
   }
 
   isUserClient(role: string): boolean {
@@ -40,15 +52,32 @@ export class CottageComponent implements OnInit {
     else
       return false;
   }
+  isUserAdmin(role: string): boolean {
+    console.log(role);
+    if (role == "ROLE_ADMIN")
+      return true;
+    else
+      return false;
+  }
+
 
   delete(id: number): void {
+    if (this.forOwner){
     this.cottageService.deleteCottage(id).subscribe(
        (cottages) => {
          window.location.reload();
        },
        (error) => {
          this.errorDisplay = true;
-       })
+       })}
+    if (this.forAdmin){
+    this.cottageService.adeleteCottage(id).subscribe(
+      (cottages) => {
+        window.location.reload();
+      },
+      (error) => {
+        this.errorDisplay = true;
+      })}
   }
 
   subscribeToCottage() {

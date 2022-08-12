@@ -26,9 +26,7 @@ export class AccountInfoComponent implements OnInit {
   constructor(private accountService: AccountService,
      private formBuilder: FormBuilder) {
       this.accountService.getMyInfo().subscribe((account) =>{
-        this.account = account;
-      //  console.log(account.status);
-    
+        this.account = account;    
         if (this.account.status.name.toString()=="DIAMOND")
           this.isDIAMOND=true;
         if (this.account.status.name.toString()=="GOLD")
@@ -45,9 +43,6 @@ export class AccountInfoComponent implements OnInit {
       }
 
   ngOnInit(): void {
-   
-      
-     // (async () => { 
         this.accountService.getMyInfo().subscribe((account) => {
           this.account = account;
           this.showTable = true;
@@ -56,15 +51,7 @@ export class AccountInfoComponent implements OnInit {
             this.isDIAMOND=true;
             console.log(this.isDIAMOND);
 
-        });
-
-    console.log(this.isREGULAR);
-    console.log(this.isBRONZE);
-    console.log(this.isSILVER);
-    console.log(this.isGOLD);
-    console.log(this.isDIAMOND);
-
-   
+        });   
     this.form = this.formBuilder.group({
       username: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(64)])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])],
@@ -83,22 +70,6 @@ export class AccountInfoComponent implements OnInit {
 
   showForm(){
     this.editMode = true;
-//    if (this.account.status.name==StatusName.REGULAR)
-//        this.isREGULAR=true;
-//  if (this.account.status.name===StatusName.BRONZE)
-//    this.isBRONZE=true;
-//  if (this.account.status.name===StatusName.SILVER)
-//   this.isSILVER=true;
-//  if (this.account.status.name===StatusName.GOLD)
-//   this.isGOLD=true;
-//  if (this.account.status.name==StatusName.DIAMOND)
-//   this.isDIAMOND=true;
-//
-//   console.log(this.isREGULAR)
-//    console.log(this.isBRONZE)
-//    console.log(this.isSILVER)
-//    console.log(this.isGOLD)
-//    console.log(this.isDIAMOND)
 
 
   }

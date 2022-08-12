@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { AdminService } from 'src/app/services/admin.service';
 import { NewAdminComponent } from '../new-admin/new-admin.component';
 
 @Component({
@@ -9,6 +11,11 @@ import { NewAdminComponent } from '../new-admin/new-admin.component';
 })
 export class AdminPageComponent implements OnInit {
 
+  income!:string;
+  newIncome!:number;
+
+  adminservice!:AdminService;
+  
   entities = [['Cottage owners', '../../assets/images/cottage_owner.png','cottage_owners'], ['Fishing instructors', '../../assets/images/fishing_instructor.png','instructors'],
    ['Ship owners', '../../assets/images/ship_owner.png','ship_owners'], ['Clients', '../../assets/images/client.png','clients'],
     ['Cottages', '../../assets/images/cottage.png','cottages'], ['Adventures', '../../assets/images/adventure.png','adventures'],
@@ -17,9 +24,25 @@ export class AdminPageComponent implements OnInit {
      
     // form1!: FormGroup;
 
-  constructor() { }
+  constructor(adminservice:AdminService) {
+    this.adminservice=adminservice;
+   }
+  
+
 
   ngOnInit(): void {
+      
+      this.adminservice.getCurrentIncome().subscribe((income) =>{
+        this.income = income;    
+      });
   }
+
+
+  setNewIncome(newIncome:string): void{
+    this.adminservice.setNewIncome(newIncome).subscribe();
+  }
+
+
+
 
 }

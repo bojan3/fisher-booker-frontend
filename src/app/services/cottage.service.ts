@@ -42,7 +42,13 @@ export class CottageService {
   }
 
   deleteCottage(id: number): Observable<CottageDTO>{
+    console.log("COTTAGE_OWNER");
     return this.apiService.delete('http://localhost:8081/api/cottage/delete/owner/' + id);
+  }
+
+  adeleteCottage(id: number): Observable<CottageDTO>{
+    console.log("ADMIN");
+    return this.apiService.delete('http://localhost:8081/api/cottage/delete/' + id);
   }
 
   getByDate(date: Date): Observable<CottageDTO[]>{
