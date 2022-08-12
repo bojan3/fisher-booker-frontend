@@ -1,8 +1,6 @@
 <section class='instruktori'>
-  
-    <p>{{fishinginstructor.id}}</p>>
 
-    <h3>{{fishinginstructor.account.name+  "  "   +fishinginstructor.account.username}}</h3>
+    <h3>{{fishinginstructor.account.name+  " "   +fishinginstructor.account.username}}</h3>
     <p> Adress: {{fishinginstructor.account.address.country}}
                 {{fishinginstructor.account.address.city}}
                 {{fishinginstructor.account.address.street}}
@@ -11,7 +9,8 @@
     <p>{{fishinginstructor.biography}}</p>
 
 
-     <p align="right">
+    <p align="right">
+   <button [routerLink]="['', 'instructor-adventures', fishinginstructor.id]">adventures</button> 
   <button (click) = "viewDetails(fishinginstructor.id)">details</button>
   <button (click) = "delete(fishinginstructor.id)">delete</button>
   </p>

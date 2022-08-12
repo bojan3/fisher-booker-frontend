@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Adventure } from 'src/app/entity/Adventure';
 import { AdventureDTO } from 'src/app/entity/AdventureDTO';
@@ -16,19 +17,33 @@ export class AdventuresComponent implements OnInit {
   @Input()
   forInstructor: boolean = false;
 
-  // client and main page show adventures by fishing instructor
+  // client and main page show adventures of fishing instructor
   @Input()
   forClientInsructorAdventures = false;
-
+  sortByGroup!: FormGroup;
+  orderGroup!: FormGroup;
+  forClientSubscriptions: boolean = false;
+  
   constructor(private adventureService: AdventureService, private route: ActivatedRoute) { }
 
   adventures: AdventureDTO[] = [];
 
 
   ngOnInit(): void {
+
+    this.sortByGroup = new FormGroup({
+      'sortByRadio' : new FormControl()
+    });
+
+    this.orderGroup = new FormGroup({
+      'orderRadio' : new FormControl()
+    });
+
+    this.orderGroup.patchValue({orderRadio: 'ASC'});
+
+
     this.route.params.subscribe((param) => {
       this.instructorId = param.instructorId;
-      console.log("token :" + this.instructorId);
     });
 
     if (this.forClientInsructorAdventures) {
@@ -38,6 +53,11 @@ export class AdventuresComponent implements OnInit {
       this.adventureService.getAllAdventures().subscribe((adventures) => (this.adventures = adventures));
     }
   }
+
+  getSorted(){
+    this.adventureService.getAllAdventures(this.sortByGroup.value.sortByRadio, this.orderGroup.value.orderRadio).subscribe((adventures) => (this.adventures = adventures));
+   }
+
   sortByPrice() {
     if (this.forClientInsructorAdventures) {
       // this.adventureService.getAllAdventuresByInstructorOrderByPrice(this.instructorId).subscribe((adventures) => (this.adventures = adventures));
@@ -76,6 +96,8 @@ export class AdventuresComponent implements OnInit {
       this.adventureService.getAllAdventures().subscribe((adventures) => (this.adventures = adventures));
     }
   }
-
+  notClientSubscriptions(): boolean {
+    return !this.forClientSubscriptions;
+  }
 
 }
