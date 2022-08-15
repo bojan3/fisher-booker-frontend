@@ -110,6 +110,18 @@ export class ClientService {
     createShipComplaint(shipId: number, accountId: number, text: string){
       return this.apiService.put('http://localhost:8081/api/client/shipcomplaint/' + shipId + '/' + accountId, JSON.stringify(text));
     }
+
+    postCottageReview(review: any){
+      return this.apiService.post('http://localhost:8081/api/review/cottage/save', JSON.stringify(review))
+    }
+
+    postShipReview(review: any){
+      return this.apiService.post('http://localhost:8081/api/review/ship/save', JSON.stringify(review))
+    }
+
+    postAdventureReview(review: any){
+      return this.apiService.post('http://localhost:8081/api/review/adventure/save', JSON.stringify(review))
+    }
 }
 
 
