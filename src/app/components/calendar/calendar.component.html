@@ -1,9 +1,13 @@
 <mat-card class="inline-calendar-card">
-    <mat-calendar [dateClass]="dateClass"></mat-calendar>
+    <mat-calendar [dateClass]="dateClass" [(selected)]="selectedDate" (selectedChange)="dateChanged()"></mat-calendar>
     <section class="legend">
         <div>
-            <div class="reserved"></div>
+            <div class="deal"></div>
             <p>Akcija</p>
+        </div>
+        <div>
+            <div class="reserved"></div>
+            <p>Rezervisano</p>
         </div>
         <div>
             <div class="not-available"></div>

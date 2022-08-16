@@ -11,6 +11,7 @@ import { ShipService } from 'src/app/services/ship.service';
 export interface SomeData {
   realEstateId: number
   type: RealEstateType
+  notAvailableDates: Date[]
 }
 
 @Component({
@@ -24,6 +25,7 @@ export class AddSuperDealComponent implements OnInit {
   superDeal: SuperDeal = new SuperDeal();
   realEstateId!: number;
   type!: RealEstateType;
+  notAvailableDates: Date[] = [];
   showForm = false;
 
   form!: UntypedFormGroup;
@@ -37,6 +39,9 @@ export class AddSuperDealComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: SomeData) {
     this.realEstateId = data.realEstateId;
     this.type = data.type;
+    this.notAvailableDates = data.notAvailableDates;
+    console.log(this.notAvailableDates);
+    
   }
 
   ngOnInit(): void {

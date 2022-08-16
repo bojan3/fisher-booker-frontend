@@ -88,6 +88,7 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { LineChartComponent } from './components/line-chart/line-chart.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { MatSelectModule } from '@angular/material/select';
+import { HistoryPageComponent } from './components/history-page/history-page.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -152,7 +153,8 @@ const appRoutes: Routes = [
   { path: 'client_profile/adventure-reservations', component: AdventureReservationsComponent },
   { path: 'client_profile/ship-reservations', component: ShipReservationsComponent },
   { path: 'client_profile/cottage-complaint/:cottageId', component: CottageComplaintComponent },
-  { path: 'cottage-complaint/:cottageId', component: CottageComplaintComponent }
+  { path: 'cottage-complaint/:cottageId', component: CottageComplaintComponent },
+  { path: 'reservation_history', component: HistoryPageComponent}
 
 ];
 
