@@ -1,3 +1,4 @@
+<button (click)="openChart()">Vidi izveštaj</button>
 <section class="cottage-all-info" *ngIf="cottageIsPresent">
   <section class="cottage-info info-block">
     <h2>{{cottage.name}}</h2>
@@ -12,9 +13,13 @@
     <button [routerLink]="['', 'add_cottage']" [queryParams]='{id: cottage.id}' *ngIf="ownership">Izmeni</button>
   </section>
 
-  <app-calendar [superDeals]="cottage.cottageSuperDeals" [availabilityPeriod]="cottage.availabilityPeriod">
+  <section class="info-block">
+    <app-calendar [id] = 'cottage.id' [superDeals]="cottage.cottageSuperDeals" [availabilityPeriod]="cottage.availabilityPeriod">
     
-  </app-calendar>
+    </app-calendar>
+    
+  </section>
+
 
   <section class="super-deals info-block">
     <div class="deal-head">

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatCalendarCellClassFunction, MatCalendarCellCssClasses } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
@@ -6,6 +6,8 @@ import { Cottage } from 'src/app/entity/Cottage';
 import { RealEstateType } from 'src/app/entity/RealEstateType';
 import { CottageService } from 'src/app/services/cottage.service';
 import { AddSuperDealComponent } from '../add-super-deal/add-super-deal.component';
+import { CalendarComponent } from '../calendar/calendar.component';
+import { LineChartComponent } from '../line-chart/line-chart.component';
 
 @Component({
   selector: 'app-cottage-page',
@@ -19,6 +21,9 @@ export class CottagePageComponent implements OnInit {
   cottageIsPresent = false;
   ownership: boolean = false;
   selectedDate: any;
+
+  @ViewChild(CalendarComponent)
+  calendar!: CalendarComponent;
 
   constructor(private route: ActivatedRoute, private cottageService: CottageService, public dialog: MatDialog) { }
 
@@ -74,11 +79,17 @@ export class CottagePageComponent implements OnInit {
   }
 
   openAddSupeDealDialog() {
-    this.dialog.open(AddSuperDealComponent, {data: {realEstateId: this.cottage.id, type: RealEstateType.COTTAGE}})
+    var dates = this.calendar.dealDates.concat(this.calendar.reservedDates);
+    this.dialog.open(AddSuperDealComponent, {data: {realEstateId: this.cottage.id,
+       type: RealEstateType.COTTAGE, notAvailableDates: dates}})
   }
 
   onSelect(event: any){
     console.log(event);
     this.selectedDate = event;
+  }
+
+  openChart() {
+    this.dialog.open(LineChartComponent)
   }
 }

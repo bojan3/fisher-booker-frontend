@@ -7,6 +7,7 @@ import { Cottage } from '../entity/Cottage';
 import { AddCottageDTO } from '../entity/DTO/AddCottageDTO';
 import { AddSuperDealDTO } from '../entity/DTO/AddSupeDealDTO';
 import { Option } from 'src/app/entity/Option';
+import { DatePeriodDTO } from '../entity/DTO/DatePeriodDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -82,5 +83,13 @@ export class CottageService {
 
   getOptions(id: number): Observable<Option[]> {
     return this.http.get<Option[]>('http://localhost:8081/api/cottage/options/' + id);
+  }
+
+  getDates(id: number): Observable<DatePeriodDTO[]> {
+    return this.http.get<DatePeriodDTO[]>('http://localhost:8081/api/cottage/dates/' + id);
+  }
+
+  getReservationDetails(cottageId: number, date: Date) {
+    return this.http.get<DatePeriodDTO[]>('http://localhost:8081/api/cottage/' + cottageId + '/' + date);
   }
 }
