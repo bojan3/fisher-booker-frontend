@@ -85,6 +85,10 @@ export class CottageService {
     return this.http.get<Option[]>('http://localhost:8081/api/cottage/options/' + id);
   }
 
+  getCottageLocaitons(): Observable<string[]> {
+    return this.apiService.get('http://localhost:8081/api/cottage/locations');
+  }
+
   getDates(id: number): Observable<DatePeriodDTO[]> {
     return this.http.get<DatePeriodDTO[]>('http://localhost:8081/api/cottage/dates/' + id);
   }

@@ -20,6 +20,7 @@ export class CottagesComponent implements OnInit {
   cottages: CottageDTO[] = [];
   sortByGroup!: FormGroup;
   orderGroup!: FormGroup;
+  cottageLocations: string[] = [];
 
   constructor(private cottageService: CottageService,
               private clientService: ClientService,
@@ -36,6 +37,8 @@ export class CottagesComponent implements OnInit {
     });
 
     this.orderGroup.patchValue({orderRadio: 'ASC'});
+
+    this.cottageService.getCottageLocaitons().subscribe( (locations) => (this.cottageLocations = locations) )
 
     if (this.forCottageOwner) {
       this.cottageService.getAllCottagesByOwner().subscribe((cottages) => (this.cottages = cottages));
