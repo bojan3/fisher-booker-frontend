@@ -1,3 +1,21 @@
+<h3>Sort by:</h3>
+<div class="sort" *ngIf="notClientSubscriptions()" style="display:flex; flex-direction: row; justify-content: center; align-items: left">
+    <form [formGroup]="sortByGroup">
+      <input type="radio" formControlName="sortByRadio" value="name" (change)="getSorted()">
+      <label for="name">name</label><br>
+      <input type="radio" formControlName="sortByRadio" value="pricePerDay" (change)="getSorted()">
+      <label for="price">price</label><br>
+      <input type="radio" formControlName="sortByRadio" value="averageMark" (change)="getSorted()">
+      <label for="rating">rating</label>
+    </form>
+    <form [formGroup]="orderGroup">
+      <input type="radio" formControlName="orderRadio" value="ASC" (change)="getSorted()">
+      <label for="name">ascending</label><br>
+      <input type="radio" formControlName="orderRadio" value="DESC" (change)="getSorted()">
+      <label for="price">descending</label><br>
+    </form>
+  </div>
+
 <section>
     <app-adventure  *ngFor="let adventure of adventures"
     [adventure]="adventure">

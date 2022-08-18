@@ -93,6 +93,14 @@ import { SchedulerComponent } from './scheduler/scheduler.component';
 import { BusinessReportComponent } from './components/business-report/business-report.component';
 import { BusinessReportService } from './services/business-report.service';
 
+import { LineChartComponent } from './components/line-chart/line-chart.component';
+//import { NgApexchartsModule } from 'ng-apexcharts';
+import { MatSelectModule } from '@angular/material/select';
+import { HistoryPageComponent } from './components/history-page/history-page.component';
+import { CottageReviewComponent } from './components/cottage-review/cottage-review.component';
+import { AdventureReviewComponent } from './components/adventure-review/adventure-review.component';
+import { ShipReviewComponent } from './components/ship-review/ship-review.component';
+
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -159,7 +167,11 @@ const appRoutes: Routes = [
   { path: 'client_profile/ship-reservations', component: ShipReservationsComponent },
   { path: 'client_profile/cottage-complaint/:cottageId', component: CottageComplaintComponent },
   { path: 'cottage-complaint/:cottageId', component: CottageComplaintComponent },
-  { path: 'scheduler', component: SchedulerComponent}
+  { path: 'scheduler', component: SchedulerComponent},
+  { path: 'reservation_history', component: HistoryPageComponent},
+  { path: 'cottage-review/:cottageId', component: CottageReviewComponent },
+  { path: 'ship-review/:shipId', component: ShipReviewComponent },
+  { path: 'adventure-review/:adventureId', component: AdventureReviewComponent }
 
 
 ];
@@ -206,7 +218,6 @@ const mapConfig: YaConfig = {
     AccountRequestComponent,
     AccountRequestsComponent,
     NewAdminComponent,
-
     ImagesOfEntitiesComponent,
     AddCottageComponent,
     AccountInfoEditComponent,
@@ -241,7 +252,11 @@ const mapConfig: YaConfig = {
     CalendarComponent,
     PrecentageviewComponent,
     SchedulerComponent,
-    BusinessReportComponent
+    BusinessReportComponent,
+    LineChartComponent,
+    CottageReviewComponent,
+    AdventureReviewComponent,
+    ShipReviewComponent
   ],
   imports: [
     [AngularYandexMapsModule.forRoot(mapConfig)],
@@ -261,7 +276,9 @@ const mapConfig: YaConfig = {
     MatCheckboxModule,
     MatProgressSpinnerModule,
     ScheduleModule,
-    RecurrenceEditorModule
+    RecurrenceEditorModule,
+   // NgApexchartsModule,
+    MatSelectModule
   ],
   providers: [
     {

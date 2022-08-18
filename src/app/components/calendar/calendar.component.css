@@ -1,12 +1,18 @@
-:host::ng-deep.reserved-date {
-    background: rgba(255, 0, 0, 0.8);
+:host::ng-deep.not-available-date {
+    background: rgba(0, 0, 0, 0.6);
     border-radius: 100%;
 }
 
-:host::ng-deep.not-available-date {
-    background: rgba(0, 0, 0, 0.8);
+:host::ng-deep.deal-date {
+    background: rgba(0, 0, 255, 0.6);
     border-radius: 100%;
 }
+
+:host::ng-deep.reserved-date {
+    background: rgba(255, 0, 0, 0.6);
+    border-radius: 100%;
+}
+
 
 .inline-calendar-card {
     width: 300px;
@@ -18,13 +24,19 @@
 }
 
 .reserved {
-    background-color: rgba(255, 0, 0, 0.8);
+    background-color: rgba(255, 0, 0, 0.6);
     width: 10px;
     height: 10px;
 }
 
 .not-available {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 10px;
+    height: 10px;
+}
+
+.deal {
+    background-color: rgba(0, 0, 255, 0.6);
     width: 10px;
     height: 10px;
 }

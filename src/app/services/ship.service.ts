@@ -24,31 +24,14 @@ export class ShipService {
     return this.apiService.get('http://localhost:8081/api/ship/page/' + id);
   }
 
-  getAllShips(): Observable<ShipDTO[]>{
-    return this.http.get<ShipDTO[]>('http://localhost:8081/api/ship/all/name')
+  getAllShips(type ?: string, order?: string): Observable<ShipDTO[]>{
+    if(type && order)
+      return this.apiService.get('http://localhost:8081/api/ship/all/', {type: type, order: order});
+    return this.apiService.get('http://localhost:8081/api/ship/all');
   }
-
 
   deleteShip(id: number): Observable<ShipDTO[]> {
     return this.http.delete<ShipDTO[]>('http://localhost:8081/api/ship/delete{id}')
-  }
-
-
-
-  getAllShipsByName(): Observable<ShipDTO[]>{
-    return this.http.get<ShipDTO[]>('http://localhost:8081/api/ship/all/name')
-  }
-
-    getAllShipsByPrice(): Observable<ShipDTO[]>{
-    return this.http.get<ShipDTO[]>('http://localhost:8081/api/ship/all/price')
-  }
-
-    getAllShipsByRating(): Observable<ShipDTO[]>{
-    return this.http.get<ShipDTO[]>('http://localhost:8081/api/ship/all/rating')
-  }
-
-  getAllShipsByCapacity(): Observable<ShipDTO[]>{
-    return this.http.get<ShipDTO[]>('http://localhost:8081/api/ship/all/capacity')
   }
 
   getAllShipsByOwner(): Observable<ShipDTO[]> {

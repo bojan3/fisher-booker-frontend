@@ -1,5 +1,5 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SuperDeal } from 'src/app/entity/SuperDeal';
 import { CottageService } from 'src/app/services/cottage.service';
@@ -11,6 +11,7 @@ import { ShipService } from 'src/app/services/ship.service';
 export interface SomeData {
   realEstateId: number
   type: RealEstateType
+  notAvailableDates: Date[]
 }
 
 @Component({
@@ -24,19 +25,23 @@ export class AddSuperDealComponent implements OnInit {
   superDeal: SuperDeal = new SuperDeal();
   realEstateId!: number;
   type!: RealEstateType;
+  notAvailableDates: Date[] = [];
   showForm = false;
 
-  form!: UntypedFormGroup;
+  form!: FormGroup;
 
   @Input()
   options: Option[] = [];
 
-  constructor(private formBuilder: UntypedFormBuilder,
+  constructor(private formBuilder: FormBuilder,
      private cottageService: CottageService,
      private shipService: ShipService,
     @Inject(MAT_DIALOG_DATA) public data: SomeData) {
     this.realEstateId = data.realEstateId;
     this.type = data.type;
+    this.notAvailableDates = data.notAvailableDates;
+    console.log(this.notAvailableDates);
+    
   }
 
   ngOnInit(): void {

@@ -1,0 +1,15 @@
+<form *ngIf="showSelect">
+    <mat-form-field appearance="fill">
+      <mat-label>Godina</mat-label>
+      <mat-select [(ngModel)]="selectedYear" (selectionChange)='onChange()' name="food">
+        <mat-option *ngFor="let year of years" [value]="year">
+          {{year}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+</form>
+<div id="chart" *ngIf="showChart"> 
+    <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
+        [dataLabels]="chartOptions.dataLabels" [grid]="chartOptions.grid" [stroke]="chartOptions.stroke"
+        [title]="chartOptions.title"></apx-chart>
+</div>
