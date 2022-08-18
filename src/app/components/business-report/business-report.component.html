@@ -1,0 +1,19 @@
+<p>Input date interval for search (YYYY/MM/dd)!</p>
+<form>
+<br><label>start date:</label><input #start type="text" value={{this.date}}>
+
+<br><label>end date:</label><input #end type="text" value={{this.date}}>
+<button color="primary" (click)='search(start.value,end.value)'>Search</button>
+
+
+<p>Income on this interval is: {{this.totalIncome}}</p>
+<p>Total reservations on this interval is: {{this.totalReservations}}</p>
+
+<p>Income from ship reservations for this interval is: {{this.shipIncome}}</p>
+<p>Total ship reservations on this interval is: {{this.shipReservations}}</p>
+
+<p>Income from cottage reservations for this interval is: {{this.cottageIncome}}</p>
+<p>Total cottage reservations on this interval is: {{this.cottageReservations}}</p>
+
+<p>Income from adventure reservations for this interval is: {{this.adventureIncome}}</p>
+<p>Total adventure reservations on this interval is: {{this.adventureReservations}}</p>

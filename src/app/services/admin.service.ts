@@ -1,5 +1,4 @@
-import { HttpClient } from '@angular/common/http';
-import { ThrowStmt } from '@angular/compiler';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
@@ -24,9 +23,11 @@ export class AdminService {
    return this.apiService.get(this.incomepath);
   }
 
-  setNewIncome(value:string):Observable<String>{
+  setNewIncome(value:string): Observable<string>{
     console.log("ulazimo u kontroler");
-    return this.apiService.post(this.newincomepath,value);
+    console.log("Nova vrednost procenta:"+value);    
+    return this.apiService.post(this.newincomepath,{"income":value}.income);
   }
+  
 
 }

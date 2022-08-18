@@ -85,6 +85,14 @@ import { AddSuperDealComponent } from './components/add-super-deal/add-super-dea
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CalendarComponent } from './components/calendar/calendar.component';
+import { PrecentageviewComponent } from './components/precentageview/precentageview.component';
+import { ScheduleModule, RecurrenceEditorModule, DayService, WeekService, 
+  WorkWeekService, MonthService, MonthAgendaService 
+} from '@syncfusion/ej2-angular-schedule';
+import { SchedulerComponent } from './scheduler/scheduler.component';
+import { BusinessReportComponent } from './components/business-report/business-report.component';
+import { BusinessReportService } from './services/business-report.service';
+
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -141,6 +149,7 @@ const appRoutes: Routes = [
   { path: 'admin_profile/adventures', component: AdventuresComponent },
   { path: 'admin_profile/instructors', component: FishingInstructorsComponent },
   { path: 'admin_profile/clients', component: ClientsComponent },
+  { path: 'admin_profile/business-report', component: BusinessReportComponent },
   { path: 'account-info', component: AccountInfoComponent },
   { path: 'account-info-edit', component: AccountInfoEditComponent },
   { path: 'register/verify/:token', component: VerifyAccountComponent },
@@ -149,7 +158,9 @@ const appRoutes: Routes = [
   { path: 'client_profile/adventure-reservations', component: AdventureReservationsComponent },
   { path: 'client_profile/ship-reservations', component: ShipReservationsComponent },
   { path: 'client_profile/cottage-complaint/:cottageId', component: CottageComplaintComponent },
-  { path: 'cottage-complaint/:cottageId', component: CottageComplaintComponent }
+  { path: 'cottage-complaint/:cottageId', component: CottageComplaintComponent },
+  { path: 'scheduler', component: SchedulerComponent}
+
 
 ];
 
@@ -227,7 +238,10 @@ const mapConfig: YaConfig = {
     CottageComplaintComponent,
     EditAvailabilityPeriodComponent,
     AddSuperDealComponent,
-    CalendarComponent
+    CalendarComponent,
+    PrecentageviewComponent,
+    SchedulerComponent,
+    BusinessReportComponent
   ],
   imports: [
     [AngularYandexMapsModule.forRoot(mapConfig)],
@@ -245,7 +259,9 @@ const mapConfig: YaConfig = {
     MatCardModule,
     MatFormFieldModule,
     MatCheckboxModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    ScheduleModule,
+    RecurrenceEditorModule
   ],
   providers: [
     {
@@ -261,8 +277,14 @@ const mapConfig: YaConfig = {
     ShipOwnerService,
     ClientService,
     FishingInstructorService,
-    CottageOwnerService
+    CottageOwnerService,
+    BusinessReportService,
 
+    DayService,
+    WeekService,
+    WorkWeekService,
+    MonthService,
+    MonthAgendaService
 
   ],
   bootstrap: [AppComponent]

@@ -1,17 +1,17 @@
 <app-account-info></app-account-info>
-<div>
-    <p>Current income precentage: {{income}}</p>
-<form><label>New income precentage:</label><input id="unos" value="{{income}}"></form> <button (click)='setNewIncome("1.0")'>change</button>
-
-</div>
+<app-precentageview></app-precentageview>
 <section class='entities'>
     <app-entity *ngFor='let entity of entities' [name]='entity[0]' [path]='entity[1]' [route]='entity[2]' >
 
     </app-entity>
 
-    
 
 </section>
 
+<!--<app-scheduler></app-scheduler>
+
+<app-calendar></app-calendar>
+-->
 
 <app-new-admin>
+ 
