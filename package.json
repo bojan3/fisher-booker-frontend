@@ -27,7 +27,7 @@
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4",
-    "@syncfusion/ej2-material-theme":"~17.1.41"
+    "@syncfusion/ej2-material-theme": "~17.1.41"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.1.0",

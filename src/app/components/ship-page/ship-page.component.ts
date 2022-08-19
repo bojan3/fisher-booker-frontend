@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { ReservationType } from 'src/app/entity/DTO/ReservationType';
 import { RealEstateType } from 'src/app/entity/RealEstateType';
 import { Ship } from 'src/app/entity/Ship';
 import { ShipService } from 'src/app/services/ship.service';
@@ -90,6 +91,6 @@ export class ShipPageComponent implements OnInit {
   }
 
   openAddSupeDealDialog() {
-    this.dialog.open(AddSuperDealComponent, {data: {realEstateId: this.ship.id, type: RealEstateType.SHIP}})
+    this.dialog.open(AddSuperDealComponent, {data: {realEstateId: this.ship.id, type: ReservationType.SHIP}})
   }
 }

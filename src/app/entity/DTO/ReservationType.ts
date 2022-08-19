@@ -1,5 +1,5 @@
 export enum ReservationType {
-    COTTAGE,
-    SERVICE,
-    ADVENTURE
+    COTTAGE = "COTTAGE",
+    SHIP = "SHIP",
+    ADVENTURE = "ADVENTURE"
 }

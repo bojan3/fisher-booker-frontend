@@ -94,7 +94,6 @@ import { BusinessReportComponent } from './components/business-report/business-r
 import { BusinessReportService } from './services/business-report.service';
 
 import { LineChartComponent } from './components/line-chart/line-chart.component';
-import { NgApexchartsModule } from 'ng-apexcharts';
 import { MatSelectModule } from '@angular/material/select';
 import { HistoryPageComponent } from './components/history-page/history-page.component';
 import { CottageReviewComponent } from './components/cottage-review/cottage-review.component';
@@ -103,7 +102,13 @@ import { ShipReviewComponent } from './components/ship-review/ship-review.compon
 import { ReviewComponent } from './components/review/review.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import { ReviewsService } from './services/reviews.service';
-
+import { ReservationDetailComponent } from './components/reservation-detail/reservation-detail.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { DateRangeComponent } from './components/date-range/date-range.component';
+import { MatInputModule } from '@angular/material/input';
+import { AddReservationComponent } from './components/add-reservation/add-reservation.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -260,7 +265,11 @@ const mapConfig: YaConfig = {
     AdventureReviewComponent,
     ShipReviewComponent,
     ReviewComponent,
-    ReviewsComponent
+    ReviewsComponent,
+    HistoryPageComponent,
+    ReservationDetailComponent,
+    DateRangeComponent,
+    AddReservationComponent
   ],
   imports: [
     [AngularYandexMapsModule.forRoot(mapConfig)],
@@ -281,8 +290,12 @@ const mapConfig: YaConfig = {
     MatProgressSpinnerModule,
     ScheduleModule,
     RecurrenceEditorModule,
+    MatSelectModule,
     NgApexchartsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatExpansionModule,
+    MatPaginatorModule,
+    MatInputModule
   ],
   providers: [
     {
