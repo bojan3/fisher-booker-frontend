@@ -89,17 +89,20 @@ import { PrecentageviewComponent } from './components/precentageview/precentagev
 import { ScheduleModule, RecurrenceEditorModule, DayService, WeekService, 
   WorkWeekService, MonthService, MonthAgendaService 
 } from '@syncfusion/ej2-angular-schedule';
-import { SchedulerComponent } from './scheduler/scheduler.component';
+import { SchedulerComponent } from './components/scheduler/scheduler.component';
 import { BusinessReportComponent } from './components/business-report/business-report.component';
 import { BusinessReportService } from './services/business-report.service';
 
 import { LineChartComponent } from './components/line-chart/line-chart.component';
-//import { NgApexchartsModule } from 'ng-apexcharts';
+import { NgApexchartsModule } from 'ng-apexcharts';
 import { MatSelectModule } from '@angular/material/select';
 import { HistoryPageComponent } from './components/history-page/history-page.component';
 import { CottageReviewComponent } from './components/cottage-review/cottage-review.component';
 import { AdventureReviewComponent } from './components/adventure-review/adventure-review.component';
 import { ShipReviewComponent } from './components/ship-review/ship-review.component';
+import { ReviewComponent } from './components/review/review.component';
+import { ReviewsComponent } from './components/reviews/reviews.component';
+import { ReviewsService } from './services/reviews.service';
 
 
 const appRoutes: Routes = [
@@ -171,9 +174,8 @@ const appRoutes: Routes = [
   { path: 'reservation_history', component: HistoryPageComponent},
   { path: 'cottage-review/:cottageId', component: CottageReviewComponent },
   { path: 'ship-review/:shipId', component: ShipReviewComponent },
-  { path: 'adventure-review/:adventureId', component: AdventureReviewComponent }
-
-
+  { path: 'adventure-review/:adventureId', component: AdventureReviewComponent },
+  { path: 'admin_profile/reviews', component: ReviewsComponent}
 ];
 
 const mapConfig: YaConfig = {
@@ -256,7 +258,9 @@ const mapConfig: YaConfig = {
     LineChartComponent,
     CottageReviewComponent,
     AdventureReviewComponent,
-    ShipReviewComponent
+    ShipReviewComponent,
+    ReviewComponent,
+    ReviewsComponent
   ],
   imports: [
     [AngularYandexMapsModule.forRoot(mapConfig)],
@@ -277,7 +281,7 @@ const mapConfig: YaConfig = {
     MatProgressSpinnerModule,
     ScheduleModule,
     RecurrenceEditorModule,
-   // NgApexchartsModule,
+    NgApexchartsModule,
     MatSelectModule
   ],
   providers: [
@@ -296,6 +300,7 @@ const mapConfig: YaConfig = {
     FishingInstructorService,
     CottageOwnerService,
     BusinessReportService,
+    ReviewsService,
 
     DayService,
     WeekService,

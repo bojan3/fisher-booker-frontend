@@ -4,12 +4,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormRecord } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Schedule, ScheduleComponent } from '@syncfusion/ej2-angular-schedule';
-import { AdventureReservationService } from 'src/app/adventure-reservation.service';
+import { AdventureReservationService } from 'src/app/services/adventure-reservation.service';
 import { Account } from 'src/app/entity/Account';
 import { AdventureReservationDTO } from 'src/app/entity/DTO/AdventureReservationDTO';
-import { SchedulerComponent } from 'src/app/scheduler/scheduler.component';
+import { SchedulerComponent } from 'src/app/components/scheduler/scheduler.component';
 import { AccountService } from 'src/app/services/account.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { CottageReservationService } from 'src/app/services/cottage-reservation.service';
+import { ShipReservationService } from 'src/app/services/ship-reservation.service';
+import { CottageOwnerService } from 'src/app/services/cottage-owner.service';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +24,8 @@ export class HeaderComponent implements OnInit {
   account!: Account;
 
   reservationdata!: AdventureReservationDTO[];
-  scheduler: SchedulerComponent =new SchedulerComponent(this.accountService,this.adventureReservationS)
+  scheduler: SchedulerComponent =new SchedulerComponent(this.accountService,
+    this.adventureReservationS,this.cottageReservationS, this.shipReservationS, this.cottageOwnerService)
   podaci:any = []
   podaci1!:any
   podaci2:AdventureReservationDTO[] = []
@@ -41,13 +45,13 @@ export class HeaderComponent implements OnInit {
     complete: () => {
 
     console.log(this.scheduler.data2)
-      
-
-
   },
   };
 
-  constructor(private adventureReservationS: AdventureReservationService, private accountService: AccountService, private authService: AuthService, private router: Router) { }
+  constructor(private adventureReservationS: AdventureReservationService, private accountService: AccountService,
+     private authService: AuthService, private router: Router,
+     private cottageReservationS: CottageReservationService, private shipReservationS: ShipReservationService,
+     private cottageOwnerService: CottageOwnerService) { }
 
   ngOnInit(): void {
     this.accountService.getMyInfo().subscribe();

@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AdventureReservationDTO } from './entity/DTO/AdventureReservationDTO';
-import { ApiService } from './services/api.service';
+import { AdventureReservationDTO } from '../entity/DTO/AdventureReservationDTO';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
