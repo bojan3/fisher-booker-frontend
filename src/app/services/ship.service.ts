@@ -43,7 +43,7 @@ export class ShipService {
   }
 
   createSuperDeal(deal: AddSuperDealDTO): Observable<boolean> {
-    return this.http.post<boolean>('http://localhost:8081/api/cottageSuperDeal/add/', deal);
+    return this.http.post<boolean>('http://localhost:8081/api/superDeal/add/', deal);
   }
 
   getOptions(id: number): Observable<Option[]> {

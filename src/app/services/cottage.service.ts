@@ -8,6 +8,7 @@ import { AddCottageDTO } from '../entity/DTO/AddCottageDTO';
 import { AddSuperDealDTO } from '../entity/DTO/AddSupeDealDTO';
 import { Option } from 'src/app/entity/Option';
 import { DatePeriodDTO } from '../entity/DTO/DatePeriodDTO';
+import { AddReservationDTO } from '../entity/DTO/AddReservationDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -16,18 +17,18 @@ export class CottageService {
 
   constructor(private http: HttpClient, private apiService: ApiService) { }
 
-  getAllCottages(type?: string, order?: string): Observable<CottageDTO[]>{
-    if(type && order)
-      return this.apiService.get('http://localhost:8081/api/cottage/all/', {type : type, order: order});
+  getAllCottages(type?: string, order?: string): Observable<CottageDTO[]> {
+    if (type && order)
+      return this.apiService.get('http://localhost:8081/api/cottage/all/', { type: type, order: order });
     return this.apiService.get('http://localhost:8081/api/cottage/all');
   }
 
   getById(id: string): Observable<Cottage> {
     return this.apiService.get('http://localhost:8081/api/cottage/page/' + id);
   }
-  getAllCottagesByName(): Observable<Cottage[]>{
+  getAllCottagesByName(): Observable<Cottage[]> {
     // return this.http.get<Cottage[]>('http://localhost:8081/api/cottage/all/name');
-    return this.apiService.get('http://localhost:8081/api/cottage/all/', { type : "name1", order: "desc1"});
+    return this.apiService.get('http://localhost:8081/api/cottage/all/', { type: "name1", order: "desc1" });
   }
 
   getAllCottagesByPrice(): Observable<Cottage[]> {
@@ -36,7 +37,7 @@ export class CottageService {
 
   getAllCottagesByOwner(): Observable<CottageDTO[]> {
     return this.http.get<CottageDTO[]>('http://localhost:8081/api/cottageOwner/allCottagesByOwner');
-  } 
+  }
 
   getAllCottagesByRating(): Observable<Cottage[]> {
     return this.http.get<Cottage[]>('http://localhost:8081/api/cottage/all/rate');
@@ -48,7 +49,7 @@ export class CottageService {
 
 
 
-  adeleteCottage(id: number): Observable<CottageDTO>{
+  adeleteCottage(id: number): Observable<CottageDTO> {
     console.log("ADMIN");
     return this.apiService.delete('http://localhost:8081/api/cottage/delete/' + id);
   }
@@ -78,7 +79,7 @@ export class CottageService {
   }
 
   createSuperDeal(deal: AddSuperDealDTO): Observable<boolean> {
-    return this.http.post<boolean>('http://localhost:8081/api/cottageSuperDeal/add/', deal);
+    return this.http.post<boolean>('http://localhost:8081/api/superDeal/add/', deal);
   }
 
   getOptions(id: number): Observable<Option[]> {
@@ -95,5 +96,9 @@ export class CottageService {
 
   getReservationDetails(cottageId: number, date: Date) {
     return this.http.get<DatePeriodDTO[]>('http://localhost:8081/api/cottage/' + cottageId + '/' + date);
+  }
+
+  createReservation(reservation: AddReservationDTO): Observable<boolean>{
+    return this.http.post<boolean>('http://localhost:8081/api/reservation/createByOwner', reservation);
   }
 }

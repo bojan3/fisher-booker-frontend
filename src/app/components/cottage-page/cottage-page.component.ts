@@ -3,6 +3,7 @@ import { MatCalendarCellClassFunction, MatCalendarCellCssClasses } from '@angula
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Cottage } from 'src/app/entity/Cottage';
+import { ReservationType } from 'src/app/entity/DTO/ReservationType';
 import { RealEstateType } from 'src/app/entity/RealEstateType';
 import { CottageService } from 'src/app/services/cottage.service';
 import { AddSuperDealComponent } from '../add-super-deal/add-super-deal.component';
@@ -81,7 +82,7 @@ export class CottagePageComponent implements OnInit {
   openAddSupeDealDialog() {
     var dates = this.calendar.dealDates.concat(this.calendar.reservedDates);
     this.dialog.open(AddSuperDealComponent, {data: {realEstateId: this.cottage.id,
-       type: RealEstateType.COTTAGE, notAvailableDates: dates}})
+       type: ReservationType.COTTAGE, notAvailableDates: dates}})
   }
 
   onSelect(event: any){
