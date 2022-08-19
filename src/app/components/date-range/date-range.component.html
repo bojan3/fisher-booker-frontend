@@ -1,0 +1,17 @@
+<section *ngIf="showPickers">
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Od</mat-label>
+        <input matInput [matDatepickerFilter]="startFilter" [matDatepicker]="startPicker" [(ngModel)]="startDate" [readonly]=true>
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+        <mat-datepicker #startPicker></mat-datepicker>
+    </mat-form-field>
+    
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Do</mat-label>
+        <input matInput [matDatepickerFilter]="endFilter" [matDatepicker]="endPicker" [(ngModel)]="endDate" [readonly]=true>
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+        <mat-datepicker #endPicker></mat-datepicker>
+    </mat-form-field>
+</section>

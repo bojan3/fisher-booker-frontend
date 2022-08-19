@@ -17,7 +17,7 @@ export class AccountInfoEditComponent implements OnInit {
   requestSent = false;
 
   constructor(private accountService: AccountService,
-    private router: Router, private formBuilder: FormBuilder,) {}
+    private router: Router, private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
     this.accountService.getMyInfo().subscribe((account: Account) => (this.account = account));

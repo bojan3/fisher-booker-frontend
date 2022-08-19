@@ -92,7 +92,12 @@ import { HistoryPageComponent } from './components/history-page/history-page.com
 import { CottageReviewComponent } from './components/cottage-review/cottage-review.component';
 import { AdventureReviewComponent } from './components/adventure-review/adventure-review.component';
 import { ShipReviewComponent } from './components/ship-review/ship-review.component';
-
+import { ReservationDetailComponent } from './components/reservation-detail/reservation-detail.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { DateRangeComponent } from './components/date-range/date-range.component';
+import { MatInputModule } from '@angular/material/input';
+import { AddReservationComponent } from './components/add-reservation/add-reservation.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -158,7 +163,7 @@ const appRoutes: Routes = [
   { path: 'client_profile/ship-reservations', component: ShipReservationsComponent },
   { path: 'client_profile/cottage-complaint/:cottageId', component: CottageComplaintComponent },
   { path: 'cottage-complaint/:cottageId', component: CottageComplaintComponent },
-  { path: 'reservation_history', component: HistoryPageComponent},
+  { path: 'reservation_history', component: HistoryPageComponent },
   { path: 'cottage-review/:cottageId', component: CottageReviewComponent },
   { path: 'ship-review/:shipId', component: ShipReviewComponent },
   { path: 'adventure-review/:adventureId', component: AdventureReviewComponent }
@@ -242,7 +247,11 @@ const mapConfig: YaConfig = {
     LineChartComponent,
     CottageReviewComponent,
     AdventureReviewComponent,
-    ShipReviewComponent
+    ShipReviewComponent,
+    HistoryPageComponent,
+    ReservationDetailComponent,
+    DateRangeComponent,
+    AddReservationComponent
   ],
   imports: [
     [AngularYandexMapsModule.forRoot(mapConfig)],
@@ -262,7 +271,10 @@ const mapConfig: YaConfig = {
     MatCheckboxModule,
     MatProgressSpinnerModule,
     NgApexchartsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatExpansionModule,
+    MatPaginatorModule,
+    MatInputModule
   ],
   providers: [
     {
