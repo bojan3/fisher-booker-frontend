@@ -95,7 +95,7 @@ setAll():void{
   }
 
   if(this.role==="ROLE_COTTAGE_OWNER"){
-    this.cottageOwnerService.getReservationsByOwner().subscribe((data) => {
+    this.cottageReservationService.getAllReservations(username).subscribe((data) => {
       console.log(data)
       data2 =this.getCottageRData(data)
       this.test=data2
@@ -165,7 +165,7 @@ getAdventureRData(podaci: AdventureReservationDTO[]):any[]{
 
 }
 
-getCottageRData(podaci: ReservationDetailsDTO[]):any[]{
+getCottageRData(podaci: CottageReservationDTO[]):any[]{
 
   let rval : object[]=[]
 
@@ -176,8 +176,8 @@ getCottageRData(podaci: ReservationDetailsDTO[]):any[]{
   for (let i = 0; i < podaci.length; i++) {
    rval.push({
     id: podaci[i].id,
-    Subject: podaci[i].name,
-    Description: podaci[i].userInfo,
+    Subject: podaci[i].cottageDTO.name,
+    Description: podaci[i].cottageDTO.description,
     //StartTime : this.parseDate(podaci[i].startDate),
     //EndTime: this.parseDate(podaci[i].endDate)
     StartTime: podaci[i].startDate,

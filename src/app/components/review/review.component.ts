@@ -22,11 +22,15 @@ export class ReviewComponent implements OnInit {
         
       this.reviewService.approve(id).subscribe();
      this.reviewService.getAllReservationReviews();
-
-
-
     }
     
+
+    delete(id:any):void{
+        
+      this.reviewService.delete(id).subscribe();
+     this.reviewService.getAllReservationReviews();
+    }
+
 
   }
 
