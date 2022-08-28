@@ -89,8 +89,6 @@ export class DateRangeComponent implements OnInit {
 
       for (let d of this.dayByDayDates) {
         if ((d >= this.startDate) && (date >= d)) {
-          console.log(date);
-
           return true;
         }
       }

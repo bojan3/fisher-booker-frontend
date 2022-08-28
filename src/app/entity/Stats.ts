@@ -1,10 +1,10 @@
 export class Stats {
-    public cottageName: String;
+    public realEstate: String;
     public income: number;
     public numOfPeople: number;
 
-    constructor(cottageName: String = '', income: number = 0, numOfPeople: number) {
-        this.cottageName = cottageName;
+    constructor(realEstate: String = '', income: number = 0, numOfPeople: number) {
+        this.realEstate = realEstate;
         this.income = income;
         this.numOfPeople = numOfPeople;
     }

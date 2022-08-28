@@ -109,6 +109,7 @@ import { DateRangeComponent } from './components/date-range/date-range.component
 import { MatInputModule } from '@angular/material/input';
 import { AddReservationComponent } from './components/add-reservation/add-reservation.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import {MatTabsModule} from '@angular/material/tabs';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -295,7 +296,8 @@ const mapConfig: YaConfig = {
     MatSelectModule,
     MatExpansionModule,
     MatPaginatorModule,
-    MatInputModule
+    MatInputModule,
+    MatTabsModule
   ],
   providers: [
     {

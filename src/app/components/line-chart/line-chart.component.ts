@@ -40,6 +40,7 @@ export class LineChartComponent implements OnInit {
   public chartOptions!: Partial<any>;
 
   selectedYear!: number;
+  selectedMonth!: number;
   showSelect = false;
   showChart = false;
   years: number[] = [];
@@ -69,8 +70,8 @@ export class LineChartComponent implements OnInit {
     var income = [];
     var people = [];
 
-    for(let stat of this.stats){
-      names.push(stat.cottageName);
+    for (let stat of this.stats) {
+      names.push(stat.realEstate);
       income.push(stat.income);
       people.push(stat.numOfPeople);
     }
@@ -131,6 +132,10 @@ export class LineChartComponent implements OnInit {
       this.stats = stats;
       this.buildChart();
     })
+  }
+
+  tabChanged(event: any) {
+    console.log(event);
   }
 
 }

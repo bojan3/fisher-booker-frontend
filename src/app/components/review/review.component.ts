@@ -27,7 +27,7 @@ export class ReviewComponent implements OnInit {
 
     delete(id:any):void{
         
-      this.reviewService.delete(id).subscribe();
+      // this.reviewService.delete(id).subscribe();
      this.reviewService.getAllReservationReviews();
     }
 

@@ -13,7 +13,15 @@ export class StatsService {
   constructor(private apiService: ApiService) { }
 
   getYearlyStats(year: number): Observable<Stats[]> {
-    return this.apiService.get(this.basePath + 'yearly/' + year);
+    return this.apiService.get(this.basePath + 'COTTAGE/yearly/' + year);
+  }
+
+  getMonthlyStats(year: number, month: number): Observable<Stats[]> {
+    return this.apiService.get(this.basePath + 'monthly/' + year);
+  } 
+
+  getArbitrarilyStats(year: number, month: number): Observable<Stats[]> {
+    return this.apiService.get(this.basePath + 'monthly/' + year);
   }
 
   getYears(): Observable<number[]> {
