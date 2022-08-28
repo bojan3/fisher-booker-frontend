@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CottageService } from 'src/app/services/cottage.service';
 import { Image } from '../../entity/Image';
 
 @Component({
@@ -9,61 +10,38 @@ import { Image } from '../../entity/Image';
 })
 export class EditImageComponent implements OnInit {
 
-  //@Input()
-  //images!: Image[];
-  images: any[] = [];
-  image!: File;
-  form!: FormGroup;
-  imagesForm!: FormArray;
+  uploadedImage!: File;
+  dbImage: any;
+  postResponse: any;
+  successResponse!: string;
+  image: any;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private cottageService: CottageService) { }
 
   ngOnInit(): void {
-    // this.form = this.formBuilder.group({
-    //   images: this.formBuilder.array( this.createImages() )
-    // });
   }
 
-  // createImages(){
-  //   let formatted: FormGroup[] = [];
-  //   this.images.forEach((image) => {
-  //     formatted.push(this.createImage(image.id, image.file));
-  //   })
-  //   return formatted;
-  // }
+  public onImageUpload(event: any) {
+    this.uploadedImage = event.target.files[0];
+  }
 
-  // createImage(defaultId: number, defaultFile: File): FormGroup {
-  //   return this.formBuilder.group({
-  //     id: [defaultId],
-  //     file: [defaultFile, Validators.compose([Validators.required])],
-  //   });
-  // }
 
-  // addImage(): void {
-  //   this.imagesForm = this.form.get('images') as FormArray;
-  //   this.imagesForm.push(this.createImage(0, new File([], '')));
-  //   this.images.push(new Image(0, new File([], '')));
-  // }
+  imageUploadAction() {
 
-  // removeImage(i: number): void{
-  //   this.imagesForm = this.form.get('images') as FormArray;
-  //   this.imagesForm.removeAt(i);
-  //   this.images = this.images.filter((nav, index) => index != i)
-  // }
+    this.cottageService.uploadImage(this.uploadedImage, 1).subscribe((res) => {
+      console.log(res);
+    })
 
-  onSelectFile(event: any) {
-    //   if (event.target.files && event.target.files[0]) {
-    //     var reader = new FileReader();
-
-    //     reader.readAsDataURL(event.target.files[0]); // read file as data url
-
-    //     reader.onload = (event) => { // called once readAsDataURL is completed
-    //       this.url = event.target?.result;
+    // this.httpClient.post('http://localhost:8080/upload/image/', imageFormData, { observe: 'response' })
+    //   .subscribe((response) => {
+    //     if (response.status === 200) {
+    //       this.postResponse = response;
+    //       this.successResponse = this.postResponse.body.message;
+    //     } else {
+    //       this.successResponse = 'Image not uploaded due to some error!';
     //     }
     //   }
-
-    
-    this.image = event.target.files[0];
-
+    //   );
   }
+
 }

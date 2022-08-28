@@ -1,21 +1,5 @@
-<!-- <p>edit-image works!</p>
-<form [formGroup]='form'>
-    <div formArrayName="images" *ngFor="let image of images; let i = index;">
-        <table>
-            <div [formGroupName]='i'>
-                <tr>
-                  <td>
-                    <input formControlName="file" type='file' required>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <button (click)='removeImage(i)'>Obriši sliku</button>
-                  </td>
-                </tr>
-              </div>  
-        </table>
-    </div>
-    <button type="button" (click)="addImage()">Dodaj sliku</button>
-</form> -->
-<input type="file" accept="image/png, image/jpeg" (change)="onSelectFile($event)">
+<p>Images</p>
+<div class="form-group">
+  <input type="file" (change)="onImageUpload($event)">
+  <button (click)="imageUploadAction()" accept="image/png, image/gif, image/jpeg">Sačuvaj sliku</button>
+</div>

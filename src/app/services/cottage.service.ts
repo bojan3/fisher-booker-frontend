@@ -65,14 +65,14 @@ export class CottageService {
     return this.apiService.get('http://localhost:8081/api/cottage/all/date/' + date);
   }
 
-  uploadImage(cottage: AddCottageDTO, image: File): Observable<boolean> {
-    const uploadData = new FormData();
-    console.log(image);
+  // uploadImage(cottage: AddCottageDTO, image: File): Observable<boolean> {
+  //   const uploadData = new FormData();
+  //   console.log(image);
 
-    uploadData.append('image', image, image.name);
-    uploadData.append('cottage', JSON.stringify(cottage));
-    return this.http.post<boolean>('http://localhost:8081/api/cottage/uploadImage', uploadData);
-  }
+  //   uploadData.append('image', image, image.name);
+  //   uploadData.append('cottage', JSON.stringify(cottage));
+  //   return this.http.post<boolean>('http://localhost:8081/api/cottage/uploadImage', uploadData);
+  // }
 
   checkCottageOwnersip(id: string): Observable<boolean> {
     return this.http.get<boolean>('http://localhost:8081/api/cottage/ownership/' + id);
@@ -101,4 +101,11 @@ export class CottageService {
   createReservation(reservation: AddReservationDTO): Observable<boolean>{
     return this.http.post<boolean>('http://localhost:8081/api/reservation/createByOwner', reservation);
   }
+
+  uploadImage(image: File, id: number): Observable<boolean> {
+    const imageFormData = new FormData();
+    imageFormData.append('image', image, image.name);
+    return this.http.post<boolean>('http://localhost:8081/api/cottage/upload/' + id, imageFormData)
+  }
+
 }
