@@ -31,7 +31,6 @@ export class AccountService {
     private http: HttpClient) { }
 
   getMyInfo(): Observable<any> {
-    
     return this.apiService.get(this.basePath)
       .pipe(map(user => {
         this.currentUser = user;

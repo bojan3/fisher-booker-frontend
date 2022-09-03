@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AccountService } from 'src/app/services/account.service';
 import { CottageService } from 'src/app/services/cottage.service';
+import { ShipService } from 'src/app/services/ship.service';
 import { Image } from '../../entity/Image';
 
 @Component({
@@ -16,7 +18,8 @@ export class EditImageComponent implements OnInit {
   successResponse!: string;
   image: any;
 
-  constructor(private cottageService: CottageService) { }
+  constructor(private cottageService: CottageService, private shipService: ShipService,
+    private accountService: AccountService) { }
 
   ngOnInit(): void {
   }
@@ -25,23 +28,27 @@ export class EditImageComponent implements OnInit {
     this.uploadedImage = event.target.files[0];
   }
 
-
   imageUploadAction() {
 
-    this.cottageService.uploadImage(this.uploadedImage, 1).subscribe((res) => {
-      console.log(res);
-    })
+    switch (this.accountService.currentUser.role) {
+      case 'ROLE_COTTAGE_OWNER': {
+        this.cottageService.uploadImage(this.uploadedImage, 1).subscribe((res) => {
+          console.log(res);
+          window.location.reload()
+        })
+        break;
+      }
 
-    // this.httpClient.post('http://localhost:8080/upload/image/', imageFormData, { observe: 'response' })
-    //   .subscribe((response) => {
-    //     if (response.status === 200) {
-    //       this.postResponse = response;
-    //       this.successResponse = this.postResponse.body.message;
-    //     } else {
-    //       this.successResponse = 'Image not uploaded due to some error!';
-    //     }
-    //   }
-    //   );
+      case 'ROLE_SHIP_OWNER': {
+        this.shipService.uploadImage(this.uploadedImage, 1).subscribe((res) => {
+          console.log(res);
+          window.location.reload()
+        })
+        break;
+      }
+
+    }
+
   }
 
 }

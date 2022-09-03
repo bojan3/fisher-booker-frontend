@@ -108,4 +108,10 @@ export class CottageService {
     return this.http.post<boolean>('http://localhost:8081/api/cottage/upload/' + id, imageFormData)
   }
 
+  deleteImage(id: number): Observable<boolean> {
+    const formData = new FormData();
+    formData.append('id', id.toString());
+    return this.http.delete<boolean>('http://localhost:8081/api/cottage/delete/image/' + id)
+  }
+
 }

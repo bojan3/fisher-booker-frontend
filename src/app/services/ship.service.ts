@@ -49,4 +49,16 @@ export class ShipService {
   getOptions(id: number): Observable<Option[]> {
     return this.http.get<Option[]>('http://localhost:8081/api/ship/options/' + id);
   }
+
+  uploadImage(image: File, id: number): Observable<boolean> {
+    const imageFormData = new FormData();
+    imageFormData.append('image', image, image.name);
+    return this.http.post<boolean>('http://localhost:8081/api/ship/upload/' + id, imageFormData)
+  }
+
+  deleteImage(id: number): Observable<boolean> {
+    const formData = new FormData();
+    formData.append('id', id.toString());
+    return this.http.delete<boolean>('http://localhost:8081/api/ship/delete/image/' + id)
+  }
 }

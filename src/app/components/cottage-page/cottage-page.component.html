@@ -51,7 +51,10 @@
 
   <div class="cottage-images info-block">
     <h2>Slike</h2>
+    <div class="images" *ngFor="let image of cottage?.cottageImages">
+      <img [src]='"data:image/jpeg;base64," + image.image'>
+      <button [id]=image.id (click)="deleteImage($event)">Izbriši</button>
+    </div>
     <app-edit-image></app-edit-image>
-    <!-- <app-images-of-entities [images]=cottage.cottagePictures></app-images-of-entities> -->
   </div>
 </section>

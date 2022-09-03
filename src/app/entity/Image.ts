@@ -1,10 +1,12 @@
 export class Image {
     id: number;
-    file: File;
-    url: any;
-    constructor(id: number, file: File, url: any) {
+    name: String;
+    type: String;
+    image: any;
+    constructor(id: number, name: String, type: String, image: any) {
         this.id = id;
-        this.file = file;
-        this.url = url;
+        this.name = name;
+        this.type = type;
+        this.image = image;
     }
 }

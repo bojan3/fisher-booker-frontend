@@ -28,7 +28,7 @@ export class Ship {
   navigationEquipments: NavigationEquipment[];
   fishingEquipments: FishingEquipment[];
   availabilityPeriod: AvailabilityPeriod = new AvailabilityPeriod(0, new Date(), new Date());
-  shipPictures: Image[];
+  shipImages: Image[];
   shipOptions: Option[];
 
   constructor(id: number, name: string, type: ShipType, length: number, address: Address, description: string,
@@ -54,7 +54,7 @@ export class Ship {
     this.navigationEquipments = navigationEquipment;
     this.fishingEquipments = fishingEquipment;
     this.availabilityPeriod = availabilityPeriod;
-    this.shipPictures = shipPictures;
+    this.shipImages = shipPictures;
     this.shipOptions = shipOptions;
   }
   

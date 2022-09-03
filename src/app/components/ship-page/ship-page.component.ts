@@ -6,6 +6,7 @@ import { RealEstateType } from 'src/app/entity/RealEstateType';
 import { Ship } from 'src/app/entity/Ship';
 import { ShipService } from 'src/app/services/ship.service';
 import { AddSuperDealComponent } from '../add-super-deal/add-super-deal.component';
+import { Image } from 'src/app/entity/Image';
 
 @Component({
   selector: 'app-ship-page',
@@ -80,17 +81,18 @@ export class ShipPageComponent implements OnInit {
     return date;
   }
 
-  readImages() {
-    var reader = new FileReader();
-    this.ship.shipPictures.forEach((image) => {
-      reader.readAsDataURL(image.file);
-      reader.onload = (event) => {
-        image.url = event.target?.result;
-      }
-    })
-  }
-
   openAddSupeDealDialog() {
     this.dialog.open(AddSuperDealComponent, {data: {realEstateId: this.ship.id, type: ReservationType.SHIP}})
+  }
+
+
+  getImage(image: Image) {
+    'data:image/jpeg;base64,' + image.image
+  }
+
+  deleteImage(event: any) {
+    this.shipService.deleteImage(event.target.id).subscribe((res) => {
+      window.location.reload()
+    })
   }
 }

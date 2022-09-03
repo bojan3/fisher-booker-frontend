@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
   account!: Account;
 
   reservationdata!: AdventureReservationDTO[];
-  scheduler: SchedulerComponent =new SchedulerComponent(this.accountService,
+  scheduler: SchedulerComponent = new SchedulerComponent(this.accountService,
     this.adventureReservationS,this.cottageReservationS, this.shipReservationS, this.cottageOwnerService)
   podaci:any = []
   podaci1!:any

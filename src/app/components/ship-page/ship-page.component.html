@@ -49,11 +49,13 @@
         </div>
     </section>
 
-    <section class="info-block">
+    <div class="ship-images info-block">
         <h2>Slike</h2>
-        <div class="image" *ngFor="let image of ship.shipPictures">
-            <img src="image.url" />
+        <div class="images" *ngFor="let image of ship?.shipImages">
+          <img [src]='"data:image/jpeg;base64," + image.image'>
+          <button [id]=image.id (click)="deleteImage($event)">Izbriši</button>
         </div>
-    </section>
+        <app-edit-image></app-edit-image>
+      </div>
 
 </section>
