@@ -26,6 +26,7 @@ export class ReservationDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.buildForm();
+    console.log(this.type);
   }
 
   buildForm(){

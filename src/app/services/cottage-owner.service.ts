@@ -32,8 +32,6 @@ export class CottageOwnerService {
     return this.apiService.get('http://localhost:8081/api/cottageOwner/reservations/' + numPage);
   }
 
-  
-
   getNumOfReservations(): Observable<number> {
     return this.apiService.get('http://localhost:8081/api/cottageOwner/reservationNum');
   }
