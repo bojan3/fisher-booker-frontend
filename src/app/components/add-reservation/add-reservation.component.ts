@@ -26,6 +26,7 @@ export class AddReservationComponent implements OnInit {
   // newReservation: AddReservationDTO = new AddReservationDTO();
   options: Option[] = [];
   showForm = false;
+  showConflictMessage = false;
 
   form!: FormGroup;
 
@@ -76,6 +77,8 @@ export class AddReservationComponent implements OnInit {
 
     this.cottageService.createReservation(newReservation).subscribe((res) => {
       window.location.reload();
+    }, (error) => {
+      this.showConflictMessage = true;
     });
 
   }

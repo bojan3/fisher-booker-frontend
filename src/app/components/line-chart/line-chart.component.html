@@ -21,13 +21,12 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-  </form>
+    </form>
   </mat-tab>
   <mat-tab label="Proizvoljno"> Content 3 </mat-tab>
-  <div id="chart" *ngIf="showChart"> 
+  <div id="chart" *ngIf="showChart">
     <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
-        [dataLabels]="chartOptions.dataLabels" [grid]="chartOptions.grid" [stroke]="chartOptions.stroke"
-        [title]="chartOptions.title"></apx-chart>
-</div>
+      [dataLabels]="chartOptions.dataLabels" [grid]="chartOptions.grid" [stroke]="chartOptions.stroke"
+      [title]="chartOptions.title"></apx-chart>
+  </div>
 </mat-tab-group>
-

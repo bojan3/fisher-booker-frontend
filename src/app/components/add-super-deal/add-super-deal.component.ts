@@ -29,6 +29,7 @@ export class AddSuperDealComponent implements OnInit {
   type!: ReservationType;
   notAvailableDates: Date[] = [];
   showForm = false;
+  showConflictMessage = false;
 
   form!: FormGroup;
 
@@ -83,20 +84,11 @@ export class AddSuperDealComponent implements OnInit {
       this.form.value.discountedPrice, this.dateRangeComponent.endDate, this.form.value.capacity, this.realEstateId,
       this.form.value.options, this.type);
 
-    switch (this.type) {
-      case ReservationType.COTTAGE: {
-        this.cottageService.createSuperDeal(newDeal).subscribe((res) => {
-          window.location.reload();
-        });
-        break;
-      }
-      case ReservationType.SHIP: {
-        this.shipService.createSuperDeal(newDeal).subscribe((res) => {
-          window.location.reload();
-        });
-        break;
-      }
-    }
+    this.cottageService.createSuperDeal(newDeal).subscribe((res) => {
+      window.location.reload();
+    }, (error) => {
+      this.showConflictMessage = true;
+    });
   }
 
   onChangeEventFunc(id: number, isChecked: any) {
