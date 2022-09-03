@@ -1,8 +1,32 @@
-<div class="search" *ngIf="notClientSubscriptions()">
-  <label>Datum: </label>
-  <input [(ngModel)]="dateInput" type="date">
-  <button color="primary" (click)="onSearch()">Search</button>
-</div>
+<form class="search" *ngIf="notClientSubscriptions()" (ngSubmit)="onSearch()" [formGroup]="searchForm">
+  <label>Period: </label>
+  <input type="date" formControlName="startDate">
+  <label>---</label>
+  <input type="date" formControlName="endDate">
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label>Location</mat-label>
+    <mat-select name="food" formControlName="locationCity">
+      <mat-option *ngFor="let location of cottageLocations" [value]="location">
+        {{location}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label>Grade</mat-label>
+    <mat-select name="food" formControlName="minGrade">
+      <mat-option *ngFor="let grade of grades" [value]="grade">
+        {{grade}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <!-- <label type="number" for="minCapacity">Capacity: </label>
+  <input id="minCapacity" formControlName="minCapacity">
+  <br> -->
+  <button color="primary" type="submit">Search</button>
+</form>
 
 <!-- <form *ngIf='notClientSubscriptions()' (ngSubmit)="onSearch()" class='add-ship-form' [formGroup]="form">
   <input formControlName='dateInput' type='date'>

@@ -21,12 +21,23 @@ export class CottagesComponent implements OnInit {
   sortByGroup!: FormGroup;
   orderGroup!: FormGroup;
   cottageLocations: string[] = [];
+  searchForm!: FormGroup;
+  grades: number[] = [1, 2, 3, 4, 5];
 
   constructor(private cottageService: CottageService,
               private clientService: ClientService,
-              private accountService: AccountService) { }
+              private accountService: AccountService,
+              private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+
+    this.searchForm = this.formBuilder.group({
+      startDate: [],
+      endDate: [],
+      locationCity: [],
+      minGrade: [],
+      // minCapacity: []
+    })
 
     this.sortByGroup = new FormGroup({
       'sortByRadio' : new FormControl()
@@ -59,7 +70,8 @@ export class CottagesComponent implements OnInit {
   }
 
   onSearch(){
-    this.cottageService.getByDate(this.dateInput).subscribe((cottages) => (this.cottages = cottages));
+    console.log(this.searchForm.value)
+    this.cottageService.search(this.searchForm.value).subscribe((cottages) => (this.cottages = cottages));
   }
 
 }

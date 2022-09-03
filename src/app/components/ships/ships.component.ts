@@ -1,6 +1,6 @@
 import { getLocaleFirstDayOfWeek } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ShipDTO } from 'src/app/entity/DTO/ShipDTO';
 import { Ship } from 'src/app/entity/Ship';
 import { AccountService } from 'src/app/services/account.service';
@@ -24,12 +24,25 @@ export class ShipsComponent implements OnInit {
 
   sortByGroup!: FormGroup;
   orderGroup!: FormGroup;
-  
+
+  shipLocations: string[] = [];
+  searchForm!: FormGroup;
+  grades: number[] = [1, 2, 3, 4, 5];
+
   constructor(private shipService: ShipService,
     private clientService: ClientService,
-    private accountService: AccountService) { }
+    private accountService: AccountService,
+    private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+
+    this.searchForm = this.formBuilder.group({
+      startDate: [],
+      endDate: [],
+      locationCity: [],
+      minGrade: [],
+      // minCapacity: []
+    })
 
     this.sortByGroup = new FormGroup({
       'sortByRadio' : new FormControl()
@@ -40,6 +53,8 @@ export class ShipsComponent implements OnInit {
     });
 
     this.orderGroup.patchValue({orderRadio: 'ASC'});
+
+    this.shipService.getLocaitons().subscribe( (locations) => (this.shipLocations = locations) )
 
     if(this.forShipOwner){
       this.shipService.getAllShipsByOwner().subscribe((ships) => (this.ships = ships));
@@ -59,6 +74,11 @@ export class ShipsComponent implements OnInit {
 
   notClientSubscriptions(): boolean {
     return !this.forClientSubscriptions;
+  }
+
+  onSearch(){
+    console.log(this.searchForm.value)
+    this.shipService.search(this.searchForm.value).subscribe((ships) => (this.ships = ships));
   }
 
 }

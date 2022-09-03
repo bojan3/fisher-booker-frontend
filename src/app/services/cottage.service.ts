@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { empty, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CottageDTO } from '../entity/DTO/CottageDTO';
 import { ApiService } from './api.service';
@@ -58,11 +58,12 @@ export class CottageService {
     return this.apiService.delete('http://localhost:8081/api/cottage/delete/owner/' + id);
   }
 
-  getByDate(date: Date): Observable<CottageDTO[]> {
+  // msm da je visak
+  // getByDate(date: Date): Observable<CottageDTO[]> {
 
-    console.log(date);
-    return this.apiService.get('http://localhost:8081/api/cottage/all/date/' + date);
-  }
+  //   console.log(date);
+  //   return this.apiService.get('http://localhost:8081/api/cottage/all/date/' + date);
+  // }
 
   uploadImage(cottage: AddCottageDTO, image: File): Observable<boolean> {
     const uploadData = new FormData();
@@ -95,5 +96,16 @@ export class CottageService {
 
   getReservationDetails(cottageId: number, date: Date) {
     return this.http.get<DatePeriodDTO[]>('http://localhost:8081/api/cottage/' + cottageId + '/' + date);
+  }
+ 
+  search(searchFilter: any): Observable<CottageDTO[]> {   
+    return this.apiService.get('http://localhost:8081/api/cottage/search/filter/' + this.toParam(searchFilter));
+  }
+
+  toParam(obj: any): string{
+    return '?' + Object.keys(obj).map(key => {
+      return `${key}=${encodeURIComponent(obj[key])}`;
+    })
+    .join('&');
   }
 }

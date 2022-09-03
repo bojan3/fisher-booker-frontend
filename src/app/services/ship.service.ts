@@ -49,4 +49,19 @@ export class ShipService {
   getOptions(id: number): Observable<Option[]> {
     return this.http.get<Option[]>('http://localhost:8081/api/ship/options/' + id);
   }
+
+  getLocaitons(): Observable<string[]> {
+    return this.apiService.get('http://localhost:8081/api/ship/locations');
+  }
+
+  search(searchFilter: any): Observable<ShipDTO[]> {   
+    return this.apiService.get('http://localhost:8081/api/ship/search/filter/' + this.toParam(searchFilter));
+  }
+
+  toParam(obj: any): string{
+    return '?' + Object.keys(obj).map(key => {
+      return `${key}=${encodeURIComponent(obj[key])}`;
+    })
+    .join('&');
+  }
 }
