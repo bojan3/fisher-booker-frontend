@@ -9,6 +9,7 @@ import { ApiService } from './api.service';
 })
 export class ReviewsService {
 
+
   constructor(private http: HttpClient, private apiService: ApiService) { }
 
   getAllReservationReviews(): Observable<ApproveReviewDTO[]>{
@@ -19,6 +20,8 @@ export class ReviewsService {
       return this.apiService.put('http://localhost:8081/api/review/publish/'+id, id);
     }
 
-
+    delete(id: any):Observable<boolean> {
+      return this.apiService.get('http://localhost:8081/api/review/delete/'+id, id);
+    }
 
 }

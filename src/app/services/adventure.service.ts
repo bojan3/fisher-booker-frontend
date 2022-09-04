@@ -10,6 +10,11 @@ import { AdventureDTO } from 'src/app/entity/AdventureDTO';
 })
 export class AdventureService {
 
+
+  delete(id: number): Observable<AdventureDTO> {
+      return this.apiService.delete('http://localhost:8081/api/adventure/admin/delete',id);
+  }
+
   constructor(private http: HttpClient, private apiService : ApiService) { }
 
   getAllAdventuresByInstructor(instructorId : number): Observable<AdventureDTO[]>{

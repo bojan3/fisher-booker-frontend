@@ -19,9 +19,12 @@ export class ClientService {
   constructor(private http: HttpClient, private apiService: ApiService) { }
 
   getAllClients(): Observable<Client[]>{
+    return this.apiService.get('http://localhost:8081/api/client/allClients'); 
+  }
 
-    return this.http.get<Client[]>('http://localhost:8080/api/client/all');
-    
+  delete(id: number): Observable<boolean> {
+    return this.apiService.delete('http://localhost:8081/api/client/delete', id);
+
   }
 
   subscribeToCottage(cottageId: number, accountId: number){

@@ -34,6 +34,9 @@ export class CottageComponent implements OnInit {
       this.forClient = this.isUserClient(user.role);
       this.forAdmin = this.isUserAdmin(user.role);
       this.forOwner = this.isUserOwner(user.role);
+
+      console.log(user.role);
+
     }
     );
   }

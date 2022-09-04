@@ -109,7 +109,11 @@ import { DateRangeComponent } from './components/date-range/date-range.component
 import { MatInputModule } from '@angular/material/input';
 import { AddReservationComponent } from './components/add-reservation/add-reservation.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { ComplaintComponent } from './components/complaint/complaint.component';
+import { ComplaintsComponent } from './components/complaints/complaints.component';
+
 import {MatTabsModule} from '@angular/material/tabs';
+
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -159,6 +163,16 @@ const appRoutes: Routes = [
   { path: 'client_profile/insturctor-complaint/:adventureId', component: InstructorComplaintComponent },
   { path: 'insturctor-complaint/:adventureId', component: InstructorComplaintComponent },
   { path: 'add_ship', component: AddShipComponent },
+
+  { path: 'admin_profile/cottages', component: CottagesComponent},
+  { path: 'admin_profile/cottage_owners', component: CottageOwnersComponent},
+  { path: 'admin_profile/ships', component: ShipsComponent},
+  { path: 'admin_profile/ship_owners', component: ShipOwnersComponent},
+  { path: 'admin_profile/adventures', component: AdventuresComponent},
+  { path: 'admin_profile/instructors', component: FishingInstructorsComponent},
+  { path: 'admin_profile/clients', component: ClientsComponent},
+  { path: 'admin_profile/requests', component: RequestsComponent}
+
   { path: 'admin_profile/cottages', component: CottagesComponent },
   { path: 'admin_profile/cottage_owners', component: CottageOwnersComponent },
   { path: 'admin_profile/ships', component: ShipsComponent },
@@ -181,7 +195,13 @@ const appRoutes: Routes = [
   { path: 'cottage-review/:cottageId', component: CottageReviewComponent },
   { path: 'ship-review/:shipId', component: ShipReviewComponent },
   { path: 'adventure-review/:adventureId', component: AdventureReviewComponent },
+
+  { path: 'admin_profile/reviews', component: ReviewsComponent},
+  { path: 'admin_profile/complaints', component: ComplaintsComponent}
+
+
   { path: 'admin_profile/reviews', component: ReviewsComponent}
+
 ];
 
 const mapConfig: YaConfig = {
@@ -270,7 +290,10 @@ const mapConfig: YaConfig = {
     HistoryPageComponent,
     ReservationDetailComponent,
     DateRangeComponent,
-    AddReservationComponent
+    AddReservationComponent,
+    ComplaintComponent,
+    ComplaintsComponent
+
   ],
   imports: [
     [AngularYandexMapsModule.forRoot(mapConfig)],

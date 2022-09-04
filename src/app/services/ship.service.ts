@@ -12,6 +12,7 @@ import { AddSuperDealDTO } from '../entity/DTO/AddSupeDealDTO';
   providedIn: 'root'
 })
 export class ShipService {
+  
 
   constructor(private http: HttpClient, private apiService: ApiService) { }
 
@@ -54,8 +55,16 @@ export class ShipService {
     return this.apiService.get('http://localhost:8081/api/ship/locations');
   }
 
+  getAllShipsByName(): Observable<ShipDTO[]> {
+    return this.http.get<ShipDTO[]>('http://localhost:8081/api/ship/all/name')
+  adeleteShip(id: number): Observable<ShipDTO>{
+    return this.apiService.delete('http://localhost:8081/api/ship/admin/delete',id);
+  }
+  getAllShipsByOwner(): Observable<ShipDTO[]> {
+    return this.http.get<ShipDTO[]>('http://localhost:8081/api/shipOwner/allShipsByOwner');
   search(searchFilter: any): Observable<ShipDTO[]> {   
     return this.apiService.get('http://localhost:8081/api/ship/search/filter/' + this.toParam(searchFilter));
+
   }
 
   toParam(obj: any): string{

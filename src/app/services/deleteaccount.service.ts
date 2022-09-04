@@ -15,10 +15,13 @@ export class DeleteaccountService {
     return this.http.get<DeleteAccount[]>('http://localhost:8081/api/account/allDeleteRequests');
   }
 
-    verify(id:number): void{
-      this.http.delete('http://localhost:8081/api/account/accepteddeleteAccountRequest/'+id);
+    verify(id:number, answer:string): Observable<Boolean>{
+      console.log('prihvatanje zahteva sa id:'+id);
+    return  this.http.delete<Boolean>('http://localhost:8081/api/account/accepteddeleteAccountRequest/'+id+"/"+answer);
     }
-    delete(id:number): void{
-      this.http.delete('http://localhost:8081/api/account/deniddeleteaccount/'+id);
+    delete(id:number, answer:string): Observable<Boolean>{
+      console.log('brisanje zahteva sa id:'+id);
+     // window.location.reload();
+     return this.http.delete<Boolean>('http://localhost:8081/api/account/denieddeleteAccountRequest/'+id+"/"+answer);
     }
 }

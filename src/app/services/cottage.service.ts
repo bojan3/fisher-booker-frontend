@@ -9,6 +9,8 @@ import { AddSuperDealDTO } from '../entity/DTO/AddSupeDealDTO';
 import { Option } from 'src/app/entity/Option';
 import { DatePeriodDTO } from '../entity/DTO/DatePeriodDTO';
 import { AddReservationDTO } from '../entity/DTO/AddReservationDTO';
+import { windowTime } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -51,7 +53,9 @@ export class CottageService {
 
   adeleteCottage(id: number): Observable<CottageDTO> {
     console.log("ADMIN");
-    return this.apiService.delete('http://localhost:8081/api/cottage/delete/' + id);
+
+    return this.apiService.delete('http://localhost:8081/api/cottage/admin/delete', id );
+
   }
 
 

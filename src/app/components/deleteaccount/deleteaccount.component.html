@@ -10,14 +10,11 @@
     </p>
     <p>{{deleteaccount.description}}</p>
 
+    <textarea #odgovor  rows="4" cols="50"></textarea>
 
      <p align="right">
-        <button  (click) = "verify(deleteaccount.id)">odobri zahtev</button>
-        <button  (click) = "delete(deleteaccount.id)">odbij zahtev</button>
-        
-        
-
-
+        <button  (click) = "verify(deleteaccount.id, odgovor.value)">odobri zahtev</button>
+        <button  (click) = "delete(deleteaccount.id, odgovor.value)">odbij zahtev</button>
   </p>
 
 

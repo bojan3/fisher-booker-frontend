@@ -21,7 +21,8 @@ export class ShipOwnerService {
     return this.http.get<ShipOwner[]>('http://localhost:8081/api/shipOwner/all');
   }
 
-  delete(id: number): Observable<boolean>{
+  delete(id: number): Observable<boolean> {
+    console.log(id);
     return this.apiService.delete(this.deletePath, id);
   }
 
