@@ -1,9 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AddShipDTO } from '../entity/DTO/AddShipDTO';
 import { ShipDTO } from '../entity/DTO/ShipDTO';
 import { Ship } from '../entity/Ship';
 import { ApiService } from './api.service';
+import { Option } from 'src/app/entity/Option';
+import { AddSuperDealDTO } from '../entity/DTO/AddSupeDealDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +14,10 @@ import { ApiService } from './api.service';
 export class ShipService {
   
 
-  constructor(private http: HttpClient, private apiService:ApiService) { }
+  constructor(private http: HttpClient, private apiService: ApiService) { }
 
-  save(ship: Ship): Observable<boolean>{
+  save(ship: AddShipDTO): Observable<boolean>{
     console.log(ship);
-    
     return this.apiService.post('http://localhost:8081/api/ship/save', ship);
   }
 
@@ -23,33 +25,64 @@ export class ShipService {
     return this.apiService.get('http://localhost:8081/api/ship/page/' + id);
   }
 
-  getAllShips(): Observable<ShipDTO[]> {
+  getAllShips(type ?: string, order?: string): Observable<ShipDTO[]>{
+    if(type && order)
+      return this.apiService.get('http://localhost:8081/api/ship/all/', {type: type, order: order});
     return this.apiService.get('http://localhost:8081/api/ship/all');
   }
 
- deleteShip(id:number): Observable<Ship[]>{
-    return this.http.delete<Ship[]>('http://localhost:8081/api/ship/delete{id}')   
- }
-
-  getAllShipsByName(): Observable<ShipDTO[]> {
-    return this.http.get<ShipDTO[]>('http://localhost:8081/api/ship/all/name')
-  adeleteShip(id: number): Observable<ShipDTO>{
-    return this.apiService.delete('http://localhost:8081/api/ship/admin/delete',id);
+  deleteShip(id: number): Observable<ShipDTO[]> {
+    return this.http.delete<ShipDTO[]>('http://localhost:8081/api/ship/delete{id}')
   }
 
   getAllShipsByOwner(): Observable<ShipDTO[]> {
     return this.http.get<ShipDTO[]>('http://localhost:8081/api/shipOwner/allShipsByOwner');
   }
 
-  getAllShipsByPrice(): Observable<ShipDTO[]> {
-    return this.http.get<ShipDTO[]>('http://localhost:8081/api/ship/all/price')
+  checkShipOwnersip(id: string): Observable<boolean> {
+    return this.http.get<boolean>('http://localhost:8081/api/ship/ownership/' + id);
   }
 
-  getAllShipsByRating(): Observable<ShipDTO[]> {
-    return this.http.get<ShipDTO[]>('http://localhost:8081/api/ship/all/rating')
+  createSuperDeal(deal: AddSuperDealDTO): Observable<boolean> {
+    return this.http.post<boolean>('http://localhost:8081/api/superDeal/add/', deal);
   }
 
-  getAllShipsByCapacity(): Observable<ShipDTO[]> {
-    return this.http.get<ShipDTO[]>('http://localhost:8081/api/ship/all/capacity')
+  getOptions(id: number): Observable<Option[]> {
+    return this.http.get<Option[]>('http://localhost:8081/api/ship/options/' + id);
+  }
+
+  getLocaitons(): Observable<string[]> {
+    return this.apiService.get('http://localhost:8081/api/ship/locations');
+  }
+
+  getAllShipsByName(): Observable<ShipDTO[]> {
+    return this.http.get<ShipDTO[]>('http://localhost:8081/api/ship/all/name')
+  adeleteShip(id: number): Observable<ShipDTO>{
+    return this.apiService.delete('http://localhost:8081/api/ship/admin/delete',id);
+  }
+  getAllShipsByOwner(): Observable<ShipDTO[]> {
+    return this.http.get<ShipDTO[]>('http://localhost:8081/api/shipOwner/allShipsByOwner');
+  search(searchFilter: any): Observable<ShipDTO[]> {   
+    return this.apiService.get('http://localhost:8081/api/ship/search/filter/' + this.toParam(searchFilter));
+
+  }
+
+  toParam(obj: any): string{
+    return '?' + Object.keys(obj).map(key => {
+      return `${key}=${encodeURIComponent(obj[key])}`;
+    })
+    .join('&');
+  }
+
+  uploadImage(image: File, id: number): Observable<boolean> {
+    const imageFormData = new FormData();
+    imageFormData.append('image', image, image.name);
+    return this.http.post<boolean>('http://localhost:8081/api/ship/upload/' + id, imageFormData)
+  }
+
+  deleteImage(id: number): Observable<boolean> {
+    const formData = new FormData();
+    formData.append('id', id.toString());
+    return this.http.delete<boolean>('http://localhost:8081/api/ship/delete/image/' + id)
   }
 }

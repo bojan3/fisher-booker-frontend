@@ -1,0 +1,12 @@
+<form class="review-form"  [formGroup]="reviewForm">
+    <div class="slidecontainer">
+        <input type="range" min="1" max="5" formControlName="grade">
+    </div>
+    <label for="text">Comment: </label>
+    <br>
+    <textarea id="text" ROWS="20" COLS="60" formControlName="comment" required> </textarea>
+    <br>
+    <button [disabled]="!reviewForm.valid" color="primary" (click)="postReview()">Post comment</button>
+    <br>
+    <button color="primary" routerLink="/">Go Back</button>
+</form>

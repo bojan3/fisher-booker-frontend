@@ -1,0 +1,9 @@
+<h1>Prikaz svih zahteva za brisanje naloga!</h1>
+
+<section class='deleteaccount'>
+    <app-deleteaccount  *ngFor="let request of requests"
+    [deleteaccount]="request">
+  
+    </app-deleteaccount>
+  </section>
+  

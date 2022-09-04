@@ -18,7 +18,6 @@ export class DeleteaccountComponent implements OnInit {
   
   }
 
-
   delete(id:number, answer:string):void{this.deleteaccService.delete(id, answer).subscribe();}
   verify(id:number, answer:string):void{this.deleteaccService.verify(id, answer).subscribe();}
 

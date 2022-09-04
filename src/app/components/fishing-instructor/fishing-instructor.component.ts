@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FishingInstructor } from 'src/app/entity/FishingInstructor';
-import { FishingInstructorService } from 'src/app/services/fishing-instructor.service';
 import { AccountService } from 'src/app/services/account.service';
 import { ClientService } from 'src/app/services/client.service';
+import { FishingInstructorService } from 'src/app/services/fishing-instructor.service';
 
 @Component({
   selector: 'app-fishing-instructor',
@@ -13,22 +13,31 @@ export class FishingInstructorComponent implements OnInit {
 
   @Input()
   fishinginstructor !: FishingInstructor;
-  
+
   @Input()
   forClientSubscriptions: boolean = false;
 
   forClient = false;
   currentUser: any;
 
-  constructor(private finshing_instructor_Service : FishingInstructorService,
-    private clientService: ClientService,
-              private accountService: AccountService) { }
+  constructor(private finshing_instructor_Service : FishingInstructorService, private clientService: ClientService,
+    private accountService: AccountService) { }
+  
+    ngOnInit(): void {
+      this.accountService.getMyInfo().subscribe((user) => {
+        this.currentUser = user;
+        this.forClient = this.isUserClient(user.role);
+      });
+    }
 
-  ngOnInit(): void {
-    this.accountService.getMyInfo().subscribe((user) => {
-      this.currentUser = user;
-      this.forClient = this.isUserClient(user.role);
-    });
+  viewDetails(id:any):void{
+    this.finshing_instructor_Service.details(id).subscribe();
+    window.location.reload()
+   }
+  
+  delete(id:number):void{
+    this.finshing_instructor_Service.delete(id).subscribe();
+    window.location.reload()
   }
 
   isUserClient(role: string): boolean {
@@ -51,16 +60,6 @@ export class FishingInstructorComponent implements OnInit {
 
   unsubscribeInstructor(){
     this.clientService.unsubscribeInstructor(this.fishinginstructor.id, this.accountService.currentUser.id).subscribe();
-  }
-
-  viewDetails(id:any):void{
-    this.finshing_instructor_Service.details(id).subscribe();
-    window.location.reload()
-   }
-  
-  delete(id:number):void{
-    this.finshing_instructor_Service.delete(id).subscribe();
-    window.location.reload()
   }
 
 }

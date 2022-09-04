@@ -1,8 +1,12 @@
-export class Image{
+export class Image {
     id: number;
-    path: string;
-    constructor(id: number, path: string) {
+    name: String;
+    type: String;
+    image: any;
+    constructor(id: number, name: String, type: String, image: any) {
         this.id = id;
-        this.path = path;
+        this.name = name;
+        this.type = type;
+        this.image = image;
     }
 }

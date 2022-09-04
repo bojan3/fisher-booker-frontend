@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ShipOwner } from '../entity/ShipOwner';
 import { ApiService } from './api.service';
+import { ReservationDetailsDTO } from '../entity/DTO/ReservationDetailsDTO';
 
 
 @Injectable({
@@ -29,5 +30,12 @@ export class ShipOwnerService {
       return this.apiService.get(this.getOnePath, id);
   }
 
+  getReservationsByOwner(numPage: number): Observable<ReservationDetailsDTO[]> {
+    return this.apiService.get('http://localhost:8081/api/shipOwner/reservations/' + numPage);
+  }
+
+  getNumOfReservations(): Observable<number> {
+    return this.apiService.get('http://localhost:8081/api/shipOwner/reservationNum');
+  }
 
 }

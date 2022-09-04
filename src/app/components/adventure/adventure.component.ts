@@ -4,6 +4,7 @@ import { AdventureDTO } from 'src/app/entity/AdventureDTO';
 import { AdventureService } from 'src/app/services/adventure.service';
 
 
+
 @Component({
   selector: 'app-adventure',
   templateUrl: './adventure.component.html',
@@ -13,7 +14,7 @@ export class AdventureComponent implements OnInit {
 
   constructor(private adventureService: AdventureService) { }
   @Input()
-  adventure !: Adventure;
+  adventure !: AdventureDTO;
   ngOnInit(): void {
   }
 

@@ -8,7 +8,7 @@ import { ApiService } from './api.service';
   providedIn: 'root'
 })
 export class ReviewsService {
- 
+
 
   constructor(private http: HttpClient, private apiService: ApiService) { }
 
@@ -23,6 +23,5 @@ export class ReviewsService {
     delete(id: any):Observable<boolean> {
       return this.apiService.get('http://localhost:8081/api/review/delete/'+id, id);
     }
-
 
 }

@@ -11,17 +11,9 @@ import { ShipService } from 'src/app/services/ship.service';
   styleUrls: ['./ship.component.css']
 })
 export class ShipComponent implements OnInit {
+
   @Input()
   ship !: ShipDTO;
-
-
- ngOnButtonClick(id:number):void{
-
-  this.shipService.deleteShip(id)
-  window.location.reload()
- }
-
-  
 
   errorDisplay: boolean = false;
   forClient: boolean = false;
@@ -33,8 +25,8 @@ export class ShipComponent implements OnInit {
   forClientSubscriptions: boolean = false;
 
   constructor(private shipService: ShipService,
-              private accountService: AccountService,
-              private clientService: ClientService) { }
+    private accountService: AccountService,
+    private clientService: ClientService) { }
 
   ngOnInit(): void {
     this.accountService.getMyInfo().subscribe((user) => {
@@ -42,15 +34,16 @@ export class ShipComponent implements OnInit {
       this.forClient = this.isUserClient(user.role);
       this.forAdmin = this.isUserAdmin(user.role);
       this.forOwner = this.isUserOwner(user.role);
+
     });
-              }
+  }
 
   isUserClient(role: string): boolean {
-    if(role == "ROLE_CLIENT")
+    if (role == "ROLE_CLIENT")
       return true;
     else
       return false;
-    }
+  }
 
   isUserAdmin(role: string): boolean {
     if (role == "ROLE_ADMIN")
@@ -88,7 +81,13 @@ export class ShipComponent implements OnInit {
     }
   
 
-  subscribeToShip(){
+  ngOnButtonClick(id: number): void {
+
+    this.shipService.deleteShip(id)
+    window.location.reload()
+  }
+
+  subscribeToShip() {
     this.clientService.subscribeToShip(this.ship.id, this.currentUser.id).subscribe();
   }
 
@@ -96,7 +95,8 @@ export class ShipComponent implements OnInit {
     return (this.forAdmin || this.forOwner)
   }
 
-  unsubscribeShip(){
+
+  unsubscribeShip() {
     this.clientService.unsubscribeShip(this.ship.id, this.accountService.currentUser.id).subscribe();
   }
 

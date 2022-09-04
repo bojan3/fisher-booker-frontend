@@ -1,0 +1,6 @@
+<div>
+    <p>Current income precentage: {{income}}</p>
+<form><label>New income precentage:</label><input #unos type="text" name="unos" value="{{income}}"></form>
+ <button (click)="setNewIncome(unos.value)">change</button>
+
+</div>

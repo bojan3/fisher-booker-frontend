@@ -11,5 +11,6 @@ export class DeleteAccount {
         this.account = account;
         this.description = description;
         this.answer = answer;
+
     }
 }

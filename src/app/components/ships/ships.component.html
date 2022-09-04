@@ -1,16 +1,58 @@
-<h3 *ngIf="notClientSubscriptions()">Sort by:</h3>
-<div class="sort" *ngIf="notClientSubscriptions()" style="display:flex; flex-direction: row; justify-content: center; align-items: left">
-  <input type="radio" id="name" name="sortType" value="NAME" (click)="sortByName()">
-  <label for="name">name</label><br>
-  <input type="radio" id="price" name="sortType" value="PRICE" (click)="sortByPrice()">
-  <label for="price">price</label><br>
-  <input type="radio" id="rating" name="sortType" (click)="sortByRating()" value="RATING">
-  <label for="rating">rating</label>
-  <input type="radio" id="capacity" name="sortType" (click)="sortByCapacity()" value="CAPACITY">
-  <label for="capacity">capacity</label>
+<form class="search" *ngIf="notClientSubscriptions()" (ngSubmit)="onSearch()" [formGroup]="searchForm">
+  <label>Period: </label>
+  <input type="date" formControlName="startDate">
+  <label>---</label>
+  <input type="date" formControlName="endDate">
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label>Location</mat-label>
+    <mat-select name="food" formControlName="locationCity">
+      <mat-option *ngFor="let location of shipLocations" [value]="location">
+        {{location}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label>Grade</mat-label>
+    <mat-select name="food" formControlName="minGrade">
+      <mat-option *ngFor="let grade of grades" [value]="grade">
+        {{grade}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <!-- <label type="number" for="minCapacity">Capacity: </label>
+  <input id="minCapacity" formControlName="minCapacity">
+  <br> -->
+  <button color="primary" type="submit">Search</button>
+</form>
+
+
+<h3>Sort by:</h3>
+<div class="sort" style="display:flex; flex-direction: row; justify-content: center; align-items: left">
+  <form [formGroup]="sortByGroup">
+    <input type="radio" formControlName="sortByRadio" value="name" (change)="getSorted()">
+    <label for="name">name</label><br>
+    <input type="radio" formControlName="sortByRadio" value="rentPrice" (change)="getSorted()">
+    <label for="price">price</label><br>
+    <input type="radio" formControlName="sortByRadio" value="averageMark" (change)="getSorted()">
+    <label for="rating">rating</label><br>
+    <input type="radio" formControlName="sortByRadio" value="capacity" (change)="getSorted()">
+    <label for="capacity">capacity</label><br>
+    <input type="radio" formControlName="sortByRadio" value="maxSpeed" (change)="getSorted()">
+    <label for="speed">speed</label>
+  </form>
+  <form [formGroup]="orderGroup">
+    <input type="radio" formControlName="orderRadio" value="ASC" (change)="getSorted()">
+    <label for="name">ascending</label><br>
+    <input type="radio" formControlName="orderRadio" value="DESC" (change)="getSorted()">
+    <label for="price">descending</label><br>
+  </form>
 </div>
+
 <section class='ships'>
-  <app-ship [forClientSubscriptions]="forClientSubscriptions"  *ngFor="let ship of ships"
+  <app-ship  *ngFor="let ship of ships"
   [ship]="ship">
 
    </app-ship>

@@ -11,7 +11,7 @@ import { ClientService } from 'src/app/services/client.service';
 export class AdventureReservationsComponent implements OnInit {
 
   adventureReservations: AdventureReservationDTO[] = [];
-
+  forStarted: boolean = false;
   constructor(
     private accountService: AccountService,
     private clientService: ClientService
@@ -22,15 +22,18 @@ export class AdventureReservationsComponent implements OnInit {
     this.clientService.getAdventureReservations(this.accountService.currentUser.id).subscribe((adventureReservations) => (this.adventureReservations = adventureReservations));
 
   }
-  getNotFinished(){
+  getNotFinished() {
+    this.forStarted = false;
     this.accountService.getMyInfo().subscribe();
     this.clientService.getAdventureReservations(this.accountService.currentUser.id).subscribe((adventureReservations) => (this.adventureReservations = adventureReservations));
- }
+  }
 
 
-  getFinished(){
+  getFinished() {
+    this.forStarted = true;
     this.accountService.getMyInfo().subscribe();
     this.clientService.getFinishedAdventureReservations(this.accountService.currentUser.id).subscribe((adventureReservations) => (this.adventureReservations = adventureReservations));
 
   }
+
 }

@@ -10,20 +10,23 @@ import { CottageService } from 'src/app/services/cottage.service';
   styleUrls: ['./cottage.component.css']
 })
 
-export class CottageComponent implements OnInit{
+export class CottageComponent implements OnInit {
 
   @Input()
   cottage !: CottageDTO;
+  errorDisplay: boolean = false;
 
   @Input()
   forClientSubscriptions: boolean = false;
 
   forClient: boolean = false;
+  forAdmin: boolean = false;
+  forOwner: boolean = false;
   currentUser: any;
 
   constructor(private cottageService: CottageService,
-              private accountService: AccountService,
-              private clientService: ClientService) {}
+    private accountService: AccountService,
+    private clientService: ClientService) { }
 
   ngOnInit(): void {
     this.accountService.getMyInfo().subscribe((user) => {
@@ -31,34 +34,61 @@ export class CottageComponent implements OnInit{
       this.forClient = this.isUserClient(user.role);
       this.forAdmin = this.isUserAdmin(user.role);
       this.forOwner = this.isUserOwner(user.role);
+
       console.log(user.role);
+
     }
     );
   }
 
-  isUserClient(role: string): boolean {
-    if(role == "ROLE_CLIENT")
+
+  isUserOwner(role: string): boolean {
+    if (role == "ROLE_COTTAGE_OWNER")
       return true;
     else
       return false;
   }
 
+  isUserClient(role: string): boolean {
+    if (role == "ROLE_CLIENT")
+      return true;
+    else
+      return false;
+  }
+  isUserAdmin(role: string): boolean {
+    console.log(role);
+    if (role == "ROLE_ADMIN")
+      return true;
+    else
+      return false;
+  }
+
+
   delete(id: number): void {
+    if (this.forOwner){
     this.cottageService.deleteCottage(id).subscribe(
        (cottages) => {
          window.location.reload();
        },
        (error) => {
          this.errorDisplay = true;
-       })
+       })}
+    if (this.forAdmin){
+    this.cottageService.adeleteCottage(id).subscribe(
+      (cottages) => {
+        window.location.reload();
+      },
+      (error) => {
+        this.errorDisplay = true;
+      })}
   }
 
-  subscribeToCottage(){
+  subscribeToCottage() {
     this.clientService.subscribeToCottage(this.cottage.id, this.currentUser.id).subscribe();
   }
 
   showSubscribeButton(): boolean {
-    if (this.forClient && !this.forClientSubscriptions){
+    if (this.forClient && !this.forClientSubscriptions) {
       return true;
     }
     else return false;

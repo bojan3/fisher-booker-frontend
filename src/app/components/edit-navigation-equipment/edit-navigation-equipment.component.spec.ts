@@ -11,9 +11,7 @@ describe('EditNavigationEquipmentComponent', () => {
       declarations: [ EditNavigationEquipmentComponent ]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(EditNavigationEquipmentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

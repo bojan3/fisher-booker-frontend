@@ -12,13 +12,15 @@ import { FishingInstructorService } from 'src/app/services/fishing-instructor.se
 })
 export class FishingInstructorsComponent implements OnInit {
 
-  constructor(private FishingInstructorService : FishingInstructorService,
-              private accountService: AccountService,
-              private clientService: ClientService) { }
+  fishinginstructors: FishingInstructor[] = [];
+
   @Input()
   forClientSubscriptions: boolean = false;
 
-  fishinginstructors: FishingInstructor[] = [];
+  constructor(private FishingInstructorService: FishingInstructorService,
+    private accountService: AccountService,
+    private clientService: ClientService) { }
+
 
   ngOnInit(): void {
     if(this.forClientSubscriptions){
@@ -29,14 +31,17 @@ export class FishingInstructorsComponent implements OnInit {
     this.FishingInstructorService.getAllFishingInstructors().subscribe((fishinginstructors) => {
       this.fishinginstructors = fishinginstructors;
     });
-
   }
 
-  sortByName(){
+  sortByName() {
     this.FishingInstructorService.getAllFishingInstructorsOrderByName().subscribe((fishinginstructors) => {
-      this.fishinginstructors = fishinginstructors});
+      this.fishinginstructors = fishinginstructors
+    });
   }
   notClientSubscriptions(): boolean {
     return !this.forClientSubscriptions;
   }
+
 }
+
+

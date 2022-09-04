@@ -28,14 +28,14 @@ export class Ship {
   navigationEquipments: NavigationEquipment[];
   fishingEquipments: FishingEquipment[];
   availabilityPeriod: AvailabilityPeriod = new AvailabilityPeriod(0, new Date(), new Date());
-  cottagePictures: Image[];
+  shipImages: Image[];
   shipOptions: Option[];
 
   constructor(id: number, name: string, type: ShipType, length: number, address: Address, description: string,
     averageMark: number, rentPrice: number, engineNumber: number, enginePower: number,
     maxSpeed: number, capacity: number, cancelRate: number, shipSuperDeal: SuperDeal[],
     rules: Rule[], navigationEquipment: NavigationEquipment[], fishingEquipment: FishingEquipment[],
-    availabilityPeriod: AvailabilityPeriod, cottagePictures: Image[], shipOptions: Option[]) {
+    availabilityPeriod: AvailabilityPeriod, shipPictures: Image[], shipOptions: Option[]) {
     this.id = id;
     this.name = name;
     this.type = type;
@@ -54,7 +54,7 @@ export class Ship {
     this.navigationEquipments = navigationEquipment;
     this.fishingEquipments = fishingEquipment;
     this.availabilityPeriod = availabilityPeriod;
-    this.cottagePictures = cottagePictures;
+    this.shipImages = shipPictures;
     this.shipOptions = shipOptions;
   }
   

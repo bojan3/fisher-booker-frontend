@@ -1,0 +1,5 @@
+<app-reservation-detail *ngFor="let reservation of reservations" [reservation]="reservation" [type]="type">
+
+</app-reservation-detail >
+<mat-paginator [length]="numOfReservations" [pageSizeOptions]="[5]" (page)="changed($event)" aria-label="Select page">
+</mat-paginator>

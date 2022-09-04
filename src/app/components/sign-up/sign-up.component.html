@@ -1,10 +1,11 @@
-<p>sign-up works!</p>
+<h2>Sing up</h2>
 
-<p *ngIf="notification" [class]="notification.msgType">{{notification.msgBody}}</p>
+
+<p  *ngIf="notification" [class]="notification.msgType">{{notification.msgBody}}</p>
 
 <form class="sign-up-form" (ngSubmit)="onSubmit()" *ngIf="!submitted" [formGroup]="form">
 
-  <label for="username">Username: </label>
+  <label  for="username">Username: </label>
   <input id="username" formControlName="username" required>
 
   <label for="password">Password: </label>
@@ -14,91 +15,97 @@
   <input id="password_retype" formControlName="password_retype" required type="password">
   <p *ngIf=arePasswordsMatching() style="color:red;">Passwords do not match!</p>
 
-  <label for="firstname">First Name: </label>
-  <input id="firstname" formControlName="firstname">
+  <label for="name">First Name: </label>
+  <input id="name" formControlName="name">
 
   <label for="lastname">Last Name: </label>
   <input id="lastname" formControlName="lastname">
 
-  <label for="email">Email: </label>
+  <label for="email" >Email: </label>
   <input id="email" formControlName="email">
 
-  <label for="phoneNumber">Phone number: </label>
+  <label for="phoneNumber" >Phone number: </label>
   <input id="phoneNumber" formControlName="phoneNumber">
 
-  <div class="sign-up-form" formGroupName="address">
-    <p id='title'>Address: </p>
-
-    <label>Country: </label>
-
-    <input formControlName="country">
-
-    <label>City: </label>
-
-    <input formControlName="city">
-
-    <label>Street: </label>
-
-    <input formControlName="street">
-
-    <label>Number: </label>
-
-    <input formControlName="number">
-
-  </div>
-
-  <div class="sign-up-form">
-    <p id="title">Role: </p>
 
 
 
-    <table>
-      <tr>
-        <td>
-          <label for="client">Client</label>
-        </td>
-        <td>
-          <input type="radio" id="client" name="role" value="CLIENT" formControlName="role">
-        </td>
-      </tr>
+    <div class="sign-up-form" formGroupName="address">
+        <p id='title'>Address: </p>
 
-      <tr>
-        <td>
-          <label for="cottage-owner">Cottage owner</label>
-        </td>
-        <td>
-          <input type="radio" id="cottage-owner" name="role" value="COTTAGE_OWNER" formControlName="role">
-        </td>
-      </tr>
+          <label>Country: </label>
 
-      <tr>
-        <td>
-          <label for="ship-owner">Ship owner</label>
-        </td>
-        <td>
-          <input type="radio" id="ship-owner" name="role" value="SHIP_OWNER" formControlName="role">
-        </td>
-      </tr>
+          <input formControlName="country">
 
-      <tr>
-        <td>
-          <label for="fishing-instructor">Fishing instructor</label>
-        </td>
-        <td>
-          <input type="radio" id="fishing-instructor" name="role" value="FISHING_INSTRUCTOR" formControlName="role">
-        </td>
-      </tr>
-    </table>
-    <form >
-      <label  for="explanation">Explanation</label><br>
-      <input type="text" id="explanation"><br>
-      </form>
+          <label>City: </label>
+
+          <input formControlName="city">
+
+          <label>Street: </label>
+
+          <input formControlName="street">
+
+          <label>Number: </label>
+
+          <input formControlName="number">
+
+    </div>
+
+    <div class="sign-up-form">
+  <p id="title">Role: </p>
 
 
-  </div>
+
+  <table>
+    <tr>
+      <td>
+        <label for="client">Client</label>
+      </td>
+      <td>
+        <input type="radio" id="client" name="role" value="CLIENT" formControlName="role">
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <label for="cottage-owner">Cottage owner</label>
+      </td>
+      <td>
+        <input type="radio" id="cottage-owner" name="role" value="COTTAGE_OWNER" formControlName="role">
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <label for="ship-owner">Ship owner</label>
+      </td>
+      <td>
+        <input type="radio" id="ship-owner" name="role" value="SHIP_OWNER" formControlName="role">
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <label for="fishing-instructor">Fishing instructor</label>
+      </td>
+      <td>
+        <input type="radio" id="fishing-instructor" name="role" value="FISHING_INSTRUCTOR" formControlName="role">
+      </td>
+    </tr>
+  </table>
+  <!-- <label for="client">Client</label>
+  <input type="radio" id="client" name="role" value="CLIENT" formControlName="role">
+  <label for="cottage-owner">Cottage owner</label>
+  <input type="radio" id="cottage-owner" name="role" value="COTTAGE_OWNER" formControlName="role">
+  <label for="ship-owner">Ship owner</label>
+  <input type="radio" id="ship-owner" name="role" value="SHIP_OWNER" formControlName="role">
+  <label for="fishing-instructor">Fishing instructor</label>
+  <input type="radio" id="fishing-instructor" name="role" value="FISHING_INSTRUCTOR" formControlName="role"> -->
+
+</div>
   <button [disabled]="!form.valid" color="primary" type="submit">Sign up</button>
   <br>
-  <button color="primary" routerLink="/">Go Back</button>
+  <button color="primary" routerLink="/" >Go Back</button>
 </form>
 <br>
 <br>

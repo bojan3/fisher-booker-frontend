@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
@@ -41,19 +40,15 @@ import { ClientPageComponent } from './components/client-page/client-page.compon
 import { InstructorPageComponent } from './components/instructor-page/instructor-page.component';
 import { AccountInfoComponent } from './components/account-info/account-info.component';
 import { CottagePageComponent } from './components/cottage-page/cottage-page.component';
-
-
 import { ShipService } from './services/ship.service';
 import { ShipOwnerService } from './services/ship-owner.service';
 import { ClientService } from './services/client.service';
 import { FishingInstructorService } from './services/fishing-instructor.service';
-import { CottageOwner } from './entity/CottageOwner';
 import { CottageOwnerService } from './services/cottage-owner.service';
 
 import { AccountRequestComponent } from './components/account-request/account-request.component';
 import { AccountRequestsComponent } from './components/account-requests/account-requests.component';
 import { NewAdminComponent } from './components/new-admin/new-admin.component';
-
 import { AccountInfoEditComponent } from './components/account-info-edit/account-info-edit.component';
 import { EditRoomsComponent } from './components/edit-rooms/edit-rooms.component';
 import { EditRulesComponent } from './components/edit-rules/edit-rules.component';
@@ -62,7 +57,6 @@ import { InstructorAdventuresComponent } from './components/instructor-adventure
 import { AddShipComponent } from './components/add-ship/add-ship.component';
 import { ShipPageComponent } from './components/ship-page/ship-page.component';
 import { EditOptionsComponent } from './components/edit-options/edit-options.component';
-import { EditSuperDealComponent } from './components/edit-super-deal/edit-super-deal.component';
 import { EditNavigationEquipmentComponent } from './components/edit-navigation-equipment/edit-navigation-equipment.component';
 import { EditFishingEquipmentComponent } from './components/edit-fishing-equipment/edit-fishing-equipment.component';
 import { CottageReservationsComponent } from './components/cottage-reservations/cottage-reservations.component';
@@ -118,26 +112,58 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { ComplaintComponent } from './components/complaint/complaint.component';
 import { ComplaintsComponent } from './components/complaints/complaints.component';
 
+import {MatTabsModule} from '@angular/material/tabs';
+
+
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
   { path: 'cottages', component: CottagesComponent },
+  { path: 'client_profile/cottages', component: CottagesComponent },
   { path: 'ships', component: ShipsComponent },
+  { path: 'client_profile/ships', component: ShipsComponent },
   { path: 'adventures', component: AdventuresComponent },
-//  { path: 'instructors', component: FishingInstructorsComponent },
-//  { path: 'cottage_owners', component: CottageOwnersComponent },
- // { path: 'ship_owners', component: ShipOwnersComponent },
+  { path: 'fishing-instructors', component: FishingInstructorsComponent },
+  { path: 'client_profile/fishing-instructors', component: FishingInstructorsComponent },
+  //  { path: 'cottage_owners', component: CottageOwnersComponent },
+  // { path: 'ship_owners', component: ShipOwnersComponent },
   { path: 'clients', component: ClientsComponent },
+  { path: 'client_profile/adventures', component: AdventuresComponent },
   { path: 'logIn', component: LogInComponent },
   { path: 'signUp', component: SignUpComponent },
-  { path: 'cottage_owner_profile', component: CottageOwnerPageComponent},
-  { path: 'ship_owner_profile', component: ShipOwnerPageComponent},
-  { path: 'admin_profile', component: AdminPageComponent},
-  { path: 'client_profile', component: ClientPageComponent},
-  { path: 'instructor_profile', component: InstructorPageComponent},
+  { path: 'cottage_owner_profile', component: CottageOwnerPageComponent },
+  { path: 'ship_owner_profile', component: ShipOwnerPageComponent },
+  { path: 'admin_profile', component: AdminPageComponent },
+  { path: 'client_profile', component: ClientPageComponent },
+  { path: 'instructor_profile', component: InstructorPageComponent },
   { path: 'cottage/:id', component: CottagePageComponent },
   { path: 'ship/:id', component: ShipPageComponent },
   { path: 'add_cottage', component: AddCottageComponent },
+  { path: 'admin_profile/cottages', component: CottagesComponent },
+  { path: 'admin_profile/cottage_owners', component: CottageOwnersComponent },
+  { path: 'admin_profile/ships', component: ShipsComponent },
+  { path: 'admin_profile/ship_owners', component: ShipOwnersComponent },
+  { path: 'admin_profile/adventures', component: AdventuresComponent },
+  { path: 'admin_profile/instructors', component: FishingInstructorsComponent },
+  { path: 'admin_profile/clients', component: ClientsComponent },
+  { path: 'admin_profile/requests', component: RequestsComponent },
+  { path: 'admin_profile/deleteaccounts', component: DeleteaccountsComponent },
+
+  { path: 'account-info', component: AccountInfoComponent },
+  { path: 'account-info-edit', component: AccountInfoEditComponent },
+  { path: 'register/verify/:token', component: VerifyAccountComponent },
+  { path: 'register/verify/:token', component: VerifyAccountComponent },
+  { path: 'instructor-adventures/:instructorId', component: InstructorAdventuresComponent },
+  { path: 'client_profile/cottage-reservations', component: CottageReservationsComponent },
+  { path: 'client_profile/adventure-reservations', component: AdventureReservationsComponent },
+  { path: 'client_profile/ship-reservations', component: ShipReservationsComponent },
+  { path: 'client_profile/cottage-complaint/:cottageId', component: CottageComplaintComponent },
+  { path: 'cottage-complaint/:cottageId', component: CottageComplaintComponent },
+  { path: 'client_profile/ship-complaint/:shipId', component: ShipComplaintComponent },
+  { path: 'ship-complaint/:shipId', component: ShipComplaintComponent },
+  { path: 'client_profile/insturctor-complaint/:adventureId', component: InstructorComplaintComponent },
+  { path: 'insturctor-complaint/:adventureId', component: InstructorComplaintComponent },
   { path: 'add_ship', component: AddShipComponent },
+
   { path: 'admin_profile/cottages', component: CottagesComponent},
   { path: 'admin_profile/cottage_owners', component: CottageOwnersComponent},
   { path: 'admin_profile/ships', component: ShipsComponent},
@@ -146,6 +172,7 @@ const appRoutes: Routes = [
   { path: 'admin_profile/instructors', component: FishingInstructorsComponent},
   { path: 'admin_profile/clients', component: ClientsComponent},
   { path: 'admin_profile/requests', component: RequestsComponent}
+
   { path: 'admin_profile/cottages', component: CottagesComponent },
   { path: 'admin_profile/cottage_owners', component: CottageOwnersComponent },
   { path: 'admin_profile/ships', component: ShipsComponent },
@@ -168,20 +195,21 @@ const appRoutes: Routes = [
   { path: 'cottage-review/:cottageId', component: CottageReviewComponent },
   { path: 'ship-review/:shipId', component: ShipReviewComponent },
   { path: 'adventure-review/:adventureId', component: AdventureReviewComponent },
+
   { path: 'admin_profile/reviews', component: ReviewsComponent},
   { path: 'admin_profile/complaints', component: ComplaintsComponent}
 
-];
 
-  { path: 'account-info', component: AccountInfoComponent},
-  { path: 'account-info-edit', component: AccountInfoEditComponent},
-  { path: 'register/verify/:token', component: VerifyAccountComponent},
-  { path: 'instructor-adventures/:instructorId', component: InstructorAdventuresComponent},
-  { path: 'client_profile/cottage-reservations', component: CottageReservationsComponent},
-  { path: 'client_profile/adventure-reservations', component: AdventureReservationsComponent},
-  { path: 'client_profile/ship-reservations', component: ShipReservationsComponent}
+  { path: 'admin_profile/reviews', component: ReviewsComponent}
 
 ];
+
+const mapConfig: YaConfig = {
+  //apikey: 'a7b572e8-718a-4325-9c8b-676375397e9e',
+  apikey: 'asd',
+  lang: 'en_US',
+};
+
 
 @NgModule({
   declarations: [
@@ -217,8 +245,7 @@ const appRoutes: Routes = [
     RequestsComponent,
     AccountRequestComponent,
     AccountRequestsComponent,
-    NewAdminComponent
-    
+    NewAdminComponent,
     ImagesOfEntitiesComponent,
     AddCottageComponent,
     AccountInfoEditComponent,
@@ -229,11 +256,13 @@ const appRoutes: Routes = [
     AddShipComponent,
     ShipPageComponent,
     EditOptionsComponent,
-    EditSuperDealComponent,
     EditNavigationEquipmentComponent,
     EditFishingEquipmentComponent,
     CottageReservationsComponent,
+    MapsComponent,
+    EditImageComponent,
     CottageReservationComponent,
+    CottageReservationsComponent,
     ShipReservationComponent,
     ShipReservationsComponent,
     AdventureReservationsComponent,
@@ -264,15 +293,34 @@ const appRoutes: Routes = [
     AddReservationComponent,
     ComplaintComponent,
     ComplaintsComponent
+
   ],
   imports: [
+    [AngularYandexMapsModule.forRoot(mapConfig)],
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule, // MORA DA SE DODA
+    HttpClientModule,
     RouterModule.forRoot(appRoutes),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatCheckboxModule,
+    MatProgressSpinnerModule,
+    ScheduleModule,
+    RecurrenceEditorModule,
+    MatSelectModule,
+    NgApexchartsModule,
+    MatSelectModule,
+    MatExpansionModule,
+    MatPaginatorModule,
+    MatInputModule,
+    MatTabsModule
   ],
   providers: [
     {
@@ -288,7 +336,16 @@ const appRoutes: Routes = [
     ShipOwnerService,
     ClientService,
     FishingInstructorService,
-    CottageOwnerService
+    CottageOwnerService,
+    BusinessReportService,
+    ReviewsService,
+
+    DayService,
+    WeekService,
+    WorkWeekService,
+    MonthService,
+    MonthAgendaService
+
   ],
   bootstrap: [AppComponent]
 })

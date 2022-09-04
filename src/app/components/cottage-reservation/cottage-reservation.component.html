@@ -1,11 +1,14 @@
 <section class='reservations'>
-  <h3>{{cottageReservation.cottageDTO.name}}</h3>
-  <p>description: {{cottageReservation.cottageDTO.description}}</p>
-  <p>period: {{cottageReservation.startDate}} {{cottageReservation.endDate}}</p>
-  <p>capacity: {{cottageReservation.capacity}}</p>
-  <p>price:
-    {{cottageReservation.price}}</p>
-  <p align="right">
-    <button (click)="cancelReservation()" *ngIf="canCancel()">cancel reservation</button>
-  </p>
-</section>
+    <h3>{{cottageReservation.cottageDTO.name}}</h3>
+    <p>description: {{cottageReservation.cottageDTO.description}}</p>
+    <p>period: {{cottageReservation.startDate}} {{cottageReservation.endDate}}</p>
+    <p>capacity: {{cottageReservation.capacity}}</p>
+    <p>price:
+      {{cottageReservation.price}}</p>
+    <p align="right">
+      <button (click)="cancelReservation()" *ngIf="canCancel()">cancel reservation</button>
+      <button [routerLink]="['', 'cottage-complaint', cottageReservation.cottageDTO.id]" *ngIf="forStarted">write complaint</button>
+      <button [routerLink]="['', 'cottage-review', cottageReservation.cottageDTO.id]" *ngIf="forStarted">write review</button>
+    </p>
+  </section>
+  

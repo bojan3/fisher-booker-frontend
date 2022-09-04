@@ -1,35 +1,60 @@
-<section class="cottage-all-info">
+<button (click)="openChart()">Vidi izveštaj</button>
+<section class="cottage-all-info" *ngIf="cottageIsPresent">
   <section class="cottage-info info-block">
-    <h2>{{cottage?.name}}</h2>
-    <p>{{cottage?.address?.country}}, {{cottage?.address?.city}}, {{cottage?.address?.street}},
-      {{cottage?.address?.number}}</p>
-    <p>Opis: {{cottage?.description}}</p>
+    <h2>{{cottage.name}}</h2>
+    <p>{{cottage.address.country}}, {{cottage.address.city}}, {{cottage.address.street}},
+      {{cottage.address.number}}</p>
+    <app-maps *ngIf="cottageIsPresent" [address]="cottage.address"></app-maps>
+    <p>Opis: {{cottage.description}}</p>
     <p>{{getNumberOfRoomsAndBeds()}}</p>
     <p>Kućni red: {{rulesToString()}}</p>
-    <p>Cena noćenja: {{cottage?.pricePerDay}} evra</p>
-    <p>Period dostupnosti: {{cottage?.availabilityPeriod?.startDate}} - {{cottage?.availabilityPeriod?.endDate}}</p>
-    <button [routerLink]="['', 'add_cottage']" [queryParams]='{id: cottage?.id}'>Edit</button>
+    <p>Cena noćenja: {{cottage.pricePerDay}} evra</p>
+    <!-- <p>Period dostupnosti: {{cottage.availabilityPeriod.startDate}} - {{cottage.availabilityPeriod.endDate}}</p> -->
+    <button [routerLink]="['', 'add_cottage']" [queryParams]='{id: cottage.id}' *ngIf="ownership">Izmeni</button>
   </section>
-  
+
+  <section class="info-block">
+    <app-calendar [id] = 'cottage.id' [superDeals]="cottage.cottageSuperDeals" [availabilityPeriod]="cottage.availabilityPeriod">
+    
+    </app-calendar>
+    
+  </section>
+
+
   <section class="super-deals info-block">
-    <h2>Brze rezervacije</h2>
+    <div class="deal-head">
+      <h2>Brze rezervacije</h2>
+      <button *ngIf="ownership" (click)="openAddSupeDealDialog()">Napravi</button>
+    </div>
+
     <div class=super-deal *ngFor="let superDeal of cottage?.cottageSuperDeals">
       <p>Оd: {{formatDate(superDeal.startDate)}}</p>
       <p>Do: {{formatDate(superDeal.endDate)}}</p>
       <p>Cena: {{superDeal.discountedPrice}} evra</p>
       <p>Broj osoba: {{superDeal.capacity}}</p>
+      <div *ngFor="let option of superDeal.options">
+        {{option.name}} --- {{option.description}} --- {{option.price}}
+      </div>
+      <div class="buttons" *ngIf="ownership">
+        <button>Izbriši</button>
+      </div>
     </div>
+
   </section>
-  
+
   <section class="info-block">
     <h2>Dodatne usluge</h2>
     <div class="option" *ngFor="let option of cottage?.cottageOptions">
       {{option.name}} --- {{option.description}} --- {{option.price}}
     </div>
   </section>
-  
+
   <div class="cottage-images info-block">
     <h2>Slike</h2>
-    <app-images-of-entities [images]=cottage?.cottagePictures></app-images-of-entities>
+    <div class="images" *ngFor="let image of cottage?.cottageImages">
+      <img [src]='"data:image/jpeg;base64," + image.image'>
+      <button [id]=image.id (click)="deleteImage($event)">Izbriši</button>
+    </div>
+    <app-edit-image></app-edit-image>
   </div>
 </section>

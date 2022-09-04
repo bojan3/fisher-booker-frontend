@@ -49,4 +49,3 @@ export class EditNavigationEquipmentComponent implements OnInit {
     this.navs = this.navs.filter((nav, index) => index != i)
   }
 }
-

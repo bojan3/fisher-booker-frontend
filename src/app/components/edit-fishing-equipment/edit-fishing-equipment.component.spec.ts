@@ -11,9 +11,7 @@ describe('EditFishingEquipmentComponent', () => {
       declarations: [ EditFishingEquipmentComponent ]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(EditFishingEquipmentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

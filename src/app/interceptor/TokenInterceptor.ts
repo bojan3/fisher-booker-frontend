@@ -6,7 +6,10 @@ import {
   HttpEvent
 } from '@angular/common/http';
 import { AuthService } from '../services/auth.service';
+
 import { Observable, } from 'rxjs';
+
+//import { _throw } from 'rxjs/observable/throw';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -14,13 +17,9 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(public auth: AuthService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log(this.auth.getToken());
-    
     if (this.auth.tokenIsPresent()) {
       request = request.clone({
         setHeaders: {
-            
-            
           Authorization: `Bearer ${this.auth.getToken()}` 
         }
       });

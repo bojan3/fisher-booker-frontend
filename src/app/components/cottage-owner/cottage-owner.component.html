@@ -1,15 +1,15 @@
 <section class='vikendice'>
 
-    <h3>{{cottageowner.id}}</h3>
-    <h3>{{cottageowner.account.username}}</h3>
-    <p>{{cottageowner.account.name}}</p>
-    <p>{{cottageowner.account.lastName}}</p>
-    <p>{{cottageowner.account.email}}</p> 
-      
-    <p align="right">
-  <button>details</button>
-  <button (click) = "delete(cottageowner.id)">delete</button>
+  <h3>{{cottageowner.id}}</h3>
+  <h3>{{cottageowner.account.username}}</h3>
+  <p>{{cottageowner.account.name}}</p>
+  <p>{{cottageowner.account.lastName}}</p>
+  <p>{{cottageowner.account.email}}</p>
+
+  <p align="right">
+    <button>details</button>
+    <button (click)="delete(cottageowner.id)">delete</button>
   </p>
-  
-  
-  </section>
+
+
+</section>

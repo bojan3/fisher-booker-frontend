@@ -1,0 +1,35 @@
+<section class="info-block">
+    <div>
+        <p>Od: {{reservation.startDate}}</p>
+        <p>Do: {{reservation.endDate}}</p>
+        <p>Cena: {{reservation.price}}</p>
+        <p>Kapacitet: {{reservation.capacity}}</p>
+        <p>Ime entiteta: {{reservation.name}}</p>
+        <p>Dodatne usluge: {{reservation.options}}</p>
+        <p>Informacije o klijentu: {{reservation.userInfo}}</p>
+    </div>
+    <mat-accordion>
+        <mat-expansion-panel (opened)="reviewPanelOpenState = true" (closed)="reviewPanelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Napiši recenziju
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <form [formGroup]="form" (ngSubmit)="submit()">
+                <textarea formControlName="content"></textarea>
+                <input type="checkbox" formControlName="badReview"/> Negativno
+                <input type="checkbox" formControlName="didntAppear"/> Nije se pojavio
+                <button color="primary" type="submit">Potvrdi</button>
+            </form>
+        </mat-expansion-panel>
+    
+        <mat-expansion-panel (opened)="reservationPanelOpenState = true" (closed)="reservationPanelOpenState = false" *ngIf="isCurrent()">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Napravi novu rezervaciju
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <app-add-reservation [clientId]="reservation.clientId" [realEstateId]="reservation.realEstateId" [type]="type"></app-add-reservation>
+        </mat-expansion-panel>
+    </mat-accordion>
+</section>

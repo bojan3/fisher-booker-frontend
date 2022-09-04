@@ -4,7 +4,7 @@
             <div [formGroupName]='i'>
                 <tr>
                   <td>
-                    <label>Rule: </label>
+                    <label>Pravilo: </label>
                   </td>
                   <td>
                     <input formControlName="description" required>
@@ -12,11 +12,11 @@
                 </tr>
                 <tr>
                   <td>
-                    <button (click)='removeRule(i)'>Remove rule</button>
+                    <button (click)='removeRule(i)'>Ukloni pravilo</button>
                   </td>
                 </tr>
               </div>  
         </table>
     </div>
-    <button type="button" (click)="addRule()">Add rule</button>
+    <button type="button" (click)="addRule()">Dodaj pravilo</button>
 </form>

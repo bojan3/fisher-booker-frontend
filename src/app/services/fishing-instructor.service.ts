@@ -29,4 +29,8 @@ getOnePath = 'http://localhost:8081/api/instructor/'
   details(id : number): Observable<FishingInstructor[]>{
       return this.apiService.get(this.getOnePath, id);
   }
+
+  getAllFishingInstructorsOrderByName() : Observable<FishingInstructor[]>{
+    return this.apiService.get('http://localhost:8081/api/instructor/all/byName');
+  }
 }

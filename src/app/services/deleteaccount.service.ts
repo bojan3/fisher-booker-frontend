@@ -24,5 +24,4 @@ export class DeleteaccountService {
      // window.location.reload();
      return this.http.delete<Boolean>('http://localhost:8081/api/account/denieddeleteAccountRequest/'+id+"/"+answer);
     }
-
 }

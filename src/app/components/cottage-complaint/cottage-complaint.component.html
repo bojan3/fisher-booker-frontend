@@ -1,0 +1,8 @@
+<form class="sign-up-form" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <label for="text">Complaint: </label>
+    <br>
+    <textarea id="text" ROWS="20" COLS="60" formControlName="text" required> </textarea>
+    <button [disabled]="!form.valid" color="primary" type="submit">Send</button>
+    <br>
+    <button color="primary" routerLink="/">Go Back</button>
+</form>

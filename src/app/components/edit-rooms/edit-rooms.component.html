@@ -4,7 +4,7 @@
             <div [formGroupName]='i'>
                 <tr>
                   <td>
-                    <label>Room label: </label>
+                    <label>Oznaka: </label>
                   </td>
                   <td>
                     <input formControlName="label" required>
@@ -12,7 +12,7 @@
                 </tr>
                 <tr>
                   <td>
-                    <label>Number of beds: </label>
+                    <label>Broj kreveta: </label>
                   </td>
                   <td>
                     <input formControlName="numOfBeds" required>
@@ -20,11 +20,11 @@
                 </tr>
                 <tr>
                   <td>
-                    <button (click)='removeRoom(i)'>Remove room</button>
+                    <button (click)='removeRoom(i)'>Ukloni sobu</button>
                   </td>
                 </tr>
               </div>  
         </table>
     </div>
-    <button type="button" (click)="addRoom()">Add room</button>
+    <button type="button" (click)="addRoom()">Dodaj sobu</button>
 </form>

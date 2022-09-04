@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { ReservationType } from 'src/app/entity/DTO/ReservationType';
+import { RealEstateType } from 'src/app/entity/RealEstateType';
 import { Ship } from 'src/app/entity/Ship';
 import { ShipService } from 'src/app/services/ship.service';
+import { AddSuperDealComponent } from '../add-super-deal/add-super-deal.component';
+import { Image } from 'src/app/entity/Image';
 
 @Component({
   selector: 'app-ship-page',
@@ -12,17 +17,21 @@ export class ShipPageComponent implements OnInit {
 
   id: string = '';
   ship!: Ship;
+  shipIsPresent: boolean = false;
+  ownership: boolean = false;
 
-  constructor(private route: ActivatedRoute, private shipService: ShipService) { }
+  constructor(private route: ActivatedRoute, private shipService: ShipService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.route.params.subscribe((param) => {
       this.id = param.id;
       this.shipService.getById(this.id).subscribe((ship) => {
-        console.log(ship);
-        
         this.ship = ship;
+        this.shipIsPresent = true;
       });
+      this.shipService.checkShipOwnersip(this.id).subscribe((res) => {
+        this.ownership = res;
+      })
     })
   }
 
@@ -33,7 +42,6 @@ export class ShipPageComponent implements OnInit {
       rules.forEach(rule => {
         output += rule.description + ', ';
       });
-
       return this.removeLastCommaAndSpace(output);
     }
     return '';
@@ -73,4 +81,18 @@ export class ShipPageComponent implements OnInit {
     return date;
   }
 
+  openAddSupeDealDialog() {
+    this.dialog.open(AddSuperDealComponent, {data: {realEstateId: this.ship.id, type: ReservationType.SHIP}})
+  }
+
+
+  getImage(image: Image) {
+    'data:image/jpeg;base64,' + image.image
+  }
+
+  deleteImage(event: any) {
+    this.shipService.deleteImage(event.target.id).subscribe((res) => {
+      window.location.reload()
+    })
+  }
 }

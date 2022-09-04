@@ -11,9 +11,7 @@ describe('ShipPageComponent', () => {
       declarations: [ ShipPageComponent ]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(ShipPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

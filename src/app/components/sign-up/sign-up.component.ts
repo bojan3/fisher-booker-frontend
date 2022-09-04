@@ -33,17 +33,18 @@ export class SignUpComponent implements OnInit {
     private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-      this.route.params
+    this.route.params
       .pipe(takeUntil(this.ngUnsubscribe))
-      /*.subscribe((params: DisplayMessage) => {
-        this.notification = params;
-      });*/
+    /*.subscribe((params: DisplayMessage) => {
+      this.notification = params;
+    });*/
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     this.form = this.formBuilder.group({
       username: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(64)])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])],
-      firstname: [''],
+      password_retype: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])],
+      name: [''],
       lastname: [''],
       email: [''],
       phoneNumber: [''],
@@ -66,15 +67,13 @@ export class SignUpComponent implements OnInit {
     /**
      * Innocent until proven guilty
      */
+     console.log("****************");
     this.notification = undefined;
     this.submitted = true;
 
     this.authService.signup(this.form.value)
       .subscribe(data => {
         console.log(data);
-        this.authService.login(this.form.value).subscribe(() => {
-          this.accountService.getMyInfo().subscribe();
-        });
         this.router.navigate([this.returnUrl]);
       },
         error => {
@@ -83,5 +82,9 @@ export class SignUpComponent implements OnInit {
           this.notification = { msgType: 'error', msgBody: error['error'].message };
         });
 
+  }
+
+  arePasswordsMatching() {
+    return (this.form.value.password != this.form.value.password_retype);
   }
 }

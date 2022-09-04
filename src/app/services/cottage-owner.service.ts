@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CottageOwner } from '../entity/CottageOwner';
+import { ReservationDetailsDTO } from '../entity/DTO/ReservationDetailsDTO';
 import { ApiService } from './api.service';
 
 @Injectable({
@@ -15,15 +16,24 @@ export class CottageOwnerService {
 
   constructor(private http: HttpClient, private apiService: ApiService) { }
 
-  getAllCottageOwners(): Observable<CottageOwner[]>{
+  getAllCottageOwners(): Observable<CottageOwner[]> {
     return this.http.get<CottageOwner[]>('http://localhost:8081/api/cottageOwner/all');
   }
 
-  delete(id: number): Observable<boolean>{
+  delete(id: number): Observable<boolean> {
     return this.apiService.delete(this.deletePath, id);
   }
-  delete1(id: number): Observable<boolean>{
+
+  delete1(id: number): Observable<boolean> {
     return this.apiService.delete(this.deletePath1, id);
+  }
+
+  getReservationsByOwner(numPage: number): Observable<ReservationDetailsDTO[]> {
+    return this.apiService.get('http://localhost:8081/api/cottageOwner/reservations/' + numPage);
+  }
+
+  getNumOfReservations(): Observable<number> {
+    return this.apiService.get('http://localhost:8081/api/cottageOwner/reservationNum');
   }
 
 }

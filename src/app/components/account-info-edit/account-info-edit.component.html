@@ -1,10 +1,10 @@
 <form class="sign-up-form" (ngSubmit)="onSubmit()" #contactForm="ngForm" *ngIf="!submitted">
 
   <label for="username">Username: </label>
-  <input id="username" name="username"  [(ngModel)]="account.username" required>
+  <input id="username" name="username" [(ngModel)]="account.username" required>
 
   <label for="name">First Name: </label>
-  <input id="name" type="text" name="name"  [(ngModel)]="account.name" required>
+  <input id="name" type="text" name="name" [(ngModel)]="account.name" required>
 
   <label for="lastName">Last Name: </label>
   <input id="lastName" name="lastName" [(ngModel)]="account.lastName" required>
@@ -12,7 +12,7 @@
   <label for="email">Email: </label>
   <input id="email" name="email" [(ngModel)]="account.email" readonly>
 
-  <label for="phonenumber" >Phone number: </label>
+  <label for="phonenumber">Phone number: </label>
   <input id="phonenumber" name="phonenumber" [(ngModel)]="account.phoneNumber" required>
 
   <div class="sign-up-form">
@@ -33,3 +33,12 @@
 
   <button color="primary" type="submit">Update</button>
   <button color="primary" routerLink="/">Go Back</button>
+</form>
+
+<form class="delete-account-form" (ngSubmit)="onDelete()" [formGroup]="formDelete">
+  <h2>Brisanje naloga</h2>
+  <label>Poruka: </label>
+  <textarea formControlName="description"></textarea>
+  <p *ngIf="requestSent">Zahtev uspesno poslat</p>
+  <button color="primary" type="submit">Pošalji zahtev</button>
+</form>

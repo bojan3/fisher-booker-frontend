@@ -1,36 +1,136 @@
-<table>
+<table class="profile" *ngIf="!editMode && showTable">
   <tr>
     <th>Name:</th>
-    <th>{{account?.name}}</th>
+    <th>{{account.name}}</th>
   </tr>
   <tr>
     <th>Last name:</th>
-    <th>{{account?.lastName}}</th>
+    <th>{{account.lastName}}</th>
   </tr>
   <tr>
     <th>Username:</th>
-    <th>{{account?.username}}</th>
+    <th>{{account.username}}</th>
   </tr>
-  <tr>
+  <tr> 
     <th>Profile category:</th>
-    <th>{{account?.role}}</th>
+    <th>{{account.role}}</th>
   </tr>
   <tr>
   <tr>
     <th>Email:</th>
-    <th>{{account?.email}}</th>
+    <th>{{account.email}}</th>
   </tr>
   <tr>
     <th>Country:</th>
-    <th>{{account?.address?.country}}</th>
+    <th>{{account.address.country}}</th>
   </tr>
   <tr>
     <th>City:</th>
-    <th>{{account?.address?.city}}</th>
+    <th>{{account.address.city}}</th>
   </tr>
   <tr>
     <th>Address:</th>
-    <th>{{account?.address?.street}}</th>
-    <th>{{account?.address?.number}}</th>
+    <th>{{account.address.street}}</th>
+    <th>{{account.address.number}}</th>
+  </tr>
+   <!-- <tr>
+    <th>Status:</th>
+    <th>{{this.account.status.name}}</th>
+    <th>points:{{account.status.points}}</th>
+
+    <img *ngIf="isREGULAR" src=" ../../assets/images/insignia.png" class=" img1"> 
+    <img *ngIf="isBRONZE" src=" ../../assets/images/medal3.png" class=" img1"> 
+    <img *ngIf="isSILVER" src=" ../../assets/images/medal2.png" class=" img1"> 
+    <img *ngIf="isGOLD" src=" ../../assets/images/medal1.png" class=" img1"> 
+    <img *ngIf="isDIAMOND" src=" ../../assets/images/diamond.png" class=" img1"> 
+  </tr>  -->
+  <tr>
+    <!-- <button (click)='showForm()'>Edit profile</button> -->
   </tr>
 </table>
+<!-- [formGroup]="form" -->
+<form *ngIf="editMode" >
+  <table>
+    <tr>
+      <td>
+        <label>Username: </label>
+      </td>
+      <td>
+        <input formControlName="username" required>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>First Name: </label>
+      </td>
+      <td>
+        <input formControlName="firstname">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>Last Name: </label>
+      </td>
+      <td>
+        <input formControlName="lastname">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>Email: </label>
+      </td>
+      <td>
+        <input formControlName="email">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>Phone number: </label>
+      </td>
+      <td>
+        <input>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" id='address'>Address</td>
+    </tr>
+    <div formGroupName="address">
+      <tr>
+        <td>
+          <label>Country: </label>
+        </td>
+        <td>
+          <input formControlName="country">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>City: </label>
+        </td>
+        <td>
+          <input formControlName="city">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>Street: </label>
+        </td>
+        <td>
+          <input formControlName="street">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>Number: </label>
+        </td>
+        <td>
+          <input formControlName="number">
+        </td>
+      </tr>
+    </div>
+  </table>
+  <!-- [disabled]="!form.valid" -->
+  <button color="primary" type="submit">Save</button>
+  <br>
+  <button color="primary" (click)='hideForm()'>Cancel</button>
+</form>

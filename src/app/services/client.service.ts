@@ -4,12 +4,11 @@ import { Observable } from 'rxjs';
 import { Client } from '../entity/Client';
 import { ApiService } from './api.service';
 import { CottageDTO } from '../entity/DTO/CottageDTO';
-import { FishingInstructor } from '../entity/FishingInstructor';
-import { Ship } from '../entity/Ship';
 import { ShipDTO } from '../entity/DTO/ShipDTO';
+import { FishingInstructor } from '../entity/FishingInstructor';
 import { AdventureReservationDTO } from '../entity/DTO/AdventureReservationDTO';
-import { ShipReservationDTO } from '../entity/DTO/ShipReservationDTO';
 import { CottageReservationDTO } from '../entity/DTO/CottageReservationDTO';
+import { ShipReservationDTO } from '../entity/DTO/ShipReservationDTO';
 
 
 @Injectable({
@@ -25,6 +24,7 @@ export class ClientService {
 
   delete(id: number): Observable<boolean> {
     return this.apiService.delete('http://localhost:8081/api/client/delete', id);
+
   }
 
   subscribeToCottage(cottageId: number, accountId: number){
@@ -100,6 +100,30 @@ export class ClientService {
 
     deleteAdventureReservation(accountId: number, adventureReservationId: number){
       return this.apiService.delete('http://localhost:8081/api/client/reservation/adventure/delete/' + accountId, JSON.stringify(adventureReservationId));
+    }
+
+    createCottageComplaint(cottageId: number, accountId: number, text: string){
+      return this.apiService.put('http://localhost:8081/api/client/cottagecomplaint/' + cottageId + '/' + accountId, JSON.stringify(text));
+    }
+
+    createInstructorComplaint(adventureId: number, accountId: number, text: string){
+      return this.apiService.put('http://localhost:8081/api/client/instructorcomplaint/' + adventureId + '/' + accountId, JSON.stringify(text));
+    }
+
+    createShipComplaint(shipId: number, accountId: number, text: string){
+      return this.apiService.put('http://localhost:8081/api/client/shipcomplaint/' + shipId + '/' + accountId, JSON.stringify(text));
+    }
+
+    postCottageReview(review: any){
+      return this.apiService.post('http://localhost:8081/api/review/cottage/save', JSON.stringify(review))
+    }
+
+    postShipReview(review: any){
+      return this.apiService.post('http://localhost:8081/api/review/ship/save', JSON.stringify(review))
+    }
+
+    postAdventureReview(review: any){
+      return this.apiService.post('http://localhost:8081/api/review/adventure/save', JSON.stringify(review))
     }
 }
 

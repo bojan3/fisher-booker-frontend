@@ -1,4 +1,4 @@
-import { Component,Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Client } from 'src/app/entity/Client';
 import { AccountService } from 'src/app/services/account.service';
 import { ClientService } from 'src/app/services/client.service';
@@ -11,7 +11,7 @@ import { ClientService } from 'src/app/services/client.service';
 export class ClientComponent implements OnInit {
 
   @Input()
-  client!:Client
+  client!: Client
 
 
   constructor(private clientservice: ClientService) { }
