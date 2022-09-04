@@ -7,6 +7,7 @@ import { Ship } from 'src/app/entity/Ship';
 import { ShipService } from 'src/app/services/ship.service';
 import { AddSuperDealComponent } from '../add-super-deal/add-super-deal.component';
 import { Image } from 'src/app/entity/Image';
+import { EditShipDTO } from 'src/app/entity/DTO/EditShipDTO';
 
 @Component({
   selector: 'app-ship-page',
@@ -20,6 +21,8 @@ export class ShipPageComponent implements OnInit {
   shipIsPresent: boolean = false;
   ownership: boolean = false;
 
+  ediShipDTO!: EditShipDTO
+
   constructor(private route: ActivatedRoute, private shipService: ShipService, public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -28,6 +31,7 @@ export class ShipPageComponent implements OnInit {
       this.shipService.getById(this.id).subscribe((ship) => {
         this.ship = ship;
         this.shipIsPresent = true;
+        // this.ediShipDTO = this.ship.toEditShipDTO()
       });
       this.shipService.checkShipOwnersip(this.id).subscribe((res) => {
         this.ownership = res;

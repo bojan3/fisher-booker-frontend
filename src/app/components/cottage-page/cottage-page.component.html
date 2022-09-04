@@ -10,7 +10,7 @@
     <p>Kućni red: {{rulesToString()}}</p>
     <p>Cena noćenja: {{cottage.pricePerDay}} evra</p>
     <!-- <p>Period dostupnosti: {{cottage.availabilityPeriod.startDate}} - {{cottage.availabilityPeriod.endDate}}</p> -->
-    <button [routerLink]="['', 'add_cottage']" [queryParams]='{id: cottage.id}' *ngIf="ownership">Izmeni</button>
+    <button [routerLink]="['', 'edit_cottage']" [queryParams]='{id: cottage.id}' *ngIf="ownership">Izmeni</button>
   </section>
 
   <section class="info-block">

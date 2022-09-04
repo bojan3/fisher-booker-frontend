@@ -15,7 +15,7 @@
         <p>Pecaroška oprema: {{fishingToString()}}</p>
         <p>Uslovi otkaza: Vlasnik zadržava {{ship.cancelRate}}% početne cene</p>
         <p>Period dostupnosti: {{ship.availabilityPeriod.startDate}} - {{ship.availabilityPeriod.endDate}}</p>
-        <button [routerLink]="['', 'add_ship']" [queryParams]='{id: ship.id}'>Edit</button>
+        <button [routerLink]="['', 'edit_ship']" [queryParams]="{ id: ship.id }" >Izmeni</button>
     </section>
 
     <app-calendar [superDeals]="ship.shipSuperDeals" [availabilityPeriod]="ship.availabilityPeriod">
