@@ -71,6 +71,52 @@ import { ShipReservationComponent } from './components/ship-reservation/ship-res
 import { ShipReservationsComponent } from './components/ship-reservations/ship-reservations.component';
 import { AdventureReservationsComponent } from './components/adventure-reservations/adventure-reservations.component';
 import { AdventureReservationComponent } from './components/adventure-reservation/adventure-reservation.component';
+import { AngularYandexMapsModule, YaConfig } from 'angular8-yandex-maps';
+import { MapsComponent } from './components/maps/maps.component';
+import { EditImageComponent } from './components/edit-image/edit-image.component';
+import { ImagesOfEntitiesComponent } from './components/images-of-entities/images-of-entities.component';
+import { AddCottageComponent } from './components/add-cottage/add-cottage.component';
+import { CottageComplaintComponent } from './components/cottage-complaint/cottage-complaint.component';
+import { DeleteaccountComponent } from './components/deleteaccount/deleteaccount.component';
+import { DeleteaccountsComponent } from './components/deleteaccounts/deleteaccounts.component';
+import { ShipComplaintComponent } from './components/ship-complaint/ship-complaint.component';
+import { InstructorComplaintComponent } from './components/instructor-complaint/instructor-complaint.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { EditAvailabilityPeriodComponent } from './components/edit-availability-period/edit-availability-period.component';
+import { AddSuperDealComponent } from './components/add-super-deal/add-super-deal.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { PrecentageviewComponent } from './components/precentageview/precentageview.component';
+import { ScheduleModule, RecurrenceEditorModule, DayService, WeekService, 
+  WorkWeekService, MonthService, MonthAgendaService 
+} from '@syncfusion/ej2-angular-schedule';
+import { SchedulerComponent } from './components/scheduler/scheduler.component';
+import { BusinessReportComponent } from './components/business-report/business-report.component';
+import { BusinessReportService } from './services/business-report.service';
+
+import { LineChartComponent } from './components/line-chart/line-chart.component';
+import { MatSelectModule } from '@angular/material/select';
+import { HistoryPageComponent } from './components/history-page/history-page.component';
+import { CottageReviewComponent } from './components/cottage-review/cottage-review.component';
+import { AdventureReviewComponent } from './components/adventure-review/adventure-review.component';
+import { ShipReviewComponent } from './components/ship-review/ship-review.component';
+import { ReviewComponent } from './components/review/review.component';
+import { ReviewsComponent } from './components/reviews/reviews.component';
+import { ReviewsService } from './services/reviews.service';
+import { ReservationDetailComponent } from './components/reservation-detail/reservation-detail.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { DateRangeComponent } from './components/date-range/date-range.component';
+import { MatInputModule } from '@angular/material/input';
+import { AddReservationComponent } from './components/add-reservation/add-reservation.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { ComplaintComponent } from './components/complaint/complaint.component';
+import { ComplaintsComponent } from './components/complaints/complaints.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -100,6 +146,32 @@ const appRoutes: Routes = [
   { path: 'admin_profile/instructors', component: FishingInstructorsComponent},
   { path: 'admin_profile/clients', component: ClientsComponent},
   { path: 'admin_profile/requests', component: RequestsComponent}
+  { path: 'admin_profile/cottages', component: CottagesComponent },
+  { path: 'admin_profile/cottage_owners', component: CottageOwnersComponent },
+  { path: 'admin_profile/ships', component: ShipsComponent },
+  { path: 'admin_profile/ship_owners', component: ShipOwnersComponent },
+  { path: 'admin_profile/adventures', component: AdventuresComponent },
+  { path: 'admin_profile/instructors', component: FishingInstructorsComponent },
+  { path: 'admin_profile/clients', component: ClientsComponent },
+  { path: 'admin_profile/business-report', component: BusinessReportComponent },
+  { path: 'account-info', component: AccountInfoComponent },
+  { path: 'account-info-edit', component: AccountInfoEditComponent },
+  { path: 'register/verify/:token', component: VerifyAccountComponent },
+  { path: 'instructor-adventures/:instructorId', component: InstructorAdventuresComponent },
+  { path: 'client_profile/cottage-reservations', component: CottageReservationsComponent },
+  { path: 'client_profile/adventure-reservations', component: AdventureReservationsComponent },
+  { path: 'client_profile/ship-reservations', component: ShipReservationsComponent },
+  { path: 'client_profile/cottage-complaint/:cottageId', component: CottageComplaintComponent },
+  { path: 'cottage-complaint/:cottageId', component: CottageComplaintComponent },
+  { path: 'scheduler', component: SchedulerComponent},
+  { path: 'reservation_history', component: HistoryPageComponent},
+  { path: 'cottage-review/:cottageId', component: CottageReviewComponent },
+  { path: 'ship-review/:shipId', component: ShipReviewComponent },
+  { path: 'adventure-review/:adventureId', component: AdventureReviewComponent },
+  { path: 'admin_profile/reviews', component: ReviewsComponent},
+  { path: 'admin_profile/complaints', component: ComplaintsComponent}
+
+];
 
   { path: 'account-info', component: AccountInfoComponent},
   { path: 'account-info-edit', component: AccountInfoEditComponent},
@@ -165,7 +237,33 @@ const appRoutes: Routes = [
     ShipReservationComponent,
     ShipReservationsComponent,
     AdventureReservationsComponent,
-    AdventureReservationComponent
+    AdventureReservationComponent,
+    MapsComponent,
+    EditImageComponent,
+    CottageComplaintComponent,
+    DeleteaccountComponent,
+    DeleteaccountsComponent,
+    ShipComplaintComponent,
+    InstructorComplaintComponent,
+    CottageComplaintComponent,
+    EditAvailabilityPeriodComponent,
+    AddSuperDealComponent,
+    CalendarComponent,
+    PrecentageviewComponent,
+    SchedulerComponent,
+    BusinessReportComponent,
+    LineChartComponent,
+    CottageReviewComponent,
+    AdventureReviewComponent,
+    ShipReviewComponent,
+    ReviewComponent,
+    ReviewsComponent,
+    HistoryPageComponent,
+    ReservationDetailComponent,
+    DateRangeComponent,
+    AddReservationComponent,
+    ComplaintComponent,
+    ComplaintsComponent
   ],
   imports: [
     BrowserModule,

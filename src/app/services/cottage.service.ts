@@ -4,6 +4,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CottageDTO } from '../entity/CottageDTO';
 import { ApiService } from './api.service';
 import { Cottage } from '../entity/Cottage';
+import { AddCottageDTO } from '../entity/DTO/AddCottageDTO';
+import { AddSuperDealDTO } from '../entity/DTO/AddSupeDealDTO';
+import { Option } from 'src/app/entity/Option';
+import { DatePeriodDTO } from '../entity/DTO/DatePeriodDTO';
+import { AddReservationDTO } from '../entity/DTO/AddReservationDTO';
+import { windowTime } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +46,15 @@ export class CottageService {
     return this.http.post<boolean>('http://localhost:8081/api/cottage/save', cottage);
   }
 
-  deleteCottage(id: number): Observable<CottageDTO>{
+
+
+  adeleteCottage(id: number): Observable<CottageDTO> {
+    console.log("ADMIN");
+    return this.apiService.delete('http://localhost:8081/api/cottage/admin/delete', id );
+  }
+
+
+  deleteCottage(id: number): Observable<CottageDTO> {
     return this.apiService.delete('http://localhost:8081/api/cottage/delete/owner/' + id);
   }
 

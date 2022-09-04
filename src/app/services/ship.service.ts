@@ -9,6 +9,7 @@ import { ApiService } from './api.service';
   providedIn: 'root'
 })
 export class ShipService {
+  
 
   constructor(private http: HttpClient, private apiService:ApiService) { }
 
@@ -32,6 +33,12 @@ export class ShipService {
 
   getAllShipsByName(): Observable<ShipDTO[]> {
     return this.http.get<ShipDTO[]>('http://localhost:8081/api/ship/all/name')
+  adeleteShip(id: number): Observable<ShipDTO>{
+    return this.apiService.delete('http://localhost:8081/api/ship/admin/delete',id);
+  }
+
+  getAllShipsByOwner(): Observable<ShipDTO[]> {
+    return this.http.get<ShipDTO[]>('http://localhost:8081/api/shipOwner/allShipsByOwner');
   }
 
   getAllShipsByPrice(): Observable<ShipDTO[]> {
