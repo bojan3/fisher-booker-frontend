@@ -113,6 +113,8 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { AdventurePageComponent } from './components/adventure-page/adventure-page.component';
 import { ReservationReviewComponent } from './components/reservation-review/reservation-review.component';
 import { ReservationReviewsComponent } from './components/reservation-reviews/reservation-reviews.component';
+import { EditShipComponent } from './components/edit-ship/edit-ship.component';
+import { EditCottageComponent } from './components/edit-cottage/edit-cottage.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -138,6 +140,7 @@ const appRoutes: Routes = [
   { path: 'adventure/:id', component: AdventurePageComponent },
   { path: 'ship/:id', component: ShipPageComponent },
   { path: 'add_cottage', component: AddCottageComponent },
+  { path: 'edit_cottage', component: EditCottageComponent },
   { path: 'admin_profile/cottages', component: CottagesComponent },
   { path: 'admin_profile/cottage_owners', component: CottageOwnersComponent },
   { path: 'admin_profile/ships', component: ShipsComponent },
@@ -163,6 +166,7 @@ const appRoutes: Routes = [
   { path: 'client_profile/insturctor-complaint/:adventureId', component: InstructorComplaintComponent },
   { path: 'insturctor-complaint/:adventureId', component: InstructorComplaintComponent },
   { path: 'add_ship', component: AddShipComponent },
+  { path: 'edit_ship', component: EditShipComponent },
   { path: 'admin_profile/cottages', component: CottagesComponent },
   { path: 'admin_profile/cottage_owners', component: CottageOwnersComponent },
   { path: 'admin_profile/ships', component: ShipsComponent },
@@ -278,7 +282,9 @@ const mapConfig: YaConfig = {
     AddReservationComponent,
     AdventurePageComponent,
     ReservationReviewComponent,
-    ReservationReviewsComponent
+    ReservationReviewsComponent,
+    EditShipComponent,
+    EditCottageComponent
   ],
   imports: [
     [AngularYandexMapsModule.forRoot(mapConfig)],

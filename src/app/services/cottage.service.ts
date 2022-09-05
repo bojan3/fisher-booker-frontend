@@ -9,6 +9,7 @@ import { AddSuperDealDTO } from '../entity/DTO/AddSupeDealDTO';
 import { Option } from 'src/app/entity/Option';
 import { DatePeriodDTO } from '../entity/DTO/DatePeriodDTO';
 import { AddReservationDTO } from '../entity/DTO/AddReservationDTO';
+import { EditCottageDTO } from '../entity/DTO/EditCottageDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -47,13 +48,14 @@ export class CottageService {
     return this.http.post<boolean>('http://localhost:8081/api/cottage/save', cottage);
   }
 
-
+  updateCottage(cottage: EditCottageDTO): Observable<boolean> {
+    return this.http.put<boolean>('http://localhost:8081/api/cottage/update', cottage);
+  }
 
   adeleteCottage(id: number): Observable<CottageDTO> {
     console.log("ADMIN");
     return this.apiService.delete('http://localhost:8081/api/cottage/admin/delete/' + id);
   }
-
 
   deleteCottage(id: number): Observable<CottageDTO> {
     return this.apiService.delete('http://localhost:8081/api/cottage/delete/owner/' + id);

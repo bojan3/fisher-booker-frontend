@@ -1,0 +1,38 @@
+#title {
+    font-weight: bold;
+    font-style: italic;
+    padding-top: 8px;
+}
+
+h2 {
+    text-align: center;
+}
+
+.add-ship-form {
+    max-width: 750px;
+    margin: 2rem auto;
+    border: 2px solid black;
+    padding: 2rem;
+}
+
+.info-block {
+    max-width: 500px;
+    margin: 2rem auto;
+    border: 2px solid black;
+    padding: 2rem;
+}
+
+label,
+input {
+    width: 100%;
+    display: block;
+}
+
+label {
+    padding: 8px;
+}
+
+button {
+    display: inline;
+    margin-top: 15px;
+}

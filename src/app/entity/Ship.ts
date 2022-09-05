@@ -8,6 +8,7 @@ import { SuperDeal } from "./SuperDeal";
 import { Image } from "./Image";
 import { ShipType } from "./ShipType";
 import { R3Identifiers } from "@angular/compiler";
+import { EditShipDTO } from "./DTO/EditShipDTO";
 
 export class Ship {
   id: number;
@@ -56,6 +57,28 @@ export class Ship {
     this.availabilityPeriod = availabilityPeriod;
     this.shipImages = shipPictures;
     this.shipOptions = shipOptions;
+  }
+
+  toEditShipDTO() {
+    let editShip = new EditShipDTO();
+    editShip.id = this.id;
+    editShip.name = this.name;
+    editShip.type = this.type;
+    editShip.length = this.length;
+    editShip.address = this.address;
+    editShip.description = this.description;
+    editShip.rentPrice = this.rentPrice;
+    editShip.engineNumber = this.engineNumber;
+    editShip.enginePower = this.enginePower;
+    editShip.maxSpeed = this.maxSpeed;
+    editShip.capacity = this.capacity;
+    editShip.cancelRate = this.cancelRate;
+    editShip.rules = this.rules
+    editShip.navigationEquipments = this.navigationEquipments;
+    editShip.fishingEquipments = this.fishingEquipments;
+    editShip.availabilityPeriod = this.availabilityPeriod;
+    editShip.shipOptions = this.shipOptions;
+    return editShip;
   }
   
 }

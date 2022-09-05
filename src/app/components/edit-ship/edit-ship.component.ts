@@ -1,29 +1,31 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { AddShipDTO } from 'src/app/entity/DTO/AddShipDTO';
+import { EditShipDTO } from 'src/app/entity/DTO/EditShipDTO';
+import { Rule } from 'src/app/entity/Rule';
+import { Ship } from 'src/app/entity/Ship';
 import { AccountService } from 'src/app/services/account.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { ShipService } from 'src/app/services/ship.service';
+import { EditAvailabilityPeriodComponent } from '../edit-availability-period/edit-availability-period.component';
 import { EditFishingEquipmentComponent } from '../edit-fishing-equipment/edit-fishing-equipment.component';
 import { EditNavigationEquipmentComponent } from '../edit-navigation-equipment/edit-navigation-equipment.component';
 import { EditOptionsComponent } from '../edit-options/edit-options.component';
 import { EditRulesComponent } from '../edit-rules/edit-rules.component';
-import { wholeNumber } from '../Regex';
-import { decimalNumber } from '../Regex';
-import { Rule } from "../../entity/Rule";
-import { AddShipDTO } from 'src/app/entity/DTO/AddShipDTO';
-import { EditAvailabilityPeriodComponent } from '../edit-availability-period/edit-availability-period.component';
+import { wholeNumber, decimalNumber } from '../Regex';
 
 @Component({
-  selector: 'app-add-ship',
-  templateUrl: './add-ship.component.html',
-  styleUrls: ['./add-ship.component.css']
+  selector: 'app-edit-ship',
+  templateUrl: './edit-ship.component.html',
+  styleUrls: ['./edit-ship.component.css']
 })
-export class AddShipComponent implements OnInit {
+export class EditShipComponent implements OnInit {
 
-  ship: AddShipDTO = new AddShipDTO();
+  ship: EditShipDTO = new EditShipDTO();
   showForm: boolean = false;
   form!: FormGroup;
+  showError = false;
 
   @ViewChild(EditRulesComponent)
   editRulesComponent!: EditRulesComponent;
@@ -43,11 +45,40 @@ export class AddShipComponent implements OnInit {
     private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.route.queryParams
+      .subscribe(params => {
+        if (params.id) {
+          this.shipService.getById(params.id).subscribe((ship) => {
+            this.ship = this.toEditShipDTO(ship);
+            this.buildForm()
+            this.showForm = true;
+          });
+        } else {
+          console.log('gde si');
+        }
+      })
+  }
 
-    if (this.accountService.currentUser.role != 'ROLE_SHIP_OWNER') {
-      this.authService.logout();
-    }
-    
+  toEditShipDTO(ship: Ship) {
+    let editShip = new EditShipDTO();
+    editShip.id = ship.id;
+    editShip.name = ship.name;
+    editShip.type = ship.type;
+    editShip.length = ship.length;
+    editShip.address = ship.address;
+    editShip.description = ship.description;
+    editShip.rentPrice = ship.rentPrice;
+    editShip.engineNumber = ship.engineNumber;
+    editShip.enginePower = ship.enginePower;
+    editShip.maxSpeed = ship.maxSpeed;
+    editShip.capacity = ship.capacity;
+    editShip.cancelRate = ship.cancelRate;
+    editShip.rules = ship.rules
+    editShip.navigationEquipments = ship.navigationEquipments;
+    editShip.fishingEquipments = ship.fishingEquipments;
+    editShip.availabilityPeriod = ship.availabilityPeriod;
+    editShip.shipOptions = ship.shipOptions;
+    return editShip;
   }
 
   buildForm() {
@@ -73,11 +104,13 @@ export class AddShipComponent implements OnInit {
 
   onSubmit() {
     this.formShip()
-    this.shipService.save(this.ship).subscribe(
+    this.shipService.update(this.ship).subscribe(
       (res) => {
-        console.log('radi');
+        if(!res) {
+          this.showError = true;
+        }
       }, (error) => {
-        console.log('jbg');
+        this.showError = true;
       });
   }
 
@@ -101,14 +134,14 @@ export class AddShipComponent implements OnInit {
     // this.ship.availabilityPeriods = this.editAvailabilityPeriodsComponent.form.value.periods;
   }
 
-  convertToRules(fakeRules: any): Rule[]{
+  convertToRules(fakeRules: any): Rule[] {
     var rules: Rule[] = [];
-    
+
     fakeRules.forEach((element: any) => {
       rules.push(new Rule(element.id, element.name));
     });
     console.log(rules);
-    
+
     return rules;
   }
 
