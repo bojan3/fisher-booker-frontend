@@ -1,5 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { DatePeriodDTO } from '../entity/DTO/DatePeriodDTO';
+import { RealEstateType } from '../entity/RealEstateType';
 import { Stats } from '../entity/Stats';
 import { ApiService } from './api.service';
 
@@ -10,18 +13,25 @@ export class StatsService {
 
   basePath: String = 'http://localhost:8081/api/stats/'
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private http: HttpClient) { }
 
-  getYearlyStats(year: number): Observable<Stats[]> {
-    return this.apiService.get(this.basePath + 'COTTAGE/yearly/' + year);
+  getYearlyStats(year: number, type: RealEstateType): Observable<Stats[]> {
+    return this.apiService.get(this.basePath + type.toString() + '/yearly/' + year);
   }
 
-  getMonthlyStats(year: number, month: number): Observable<Stats[]> {
-    return this.apiService.get(this.basePath + 'monthly/' + year);
-  } 
+  getMonthlyStats(year: number, month: number, type: RealEstateType): Observable<Stats[]> {
+    return this.apiService.get(this.basePath + type.toString() + '/monthly/' + year + '/' + month);
+  }
 
-  getArbitrarilyStats(year: number, month: number): Observable<Stats[]> {
-    return this.apiService.get(this.basePath + 'monthly/' + year);
+  getArbitrarilyStats(datePeriod: DatePeriodDTO, type: RealEstateType): Observable<Stats[]> {
+    let newPeriod = new DatePeriodDTO(datePeriod.startDate, datePeriod.endDate);
+    if (newPeriod.startDate == null) {
+      newPeriod.startDate = new Date();
+    }
+    if (newPeriod.endDate == null) {
+      newPeriod.endDate = new Date();
+    }
+    return this.http.post<Stats[]>(this.basePath + type.toString() + '/arbitrarily', newPeriod);
   }
 
   getYears(): Observable<number[]> {

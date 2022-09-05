@@ -1,4 +1,4 @@
 export enum RealEstateType {
-    COTTAGE,
-    SHIP
+    COTTAGE = "COTTAGE",
+    SHIP = "SHIP"
 }

@@ -1,6 +1,10 @@
 <mat-tab-group (selectedTabChange)="tabChanged($event)">
   <mat-tab label="Godišnje">
-
+    <mat-select [(ngModel)]="selectedYear" (selectionChange)='onChange()' name="food">
+      <mat-option *ngFor="let year of years" [value]="year">
+        {{year}}
+      </mat-option>
+    </mat-select>
 
   </mat-tab>
   <mat-tab label="Mesečno">
@@ -8,8 +12,8 @@
       <mat-form-field appearance="fill">
         <mat-label>Mesec</mat-label>
         <mat-select [(ngModel)]="selectedMonth" (selectionChange)='onChange()' name="food">
-          <mat-option *ngFor="let year of years" [value]="year">
-            {{year}}
+          <mat-option *ngFor="let month of months" [value]="month">
+            {{month}}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -23,10 +27,28 @@
       </mat-form-field>
     </form>
   </mat-tab>
-  <mat-tab label="Proizvoljno"> Content 3 </mat-tab>
-  <div id="chart" *ngIf="showChart">
-    <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
-      [dataLabels]="chartOptions.dataLabels" [grid]="chartOptions.grid" [stroke]="chartOptions.stroke"
-      [title]="chartOptions.title"></apx-chart>
-  </div>
+  <mat-tab label="Proizvoljno">
+
+    <!-- <mat-date-range-input>
+      <input matStartDate [(ngModel)]="period.startDate" placeholder="Start date">
+      <input matEndDate [(ngModel)]="period.endDate" placeholder="End date">
+    </mat-date-range-input> -->
+
+    <mat-label>Enter a date range</mat-label>
+    <mat-date-range-input [rangePicker]="picker">
+      <input matStartDate [(ngModel)]="period.startDate" placeholder="Start date" (dateChange)='onChange()'>
+      <input matEndDate [(ngModel)]="period.endDate" placeholder="End date" (dateChange)='onChange()'>
+    </mat-date-range-input>
+    <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+
+  </mat-tab>
+
+
 </mat-tab-group>
+<div id="chart" *ngIf="showChart">
+  <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
+    [dataLabels]="chartOptions.dataLabels" [grid]="chartOptions.grid" [stroke]="chartOptions.stroke"
+    [title]="chartOptions.title"></apx-chart>
+</div>
