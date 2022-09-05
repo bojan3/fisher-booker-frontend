@@ -38,6 +38,7 @@
             </div>
             <div class="buttons" *ngIf="ownership">
                 <button>Izbriši</button>
+                <button (click)="makeSuperDealReservation($event)" [id]="superDeal.id">make reservation</button>
             </div>
         </div>
     </section>

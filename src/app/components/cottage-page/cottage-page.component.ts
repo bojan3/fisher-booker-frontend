@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Cottage } from 'src/app/entity/Cottage';
 import { AddReservationDTO } from 'src/app/entity/DTO/AddReservationDTO';
+import { CreateSuperDealReservation } from 'src/app/entity/DTO/CreateSuperDealReservation';
 import { ReservationType } from 'src/app/entity/DTO/ReservationType';
 import { Image } from 'src/app/entity/Image';
 import { RealEstateType } from 'src/app/entity/RealEstateType';
@@ -127,7 +128,8 @@ export class CottagePageComponent implements OnInit {
   }
 
   makeSuperDealReservation(event: any) {
-    this.clientService.createCottageSuperDealRes(this.accountService.currentUser.id,  event.target.id).subscribe();
+    var superDealReservation = new CreateSuperDealReservation(this.accountService.currentUser.id,  event.target.id, ReservationType.COTTAGE)
+    this.clientService.createSuperDealReservation(superDealReservation).subscribe();
   }
 
   makeReservation(){
