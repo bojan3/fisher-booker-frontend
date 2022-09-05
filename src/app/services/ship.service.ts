@@ -7,6 +7,7 @@ import { Ship } from '../entity/Ship';
 import { ApiService } from './api.service';
 import { Option } from 'src/app/entity/Option';
 import { AddSuperDealDTO } from '../entity/DTO/AddSupeDealDTO';
+import { EditShipDTO } from '../entity/DTO/EditShipDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,11 @@ export class ShipService {
   save(ship: AddShipDTO): Observable<boolean>{
     console.log(ship);
     return this.apiService.post('http://localhost:8081/api/ship/save', ship);
+  }
+
+  update(ship: EditShipDTO): Observable<boolean> {
+    console.log(ship);
+    return this.apiService.put('http://localhost:8081/api/ship/update', ship);   
   }
 
   getById(id: string): Observable<Ship> {

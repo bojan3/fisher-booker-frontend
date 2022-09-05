@@ -1,29 +1,29 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { AvailabilityPeriod } from 'src/app/entity/AvailabilityPeriod';
 import { Cottage } from 'src/app/entity/Cottage';
-import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AddCottageDTO } from 'src/app/entity/DTO/AddCottageDTO';
+import { EditCottageDTO } from 'src/app/entity/DTO/EditCottageDTO';
 import { AccountService } from 'src/app/services/account.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { CottageService } from 'src/app/services/cottage.service';
+import { EditAvailabilityPeriodComponent } from '../edit-availability-period/edit-availability-period.component';
 import { EditImageComponent } from '../edit-image/edit-image.component';
 import { EditOptionsComponent } from '../edit-options/edit-options.component';
 import { EditRoomsComponent } from '../edit-rooms/edit-rooms.component';
 import { EditRulesComponent } from '../edit-rules/edit-rules.component';
-import { EditAvailabilityPeriodComponent } from '../edit-availability-period/edit-availability-period.component';
-import { AvailabilityPeriod } from 'src/app/entity/AvailabilityPeriod';
 
 @Component({
-  selector: 'app-add-cottage',
-  templateUrl: './add-cottage.component.html',
-  styleUrls: ['./add-cottage.component.css']
+  selector: 'app-edit-cottage',
+  templateUrl: './edit-cottage.component.html',
+  styleUrls: ['./edit-cottage.component.css']
 })
+export class EditCottageComponent implements OnInit {
 
-export class AddCottageComponent implements OnInit {
-
-  cottage: AddCottageDTO = new AddCottageDTO();
+  cottage: EditCottageDTO = new EditCottageDTO();
   showForm: boolean = false;
   form!: FormGroup;
+  showError: boolean = false;;
 
   @ViewChild(EditRoomsComponent)
   editRoomsComponent!: EditRoomsComponent;
@@ -48,12 +48,41 @@ export class AddCottageComponent implements OnInit {
       this.authService.logout();
     }
 
+    this.route.queryParams
+    .subscribe(params => {
+      if (params.id) {
+        this.cottageService.getById(params.id).subscribe((cottage) => {
+          this.cottage = this.toEditCottageDTO(cottage);
+          this.buildForm();
+          this.showForm = true;
+        });
+      } 
+    });
+  }
+
+  toEditCottageDTO(cottage: Cottage){
+    let editCottage = new EditCottageDTO();
+    editCottage.id = cottage.id;
+    editCottage.name = cottage.name;
+    editCottage.description = cottage.description;
+    editCottage.address = cottage.address;
+    editCottage.pricePerDay = cottage.pricePerDay;
+    editCottage.rooms = cottage.rooms;
+    editCottage.rules = cottage.rules;
+    editCottage.availabilityPeriod = cottage.availabilityPeriod;
+    editCottage.cottageOptions = cottage.cottageOptions;
+    return editCottage;
   }
 
   onSubmit() {
     this.formCottage()
-    this.cottageService.saveCottage(this.cottage).subscribe((res) => {
+    this.cottageService.updateCottage(this.cottage).subscribe((res) => {
+      if(!res){
+        this.showError = true;
+      }
       console.log(res);
+    }, (error) => {
+      this.showError = true;
     })
   }
 
@@ -66,8 +95,6 @@ export class AddCottageComponent implements OnInit {
     this.cottage.rules = this.editRulesComponent.form.value.rules;
     this.cottage.cottageOptions = this.editOptionsComponent.form.value.options;
     this.cottage.availabilityPeriod = new AvailabilityPeriod(0, this.editAvailabilityPeriodComponent.dateRange.value.start, this.editAvailabilityPeriodComponent.dateRange.value.end);
-    
-    // this.cottage.imageName = this.editImageComponent.image.name;
   }
 
   buildForm() {
@@ -87,5 +114,4 @@ export class AddCottageComponent implements OnInit {
   cancelChanges() {
 
   }
-
 }

@@ -110,6 +110,8 @@ import { MatInputModule } from '@angular/material/input';
 import { AddReservationComponent } from './components/add-reservation/add-reservation.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import {MatTabsModule} from '@angular/material/tabs';
+import { EditShipComponent } from './components/edit-ship/edit-ship.component';
+import { EditCottageComponent } from './components/edit-cottage/edit-cottage.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -134,6 +136,7 @@ const appRoutes: Routes = [
   { path: 'cottage/:id', component: CottagePageComponent },
   { path: 'ship/:id', component: ShipPageComponent },
   { path: 'add_cottage', component: AddCottageComponent },
+  { path: 'edit_cottage', component: EditCottageComponent },
   { path: 'admin_profile/cottages', component: CottagesComponent },
   { path: 'admin_profile/cottage_owners', component: CottageOwnersComponent },
   { path: 'admin_profile/ships', component: ShipsComponent },
@@ -159,6 +162,7 @@ const appRoutes: Routes = [
   { path: 'client_profile/insturctor-complaint/:adventureId', component: InstructorComplaintComponent },
   { path: 'insturctor-complaint/:adventureId', component: InstructorComplaintComponent },
   { path: 'add_ship', component: AddShipComponent },
+  { path: 'edit_ship', component: EditShipComponent },
   { path: 'admin_profile/cottages', component: CottagesComponent },
   { path: 'admin_profile/cottage_owners', component: CottageOwnersComponent },
   { path: 'admin_profile/ships', component: ShipsComponent },
@@ -270,7 +274,9 @@ const mapConfig: YaConfig = {
     HistoryPageComponent,
     ReservationDetailComponent,
     DateRangeComponent,
-    AddReservationComponent
+    AddReservationComponent,
+    EditShipComponent,
+    EditCottageComponent
   ],
   imports: [
     [AngularYandexMapsModule.forRoot(mapConfig)],

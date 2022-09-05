@@ -14,6 +14,7 @@ import { AddReservationDTO } from 'src/app/entity/DTO/AddReservationDTO';
 import { ClientService } from 'src/app/services/client.service';
 
 const MILISECINDAY = 86400000;
+import { EditShipDTO } from 'src/app/entity/DTO/EditShipDTO';
 
 @Component({
   selector: 'app-ship-page',
@@ -31,6 +32,8 @@ export class ShipPageComponent implements OnInit {
   @ViewChild(DateRangeComponent)
   dateRangeComponent!: DateRangeComponent;
 
+  ediShipDTO!: EditShipDTO
+
   constructor(private route: ActivatedRoute, 
     private shipService: ShipService, 
     public dialog: MatDialog,
@@ -44,6 +47,7 @@ export class ShipPageComponent implements OnInit {
       this.shipService.getById(this.id).subscribe((ship) => {
         this.ship = ship;
         this.shipIsPresent = true;
+        // this.ediShipDTO = this.ship.toEditShipDTO()
       });
       this.shipService.checkShipOwnersip(this.id).subscribe((res) => {
         this.ownership = res;
