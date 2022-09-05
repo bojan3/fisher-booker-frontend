@@ -1,0 +1,59 @@
+<button (click)="openChart()">Vidi izveštaj</button>
+<section class="adventure-all-info" *ngIf="adventureIsPresent">
+  <section class="adventure-info info-block">
+    <h2>{{adventure.name}}</h2>
+    <p>{{adventure.address.country}}, {{adventure.address.city}}, {{adventure.address.street}},
+      {{adventure.address.number}}</p>
+    <app-maps *ngIf="adventureIsPresent" [address]="adventure.address"></app-maps>
+    <p>Opis: {{adventure.description}}</p>
+    <p>Kućni red: {{rulesToString()}}</p>
+    <p>Cena noćenja: {{adventure.price}} evra</p>
+    <!-- <p>Period dostupnosti: {{cottage.availabilityPeriod.startDate}} - {{cottage.availabilityPeriod.endDate}}</p> -->
+    <button [routerLink]="['', 'add_adventure']" [queryParams]='{id: adventure.id}' *ngIf="ownership">Izmeni</button>
+  </section>
+
+  <section class="info-block">
+    <app-calendar [id] = 'adventure.id' [superDeals]="adventure.adventureSuperDeals" [availabilityPeriod]="adventure.availabilityPeriod">
+    
+    </app-calendar>
+    
+  </section>
+
+
+  <section class="super-deals info-block">
+    <div class="deal-head">
+      <h2>Brze rezervacije</h2>
+      <button *ngIf="ownership" (click)="openAddSupeDealDialog()">Napravi</button>
+    </div>
+
+    <div class=super-deal *ngFor="let superDeal of adventure?.adventureSuperDeals">
+      <p>Оd: {{formatDate(superDeal.startDate)}}</p>
+      <p>Do: {{formatDate(superDeal.endDate)}}</p>
+      <p>Cena: {{superDeal.discountedPrice}} evra</p>
+      <p>Broj osoba: {{superDeal.capacity}}</p>
+      <div *ngFor="let option of superDeal.options">
+        {{option.name}} --- {{option.description}} --- {{option.price}}
+      </div>
+      <div class="buttons" *ngIf="ownership">
+        <button>Izbriši</button>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="info-block">
+    <h2>Dodatne usluge</h2>
+    <div class="option" *ngFor="let option of adventure?.adventureOptions">
+      {{option.name}} --- {{option.description}} --- {{option.price}}
+    </div>
+  </section>
+
+  <div class="adventure-images info-block">
+    <h2>Slike</h2>
+    <div class="images" *ngFor="let image of adventure?.adventureImages">
+      <img [src]='"data:image/jpeg;base64," + image.image'>
+      <button [id]=image.id (click)="deleteImage($event)">Izbriši</button>
+    </div>
+    <app-edit-image></app-edit-image>
+  </div>
+</section>

@@ -9,6 +9,24 @@ import { AdventureDTO } from 'src/app/entity/AdventureDTO';
   providedIn: 'root'
 })
 export class AdventureService {
+  deleteImage(id: number): Observable<boolean> {
+    const formData = new FormData();
+    formData.append('id', id.toString());
+    return this.http.delete<boolean>('http://localhost:8081/api/cottage/delete/image/' + id)
+  }
+  checkAdventureOwnersip(id: string): Observable<boolean> {
+      return this.http.get<boolean>('http://localhost:8081/api/cottage/ownership/' + id);
+    }
+  
+  adeleteAdventure(id: number): Observable<AdventureDTO> {
+    console.log("ADMIN");
+    return this.apiService.delete('http://localhost:8081/api/adventure/admin/delete/' + id);
+  }
+
+
+  deleteAdventure(id: number): Observable<AdventureDTO> {
+    return this.apiService.delete('http://localhost:8081/api/adventure/delete/owner/' + id);
+  }
 
   constructor(private http: HttpClient, private apiService : ApiService) { }
 
@@ -28,16 +46,16 @@ export class AdventureService {
   }
 
   getById(id: string): Observable<AdventureDTO>{
-    return this.apiService.get('http://localhost:8081/api/cottage/page/'+id);
+    return this.apiService.get('http://localhost:8081/api/adventure/one/'+id);
   // getAllCottages(): Observable<Cottage[]>{
   //   return this.http.get<Cottage[]>('http://localhost:8081/api/cottage/all');
   // }
   }
   getAllAdventuresByName(): Observable<AdventureDTO[]>{
-    return this.http.get<AdventureDTO[]>('http://localhost:8081/api/cottage/all/name');
+    return this.http.get<AdventureDTO[]>('http://localhost:8081/api/adventure/all/name');
   }
   getAllAdventuresByPrice(): Observable<AdventureDTO[]>{
-    return this.http.get<AdventureDTO[]>('http://localhost:8081/api/cottage/all/price');
+    return this.http.get<AdventureDTO[]>('http://localhost:8081/api/adventure/all/price');
   }
 
   getAllAdventuresByOwner(): Observable<AdventureDTO[]>{
@@ -45,11 +63,11 @@ export class AdventureService {
   } 
 
   getAllAdventuresByRating(): Observable<AdventureDTO[]>{
-    return this.http.get<AdventureDTO[]>('http://localhost:8081/api/cottage/all/rate');
+    return this.http.get<AdventureDTO[]>('http://localhost:8081/api/adventure/all/rate');
   }
 
   saveAdventure(adventure: AdventureDTO): Observable<boolean>{
-    return this.http.post<boolean>('http://localhost:8081/api/cottage/save', adventure);
+    return this.http.post<boolean>('http://localhost:8081/api/adventure/save', adventure);
   }
   
 

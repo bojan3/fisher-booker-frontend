@@ -20,7 +20,8 @@ export class AdminPageComponent implements OnInit {
    ['Ship owners', '../../assets/images/ship_owner.png','ship_owners'], ['Clients', '../../assets/images/client.png','clients'],
     ['Cottages', '../../assets/images/cottage.png','cottages'], ['Adventures', '../../assets/images/adventure.png','adventures'],
      ['Ships', '../../assets/images/ship.png','ships'],['Account requests','../../assets/images/request.png','requests'],['Delete account requests','../../assets/images/x.jpg','deleteaccounts'],
-    ['Reviews','../../assets/images/review.png','reviews'],['Appeals','../../assets/images/dislike.png','appeals'],['Business report','../../assets/images/bussines.png','business-report']];
+    ['Reviews','../../assets/images/review.png','reviews'],['Appeals','../../assets/images/dislike.png','appeals'],['Business report','../../assets/images/bussines.png','business-report'],
+    ['Reservation reviews','../../assets/images/reservation_review.png','reservation_reviews']];
      
     // form1!: FormGroup;
 

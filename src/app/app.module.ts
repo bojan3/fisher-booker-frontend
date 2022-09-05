@@ -110,6 +110,9 @@ import { MatInputModule } from '@angular/material/input';
 import { AddReservationComponent } from './components/add-reservation/add-reservation.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import {MatTabsModule} from '@angular/material/tabs';
+import { AdventurePageComponent } from './components/adventure-page/adventure-page.component';
+import { ReservationReviewComponent } from './components/reservation-review/reservation-review.component';
+import { ReservationReviewsComponent } from './components/reservation-reviews/reservation-reviews.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -132,6 +135,7 @@ const appRoutes: Routes = [
   { path: 'client_profile', component: ClientPageComponent },
   { path: 'instructor_profile', component: InstructorPageComponent },
   { path: 'cottage/:id', component: CottagePageComponent },
+  { path: 'adventure/:id', component: AdventurePageComponent },
   { path: 'ship/:id', component: ShipPageComponent },
   { path: 'add_cottage', component: AddCottageComponent },
   { path: 'admin_profile/cottages', component: CottagesComponent },
@@ -181,7 +185,8 @@ const appRoutes: Routes = [
   { path: 'cottage-review/:cottageId', component: CottageReviewComponent },
   { path: 'ship-review/:shipId', component: ShipReviewComponent },
   { path: 'adventure-review/:adventureId', component: AdventureReviewComponent },
-  { path: 'admin_profile/reviews', component: ReviewsComponent}
+  { path: 'admin_profile/reviews', component: ReviewsComponent},
+  { path: 'admin_profile/reservation_reviews', component: ReservationReviewsComponent}
 ];
 
 const mapConfig: YaConfig = {
@@ -270,7 +275,10 @@ const mapConfig: YaConfig = {
     HistoryPageComponent,
     ReservationDetailComponent,
     DateRangeComponent,
-    AddReservationComponent
+    AddReservationComponent,
+    AdventurePageComponent,
+    ReservationReviewComponent,
+    ReservationReviewsComponent
   ],
   imports: [
     [AngularYandexMapsModule.forRoot(mapConfig)],

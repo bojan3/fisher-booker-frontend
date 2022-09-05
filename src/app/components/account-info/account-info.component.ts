@@ -25,20 +25,20 @@ export class AccountInfoComponent implements OnInit {
 
   constructor(private accountService: AccountService,
      private formBuilder: FormBuilder) {
-      // this.accountService.getMyInfo().subscribe((account) =>{
-      //   this.account = account;    
-      //   if (this.account.status.name.toString()=="DIAMOND")
-      //     this.isDIAMOND=true;
-      //   if (this.account.status.name.toString()=="GOLD")
-      //     this.isGOLD=true;
-      //   if (this.account.status.name.toString()=="SILVER")
-      //     this.isSILVER=true;
-      //   if (this.account.status.name.toString()=="BRONZE")
-      //     this.isBRONZE=true;
-      //   if (this.account.status.name.toString()=="REGULAR")
-      //     this.isREGULAR=true;
+      this.accountService.getMyInfo().subscribe((account) =>{
+        this.account = account;    
+        if (this.account.status.name.toString()=="DIAMOND")
+          this.isDIAMOND=true;
+        if (this.account.status.name.toString()=="GOLD")
+          this.isGOLD=true;
+        if (this.account.status.name.toString()=="SILVER")
+          this.isSILVER=true;
+        if (this.account.status.name.toString()=="BRONZE")
+          this.isBRONZE=true;
+        if (this.account.status.name.toString()=="REGULAR")
+          this.isREGULAR=true;
     
-      // });
+      });
     }
 
   

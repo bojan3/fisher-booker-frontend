@@ -1,0 +1,20 @@
+<section class='reviews'>
+ 
+    <h3>r: {{review.type}}</h3>
+     <p>client username: {{review.clientUsername}}</p>
+     <p>client email: {{review.clientEmail}}</p>
+     <p>owner username: {{review.ownerUsername}}</p>
+     <p>owner email: {{review.ownerEmail}}</p>
+     <p>content: {{review.content}}</p>
+
+    
+  
+    <!--<p>Adress:{{adresa}}, {{request.address.city}}, {{request.address.street}} </p> --> 
+  
+  
+    <p align="right">
+  <button  (click) = "penal(review)">PENAL</button>
+  <button  (click) = "delete(review)">DELETE</button>
+  
+
+</p>

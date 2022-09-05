@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ReservationDetailsDTO } from 'src/app/entity/DTO/ReservationDetailsDTO';
 import { ReservationType } from 'src/app/entity/DTO/ReservationType';
 import { AccountService } from 'src/app/services/account.service';
+import { AdventureReservationService } from 'src/app/services/adventure-reservation.service';
 import { CottageOwnerService } from 'src/app/services/cottage-owner.service';
+import { FishingInstructorService } from 'src/app/services/fishing-instructor.service';
 import { ShipOwnerService } from 'src/app/services/ship-owner.service';
 
 @Component({
@@ -19,7 +21,8 @@ export class HistoryPageComponent implements OnInit {
 
   constructor(private cottageOwnerService: CottageOwnerService,
     private shipOwnerService: ShipOwnerService,
-    private accountService: AccountService) {
+    private accountService: AccountService, private instructorService : FishingInstructorService,
+    private adventureReservationService : AdventureReservationService) {
       switch(this.accountService.currentUser.role) {
         case 'ROLE_COTTAGE_OWNER': {
           this.type = ReservationType.COTTAGE;
@@ -29,6 +32,11 @@ export class HistoryPageComponent implements OnInit {
           this.type = ReservationType.SHIP;
           break;
         }
+        case 'ROLE_INSTRUCTOR':{
+          this.type = ReservationType.ADVENTURE;
+          break;
+        }
+
       }
     }
 
@@ -52,10 +60,23 @@ export class HistoryPageComponent implements OnInit {
         })
         break;
       }
-    }
+      case 'ROLE_INSTRUCTOR': {
+      this.instructorService.getReservationsByOwner(this.pageNum).subscribe((reservations) => {
+         this.reservations = reservations;
+         console.log(reservations);
+        });
+
+        this.instructorService.getNumOfReservations().subscribe((num) => {
+          this.numOfReservations = num;
+          console.log(num);
+        })
+        break;
+      }
+
+      }
 
   }
-
+  
   changed(event: any) {
     this.pageNum = event.pageIndex;
     switch (this.accountService.currentUser.role) {

@@ -51,7 +51,7 @@ export class CottageService {
 
   adeleteCottage(id: number): Observable<CottageDTO> {
     console.log("ADMIN");
-    return this.apiService.delete('http://localhost:8081/api/cottage/delete/' + id);
+    return this.apiService.delete('http://localhost:8081/api/cottage/admin/delete/' + id);
   }
 
 
