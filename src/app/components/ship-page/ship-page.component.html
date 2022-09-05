@@ -58,4 +58,35 @@
         <app-edit-image></app-edit-image>
       </div>
 
+      <section class="info-block">
+        <form [formGroup]='form' *ngIf="showForm">
+          <app-date-range></app-date-range>
+          <table>
+              
+              <tr>
+                <td>
+                  <label>Kapacitet: </label>
+                </td>
+                <td>
+                  <input formControlName="capacity" required>
+                </td>
+              </tr>
+        
+              <section>
+                <p>Dodatne usluge: </p>
+                <div class="example-section" *ngFor="let option of ship.shipOptions">
+                  <mat-checkbox class="example-margin"
+                      (change)="onChangeEventFunc(option.id, $event)">
+                  {{ option.name }}
+                  </mat-checkbox>
+                </div>
+              </section>
+        
+              
+          </table>
+          <!-- <p *ngIf="showConflictMessage">Neko je rezervisao u međuvremenu!</p> -->
+          <button type="button" (click)="makeReservation()">Potvrdi</button>
+        </form>
+      </section>
+
 </section>

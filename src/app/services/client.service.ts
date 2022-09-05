@@ -9,6 +9,8 @@ import { FishingInstructor } from '../entity/FishingInstructor';
 import { AdventureReservationDTO } from '../entity/DTO/AdventureReservationDTO';
 import { CottageReservationDTO } from '../entity/DTO/CottageReservationDTO';
 import { ShipReservationDTO } from '../entity/DTO/ShipReservationDTO';
+import { CreateSuperDealReservation } from '../entity/DTO/CreateSuperDealReservation';
+import { AddReservationDTO } from '../entity/DTO/AddReservationDTO';
 
 
 @Injectable({
@@ -121,6 +123,15 @@ export class ClientService {
 
     postAdventureReview(review: any){
       return this.apiService.post('http://localhost:8081/api/review/adventure/save', JSON.stringify(review))
+    }
+
+    createCottageSuperDealRes(clientId: number, superDealId : number){
+      const superDealReservation = new CreateSuperDealReservation(clientId, superDealId);
+      return this.apiService.post('http://localhost:8081/api/client/cottage/superdeal/reservation', JSON.stringify(superDealReservation));
+    }
+
+    createReservation(reservation: AddReservationDTO): Observable<boolean>{
+      return this.apiService.post('http://localhost:8081/api/reservation/createByClient', JSON.stringify(reservation));
     }
 }
 
