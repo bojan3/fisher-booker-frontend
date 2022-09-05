@@ -112,10 +112,6 @@ export class CottagePageComponent implements OnInit {
     this.selectedDate = event;
   }
 
-  openChart() {
-    this.dialog.open(LineChartComponent)
-  }
-
   getImage(image: Image) {
     'data:image/jpeg;base64,' + image.image
   }

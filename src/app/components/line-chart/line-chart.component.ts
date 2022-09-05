@@ -13,7 +13,10 @@ import {
   ApexFill,
   ApexTooltip
 } from "ng-apexcharts";
+import { DatePeriodDTO } from 'src/app/entity/DTO/DatePeriodDTO';
+import { RealEstateType } from 'src/app/entity/RealEstateType';
 import { Stats } from 'src/app/entity/Stats';
+import { AccountService } from 'src/app/services/account.service';
 import { StatsService } from 'src/app/services/stats.service';
 
 export type ChartOptions = {
@@ -40,13 +43,28 @@ export class LineChartComponent implements OnInit {
   public chartOptions!: Partial<any>;
 
   selectedYear!: number;
-  selectedMonth!: number;
+  selectedMonth: number = 1;
   showSelect = false;
   showChart = false;
+  period: DatePeriodDTO = new DatePeriodDTO(new Date(), new Date());
   years: number[] = [];
   stats: Stats[] = [];
+  months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  currentTab = 0;
+  type!: RealEstateType
 
-  constructor(private statsService: StatsService) { }
+  constructor(private statsService: StatsService, private accountService: AccountService) {
+    switch(this.accountService.currentUser.role){
+      case "ROLE_COTTAGE_OWNER": {
+        this.type = RealEstateType.COTTAGE
+        break;
+      }
+      case "ROLE_SHIP_OWNER": {
+        this.type = RealEstateType.SHIP
+        break;
+      }
+    }
+   }
 
   ngOnInit(): void {
 
@@ -55,10 +73,11 @@ export class LineChartComponent implements OnInit {
       this.showSelect = true;
       this.selectedYear = years[0];
 
-      this.statsService.getYearlyStats(this.selectedYear).subscribe((stats) => {
+      this.statsService.getYearlyStats(this.selectedYear, this.type).subscribe((stats) => {
         this.stats = stats;
-        this.buildChart();
         this.showChart = true;
+        this.buildChart();
+
       })
     })
 
@@ -127,15 +146,60 @@ export class LineChartComponent implements OnInit {
     };
   }
 
-  onChange() {
-    this.statsService.getYearlyStats(this.selectedYear).subscribe((stats) => {
-      this.stats = stats;
-      this.buildChart();
-    })
+  onChange() {    
+    switch (this.currentTab) {
+      case 0: {
+        this.statsService.getYearlyStats(this.selectedYear, this.type).subscribe((stats) => {
+          this.stats = stats;
+          this.buildChart();
+        })
+        break;
+      }
+      case 1: {
+        this.statsService.getMonthlyStats(this.selectedYear, this.selectedMonth, this.type).subscribe((stats) => {
+          this.stats = stats;
+          this.buildChart();
+        })
+        break;
+      }
+      case 2: {
+        this.statsService.getArbitrarilyStats(this.period, this.type).subscribe((stats) => {
+          this.stats = stats;
+          this.buildChart();
+        })
+        break;
+      }
+    }
+
   }
 
   tabChanged(event: any) {
-    console.log(event);
+    this.currentTab = event.index;
+    switch (event.index) {
+      case 0: {
+        this.statsService.getYearlyStats(this.selectedYear, this.type).subscribe((stats) => {
+          this.stats = stats;
+          this.buildChart();
+        })
+        break;
+      }
+
+      case 1: {
+        this.statsService.getMonthlyStats(this.selectedYear, this.selectedMonth, this.type).subscribe((stats) => {
+          this.stats = stats;
+          this.buildChart();
+        })
+        break;
+      }
+
+      case 2: {
+        this.statsService.getArbitrarilyStats(this.period, this.type).subscribe((stats) => {
+          this.stats = stats;
+          this.buildChart();
+        })
+        break;
+      }
+    }
   }
 
 }
