@@ -22,7 +22,6 @@ import { EditAvailabilityPeriodComponent } from '../edit-availability-period/edi
 export class AddShipComponent implements OnInit {
 
   ship: AddShipDTO = new AddShipDTO();
-  showForm: boolean = false;
   form!: FormGroup;
 
   @ViewChild(EditRulesComponent)
@@ -47,6 +46,7 @@ export class AddShipComponent implements OnInit {
     if (this.accountService.currentUser.role != 'ROLE_SHIP_OWNER') {
       this.authService.logout();
     }
+    this.buildForm();
     
   }
 

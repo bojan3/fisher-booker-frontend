@@ -1,4 +1,4 @@
-<form *ngIf='showForm' (ngSubmit)="onSubmit()" class='add-cottage-form' [formGroup]="form">
+<form (ngSubmit)="onSubmit()" class='add-cottage-form' [formGroup]="form">
 
   <label>Naziv: </label>
   <input formControlName="name" required>

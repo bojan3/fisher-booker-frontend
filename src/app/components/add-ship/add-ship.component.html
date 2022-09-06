@@ -1,5 +1,4 @@
-<p>add-ship works!</p>
-<form *ngIf='showForm' (ngSubmit)="onSubmit()" class='add-ship-form' [formGroup]="form">
+<form (ngSubmit)="onSubmit()" class='add-ship-form' [formGroup]="form">
 
   <label>Ime: </label>
   <input formControlName="name" required>
@@ -65,7 +64,7 @@
 
   <div class='info-block'>
     <h2>Periodi dostupnosti: </h2>
-    <!-- <app-edit-availability-periods [periods]="ship.availabilityPeriods"></app-edit-availability-periods> -->
+    <app-edit-availability-period></app-edit-availability-period>
   </div>
 
   <div class="info-block">

@@ -68,7 +68,9 @@ export class LineChartComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.statsService.getYears().subscribe((years) => {
+    this.statsService.getYears(this.type).subscribe((years) => {
+      console.log("godine", years);
+      
       this.years = years;
       this.showSelect = true;
       this.selectedYear = years[0];

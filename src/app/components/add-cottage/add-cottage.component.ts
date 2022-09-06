@@ -47,7 +47,7 @@ export class AddCottageComponent implements OnInit {
     if (this.accountService.currentUser.role != 'ROLE_COTTAGE_OWNER') {
       this.authService.logout();
     }
-
+    this.buildForm();
   }
 
   onSubmit() {
@@ -66,8 +66,6 @@ export class AddCottageComponent implements OnInit {
     this.cottage.rules = this.editRulesComponent.form.value.rules;
     this.cottage.cottageOptions = this.editOptionsComponent.form.value.options;
     this.cottage.availabilityPeriod = new AvailabilityPeriod(0, this.editAvailabilityPeriodComponent.dateRange.value.start, this.editAvailabilityPeriodComponent.dateRange.value.end);
-    
-    // this.cottage.imageName = this.editImageComponent.image.name;
   }
 
   buildForm() {

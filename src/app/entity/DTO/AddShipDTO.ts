@@ -21,7 +21,7 @@ export class AddShipDTO {
     rules: Rule[];
     navigationEquipments: NavigationEquipment[];
     fishingEquipments: FishingEquipment[];
-    availabilityPeriods: AvailabilityPeriod[];
+    availabilityPeriod: AvailabilityPeriod;
     shipOptions: Option[];
 
     constructor(name: string = '', type: ShipType = ShipType.Boat, length: number = 0,
@@ -30,7 +30,7 @@ export class AddShipDTO {
         maxSpeed: number = 0, capacity: number = 0, cancelRate: number = 0,
         rules: Rule[] = [], navigationEquipment: NavigationEquipment[] = [],
         fishingEquipment: FishingEquipment[] = [],
-        availabilityPeriods: AvailabilityPeriod[] = [], shipOptions: Option[] = []) {
+        availabilityPeriods: AvailabilityPeriod = new AvailabilityPeriod(0, new Date(), new Date()), shipOptions: Option[] = []) {
         this.name = name;
         this.type = type;
         this.length = length;
@@ -45,7 +45,7 @@ export class AddShipDTO {
         this.rules = rules;
         this.navigationEquipments = navigationEquipment;
         this.fishingEquipments = fishingEquipment;
-        this.availabilityPeriods = availabilityPeriods;
+        this.availabilityPeriod = availabilityPeriods;
         this.shipOptions = shipOptions;
     }
 

@@ -34,8 +34,8 @@ export class StatsService {
     return this.http.post<Stats[]>(this.basePath + type.toString() + '/arbitrarily', newPeriod);
   }
 
-  getYears(): Observable<number[]> {
-    return this.apiService.get(this.basePath + "years");
+  getYears(type: RealEstateType): Observable<number[]> {
+    return this.apiService.get(this.basePath + type.toString() + "/years");
   }
 
 }
