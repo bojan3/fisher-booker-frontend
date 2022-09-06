@@ -45,21 +45,21 @@ export class ShipsComponent implements OnInit {
     })
 
     this.sortByGroup = new FormGroup({
-      'sortByRadio' : new FormControl()
+      'sortByRadio': new FormControl()
     });
 
     this.orderGroup = new FormGroup({
-      'orderRadio' : new FormControl()
+      'orderRadio': new FormControl()
     });
 
-    this.orderGroup.patchValue({orderRadio: 'ASC'});
+    this.orderGroup.patchValue({ orderRadio: 'ASC' });
 
-    this.shipService.getLocaitons().subscribe( (locations) => (this.shipLocations = locations) )
+    this.shipService.getLocaitons().subscribe((locations) => (this.shipLocations = locations))
 
-    if(this.forShipOwner){
+    if (this.forShipOwner) {
       this.shipService.getAllShipsByOwner().subscribe((ships) => (this.ships = ships));
     }
-    if (this.forClientSubscriptions) {
+    else if (this.forClientSubscriptions) {
       this.clientService.getShipSubscriptions(this.accountService.currentUser.id).subscribe((ships) => (this.ships = ships));
     }
     else {
@@ -68,15 +68,15 @@ export class ShipsComponent implements OnInit {
     //this.shipService.getAllShipsByName().subscribe((ships) => (this.ships = ships))
   }
 
-  getSorted(){
+  getSorted() {
     this.shipService.getAllShips(this.sortByGroup.value.sortByRadio, this.orderGroup.value.orderRadio).subscribe((ships) => (this.ships = ships));
-   }
+  }
 
   notClientSubscriptions(): boolean {
     return !this.forClientSubscriptions;
   }
 
-  onSearch(){
+  onSearch() {
     console.log(this.searchForm.value)
     this.shipService.search(this.searchForm.value).subscribe((ships) => (this.ships = ships));
   }

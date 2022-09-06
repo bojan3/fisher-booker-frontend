@@ -17,6 +17,7 @@ export class ShipComponent implements OnInit {
 
   errorDisplay: boolean = false;
   forClient: boolean = false;
+  forOwner: boolean = false;
   currentUser: any;
   @Input()
   forClientSubscriptions: boolean = false;
@@ -29,6 +30,7 @@ export class ShipComponent implements OnInit {
     this.accountService.getMyInfo().subscribe((user) => {
       this.currentUser = user;
       this.forClient = this.isUserClient(user.role);
+      this.forOwner = this.isUserOwner(user.role);
     });
   }
 
@@ -39,14 +41,31 @@ export class ShipComponent implements OnInit {
       return false;
   }
 
+  isUserOwner(role: string): boolean {
+    if (role == "ROLE_SHIP_OWNER")
+      return true;
+    else
+      return false;
+  }
+
   delete(id: number): void {
-    this.shipService.deleteShip(id).subscribe(
-      (ships) => {
-        window.location.reload();
-      },
-      (error) => {
-        this.errorDisplay = true;
-      })
+    if (this.forOwner) {
+      this.shipService.deleteShip(id).subscribe(
+        (ships) => {
+          window.location.reload();
+        },
+        (error) => {
+          this.errorDisplay = true;
+        })
+    } else {
+      this.shipService.adeleteShip(id).subscribe(
+        (ships) => {
+          window.location.reload();
+        },
+        (error) => {
+          this.errorDisplay = true;
+        })
+    }
   }
 
   ngOnButtonClick(id: number): void {
@@ -59,7 +78,9 @@ export class ShipComponent implements OnInit {
     this.clientService.subscribeToShip(this.ship.id, this.currentUser.id).subscribe();
   }
 
-  showDeleteButton() { }
+  showDeleteButton(): Boolean {
+    return this.accountService.currentUser.role == 'ROLE_SHIP_OWNER'
+  }
 
   unsubscribeShip() {
     this.clientService.unsubscribeShip(this.ship.id, this.accountService.currentUser.id).subscribe(() => (

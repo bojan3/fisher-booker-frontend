@@ -37,7 +37,11 @@ export class ShipService {
   }
 
   deleteShip(id: number): Observable<ShipDTO[]> {
-    return this.http.delete<ShipDTO[]>('http://localhost:8081/api/ship/delete{id}')
+    return this.http.delete<ShipDTO[]>('http://localhost:8081/api/ship/delete/owner/' + id)
+  }
+  
+  adeleteShip(id: number): Observable<ShipDTO[]> {
+    return this.http.delete<ShipDTO[]>('http://localhost:8081/api/ship/admin/delete/' + id)
   }
 
   getAllShipsByOwner(): Observable<ShipDTO[]> {
