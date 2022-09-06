@@ -1,0 +1,19 @@
+<section class='complaints'>
+
+     
+    <p> id zalbe: {{complaint.id}}</p>>
+    <p>korisincko ime klijenta: {{complaint.client_username}}</p>
+    <p>email klijenta : {{complaint.client_email}}</p>
+    <p>korisincko ime vlasnika: {{complaint.owner_username}}</p>
+    <p>email vlasnika: {{complaint.owner_email}}</p>
+    <p>text zalbe: {{complaint.text}}</p>  
+ 
+    <textarea #odgovor  rows="4" cols="50">
+     
+    </textarea>
+ 
+   <p align="right">
+
+ <button  (click) = "respond(odgovor.value)">potvrdi</button>
+
+ </p>

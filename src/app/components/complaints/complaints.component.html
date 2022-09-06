@@ -1,0 +1,8 @@
+<h1>Prikaz svih korisnickih zalbi!</h1>
+
+<section class='complaints'>
+    <app-complaint  *ngFor="let complaint of complaints"
+    [complaint]="complaint">
+  
+    </app-complaint>
+  </section>
