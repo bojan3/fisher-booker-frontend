@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService } from 'src/app/services/account.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { ShipService } from 'src/app/services/ship.service';
@@ -23,6 +23,7 @@ export class AddShipComponent implements OnInit {
 
   ship: AddShipDTO = new AddShipDTO();
   form!: FormGroup;
+  showForm = false;
 
   @ViewChild(EditRulesComponent)
   editRulesComponent!: EditRulesComponent;
@@ -36,6 +37,7 @@ export class AddShipComponent implements OnInit {
   editAvailabilityPeriodsComponent!: EditAvailabilityPeriodComponent;
 
   constructor(private route: ActivatedRoute,
+    private router: Router,
     private formBuilder: FormBuilder,
     private shipService: ShipService,
     private accountService: AccountService,
@@ -43,10 +45,15 @@ export class AddShipComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if (this.accountService.currentUser.role != 'ROLE_SHIP_OWNER') {
-      this.authService.logout();
-    }
-    this.buildForm();
+    this.accountService.getMyInfo().subscribe((user) => {
+      if (user.role != 'ROLE_SHIP_OWNER') {      
+        this.authService.logout();
+        this.router.navigate(['/logIn'])
+      }
+      this.buildForm();
+    }, (error) => {
+      this.router.navigate(['/logIn'])
+    })
     
   }
 

@@ -37,17 +37,22 @@ export class AddCottageComponent implements OnInit {
   editImageComponent!: EditImageComponent;
 
   constructor(private route: ActivatedRoute,
+    private router: Router,
     private formBuilder: FormBuilder,
     private cottageService: CottageService,
     private accountService: AccountService,
     private authService: AuthService) { }
 
-  ngOnInit(): void {
-
-    if (this.accountService.currentUser.role != 'ROLE_COTTAGE_OWNER') {
-      this.authService.logout();
-    }
-    this.buildForm();
+  ngOnInit(): void {    
+    this.accountService.getMyInfo().subscribe((user) => {
+      if (user.role != 'ROLE_COTTAGE_OWNER') {      
+        this.authService.logout();
+        this.router.navigate(['/logIn'])
+      }
+      this.buildForm();
+    }, (error) => {
+      this.router.navigate(['/logIn'])
+    })
   }
 
   onSubmit() {
