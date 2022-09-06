@@ -117,6 +117,7 @@ import { EditShipComponent } from './components/edit-ship/edit-ship.component';
 import { EditCottageComponent } from './components/edit-cottage/edit-cottage.component';
 import { ComplaintComponent } from './components/complaint/complaint.component';
 import { ComplaintsComponent } from './components/complaints/complaints.component';
+import { AddAdventureComponent } from './components/add-adventure/add-adventure.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -193,7 +194,10 @@ const appRoutes: Routes = [
   { path: 'adventure-review/:adventureId', component: AdventureReviewComponent },
   { path: 'admin_profile/reviews', component: ReviewsComponent},
   { path: 'admin_profile/reservation_reviews', component: ReservationReviewsComponent},
-  { path: 'admin_profile/complaints', component: ComplaintsComponent}
+  { path: 'admin_profile/complaints', component: ComplaintsComponent},
+  { path: 'add_adventure', component: AddAdventureComponent }
+
+
 
 ];
 
@@ -290,7 +294,8 @@ const mapConfig: YaConfig = {
     EditShipComponent,
     EditCottageComponent,
     ComplaintComponent,
-    ComplaintsComponent
+    ComplaintsComponent,
+    AddAdventureComponent
   ],
   imports: [
     [AngularYandexMapsModule.forRoot(mapConfig)],

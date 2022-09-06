@@ -1,0 +1,37 @@
+<form (ngSubmit)="onSubmit()" class='add-cottage-form' [formGroup]="form">
+
+    <label>Naziv: </label>
+    <input formControlName="name" required>
+  
+    <div class="info-block" formGroupName="address">
+      <p id='title'>Adresa: </p>
+      <label>Država: </label>
+      <input formControlName="country">
+      <label>Grad: </label>
+      <input formControlName="city">
+      <label>Ulica: </label>
+      <input formControlName="street">
+      <label>Broj: </label>
+      <input formControlName="number">
+    </div>
+  
+    <label>Opis: </label>
+    <input formControlName="description">
+  
+    <label>Kirija: </label>
+    <input formControlName="pricePerDay" required>
+  
+    <div class='info-block'>
+      <h2>Period dostupnosti: </h2>
+      <app-edit-availability-period></app-edit-availability-period>
+    </div>
+  
+  
+    <div class="info-block">
+      <h2>Opcije</h2>
+      <app-edit-options [options]='adventure.adventureOptions'></app-edit-options>
+    </div>
+    
+    <button color="primary" (click)='cancelChanges()'>Otkaži</button>
+    <button color="primary" type="submit" (onSubmit)="onSubmit()">Sačuvaj</button>
+  </form>

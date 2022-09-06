@@ -5,6 +5,7 @@ import { Adventure } from '../entity/Adventure';
 import { ApiService } from './api.service';
 
 import { AdventureDTO } from 'src/app/entity/AdventureDTO';
+import { AddAdventureDTO } from '../entity/DTO/AddAdventureDTO';
 @Injectable({
   providedIn: 'root'
 })
@@ -66,7 +67,7 @@ export class AdventureService {
     return this.http.get<AdventureDTO[]>('http://localhost:8081/api/adventure/all/rate');
   }
 
-  saveAdventure(adventure: AdventureDTO): Observable<boolean>{
+  saveAdventure(adventure: AddAdventureDTO): Observable<boolean>{
     return this.http.post<boolean>('http://localhost:8081/api/adventure/save', adventure);
   }
   
