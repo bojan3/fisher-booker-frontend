@@ -15,6 +15,7 @@ import { ClientService } from 'src/app/services/client.service';
 
 const MILISECINDAY = 86400000;
 import { EditShipDTO } from 'src/app/entity/DTO/EditShipDTO';
+import { CreateSuperDealReservation } from 'src/app/entity/DTO/CreateSuperDealReservation';
 
 @Component({
   selector: 'app-ship-page',
@@ -140,6 +141,11 @@ export class ShipPageComponent implements OnInit {
 
   showForm(){
     return this.accountService.currentUser == 'ROLE_CLIENT';
+  }
+
+  makeSuperDealReservation(event: any) {
+    var superDealReservation = new CreateSuperDealReservation(this.accountService.currentUser.id,  event.target.id, ReservationType.SHIP)
+    this.clientService.createSuperDealReservation(superDealReservation).subscribe();
   }
 
   makeReservation(){

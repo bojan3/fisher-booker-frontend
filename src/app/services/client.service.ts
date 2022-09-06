@@ -125,9 +125,9 @@ export class ClientService {
       return this.apiService.post('http://localhost:8081/api/review/adventure/save', JSON.stringify(review))
     }
 
-    createCottageSuperDealRes(clientId: number, superDealId : number){
-      const superDealReservation = new CreateSuperDealReservation(clientId, superDealId);
-      return this.apiService.post('http://localhost:8081/api/client/cottage/superdeal/reservation', JSON.stringify(superDealReservation));
+    createSuperDealReservation(superDealReservation: CreateSuperDealReservation){
+      // const superDealReservation = new CreateSuperDealReservation(clientId, superDealId);
+      return this.apiService.post('http://localhost:8081/api/reservation/createByClient/superdeal', JSON.stringify(superDealReservation));
     }
 
     createReservation(reservation: AddReservationDTO): Observable<boolean>{
