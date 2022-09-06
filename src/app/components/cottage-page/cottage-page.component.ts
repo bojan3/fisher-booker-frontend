@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatCalendarCellClassFunction, MatCalendarCellCssClasses } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Cottage } from 'src/app/entity/Cottage';
 import { AddReservationDTO } from 'src/app/entity/DTO/AddReservationDTO';
 import { CreateSuperDealReservation } from 'src/app/entity/DTO/CreateSuperDealReservation';
@@ -34,6 +34,8 @@ export class CottagePageComponent implements OnInit {
   ownership: boolean = false;
   selectedDate: any;
   form!: FormGroup;
+  showConflictMessage: boolean = false;
+  showConflictMessageSuperDeal: boolean = false;
 
   @ViewChild(CalendarComponent)
   calendar!: CalendarComponent;
@@ -46,9 +48,14 @@ export class CottagePageComponent implements OnInit {
       private cottageService: CottageService,
       public dialog: MatDialog,
       private accountService: AccountService,
-      private clientService: ClientService) { }
+      private clientService: ClientService,
+      private router: Router) { }
 
   ngOnInit(): void {
+    this.accountService.getMyInfo().subscribe((user) => {
+    }, (error) => {
+      this.router.navigate(['/logIn'])
+    })
     this.route.params.subscribe((param) => {
       this.id = param.id;
       this.cottageService.getById(this.id).subscribe((cottage) => {
@@ -125,7 +132,11 @@ export class CottagePageComponent implements OnInit {
 
   makeSuperDealReservation(event: any) {
     var superDealReservation = new CreateSuperDealReservation(this.accountService.currentUser.id,  event.target.id, ReservationType.COTTAGE)
-    this.clientService.createSuperDealReservation(superDealReservation).subscribe();
+    this.clientService.createSuperDealReservation(superDealReservation).subscribe((res) => {
+      window.location.reload();
+    }, (error) => {
+      this.showConflictMessageSuperDeal = true;
+    });
   }
 
   makeReservation(){
@@ -139,7 +150,12 @@ export class CottagePageComponent implements OnInit {
       this.cottage.pricePerDay * numOfDays, this.dateRangeComponent.endDate, this.form.value.capacity, this.cottage.id,
       this.form.value.options, ReservationType.COTTAGE, this.accountService.currentUser.id);
 
-    this.clientService.createReservation(newReservation).subscribe();
+    this.clientService.createReservation(newReservation).subscribe((res) => {
+      window.location.reload();
+    }, (error) => {
+      this.showConflictMessage = true;
+    });
+;
   }
 
   onChangeEventFunc(id: number, isChecked: any) {

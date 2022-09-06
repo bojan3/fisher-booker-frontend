@@ -7,7 +7,12 @@
     <th>Last name:</th>
     <th>{{account.lastName}}</th>
   </tr>
-  <tr>
+  <tr >
+    <tr>
+      <th *ngIf="isUserClient()">Penlas:</th>
+      <th *ngIf="isUserClient()">{{penals}}</th>
+    </tr>
+    <tr>
     <th>Username:</th>
     <th>{{account.username}}</th>
   </tr>

@@ -28,6 +28,7 @@
             <button *ngIf="ownership" (click)="openAddSupeDealDialog()">Napravi</button>
         </div>
 
+        <p *ngIf="showConflictMessageSuperDeal">Neko je rezervisao u međuvremenu!</p>
         <div class=super-deal *ngFor="let superDeal of ship.shipSuperDeals">
             <p>Оd: {{formatDate(superDeal.startDate)}}</p>
             <p>Do: {{formatDate(superDeal.endDate)}}</p>
@@ -85,7 +86,7 @@
         
               
           </table>
-          <!-- <p *ngIf="showConflictMessage">Neko je rezervisao u međuvremenu!</p> -->
+          <p *ngIf="showConflictMessage">Neko je rezervisao u međuvremenu!</p>
           <button type="button" (click)="makeReservation()">Potvrdi</button>
         </form>
       </section>

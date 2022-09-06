@@ -1,11 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Adventure } from 'src/app/entity/Adventure';
 import { AdventureDTO } from 'src/app/entity/AdventureDTO';
 import { ReservationType } from 'src/app/entity/DTO/ReservationType';
 import { AccountService } from 'src/app/services/account.service';
 import { AdventureService } from 'src/app/services/adventure.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { AddSuperDealComponent } from '../add-super-deal/add-super-deal.component';
 import { CalendarComponent } from '../calendar/calendar.component';
 import { LineChartComponent } from '../line-chart/line-chart.component';
@@ -17,12 +19,13 @@ import { LineChartComponent } from '../line-chart/line-chart.component';
 })
 export class AdventurePageComponent implements OnInit {
 
-  
+  form!: FormGroup;
   id: string = '';
   adventure!: AdventureDTO;
   adventureIsPresent = false;
   ownership: boolean = false;
   selectedDate: any;
+  showConflictMessage: boolean = false;
 
   @ViewChild(CalendarComponent)
   calendar!: CalendarComponent;
@@ -30,9 +33,15 @@ export class AdventurePageComponent implements OnInit {
   constructor(private route: ActivatedRoute,
      private adventureService: AdventureService,
       public dialog: MatDialog,
-      private accountService: AccountService) { }
+      private accountService: AccountService,
+      private authService: AuthService,
+      private router: Router) { }
 
   ngOnInit(): void {
+    this.accountService.getMyInfo().subscribe((user) => {
+    }, (error) => {
+      this.router.navigate(['/logIn'])
+    })
     this.route.params.subscribe((param) => {
       this.id = param.id;
       this.adventureService.getById(this.id).subscribe((adventure) => {
@@ -49,18 +58,18 @@ export class AdventurePageComponent implements OnInit {
   }
 
 
-  rulesToString() {
-    if (this.adventure) {
-      let rules = this.adventure.rules;
-      let output = '';
-      rules.forEach(rule => {
-        output += rule.description + ', ';
-      });
+  // rulesToString() {
+  //   if (this.adventure) {
+  //     let rules = this.adventure.rules;
+  //     let output = '';
+  //     rules.forEach(rule => {
+  //       output += rule.description + ', ';
+  //     });
 
-      return this.removeLastCommaAndSpace(output);
-    }
-    return '';
-  }
+  //     return this.removeLastCommaAndSpace(output);
+  //   }
+  //   return '';
+  // }
 
   formatDate(date: Date) {
     return date;
@@ -85,6 +94,16 @@ export class AdventurePageComponent implements OnInit {
     this.dialog.open(LineChartComponent)
   }
 
+  onChangeEventFunc(id: number, isChecked: any) {
+    const ops = (this.form.controls.options as FormArray);
+    if (isChecked) {
+      ops.push(new FormControl(id));
+    } else {
+      const index = ops.controls.findIndex(x => x.value === id);
+      ops.removeAt(index);
+    }
+  }
+
   //getImage(image: Image) {
   //  'data:image/jpeg;base64,' + image.image
   //}
@@ -93,5 +112,13 @@ export class AdventurePageComponent implements OnInit {
     this.adventureService.deleteImage(event.target.id).subscribe((res) => {
       window.location.reload()
     })
+  }
+
+  makeReservation(){
+
+  }
+
+  showForm(): boolean{
+    return this.accountService.currentUser.role == 'ROLE_CLIENT';
   }
 }
