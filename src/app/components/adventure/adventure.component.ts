@@ -52,6 +52,7 @@ export class AdventureComponent implements OnInit {
     else
       return false;
   }
+  
   isUserAdmin(role: string): boolean {
     console.log(role);
     if (role == "ROLE_ADMIN")

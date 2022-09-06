@@ -92,7 +92,8 @@ export class CottageComponent implements OnInit {
   }
 
   unsubscribeCottage(){
-    this.clientService.unsubscribeCottage(this.cottage.id, this.currentUser.id).subscribe();
+    this.clientService.unsubscribeCottage(this.cottage.id, this.currentUser.id).subscribe(() => (
+      window.location.reload() ));
   }
 
   // canCancel(): boolean {

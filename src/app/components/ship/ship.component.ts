@@ -62,7 +62,8 @@ export class ShipComponent implements OnInit {
   showDeleteButton() { }
 
   unsubscribeShip() {
-    this.clientService.unsubscribeShip(this.ship.id, this.accountService.currentUser.id).subscribe();
+    this.clientService.unsubscribeShip(this.ship.id, this.accountService.currentUser.id).subscribe(() => (
+      window.location.reload() ));
   }
 
   showSubscribe(): boolean {

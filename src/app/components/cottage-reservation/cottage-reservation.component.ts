@@ -33,7 +33,9 @@ export class CottageReservationComponent implements OnInit {
 
   cancelReservation(){
     this.accountService.getMyInfo().subscribe();
-    this.clientService.deleteCottageReservation(this.accountService.currentUser.id, this.cottageReservation.id).subscribe();
+    this.clientService.deleteCottageReservation(this.accountService.currentUser.id, this.cottageReservation.id).subscribe(() => (
+      window.location.reload())
+    );
   }
 
 }

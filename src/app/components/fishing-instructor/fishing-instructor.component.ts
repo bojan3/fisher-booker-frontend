@@ -19,6 +19,7 @@ export class FishingInstructorComponent implements OnInit {
 
   forClient = false;
   currentUser: any;
+  forAdmin = false;
 
   constructor(private finshing_instructor_Service : FishingInstructorService, private clientService: ClientService,
     private accountService: AccountService) { }
@@ -27,6 +28,7 @@ export class FishingInstructorComponent implements OnInit {
       this.accountService.getMyInfo().subscribe((user) => {
         this.currentUser = user;
         this.forClient = this.isUserClient(user.role);
+        this.forAdmin = this.isUserAdmin(user.role);
       });
     }
 
@@ -59,7 +61,16 @@ export class FishingInstructorComponent implements OnInit {
   }
 
   unsubscribeInstructor(){
-    this.clientService.unsubscribeInstructor(this.fishinginstructor.id, this.accountService.currentUser.id).subscribe();
+    this.clientService.unsubscribeInstructor(this.fishinginstructor.id, this.accountService.currentUser.id).subscribe(() => (
+      window.location.reload() )
+    );
+  }
+  
+  isUserAdmin(role: string): boolean {
+    if(role == "ROLE_ADMIN")
+      return true;
+    else
+      return false;
   }
 
 }

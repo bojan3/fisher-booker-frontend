@@ -34,7 +34,8 @@ export class AdventureReservationComponent implements OnInit {
 
   cancelReservation(){
     this.accountService.getMyInfo().subscribe();
-    this.clientService.deleteAdventureReservation(this.accountService.currentUser.id, this.adventureReservation.id).subscribe();
+    this.clientService.deleteAdventureReservation(this.accountService.currentUser.id, this.adventureReservation.id).subscribe(() => (
+      window.location.reload() ));
   }
 
 }

@@ -1,16 +1,21 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Adventure } from 'src/app/entity/Adventure';
 import { AdventureDTO } from 'src/app/entity/AdventureDTO';
+import { AddReservationDTO } from 'src/app/entity/DTO/AddReservationDTO';
 import { ReservationType } from 'src/app/entity/DTO/ReservationType';
 import { AccountService } from 'src/app/services/account.service';
 import { AdventureService } from 'src/app/services/adventure.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { ClientService } from 'src/app/services/client.service';
 import { AddSuperDealComponent } from '../add-super-deal/add-super-deal.component';
 import { CalendarComponent } from '../calendar/calendar.component';
+import { DateRangeComponent } from '../date-range/date-range.component';
 import { LineChartComponent } from '../line-chart/line-chart.component';
+
+const MILISECINDAY = 86400000;
 
 @Component({
   selector: 'app-adventure-page',
@@ -30,12 +35,17 @@ export class AdventurePageComponent implements OnInit {
   @ViewChild(CalendarComponent)
   calendar!: CalendarComponent;
 
+  @ViewChild(DateRangeComponent)
+  dateRangeComponent!: DateRangeComponent;
+  
   constructor(private route: ActivatedRoute,
      private adventureService: AdventureService,
       public dialog: MatDialog,
       private accountService: AccountService,
       private authService: AuthService,
-      private router: Router) { }
+      private router: Router,
+      private formBuilder: FormBuilder,
+      private clientService: ClientService) { }
 
   ngOnInit(): void {
     this.accountService.getMyInfo().subscribe((user) => {
@@ -55,6 +65,8 @@ export class AdventurePageComponent implements OnInit {
         this.ownership = res;
       })
     })
+
+    this.createReservation();
   }
 
 
@@ -115,10 +127,36 @@ export class AdventurePageComponent implements OnInit {
   }
 
   makeReservation(){
+    if (this.dateRangeComponent.startDate == null || this.dateRangeComponent.endDate == null) {
+      return;
+    }
 
+    var numOfDays = (this.dateRangeComponent.endDate.getTime() - this.dateRangeComponent.startDate.getTime()) / MILISECINDAY;
+
+    var newReservation = new AddReservationDTO(this.dateRangeComponent.startDate,
+      this.adventure.price * numOfDays, this.dateRangeComponent.endDate, this.form.value.capacity, this.adventure.id,
+      this.form.value.options, ReservationType.ADVENTURE, this.accountService.currentUser.id);
+
+      console.log(newReservation);
+
+    this.clientService.createReservation(newReservation).subscribe((res) => {
+      window.location.reload();
+    }, (error) => {
+      this.showConflictMessage = true;
+    });
   }
 
   showForm(): boolean{
     return this.accountService.currentUser.role == 'ROLE_CLIENT';
+  }
+
+  createReservation() {
+    this.form = this.formBuilder.group({
+      startDate: [, Validators.compose([Validators.required])],
+      endDate: [, Validators.compose([Validators.required])],
+      price: [, Validators.compose([Validators.required])],
+      capacity: [, Validators.compose([Validators.required])],
+      options: this.formBuilder.array([])
+    });
   }
 }

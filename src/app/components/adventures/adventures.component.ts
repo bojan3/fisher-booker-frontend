@@ -22,6 +22,8 @@ export class AdventuresComponent implements OnInit {
   forClientInsructorAdventures = false;
   sortByGroup!: FormGroup;
   orderGroup!: FormGroup;
+
+  @Input()
   forClientSubscriptions: boolean = false;
   
   constructor(private adventureService: AdventureService, private route: ActivatedRoute) { }
