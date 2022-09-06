@@ -25,9 +25,9 @@ export class CottagesComponent implements OnInit {
   grades: number[] = [1, 2, 3, 4, 5];
 
   constructor(private cottageService: CottageService,
-              private clientService: ClientService,
-              private accountService: AccountService,
-              private formBuilder: FormBuilder) { }
+    private clientService: ClientService,
+    private accountService: AccountService,
+    private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
 
@@ -40,20 +40,20 @@ export class CottagesComponent implements OnInit {
     })
 
     this.sortByGroup = new FormGroup({
-      'sortByRadio' : new FormControl()
+      'sortByRadio': new FormControl()
     });
 
     this.orderGroup = new FormGroup({
-      'orderRadio' : new FormControl()
+      'orderRadio': new FormControl()
     });
 
-    this.orderGroup.patchValue({orderRadio: 'ASC'});
+    this.orderGroup.patchValue({ orderRadio: 'ASC' });
 
-    this.cottageService.getCottageLocaitons().subscribe( (locations) => (this.cottageLocations = locations) )
+    this.cottageService.getCottageLocaitons().subscribe((locations) => (this.cottageLocations = locations))
 
     if (this.forCottageOwner) {
       this.cottageService.getAllCottagesByOwner().subscribe((cottages) => (this.cottages = cottages));
-    } if(this.forClientSubscriptions){
+    } else if (this.forClientSubscriptions) {
       this.clientService.getCottageSubscriptions(this.accountService.currentUser.id).subscribe((cottages) => (this.cottages = cottages));
     }
     else {
@@ -61,15 +61,15 @@ export class CottagesComponent implements OnInit {
     }
   }
 
-  getSorted(){
-   this.cottageService.getAllCottages(this.sortByGroup.value.sortByRadio, this.orderGroup.value.orderRadio).subscribe((cottages) => (this.cottages = cottages));
+  getSorted() {
+    this.cottageService.getAllCottages(this.sortByGroup.value.sortByRadio, this.orderGroup.value.orderRadio).subscribe((cottages) => (this.cottages = cottages));
   }
 
   notClientSubscriptions(): boolean {
     return !this.forClientSubscriptions;
   }
 
-  onSearch(){
+  onSearch() {
     console.log(this.searchForm.value)
     this.cottageService.search(this.searchForm.value).subscribe((cottages) => (this.cottages = cottages));
   }

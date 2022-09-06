@@ -35,7 +35,6 @@
         {{option.name}} --- {{option.description}} --- {{option.price}}
       </div>
       <div class="buttons" *ngIf="ownership">
-        <button>Izbriši</button>
         <button (click)="makeSuperDealReservation($event)" [id]="superDeal.id">make reservation</button>
       </div>
     </div>
@@ -53,9 +52,9 @@
     <h2>Slike</h2>
     <div class="images" *ngFor="let image of cottage?.cottageImages">
       <img [src]='"data:image/jpeg;base64," + image.image'>
-      <button [id]=image.id (click)="deleteImage($event)">Izbriši</button>
+      <button [id]=image.id (click)="deleteImage($event)" *ngIf="ownership">Izbriši</button>
     </div>
-    <app-edit-image></app-edit-image>
+    <app-edit-image *ngIf="ownership"></app-edit-image>
   </div>
 
   <section class="info-block">

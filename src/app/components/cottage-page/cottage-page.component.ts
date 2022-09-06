@@ -59,6 +59,8 @@ export class CottagePageComponent implements OnInit {
         this.cottageIsPresent = true;
       });
       this.cottageService.checkCottageOwnersip(this.id).subscribe((res) => {
+        console.log('ownership: ', res);
+        
         this.ownership = res;
       })
     })
@@ -164,5 +166,9 @@ export class CottagePageComponent implements OnInit {
 
   showForm(): boolean{
     return this.accountService.currentUser == 'ROLE_CLIENT';
+  }
+
+  deleteSuperDeal(id: number) {
+    
   }
 }

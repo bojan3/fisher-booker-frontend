@@ -18,15 +18,15 @@ export class MapsComponent implements OnInit {
   constructor(private mapsService: MapsService) { }
 
   ngOnInit(): void {
-    // this.mapsService.getCoord(this.addressToString()).subscribe((response) => {
-    //   var geoObjectCollection = Object.values(response)[0];
-    //   var f = Object.values(geoObjectCollection)[0];
-    //   var geoObject = (Object.values(f as Object)[1])[0] as Object;
-    //   var info = Object.values(geoObject)[0];
-    //   var point = Object.values(info)[4];
-    //   var pos = Object.values(point as Object)[0];
-    //   this.convertPosToCoord(pos);
-    // })
+    this.mapsService.getCoord(this.addressToString()).subscribe((response) => {
+      var geoObjectCollection = Object.values(response)[0];
+      var f = Object.values(geoObjectCollection)[0];
+      var geoObject = (Object.values(f as Object)[1])[0] as Object;
+      var info = Object.values(geoObject)[0];
+      var point = Object.values(info)[4];
+      var pos = Object.values(point as Object)[0];
+      this.convertPosToCoord(pos);
+    })
   }
 
   convertPosToCoord(pos: string){
