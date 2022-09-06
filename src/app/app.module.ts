@@ -202,8 +202,8 @@ const appRoutes: Routes = [
 ];
 
 const mapConfig: YaConfig = {
-  //apikey: 'a7b572e8-718a-4325-9c8b-676375397e9e',
-  apikey: 'asd',
+  apikey: 'a7b572e8-718a-4325-9c8b-676375397e9e',
+  // apikey: 'asd',
   lang: 'en_US',
 };
 

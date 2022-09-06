@@ -58,6 +58,8 @@ export class CottageService {
   }
 
   deleteCottage(id: number): Observable<CottageDTO> {
+    console.log('to baro');
+    
     return this.apiService.delete('http://localhost:8081/api/cottage/delete/owner/' + id);
   }
 
