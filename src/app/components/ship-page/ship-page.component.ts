@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ReservationType } from 'src/app/entity/DTO/ReservationType';
 import { RealEstateType } from 'src/app/entity/RealEstateType';
 import { Ship } from 'src/app/entity/Ship';
@@ -29,6 +29,8 @@ export class ShipPageComponent implements OnInit {
   shipIsPresent: boolean = false;
   ownership: boolean = false;
   form!: FormGroup;
+  showConflictMessage: boolean = false;
+  showConflictMessageSuperDeal: boolean = false;
   
   @ViewChild(DateRangeComponent)
   dateRangeComponent!: DateRangeComponent;
@@ -40,9 +42,15 @@ export class ShipPageComponent implements OnInit {
     public dialog: MatDialog,
     private formBuilder: FormBuilder,
     private accountService: AccountService,
-    private clientService: ClientService) { }
+    private clientService: ClientService,
+    private router: Router) { }
 
   ngOnInit() {
+    this.accountService.getMyInfo().subscribe((user) => {
+    }, (error) => {
+      this.router.navigate(['/logIn'])
+    })
+
     this.route.params.subscribe((param) => {
       this.id = param.id;
       this.shipService.getById(this.id).subscribe((ship) => {
@@ -145,7 +153,11 @@ export class ShipPageComponent implements OnInit {
 
   makeSuperDealReservation(event: any) {
     var superDealReservation = new CreateSuperDealReservation(this.accountService.currentUser.id,  event.target.id, ReservationType.SHIP)
-    this.clientService.createSuperDealReservation(superDealReservation).subscribe();
+    this.clientService.createSuperDealReservation(superDealReservation).subscribe((res) => {
+      window.location.reload();
+    }, (error) => {
+      this.showConflictMessageSuperDeal = true;
+    });;
   }
 
   makeReservation(){
@@ -159,7 +171,12 @@ export class ShipPageComponent implements OnInit {
       this.ship.rentPrice * numOfDays, this.dateRangeComponent.endDate, this.form.value.capacity, this.ship.id,
       this.form.value.options, ReservationType.SHIP, this.accountService.currentUser.id);
 
-      this.clientService.createReservation(newReservation).subscribe();
+      this.clientService.createReservation(newReservation).subscribe((res) => {
+        window.location.reload();
+      }, (error) => {
+        this.showConflictMessage = true;
+      });
+  ;
     }
 
 }

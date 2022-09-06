@@ -133,6 +133,10 @@ export class ClientService {
     createReservation(reservation: AddReservationDTO): Observable<boolean>{
       return this.apiService.post('http://localhost:8081/api/reservation/createByClient', JSON.stringify(reservation));
     }
+
+    getNumOfPenals(): Observable<number>{
+      return this.apiService.get('http://localhost:8081/api/client/penals');
+    }
 }
 
 

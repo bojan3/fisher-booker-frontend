@@ -29,8 +29,8 @@
 </form>
 
 
-<h3>Sort by:</h3>
-<div class="sort" style="display:flex; flex-direction: row; justify-content: center; align-items: left">
+<h3 *ngIf="notClientSubscriptions()">Sort by:</h3>
+<div *ngIf="notClientSubscriptions()" class="sort" style="display:flex; flex-direction: row; justify-content: center; align-items: left">
   <form [formGroup]="sortByGroup">
     <input type="radio" formControlName="sortByRadio" value="name" (change)="getSorted()">
     <label for="name">name</label><br>
@@ -52,7 +52,7 @@
 </div>
 
 <section class='ships'>
-  <app-ship  *ngFor="let ship of ships"
+  <app-ship [forClientSubscriptions] = 'forClientSubscriptions' *ngFor="let ship of ships"
   [ship]="ship">
 
    </app-ship>

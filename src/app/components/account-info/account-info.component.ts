@@ -5,6 +5,7 @@ import { Account } from 'src/app/entity/Account';
 import { AccountService } from 'src/app/services/account.service';
 import { StatusName} from 'src/app/entity/StatusName';
 import { delay } from 'rxjs/operators';
+import { ClientService } from 'src/app/services/client.service';
 
 @Component({
   selector: 'app-account-info',
@@ -22,9 +23,11 @@ export class AccountInfoComponent implements OnInit {
   isSILVER: boolean = false;
   isGOLD: boolean = false;
   isDIAMOND: boolean = false;
+  penals: number = 0;
 
   constructor(private accountService: AccountService,
-     private formBuilder: FormBuilder) {
+     private formBuilder: FormBuilder,
+     private clientService: ClientService) {
       this.accountService.getMyInfo().subscribe((account) =>{
         this.account = account;    
         if (this.account.status.name.toString()=="DIAMOND")
@@ -76,6 +79,9 @@ export class AccountInfoComponent implements OnInit {
     //     number: ['']
     //   }),
     // });
+      this.clientService.getNumOfPenals().subscribe(
+        (penals) => (this.penals = penals)
+      )
     }
 
 
@@ -83,6 +89,10 @@ export class AccountInfoComponent implements OnInit {
     this.editMode = true;
 
 
+  }
+
+  isUserClient(): boolean{
+    return this.account.role == "ROLE_CLIENT";
   }
 
   hideForm(){

@@ -6,7 +6,6 @@
       {{adventure.price}}</p>
     <p>Adress: {{adventure.address.country}}, {{adventure.address.city}}, {{adventure.address.street}},
       {{adventure.address.number}} </p>
-    <p>Rating: {{adventure.averageMark}}/5</p>
     <p align="right">
       <button *ngIf="showSubscribeButton()" (click)="subscribeToCottage()">subscribe</button>
       <button [routerLink]="['', 'adventure', adventure.id]">details</button>

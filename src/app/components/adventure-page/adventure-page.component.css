@@ -1,0 +1,26 @@
+.name {
+    display: flex;
+}
+
+.super-deal {
+    display: inline-block;
+    border: black solid 2px;
+    margin: 10px;
+    padding: 5px;
+}
+
+.cottage-all-info {
+    margin: 50px;
+}
+
+.info-block {
+    padding: 30px;
+    border: 3px solid black;
+    margin: 20px;
+}
+
+.deal-head {
+    display: flex;
+    justify-content: space-between;
+}
+
