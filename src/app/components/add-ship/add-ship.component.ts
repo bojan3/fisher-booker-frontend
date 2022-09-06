@@ -50,6 +50,7 @@ export class AddShipComponent implements OnInit {
         this.authService.logout();
         this.router.navigate(['/logIn'])
       }
+      this.showForm = true
       this.buildForm();
     }, (error) => {
       this.router.navigate(['/logIn'])
